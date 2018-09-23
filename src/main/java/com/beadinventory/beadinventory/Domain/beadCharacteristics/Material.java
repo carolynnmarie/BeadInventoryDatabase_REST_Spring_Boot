@@ -1,6 +1,6 @@
-package com.beadinventory.beadinventory.beadCharacteristics;
+package com.beadinventory.beadinventory.Domain.beadCharacteristics;
 
-import static com.beadinventory.beadinventory.beadCharacteristics.BeadCategory.*;
+import static com.beadinventory.beadinventory.Domain.beadCharacteristics.MaterialCategory.*;
 public enum Material {
 
     SHELL("shell", NATURAL_STONE),
@@ -37,11 +37,12 @@ public enum Material {
     GOLD_PLATED("gold plated", PRECIOUS_METAL),
     STAINLESS_STEEL("stainless steel", METAL),
 
-    GLASS("glass", BeadCategory.GLASS),
-    CRYSTAL("crystal", BeadCategory.GLASS),
-    SWAROVSKI_CRYSTAL("swarovski crystal", BeadCategory.GLASS),
-    GLASS_PEARL("glass pearl", BeadCategory.GLASS),
+    GLASS("glass", MaterialCategory.GLASS),
+    CRYSTAL("crystal", MaterialCategory.GLASS),
+    SWAROVSKI_CRYSTAL("swarovski crystal", MaterialCategory.GLASS),
+    GLASS_PEARL("glass pearl", MaterialCategory.GLASS),
 
+    SEED("seed bead",MaterialCategory.SEED),
 
     PAPER("paper", OTHER),
     CERAMIC("ceramic", OTHER),
@@ -51,9 +52,9 @@ public enum Material {
 
 
     String material;
-    BeadCategory category;
+    MaterialCategory category;
 
-    Material(String material, BeadCategory category){
+    Material(String material, MaterialCategory category){
         this.material = material;
         this.category = category;
     }
@@ -62,7 +63,7 @@ public enum Material {
         return material;
     }
 
-    public String getCategory() {
-        return category.getCategory();
+    public MaterialCategory getCategory() {
+        return category;
     }
 }

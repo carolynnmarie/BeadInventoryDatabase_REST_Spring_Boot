@@ -1,4 +1,4 @@
-package com.beadinventory.beadinventory.beadCharacteristics;
+package com.beadinventory.beadinventory.Domain.beadCharacteristics;
 
 public enum Shape {
     ROUND("round"),
@@ -23,7 +23,12 @@ public enum Shape {
     TOP_DRILLED_FACETED_TEARDROP("top drilled faceted teardrop"),
     CHIP("chip"),
     IRREGULAR("irregular"),
-
+    PENDANT("pendant"),
+    SEED_REGULAR("regular seed bead"),
+    SEED_E("E seed bead"),
+    SEED_E_LARGE("large E seed bead"),
+    SEED_TUBE("tube seed bead"),
+    SEED_OTHER("seed bead other"),
     OTHER("other");
 
 
