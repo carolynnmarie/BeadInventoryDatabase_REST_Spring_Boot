@@ -1,7 +1,37 @@
 package com.beadinventory.beadinventory.Controller;
 
+import com.beadinventory.beadinventory.Domain.Bead;
+import com.beadinventory.beadinventory.Domain.beadCharacteristics.Material;
+import com.beadinventory.beadinventory.Service.BeadService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 public class BeadController {
+
+    private BeadService beadService;
+
+    @Autowired
+    BeadController(BeadService beadService){
+        this.beadService = beadService;
+    }
+
+    @RequestMapping(value = "/beads", method = GET)
+    public ResponseEntity<List<Bead>> getAllBeads(){
+        return beadService.getAllBeads();
+    }
+
+    @RequestMapping(value = "/beads/{material}", method = GET)
+    public ResponseEntity<List<Bead>> getAllOfMaterial(@PathVariable("material")Material material){
+        return beadService.getAllOfMaterial(material);
+    }
+
 }

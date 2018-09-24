@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BeadRepository extends CrudRepository<Bead,Long> {
+public interface BeadRepo extends CrudRepository<Bead,Long> {
     List<Bead> findBeadsByBeadCategory(MaterialCategory beadCategory);
     List<Bead> findBeadsByMaterial(Material material);
     List<Bead> findBeadsByMaterialAndColorOrderByMaterial(Material material, String color);
