@@ -33,7 +33,6 @@ public class BeadService {
 
     public ResponseEntity<List<Bead>> getAllOrderByCategory(){
         List<Bead> beads = beadRepository.findAll();
-        Collections.sort(beads, Comparator.comparing(Bead::getMaterialCategory));
         return new ResponseEntity<>(beads,OK);
     }
 
@@ -55,7 +54,7 @@ public class BeadService {
     }
 
     public ResponseEntity<List<Bead>> getAllOfMaterialAndColor(Material material, String color){
-        List<Bead> beads = beadRepository.findBeadsByMaterialAndColorOrderByMaterial(material,color);
+        List<Bead> beads = beadRepository.findBeadsByMaterialAndColor(material,color);
         return new ResponseEntity<>(beads, OK);
     }
 

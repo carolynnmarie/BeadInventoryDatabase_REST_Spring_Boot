@@ -2,6 +2,7 @@ package com.beadinventory.beadinventory.Controller;
 
 import com.beadinventory.beadinventory.Domain.Bead;
 import com.beadinventory.beadinventory.Domain.beadCharacteristics.Material;
+import com.beadinventory.beadinventory.Domain.beadCharacteristics.MaterialCategory;
 import com.beadinventory.beadinventory.Service.BeadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +30,25 @@ public class BeadController {
         return beadService.getAllBeads();
     }
 
+    @RequestMapping(value = "/beads",method = GET)
+    public ResponseEntity<List<Bead>> getAllBeadsOrganizeByMaterial(){
+        return beadService.getAllOrderByMaterial();
+    }
+
+    @RequestMapping(value = "/beads",method = GET)
+    public ResponseEntity<List<Bead>> getAllBeadsOrganizeByMaterialCategory(){
+        return beadService.getAllOrderByCategory();
+    }
+
     @RequestMapping(value = "/beads/{material}", method = GET)
     public ResponseEntity<List<Bead>> getAllOfMaterial(@PathVariable("material")Material material){
         return beadService.getAllOfMaterial(material);
+    }
+
+
+    @RequestMapping(value = "/beads/{materialCategory}",method = GET)
+    public ResponseEntity<List<Bead>> getAllBeadsOfCategory(@PathVariable("materialCategory")MaterialCategory materialCategory){
+        return beadService.getAllOfMaterialCategory(materialCategory);
     }
 
 }

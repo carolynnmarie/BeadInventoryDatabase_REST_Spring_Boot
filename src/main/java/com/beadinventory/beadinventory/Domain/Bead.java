@@ -16,14 +16,11 @@ public class Bead implements Serializable {
     @Column(name = "ID")
     private long id;
 
-    private Material material;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "MATERIAL")
-    public Material getMaterial(){
-        return material;
-    }
+    private Material material;
 
+    private MaterialCategory materialCategory;
     @Enumerated(EnumType.STRING)
     @Column(name = "MATERIAL_CATEGORY")
     public MaterialCategory getMaterialCategory(){
@@ -54,6 +51,7 @@ public class Bead implements Serializable {
 
     public Bead(){
         this.material = null;
+        this.materialCategory = material.getCategory();
         this.color = "";
         this.size = 0;
         this.quantity = 0;
@@ -64,11 +62,16 @@ public class Bead implements Serializable {
     public Bead(Material material, String color, int size, String quality, long quantity,
                 String description) {
         this.material = material;
+        this.materialCategory = material.getCategory();
         this.color = color;
         this.size = size;
         this.quality = quality;
         this.quantity = quantity;
         this.description = description;
+    }
+
+    public Material getMaterial(){
+        return material;
     }
 
     public void setId(long id){

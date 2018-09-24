@@ -1,4 +1,4 @@
 package com.beadinventory.beadinventory.DomainTest;
 
-public class StringingMaterialDomainTest {
+public class FindingTest {
 }

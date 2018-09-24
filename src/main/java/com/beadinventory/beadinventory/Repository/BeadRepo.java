@@ -13,7 +13,7 @@ import java.util.List;
 public interface BeadRepo extends CrudRepository<Bead,Long> {
     List<Bead> findBeadsByBeadCategory(MaterialCategory beadCategory);
     List<Bead> findBeadsByMaterial(Material material);
-    List<Bead> findBeadsByMaterialAndColorOrderByMaterial(Material material, String color);
+    List<Bead> findBeadsByMaterialAndColor(Material material, String color);
     List<Bead> findBeadsByMaterialAndSize(Material material, int size);
     List<Bead> findBeadsByShape(Shape shape);
     List<Bead> findBeadsByQuantityIsLessThan(long quantity);
