@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>beadinventory</name>
-    <description>Bead Inventory Tracker</description>
+    <details>Bead Inventory Tracker</details>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
