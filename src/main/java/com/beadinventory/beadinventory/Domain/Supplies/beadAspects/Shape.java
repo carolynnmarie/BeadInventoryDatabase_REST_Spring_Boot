@@ -1,4 +1,4 @@
-package com.beadinventory.beadinventory.Domain.Supplies.beadCharacteristics;
+package com.beadinventory.beadinventory.Domain.Supplies.beadAspects;
 
 public enum Shape {
     ROUND("round"),

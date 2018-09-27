@@ -1,6 +1,6 @@
-package com.beadinventory.beadinventory.Domain.Supplies.beadCharacteristics;
+package com.beadinventory.beadinventory.Domain.Supplies.beadAspects;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.beadCharacteristics.MaterialCategory.*;
+import static com.beadinventory.beadinventory.Domain.Supplies.beadAspects.MaterialCategory.*;
 public enum Material {
 
     SHELL("shell", NATURAL_STONE),

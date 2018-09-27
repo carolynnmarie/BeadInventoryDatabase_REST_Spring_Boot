@@ -1,5 +1,7 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
+import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.FindingCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Material;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
@@ -8,25 +10,32 @@ import javax.persistence.*;
 public class Finding {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
-    private int id;
+    private long id;
 
     private FindingCategory category;
     @Enumerated(EnumType.STRING)
     @Column(name = "CATEGORY")
-    public FindingCategory getCategory() {
+    public FindingCategory getFindingCategory() {
         return category;
     }
 
-    @Column(name = "TYPE")
-    private String type;
+    private Material material;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "MATERIAL")
+    public Material getMaterial(){
+        return material;
+    }
 
     @Column(name = "DETAILS")
     private String details;
 
-    @Column(name = "SIZE")
-    private int sizeMM;
+    @Column(name = "LENGTH")
+    private int length;
+
+    @Column(name = "WIDTH")
+    private int width;
 
     @Column(name = "PRICE_POINT")
     private double pricePoint;
@@ -34,13 +43,26 @@ public class Finding {
     @Column(name = "QUANTITY")
     private int quantity;
 
-    public Finding(String details, double pricePoint, int quantity) {
+    @Column(name = "BRAND")
+    private String brand;
+
+    public Finding(FindingCategory category, Material material, String details, int length, int width, double pricePoint,
+                   int quantity, String brand) {
+        this.category = category;
+        this.material = material;
         this.details = details;
+        this.length = length;
+        this.width = width;
         this.pricePoint = pricePoint;
         this.quantity = quantity;
+        this.brand = brand;
     }
 
-    public int getId() {
+    public void setId(long id){
+        this.id = id;
+    }
+
+    public long getId() {
         return id;
     }
 
@@ -68,23 +90,35 @@ public class Finding {
         this.quantity = quantity;
     }
 
-    public void setCategory(FindingCategory category) {
+    public void setFindingCategory(FindingCategory category) {
         this.category = category;
     }
 
-    public String getType() {
-        return type;
+    public int getLength() {
+        return length;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setLength(int length) {
+        this.length = length;
     }
 
-    public int getSizeMM() {
-        return sizeMM;
+    public int getWidth() {
+        return width;
     }
 
-    public void setSizeMM(int sizeMM) {
-        this.sizeMM = sizeMM;
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 }

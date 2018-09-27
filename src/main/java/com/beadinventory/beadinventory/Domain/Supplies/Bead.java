@@ -1,9 +1,9 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
 
-import com.beadinventory.beadinventory.Domain.Supplies.beadCharacteristics.MaterialCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.beadCharacteristics.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.beadCharacteristics.Shape;
+import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.MaterialCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Shape;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class Bead implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
     private long id;
 

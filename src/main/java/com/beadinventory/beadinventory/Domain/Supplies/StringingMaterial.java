@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 public class StringingMaterial {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
     private int id;
 
@@ -34,16 +34,16 @@ public class StringingMaterial {
     private double pricePerInch;
 
     @Column(name = "LENGTH")
-    private double length;
+    private double availableLength;
 
-    public StringingMaterial(String material, int widthMM, int strands, String brand, String quality, double pricePerInch, double length) {
+    public StringingMaterial(String material, int widthMM, int strands, String brand, String quality, double pricePerInch, double availableLength) {
         this.material = material;
         this.widthMM = widthMM;
         this.strands = strands;
         this.brand = brand;
         this.quality = quality;
         this.pricePerInch = pricePerInch;
-        this.length = length;
+        this.availableLength = availableLength;
     }
 
     public int getId() {
@@ -98,11 +98,11 @@ public class StringingMaterial {
         this.pricePerInch = pricePerInch;
     }
 
-    public double getLength() {
-        return length;
+    public double getAvailableLength() {
+        return availableLength;
     }
 
-    public void setLength(double length) {
-        this.length = length;
+    public void setAvailableLength(double availableLength) {
+        this.availableLength = availableLength;
     }
 }
