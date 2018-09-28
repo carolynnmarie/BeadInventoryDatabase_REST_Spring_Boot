@@ -1,4 +1,4 @@
-package com.beadinventory.beadinventory.Domain.Supplies.beadAspects;
+package com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums;
 
 public enum MaterialCategory {
 
@@ -8,7 +8,8 @@ public enum MaterialCategory {
     PRECIOUS_METAL,
     GLASS,
     SEED,
-    OTHER;
+    OTHER,
+    STRINGING;
 
 
     MaterialCategory(){ }

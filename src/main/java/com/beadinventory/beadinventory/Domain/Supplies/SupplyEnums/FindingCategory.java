@@ -1,4 +1,5 @@
-package com.beadinventory.beadinventory.Domain.Supplies.beadAspects;
+package com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums;
+
 
 public enum FindingCategory {
     LOBSTER_CLASP,

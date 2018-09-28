@@ -1,8 +1,8 @@
 package com.beadinventory.beadinventory.Repository.SuppliesRepos;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.FindingCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -13,56 +13,30 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Entity
-public class Necklace {
+public class Necklace extends AllFinishedPieces {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "NECKLACE_ID")
     private int id;
 
-    @Column(name = "BEADS")
-    private LinkedHashMap<Bead,Integer> beads;
+    @Column(name = "FINDINGS")
+    protected LinkedHashMap<Finding, Integer> findings;
 
     @Column(name = "STRINGING_MATERIAL")
     private StringingMaterial stringingMaterial;
 
-    @Column(name = "FINDINGS")
-    private LinkedHashMap<Finding, Integer> findings;
-
     @Column(name = "LENGTH")
     private double lengthInch;
 
-    @Column(name = "HOURS_SPENT")
-    private int hoursSpent;
-
-    @Column(name = "DIFFICULTY_LEVEL")
-    private double difficultyLevel;
-
-    @Column(name = "PRICE")
-    private double price;
-
-    @Column(name = "DESCRIPTION")
-    private String description;
 
     public Necklace(LinkedHashMap<Bead, Integer> beads, StringingMaterial stringingMaterial, LinkedHashMap<Finding, Integer> findings,
-                    double lengthInch, int hoursSpent, double difficultyLevel, String description) {
-        this.beads = beads;
-        this.stringingMaterial = stringingMaterial;
+                    double lengthInch, int hoursSpent, double difficultyLevel, String description, boolean hasNaturalStones,
+                    boolean hasSwarovski, double price) {
+        super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
         this.findings = findings;
+        this.stringingMaterial = stringingMaterial;
         this.lengthInch = lengthInch;
-        this.hoursSpent = hoursSpent;
-        this.difficultyLevel = difficultyLevel;
-        this.description = description;
-        double beadPrice = 0.0;
-        for(Map.Entry<Bead,Integer> entry: beads.entrySet()){
-            beadPrice += (entry.getKey().getPricePoint()*entry.getValue());
-        }
-        double stringPrice = stringingMaterial.getPricePerInch()*lengthInch;
-        double findingPrice = 0.0;
-        for(Map.Entry<Finding,Integer> entry: findings.entrySet()){
-            findingPrice += (entry.getKey().getPricePoint()*entry.getValue());
-        }
-        this.price = beadPrice + stringPrice + findingPrice + (hoursSpent*8)*difficultyLevel;
     }
 
     public int getId() {
@@ -73,12 +47,13 @@ public class Necklace {
         this.id = id;
     }
 
-    public LinkedHashMap<Bead, Integer> getBeads() {
-        return beads;
+
+    public LinkedHashMap<Finding, Integer> getFindings() {
+        return findings;
     }
 
-    public void setBeads(LinkedHashMap<Bead, Integer> beads) {
-        this.beads = beads;
+    public void setFindings(LinkedHashMap<Finding, Integer> findings) {
+        this.findings = findings;
     }
 
     public StringingMaterial getStringingMaterial() {
@@ -89,14 +64,6 @@ public class Necklace {
         this.stringingMaterial = stringingMaterial;
     }
 
-    public LinkedHashMap<Finding, Integer> getFindings() {
-        return findings;
-    }
-
-    public void setFindings(LinkedHashMap<Finding, Integer> findings) {
-        this.findings = findings;
-    }
-
     public double getLengthInch() {
         return lengthInch;
     }
@@ -105,38 +72,8 @@ public class Necklace {
         this.lengthInch = lengthInch;
     }
 
-    public int getHoursSpent() {
-        return hoursSpent;
-    }
 
-    public void setHoursSpent(int hoursSpent) {
-        this.hoursSpent = hoursSpent;
-    }
-
-    public double getDifficultyLevel() {
-        return difficultyLevel;
-    }
-
-    public void setDifficultyLevel(double difficultyLevel) {
-        this.difficultyLevel = difficultyLevel;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price){
-        this.price = price;
-    }
-
+    @Override
     public void setAutoPrice() {
         double beadPrice = 0.0;
         for(Map.Entry<Bead,Integer> entry: beads.entrySet()){
@@ -148,5 +85,8 @@ public class Necklace {
             findingPrice += (entry.getKey().getPricePoint()*entry.getValue());
         }
         this.price = beadPrice + stringPrice + findingPrice + (hoursSpent*8)*difficultyLevel;
+        if(hasSwarovski) price += 7;
+        if(hasNaturalStones) price += 5;
     }
+
 }

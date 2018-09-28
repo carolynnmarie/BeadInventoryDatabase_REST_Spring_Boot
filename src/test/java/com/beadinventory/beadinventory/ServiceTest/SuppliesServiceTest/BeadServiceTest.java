@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Material.*;
+import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpStatus.*;

@@ -1,8 +1,8 @@
 package com.beadinventory.beadinventory.Service.SuppliesServices;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.FindingCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.FindingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

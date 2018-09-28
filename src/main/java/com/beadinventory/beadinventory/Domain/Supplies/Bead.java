@@ -1,9 +1,7 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
 
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.MaterialCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Shape;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +11,7 @@ public class Bead implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "ID")
+    @Column(name = "BEAD_ID")
     private long id;
 
     @Enumerated(EnumType.STRING)

@@ -1,7 +1,6 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.FindingCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
@@ -11,7 +10,7 @@ public class Finding {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "ID")
+    @Column(name = "FINDING_ID")
     private long id;
 
     private FindingCategory category;

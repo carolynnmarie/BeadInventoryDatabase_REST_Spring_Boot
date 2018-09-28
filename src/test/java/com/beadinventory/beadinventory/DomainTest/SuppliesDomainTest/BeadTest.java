@@ -1,13 +1,13 @@
 package com.beadinventory.beadinventory.DomainTest.SuppliesDomainTest;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.MaterialCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.beadAspects.MaterialCategory.*;
+import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory.*;
 
 public class BeadTest {
 

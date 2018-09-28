@@ -2,7 +2,7 @@ package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.BeadController;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import com.beadinventory.beadinventory.Service.SuppliesServices.BeadService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Material.*;
+import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;

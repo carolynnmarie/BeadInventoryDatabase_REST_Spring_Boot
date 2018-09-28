@@ -1,8 +1,8 @@
 package com.beadinventory.beadinventory.Controller.SuppliesControllers;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.beadAspects.MaterialCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory;
 import com.beadinventory.beadinventory.Service.SuppliesServices.BeadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

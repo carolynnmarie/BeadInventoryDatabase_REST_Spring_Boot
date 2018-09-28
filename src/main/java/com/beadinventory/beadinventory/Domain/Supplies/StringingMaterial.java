@@ -1,31 +1,39 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
+
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
 @Entity
 public class StringingMaterial {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "ID")
+    @Column(name = "STRINGING_MATERIAL_ID")
     private int id;
 
+    private StringingMaterialCategory category;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "CATEGORY")
+    public StringingMaterialCategory getFindingCategory() {
+        return category;
+    }
+
+    private Material material;
+    @Enumerated(EnumType.STRING)
     @Column(name = "MATERIAL")
-    private String material;
+    public Material getMaterial(){
+        return material;
+    }
+
 
     @Column(name = "WIDTH")
     private int widthMM;
 
     @Column(name = "STRANDS")
     private int strands;
-
-    @Column(name = "BRAND")
-    private String brand;
 
     @Column(name = "QUALITY")
     private String quality;
@@ -36,25 +44,26 @@ public class StringingMaterial {
     @Column(name = "LENGTH")
     private double availableLength;
 
-    public StringingMaterial(String material, int widthMM, int strands, String brand, String quality, double pricePerInch, double availableLength) {
+    @Column(name = "BRAND")
+    private String brand;
+
+
+    public StringingMaterial(StringingMaterialCategory category, Material material, int widthMM, int strands, String quality, double pricePerInch, double availableLength,String brand) {
+        this.category = category;
         this.material = material;
         this.widthMM = widthMM;
         this.strands = strands;
-        this.brand = brand;
         this.quality = quality;
         this.pricePerInch = pricePerInch;
         this.availableLength = availableLength;
+        this.brand = brand;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(String material) {
+    public void setMaterial(Material material) {
         this.material = material;
     }
 

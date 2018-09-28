@@ -1,6 +1,8 @@
-package com.beadinventory.beadinventory.Domain.Supplies.beadAspects;
+package com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.beadAspects.MaterialCategory.*;
+import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
+
+import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory.*;
 public enum Material {
 
     SHELL("shell", NATURAL_STONE),
@@ -48,7 +50,11 @@ public enum Material {
     CERAMIC("ceramic", OTHER),
     ACRYLIC("acrylic", OTHER),
     WOOD("wood", OTHER),
-    PLASTIC("plastic", OTHER);
+    PLASTIC("plastic", OTHER),
+    COTTON("cotton", OTHER),
+    LEATHER("leather", OTHER),
+    FAUX_LEATHER("faux leather", OTHER);
+
 
 
     String material;
