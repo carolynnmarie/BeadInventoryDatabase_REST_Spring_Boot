@@ -2,13 +2,18 @@ package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.LinkedHashMap;
+
 
 @MappedSuperclass
 public abstract class AllFinishedPieces {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    private long id;
 
     @Column(name = "BEADS")
     protected LinkedHashMap<Bead,Integer> beads;
@@ -53,6 +58,13 @@ public abstract class AllFinishedPieces {
         this.beads = beads;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId(){
+        return id;
+    }
 
     public int getHoursSpent() {
         return hoursSpent;

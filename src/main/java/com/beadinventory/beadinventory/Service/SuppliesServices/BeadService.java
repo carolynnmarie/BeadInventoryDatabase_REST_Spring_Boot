@@ -6,13 +6,12 @@ import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCateg
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.net.URI;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -26,82 +25,69 @@ public class BeadService {
         this.beadRepository = beadRepository;
     }
 
-    public ResponseEntity<List<Bead>> getAllBeads(){
-        List<Bead> beads = beadRepository.findAll();
+
+    public ResponseEntity<Iterable<Bead>> getAllBeads(){
+        Iterable<Bead> beads = beadRepository.findAll();
         return new ResponseEntity<>(beads,OK);
     }
 
-    public ResponseEntity<List<Bead>> getAllOrderByCategory(){
-        List<Bead> beads = beadRepository.findAll();
-        return new ResponseEntity<>(beads,OK);
-    }
+//    public ResponseEntity<Iterable<Bead>> getAllOfMaterialCategory(MaterialCategory materialCategory){
+//       Iterable<Bead> beads = beadRepository.findBeadsByMaterial_Category(materialCategory);
+//        return new ResponseEntity<>(beads,OK);
+//    }
 
-    public ResponseEntity<List<Bead>> getAllOrderByMaterial(){
-        List<Bead> beads = beadRepository.findAll();
-        Collections.sort(beads, Comparator.comparing(Bead::getMaterial));
-        return new ResponseEntity<>(beads,OK);
-    }
-
-    public ResponseEntity<List<Bead>> getAllOfMaterialCategory(MaterialCategory materialCategory){
-        List<Bead> beads = beadRepository.findBeadsByBeadCategory(materialCategory);
-        Collections.sort(beads, Comparator.comparing(Bead::getMaterial));
-        return new ResponseEntity<>(beads,OK);
-    }
-
-    public ResponseEntity<List<Bead>> getAllOfMaterial(Material material){
-        List<Bead> beads = beadRepository.findBeadsByMaterial(material);
+    public ResponseEntity<Iterable<Bead>> getAllOfMaterial(Material material){
+        Iterable<Bead> beads = beadRepository.findBeadsByMaterial(material);
         return new ResponseEntity<>(beads, OK);
     }
 
-    public ResponseEntity<List<Bead>> getAllOfMaterialAndColor(Material material, String color){
-        List<Bead> beads = beadRepository.findBeadsByMaterialAndColor(material,color);
+    public ResponseEntity<Iterable<Bead>> getAllOfMaterialAndColor(Material material, String color){
+        Iterable<Bead> beads = beadRepository.findBeadsByMaterialAndColor(material,color);
         return new ResponseEntity<>(beads, OK);
     }
 
-    public ResponseEntity<List<Bead>> getAllOfMaterialAndSize(Material material, int size){
-        List<Bead> beads = beadRepository.findBeadsByMaterialAndSize(material, size);
+    public ResponseEntity<Iterable<Bead>> getAllOfMaterialAndSize(Material material, int size){
+        Iterable<Bead> beads = beadRepository.findBeadsByMaterialAndSize(material, size);
         return new ResponseEntity<>(beads,OK);
     }
 
-    public ResponseEntity<List<Bead>> getAllOfShape(Shape shape){
-        List<Bead> beads = beadRepository.findBeadsByShape(shape);
-        Collections.sort(beads,Comparator.comparing(Bead::getMaterial));
+    public ResponseEntity<Iterable<Bead>> getAllOfShape(Shape shape){
+        Iterable<Bead> beads = beadRepository.findBeadsByShape(shape);
         return new ResponseEntity<>(beads,OK);
     }
 
-    public ResponseEntity<List<Bead>> getAllQuantityLessThan(long quantity){
-        List<Bead> beads = beadRepository.findBeadsByQuantityIsLessThan(quantity);
-        Collections.sort(beads,Comparator.comparing(Bead::getMaterial));
+    public ResponseEntity<Iterable<Bead>> getAllQuantityLessThan(long quantity){
+        Iterable<Bead> beads = beadRepository.findByQuantityIsLessThan(quantity);
         return new ResponseEntity<>(beads, OK);
     }
 
     public ResponseEntity<Bead> getBeadById(long id){
-        Bead bead = beadRepository.findById(id);
+        Bead bead = beadRepository.findById(id).get();
         return new ResponseEntity<>(bead,OK);
     }
 
     public ResponseEntity<Bead> createBead(Bead bead){
-        try{
-            Bead bead1 = beadRepository.save(bead);
-            return new ResponseEntity<>(bead1,CREATED);
-        } catch(Exception e){
-            return new ResponseEntity<>(new Bead(),BAD_REQUEST);
-        }
+        Bead bead1 = beadRepository.save(bead);
+        URI newAccountUri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(bead.getId())
+                .toUri();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setLocation(newAccountUri);
+        return new ResponseEntity<>(bead1, responseHeaders, CREATED);
     }
 
-    public ResponseEntity<Bead> updateBeadQuantity(long beadId, long quantity){
-        Bead bead = beadRepository.findById(beadId);
-        bead.setQuantity(quantity);
-        bead = beadRepository.save(bead);
-        return new ResponseEntity<>(bead,OK);
+    public ResponseEntity<Bead> updateBeadQuantity(Bead bead, long quantity){
+            bead.setQuantity(quantity);
+            bead = beadRepository.save(bead);
+            return new ResponseEntity<>(bead, OK);
     }
 
     public ResponseEntity<Bead> updateBead(Long id, Bead bead){
-        Optional<Bead> bead1 = beadRepository.findById(id);
-        Long bead1Id = bead1.get().getId();
-        bead.setId(bead1Id);
-        Bead bead2 = beadRepository.save(bead);
-        return new ResponseEntity<>(bead2, OK);
+        bead.setId(id);
+        Bead bead1 = beadRepository.save(bead);
+        return new ResponseEntity<>(bead1,OK);
     }
 
     public ResponseEntity deleteBeadById(Long beadId){

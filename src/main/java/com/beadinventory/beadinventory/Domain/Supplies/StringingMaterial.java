@@ -1,13 +1,16 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringingMaterialCategory;
 
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class StringingMaterial {
+public class StringingMaterial implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

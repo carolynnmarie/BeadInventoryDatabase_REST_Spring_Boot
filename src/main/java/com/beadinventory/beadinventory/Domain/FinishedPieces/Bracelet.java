@@ -1,23 +1,17 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
-import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Entity
+@Table(name = "BRACELET")
 public class Bracelet extends AllFinishedPieces {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "BRACELET_ID")
-    private int id;
 
     @Column(name = "STRINGING_MATERIAL")
     private StringingMaterial stringingMaterial;
@@ -28,23 +22,15 @@ public class Bracelet extends AllFinishedPieces {
     @Column(name = "LENGTH")
     private double lengthInch;
 
-    public Bracelet(LinkedHashMap<Bead, Integer> beads, StringingMaterial stringingMaterial, LinkedHashMap<Finding, Integer> findings,
-                    double lengthInch, int hoursSpent, double difficultyLevel, double price, String description, boolean hasNaturalStones,
-                    boolean hasSwarovski) {
+
+    public Bracelet(LinkedHashMap<Bead, Integer> beads,  int hoursSpent, double difficultyLevel, double price, String description, boolean hasNaturalStones,
+                    boolean hasSwarovski,StringingMaterial stringingMaterial, LinkedHashMap<Finding, Integer> findings,
+                    double lengthInch) {
         super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
         this.findings = findings;
         this.stringingMaterial = stringingMaterial;
         this.lengthInch = lengthInch;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
 
     public StringingMaterial getStringingMaterial() {
         return stringingMaterial;

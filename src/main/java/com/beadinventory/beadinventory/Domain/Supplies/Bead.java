@@ -1,8 +1,11 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
 
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape;
 
+import javax.persistence.Id;
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -53,22 +56,13 @@ public class Bead implements Serializable {
     @Column(name = "BRAND")
     private String brands;
 
-    public Bead(){
-        this.material = null;
-        this.materialCategory = material.getCategory();
-        this.color = "";
-        this.size = 0;
-        this.quantity = 0;
-        this.quality = "";
-        this.description = "";
-        this.pricePoint = 0.0;
-        this.brands = "";
-    }
+    public Bead(){ }
 
-    public Bead(Material material, String color, int size, String quality, long quantity,
+    public Bead(Material material, Shape shape, String color, int size, String quality, long quantity,
                 String description, double pricePoint, String brands) {
         this.material = material;
         this.materialCategory = material.getCategory();
+        this.shape = shape;
         this.color = color;
         this.size = size;
         this.quality = quality;
@@ -140,5 +134,35 @@ public class Bead implements Serializable {
 
     public void setPricePoint(double pricePoint) {
         this.pricePoint = pricePoint;
+    }
+
+    public void setMaterialCategory(MaterialCategory materialCategory) {
+        this.materialCategory = materialCategory;
+    }
+
+    public void setShape(Shape shape) {
+        this.shape = shape;
+    }
+
+    public String getBrands() {
+        return brands;
+    }
+
+    public void setBrands(String brands) {
+        this.brands = brands;
+    }
+
+    public void setAll(Material material, Shape shape, String color, int size, String quality, long quantity,
+                       String description, double pricePoint, String brands){
+        this.material = material;
+        this.materialCategory = material.getCategory();
+        this.shape = shape;
+        this.color = color;
+        this.size = size;
+        this.quality = quality;
+        this.quantity = quantity;
+        this.description = description;
+        this.pricePoint = pricePoint;
+        this.brands = brands;
     }
 }

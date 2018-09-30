@@ -1,24 +1,18 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Entity
+@Table(name = "NECKLACE")
 public class Necklace extends AllFinishedPieces {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "NECKLACE_ID")
-    private int id;
 
     @Column(name = "FINDINGS")
     protected LinkedHashMap<Finding, Integer> findings;
@@ -37,14 +31,6 @@ public class Necklace extends AllFinishedPieces {
         this.findings = findings;
         this.stringingMaterial = stringingMaterial;
         this.lengthInch = lengthInch;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
 

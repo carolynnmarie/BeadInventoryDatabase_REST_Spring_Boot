@@ -1,12 +1,14 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
-import org.springframework.data.annotation.Id;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 
 import javax.persistence.*;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class Finding {
+public class Finding implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -33,8 +35,6 @@ public class Finding {
     @Column(name = "LENGTH")
     private int length;
 
-    @Column(name = "WIDTH")
-    private int width;
 
     @Column(name = "PRICE_POINT")
     private double pricePoint;
@@ -45,21 +45,20 @@ public class Finding {
     @Column(name = "BRAND")
     private String brand;
 
-    public Finding(FindingCategory category, Material material, String details, int length, int width, double pricePoint,
+    public Finding(FindingCategory category, Material material, String details, int length, double pricePoint,
                    int quantity, String brand) {
         this.category = category;
         this.material = material;
         this.details = details;
         this.length = length;
-        this.width = width;
         this.pricePoint = pricePoint;
         this.quantity = quantity;
         this.brand = brand;
     }
 
-    public void setId(long id){
-        this.id = id;
-    }
+//    public void setId(long id){
+//        this.id = id;
+//    }
 
     public long getId() {
         return id;
@@ -99,14 +98,6 @@ public class Finding {
 
     public void setLength(int length) {
         this.length = length;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
     }
 
     public void setMaterial(Material material) {

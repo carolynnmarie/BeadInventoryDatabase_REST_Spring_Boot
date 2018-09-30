@@ -59,28 +59,28 @@ public class FindingService {
         return new ResponseEntity<>(finding,OK);
     }
 
-    public ResponseEntity<Finding> createFinding(Finding finding){
-        try{
-            Finding finding1 = findingRepo.save(finding);
-            return new ResponseEntity<>(finding1,CREATED);
-        } catch (Exception e){
-            return new ResponseEntity<>(BAD_REQUEST);
-        }
-    }
+//    public ResponseEntity<Finding> createFinding(Finding finding){
+//        try{
+//            Finding finding1 = findingRepo.save(finding);
+//            return new ResponseEntity<>(finding1,CREATED);
+//        } catch (Exception e){
+//            return new ResponseEntity<>(BAD_REQUEST);
+//        }
+//    }
 
-    public ResponseEntity<Finding> updateFindingQuantity(long findingId, int quantity){
-        Optional<Finding> f = findingRepo.findById(findingId);
-        Finding finding = f.get();
-        finding.setQuantity(quantity);
-        finding.setId(findingId);
-        return new ResponseEntity<>(finding,OK);
-    }
-
-    public ResponseEntity<Finding> updateFinding(Long id, Finding finding){
-        finding.setId(id);
-        findingRepo.save(finding);
-        return new ResponseEntity<>(finding,OK);
-    }
+//    public ResponseEntity<Finding> updateFindingQuantity(long findingId, int quantity){
+//        Optional<Finding> f = findingRepo.findById(findingId);
+//        Finding finding = f.get();
+//        finding.setQuantity(quantity);
+//        finding.setId(findingId);
+//        return new ResponseEntity<>(finding,OK);
+//    }
+//
+//    public ResponseEntity<Finding> updateFinding(Long id, Finding finding){
+//        finding.setId(id);
+//        findingRepo.save(finding);
+//        return new ResponseEntity<>(finding,OK);
+//    }
 
     public ResponseEntity deleteFinding(Finding finding){
         findingRepo.delete(finding);
