@@ -7,11 +7,14 @@ import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -26,44 +29,65 @@ public class BeadService {
     }
 
 
-    public ResponseEntity<Iterable<Bead>> getAllBeads(){
-        Iterable<Bead> beads = beadRepository.findAll();
+    public ResponseEntity<List<Bead>> getAllBeads(){
+        List<Bead> beads = (List<Bead>)beadRepository.findAll();
         return new ResponseEntity<>(beads,OK);
     }
 
-//    public ResponseEntity<Iterable<Bead>> getAllOfMaterialCategory(MaterialCategory materialCategory){
-//       Iterable<Bead> beads = beadRepository.findBeadsByMaterial_Category(materialCategory);
-//        return new ResponseEntity<>(beads,OK);
-//    }
-
-    public ResponseEntity<Iterable<Bead>> getAllOfMaterial(Material material){
-        Iterable<Bead> beads = beadRepository.findBeadsByMaterial(material);
+    public ResponseEntity<List<Bead>> getAllOrderByCategory(){
+        List<Bead> beads = (List<Bead>)beadRepository.findAll();
+        Collections.sort(beads,Comparator.comparing(Bead::getMaterialCategory));
         return new ResponseEntity<>(beads, OK);
     }
 
-    public ResponseEntity<Iterable<Bead>> getAllOfMaterialAndColor(Material material, String color){
-        Iterable<Bead> beads = beadRepository.findBeadsByMaterialAndColor(material,color);
+    public ResponseEntity<List<Bead>> getAllOrderByMaterial(){
+        List<Bead> beads = (List<Bead>)beadRepository.findAll();
+        Collections.sort(beads,Comparator.comparing(Bead::getMaterial));
         return new ResponseEntity<>(beads, OK);
     }
 
-    public ResponseEntity<Iterable<Bead>> getAllOfMaterialAndSize(Material material, int size){
-        Iterable<Bead> beads = beadRepository.findBeadsByMaterialAndSize(material, size);
+    public ResponseEntity<List<Bead>> getAllOfCategory(MaterialCategory category){
+        List<Bead> beads = (List<Bead>)beadRepository.findAll();
+        List<Bead> filteredList = beads
+                .stream()
+                .filter(e->e.getMaterialCategory().equals(category))
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(filteredList,OK);
+    }
+
+
+    public ResponseEntity<List<Bead>> getAllOfMaterial(Material material){
+        List<Bead> beads = beadRepository.findByMaterial(material);
+        return new ResponseEntity<>(beads, OK);
+    }
+
+    public ResponseEntity<List<Bead>> getAllOfMaterialAndColor(Material material, String color){
+        List<Bead> beads = beadRepository.findByMaterialAndColor(material,color);
+        return new ResponseEntity<>(beads, OK);
+    }
+
+    public ResponseEntity<List<Bead>> getAllOfMaterialAndSize(Material material, int size){
+        List<Bead> beads = beadRepository.findByMaterialAndSize(material, size);
         return new ResponseEntity<>(beads,OK);
     }
 
-    public ResponseEntity<Iterable<Bead>> getAllOfShape(Shape shape){
-        Iterable<Bead> beads = beadRepository.findBeadsByShape(shape);
+    public ResponseEntity<List<Bead>> getAllOfShape(Shape shape){
+        List<Bead> beads = beadRepository.findByShape(shape);
         return new ResponseEntity<>(beads,OK);
     }
 
-    public ResponseEntity<Iterable<Bead>> getAllQuantityLessThan(long quantity){
-        Iterable<Bead> beads = beadRepository.findByQuantityIsLessThan(quantity);
+    public ResponseEntity<List<Bead>> getAllQuantityLessThan(long quantity){
+        List<Bead> beads = beadRepository.findByQuantityIsLessThan(quantity);
         return new ResponseEntity<>(beads, OK);
     }
 
-    public ResponseEntity<Bead> getBeadById(long id){
-        Bead bead = beadRepository.findById(id).get();
-        return new ResponseEntity<>(bead,OK);
+    public ResponseEntity<Optional<Bead>> getBeadById(long id){
+        try {
+            Optional<Bead> bead = beadRepository.findById(id);
+            return new ResponseEntity<>(bead, OK);
+        } catch (NoSuchElementException e){
+            return new ResponseEntity<>(Optional.of(new Bead()), NOT_FOUND);
+        }
     }
 
     public ResponseEntity<Bead> createBead(Bead bead){

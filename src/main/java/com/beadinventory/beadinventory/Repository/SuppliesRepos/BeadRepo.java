@@ -1,26 +1,26 @@
 package com.beadinventory.beadinventory.Repository.SuppliesRepos;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
+
+import java.util.List;
 
 
 @Repository
 public interface BeadRepo extends CrudRepository<Bead,Long> {
 
-//    Iterable<Bead> findBeadsByMaterial_Category(MaterialCategory beadCategory);
+    List<Bead> findByMaterial(Material material);
 
-    Iterable<Bead> findBeadsByMaterial(Material material);
+    List<Bead> findByMaterialAndColor(Material material, String color);
 
-    Iterable<Bead> findBeadsByMaterialAndColor(Material material, String color);
+    List<Bead> findByMaterialAndSize(Material material, int size);
 
-    Iterable<Bead> findBeadsByMaterialAndSize(Material material, int size);
+    List<Bead> findByShape(Shape shape);
 
-    Iterable<Bead> findBeadsByShape(Shape shape);
-
-    Iterable<Bead> findByQuantityIsLessThan(long quantity);
+    List<Bead> findByQuantityIsLessThan(long quantity);
 
 }

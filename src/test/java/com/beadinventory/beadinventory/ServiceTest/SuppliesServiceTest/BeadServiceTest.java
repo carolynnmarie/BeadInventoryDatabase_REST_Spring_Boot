@@ -1,6 +1,8 @@
 package com.beadinventory.beadinventory.ServiceTest.SuppliesServiceTest;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
 import com.beadinventory.beadinventory.Service.SuppliesServices.BeadService;
 import org.junit.Assert;
@@ -18,8 +20,12 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.persistence.Table;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.ROUND;
@@ -61,43 +67,102 @@ public class BeadServiceTest {
 
     @Test
     public void getAllBeadsTest(){
-        Iterable<Bead> beads = Arrays.asList(bead1,bead2);
+        List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead2));
         given(mockBeadRepo.findAll()).willReturn(beads);
 
-        ResponseEntity<Iterable<Bead>> expected = new ResponseEntity<>(beads,OK);
-        ResponseEntity<Iterable<Bead>> actual = mockBeadService.getAllBeads();
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(beads,OK);
+        ResponseEntity<List<Bead>> actual = mockBeadService.getAllBeads();
 
         verify(mockBeadRepo).findAll();
         Assert.assertEquals(expected,actual);
     }
 
-/*
-    ResponseEntity<List<Bead>> getAllOrderByCategory()
-    ResponseEntity<List<Bead>> getAllOrderByMaterial()
-    ResponseEntity<List<Bead>> getAllOfMaterialCategory(MaterialCategory materialCategory)
-    ResponseEntity<List<Bead>> getAllOfMaterial(Material material)
+    @Test
+    public void getAllOrderByMaterialTest(){
+        List<Bead> beadsSorted = new ArrayList<>(Arrays.asList(bead3,bead1,bead4,bead5,bead2));
+        List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead2,bead3,bead4,bead5));
+        given(mockBeadRepo.findAll()).willReturn(beads);
 
- */
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(beadsSorted,OK);
+        ResponseEntity<List<Bead>> actual = mockBeadService.getAllOrderByMaterial();
+
+        verify(mockBeadRepo).findAll();
+        Assert.assertEquals(expected,actual);
+    }
+    @Test
+    public void getAllOrderByCategorytest(){
+        List<Bead> beadsSorted = new ArrayList<>(Arrays.asList(bead3,bead1,bead2,bead4,bead5));
+        List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead2,bead3,bead4,bead5));
+        given(mockBeadRepo.findAll()).willReturn(beads);
+
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(beadsSorted,OK);
+        ResponseEntity<List<Bead>> actual = mockBeadService.getAllOrderByCategory();
+
+        verify(mockBeadRepo).findAll();
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void getAllOfMaterialCategoryTest(){
+        List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead2,bead3,bead4,bead5));
+        List<Bead> beads2 = new ArrayList<>(Arrays.asList(bead1,bead2,bead4,bead5));
+        given(mockBeadRepo.findAll()).willReturn(beads);
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(beads2,OK);
+        ResponseEntity<List<Bead>> actual = mockBeadService.getAllOfCategory(MaterialCategory.SEMI_PRECIOUS_STONE);
+
+        verify(mockBeadRepo).findAll();
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void getAllOfMaterialTest(){
+        List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
+        given(mockBeadRepo.findByMaterial(AMETHYST)).willReturn(beads);
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(beads,OK);
+        ResponseEntity<List<Bead>> actual = mockBeadService.getAllOfMaterial(AMETHYST);
+
+        verify(mockBeadRepo).findByMaterial(any(Material.class));
+        Assert.assertEquals(expected,actual);
+    }
 
 
-//    @Test
-//    public void getAllOfMaterialAndColorTest(){
-//        Iterable<Bead> responseList = Arrays.asList(bead1,bead4,bead5);
-//
-//        given(mockBeadRepo.findBeadsByMaterialAndColor(AMETHYST,"purple")).willReturn(responseList);
-//        ResponseEntity<Iterable<Bead>> expected = new ResponseEntity<>(responseList,OK);
-//        ResponseEntity<Iterable<Bead>> actual = mockBeadService.getAllOfMaterialAndColor(AMETHYST,"purple");
-//
-//        verify(mockBeadRepo).findBeadsByMaterialAndColor(any(Material.class),any(String.class));
-//        Assert.assertEquals(expected,actual);
-//    }
+    @Test
+    public void getAllOfMaterialAndColorTest(){
+        List<Bead> responseList = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
+
+        given(mockBeadRepo.findByMaterialAndColor(AMETHYST,"purple")).willReturn(responseList);
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(responseList,OK);
+        ResponseEntity<List<Bead>> actual = mockBeadService.getAllOfMaterialAndColor(AMETHYST,"purple");
+
+        verify(mockBeadRepo).findByMaterialAndColor(any(Material.class),any(String.class));
+        Assert.assertEquals(expected,actual);
+    }
+
+
+    @Test
+    public void getAllOfMaterialAndSizeTest(){
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead2));
+        given(mockBeadRepo.findByMaterialAndSize(any(Material.class),anyInt())).willReturn(list);
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
+        ResponseEntity<List<Bead>> actual = mockBeadService.getAllOfMaterialAndSize(JASPER,4);
+        Assert.assertEquals(expected,actual);
+    }
+
     /*
-    ResponseEntity<List<Bead>> getAllOfMaterialAndColor(Material material, String color)
-    ResponseEntity<List<Bead>> getAllOfMaterialAndSize(Material material, int size)
     ResponseEntity<List<Bead>> getAllOfShape(Shape shape)
     ResponseEntity<List<Bead>> getAllQuantityLessThan(long quantity)
-    ResponseEntity<Bead> getBeadById(long id)
      */
+
+    @Test
+    public void getBeadByIdTest(){
+        Optional<Bead> oBead = Optional.ofNullable(bead1);
+        given(mockBeadRepo.findById(anyLong())).willReturn(oBead);
+        ResponseEntity<Optional<Bead>> expected = new ResponseEntity<>(oBead,OK);
+        ResponseEntity<Optional<Bead>> actual = mockBeadService.getBeadById(bead1.getId());
+
+        verify(mockBeadRepo).findById(anyLong());
+        Assert.assertEquals(expected,actual);
+    }
 
     @Test
     public void createBeadTest(){

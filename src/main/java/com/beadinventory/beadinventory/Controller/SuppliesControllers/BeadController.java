@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -26,20 +27,21 @@ public class BeadController {
     }
 
     @RequestMapping(value = "/beads", method = GET)
-    public ResponseEntity<Iterable<Bead>> getAllBeads(){
+    public ResponseEntity<List<Bead>> getAllBeads(){
         return beadService.getAllBeads();
     }
 
+    @RequestMapping(value = "/beads/{material_category}", method = GET)
+    public ResponseEntity<List<Bead>> getAllOfCategory(@PathVariable("material_category") MaterialCategory material_category){
+        return beadService.getAllOfCategory(material_category);
+    }
 
     @RequestMapping(value = "/beads/{material}", method = GET)
-    public ResponseEntity<Iterable<Bead>> getAllOfMaterial(@PathVariable("material")Material material){
+    public ResponseEntity<List<Bead>> getAllOfMaterial(@PathVariable("material")Material material){
         return beadService.getAllOfMaterial(material);
     }
 
-//    @RequestMapping(value = "/beads/{materialCategory}",method = GET)
-//    public ResponseEntity<Iterable<Bead>> getAllBeadsOfCategory(@PathVariable("materialCategory")MaterialCategory materialCategory){
-//        return beadService.getAllOfMaterialCategory(materialCategory);
-//    }
+
 
     @RequestMapping(value = "/beads", method = POST)
     public ResponseEntity<Bead> createBead(@RequestBody Bead bead){

@@ -1,7 +1,6 @@
 package com.beadinventory.beadinventory;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.AllFinishedPieces;
-import com.beadinventory.beadinventory.Domain.FinishedPieces.Necklace;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
 

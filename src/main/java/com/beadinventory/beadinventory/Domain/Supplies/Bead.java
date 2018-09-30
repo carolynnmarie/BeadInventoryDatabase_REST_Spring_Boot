@@ -25,7 +25,7 @@ public class Bead implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "MATERIAL_CATEGORY")
     public MaterialCategory getMaterialCategory(){
-        return material.getCategory();
+        return materialCategory;
     }
 
     private Shape shape;
@@ -164,5 +164,12 @@ public class Bead implements Serializable {
         this.description = description;
         this.pricePoint = pricePoint;
         this.brands = brands;
+    }
+
+    @Override
+    public String toString(){
+        return "Material: " + material + ", Shape: " + shape + ", Color: " + color + ", Size: " + size + "mm, Price point: "
+                + pricePoint + ", Quality: " + quality + ", Quantity: " + quantity + ", Brands: " + brands + ", Description: " +
+                description;
     }
 }

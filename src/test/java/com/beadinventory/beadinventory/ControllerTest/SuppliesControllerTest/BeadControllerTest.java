@@ -7,10 +7,12 @@ import com.beadinventory.beadinventory.Service.SuppliesServices.BeadService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
 
@@ -21,6 +23,8 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.http.HttpStatus.*;
 
+@SuppressWarnings("unchecked")
+@RunWith(SpringRunner.class)
 public class BeadControllerTest {
 
     @Mock
@@ -46,13 +50,13 @@ public class BeadControllerTest {
     public void testGetAllBeads() {
         List<Bead> list = new ArrayList<>(Arrays.asList(bead2, bead1));
         given(mockBeadService.getAllBeads()).willReturn(new ResponseEntity<>(list, OK));
-        ResponseEntity<Iterable<Bead>> expected = new ResponseEntity<>(list, OK);
-        ResponseEntity<Iterable<Bead>> actual = mockBeadController.getAllBeads();
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list, OK);
+        ResponseEntity<List<Bead>> actual = mockBeadController.getAllBeads();
 
         verify(mockBeadService).getAllBeads();
         Assert.assertEquals(expected, actual);
     }
-}
+
 
 //    @Test
 //    public void testGetAllBeadsOrganizeByMaterial(){
@@ -80,17 +84,17 @@ public class BeadControllerTest {
 //        verify(mockBeadService).getAllOrderByMaterial();
 //        Assert.assertEquals(expected,actual);
 //    }
-//
-//    @Test
-//    public void testGetAllOfMaterial(){
-//        List<Bead> list = new ArrayList<>(Arrays.asList(bead2));
-//        given(mockBeadService.getAllOfMaterial(JASPER)).willReturn(new ResponseEntity<>(list,OK));
-//
-//        ResponseEntity<Iterable<Bead>> expected = new ResponseEntity<>(list,OK);
-//        ResponseEntity<Iterable<Bead>> actual = mockBeadController.getAllOfMaterial(JASPER);
-//
-//        verify(mockBeadService).getAllOfMaterial(any(Material.class));
-//        Assert.assertEquals(expected, actual);
-//    }
-//
-//}
+
+    @Test
+    public void testGetAllOfMaterial(){
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead2));
+        given(mockBeadService.getAllOfMaterial(JASPER)).willReturn(new ResponseEntity<>(list,OK));
+
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
+        ResponseEntity<List<Bead>> actual = mockBeadController.getAllOfMaterial(JASPER);
+
+        verify(mockBeadService).getAllOfMaterial(any(Material.class));
+        Assert.assertEquals(expected, actual);
+    }
+
+}

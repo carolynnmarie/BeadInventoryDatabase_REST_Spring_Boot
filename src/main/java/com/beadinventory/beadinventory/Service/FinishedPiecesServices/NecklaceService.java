@@ -1,22 +1,12 @@
 package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Necklace;
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
 import com.beadinventory.beadinventory.InventoryManager;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.NecklaceRepo;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
-import com.beadinventory.beadinventory.Service.SuppliesServices.BeadService;
-import com.beadinventory.beadinventory.Service.SuppliesServices.FindingService;
-import com.beadinventory.beadinventory.Service.SuppliesServices.StringingMaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.*;
 
