@@ -6,6 +6,7 @@ import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import javax.persistence.*;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.TreeSet;
 
 @Entity
 public class Finding implements Serializable {
@@ -33,8 +34,7 @@ public class Finding implements Serializable {
     private String details;
 
     @Column(name = "LENGTH")
-    private int length;
-
+    private double lengthCM;
 
     @Column(name = "PRICE_POINT")
     private double pricePoint;
@@ -43,14 +43,14 @@ public class Finding implements Serializable {
     private int quantity;
 
     @Column(name = "BRAND")
-    private String brand;
+    private TreeSet<String> brand;
 
-    public Finding(FindingCategory category, Material material, String details, int length, double pricePoint,
-                   int quantity, String brand) {
+    public Finding(FindingCategory category, Material material, String details, double lengthCM, double pricePoint,
+                   int quantity, TreeSet<String> brand) {
         this.category = category;
         this.material = material;
         this.details = details;
-        this.length = length;
+        this.lengthCM = lengthCM;
         this.pricePoint = pricePoint;
         this.quantity = quantity;
         this.brand = brand;
@@ -62,6 +62,10 @@ public class Finding implements Serializable {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id){
+        this.id = id;
     }
 
     public String getDetails() {
@@ -92,23 +96,23 @@ public class Finding implements Serializable {
         this.category = category;
     }
 
-    public int getLength() {
-        return length;
+    public double getLengthCM() {
+        return lengthCM;
     }
 
-    public void setLength(int length) {
-        this.length = length;
+    public void setLengthCM(double lengthCM) {
+        this.lengthCM = lengthCM;
     }
 
     public void setMaterial(Material material) {
         this.material = material;
     }
 
-    public String getBrand() {
+    public TreeSet<String> getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(TreeSet<String> brand) {
         this.brand = brand;
     }
 }

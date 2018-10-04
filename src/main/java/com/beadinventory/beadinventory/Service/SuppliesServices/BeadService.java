@@ -7,7 +7,6 @@ import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -36,7 +35,7 @@ public class BeadService {
 
     public ResponseEntity<List<Bead>> getAllOrderByCategory(){
         List<Bead> beads = (List<Bead>)beadRepository.findAll();
-        Collections.sort(beads,Comparator.comparing(Bead::getMaterialCategory));
+        Collections.sort(beads,Comparator.comparing(Bead::getMaterialCategoryString));
         return new ResponseEntity<>(beads, OK);
     }
 
@@ -81,12 +80,24 @@ public class BeadService {
         return new ResponseEntity<>(beads, OK);
     }
 
+
+
     public ResponseEntity<Optional<Bead>> getBeadById(long id){
         try {
             Optional<Bead> bead = beadRepository.findById(id);
             return new ResponseEntity<>(bead, OK);
         } catch (NoSuchElementException e){
             return new ResponseEntity<>(Optional.of(new Bead()), NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<TreeSet<String>> getBrandsByBeadId(long id){
+        try {
+            Optional<Bead> bead = beadRepository.findById(id);
+            TreeSet<String> brands = bead.get().getBrands();
+            return new ResponseEntity<>(brands, OK);
+        } catch (NoSuchElementException e){
+            return new ResponseEntity<>(new TreeSet<>(), NOT_FOUND);
         }
     }
 
@@ -102,10 +113,12 @@ public class BeadService {
         return new ResponseEntity<>(bead1, responseHeaders, CREATED);
     }
 
-    public ResponseEntity<Bead> updateBeadQuantity(Bead bead, long quantity){
-            bead.setQuantity(quantity);
-            bead = beadRepository.save(bead);
-            return new ResponseEntity<>(bead, OK);
+    public ResponseEntity<Bead> updateBeadQuantity(long beadId, long quantity){
+        Optional<Bead> oBead = beadRepository.findById(beadId);
+        Bead bead = oBead.get();
+        bead.setQuantity(quantity);
+        bead = beadRepository.save(bead);
+        return new ResponseEntity<>(bead, OK);
     }
 
     public ResponseEntity<Bead> updateBead(Long id, Bead bead){

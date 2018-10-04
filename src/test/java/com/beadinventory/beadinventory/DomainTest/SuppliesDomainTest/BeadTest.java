@@ -6,6 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.TreeSet;
+
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
@@ -19,9 +22,12 @@ public class BeadTest {
 
     @Before
     public void before(){
-        bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white",0.2,"Bead Gallery");
-        bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
-        bead3 = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05,"Bead Gallery");
+        TreeSet<String> brands = new TreeSet<>(Arrays.asList("Bead Gallery"));
+        bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,
+                "translucent purple with some white",0.2,brands);
+        bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,brands);
+        bead3 = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",
+                0.05,brands);
 
 //        bead1.setId(1);
 //        bead2.setId(2);
@@ -45,15 +51,16 @@ public class BeadTest {
 
     @Test
     public void getMaterialCategoryTest(){
-        MaterialCategory expected = SEMI_PRECIOUS_STONE;
-        MaterialCategory actual = bead1.getMaterialCategory();
+//        MaterialCategory expected = SEMI_PRECIOUS_STONE;
+        String expected = "semi precious stone";
+        String actual = bead1.getMaterialCategoryString();
         Assert.assertEquals(expected,actual);
     }
 
     @Test
     public void getShapeTest(){
-        Shape expected = ROUND;
-        Shape actual = bead2.getShape();
+        String expected = "round";
+        String actual = bead2.getShapeString();
         Assert.assertEquals(expected,actual);
     }
 
@@ -101,8 +108,10 @@ public class BeadTest {
 
     @Test
     public void getBrandsTest(){
-        String expected = "Bead Gallery";
-        String actual = bead2.getBrands();
+        TreeSet<String> setExpected = new TreeSet<>(Arrays.asList("Bead Gallery"));
+        String expected = setExpected.first();
+        TreeSet<String> setActual = bead2.getBrands();
+        String actual = setActual.first();
         Assert.assertEquals(expected,actual);
     }
 

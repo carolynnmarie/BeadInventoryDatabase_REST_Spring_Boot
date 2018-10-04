@@ -32,10 +32,13 @@ public class BeadControllerTest {
 
     @InjectMocks
     private BeadController mockBeadController;
-
-    private Bead bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20, "translucent purple with some white", 0.2, "Bead Gallery");
-    private Bead bead2 = new Bead(JASPER, ROUND, "black", 4, "good", 10, "", 0.1, "Bead Gallery");
-    private Bead bead3 = new Bead(STONE, ROUND, "tan", 6, "ok", 7, "with design cut into bead", 0.05, "Bead Gallery");
+    TreeSet<String> brands = new TreeSet<>(Arrays.asList("Bead Gallery"));
+    private Bead bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20,
+            "translucent purple with some white", 0.2, brands);
+    private Bead bead2 = new Bead(JASPER, ROUND, "black", 4, "good", 10, "",
+            0.1, brands);
+    private Bead bead3 = new Bead(STONE, ROUND, "tan", 6, "ok", 7,
+            "with design cut into bead", 0.05, brands);
 
 
     @Before
@@ -85,16 +88,16 @@ public class BeadControllerTest {
 //        Assert.assertEquals(expected,actual);
 //    }
 
-    @Test
-    public void testGetAllOfMaterial(){
-        List<Bead> list = new ArrayList<>(Arrays.asList(bead2));
-        given(mockBeadService.getAllOfMaterial(JASPER)).willReturn(new ResponseEntity<>(list,OK));
-
-        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
-        ResponseEntity<List<Bead>> actual = mockBeadController.getAllOfMaterial(JASPER);
-
-        verify(mockBeadService).getAllOfMaterial(any(Material.class));
-        Assert.assertEquals(expected, actual);
-    }
+//    @Test
+//    public void testGetAllOfMaterial(){
+//        List<Bead> list = new ArrayList<>(Arrays.asList(bead2));
+//        given(mockBeadService.getAllOfMaterial(JASPER)).willReturn(new ResponseEntity<>(list,OK));
+//
+//        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
+//        ResponseEntity<List<Bead>> actual = mockBeadController.getAllOfMaterial(JASPER);
+//
+//        verify(mockBeadService).getAllOfMaterial(any(Material.class));
+//        Assert.assertEquals(expected, actual);
+//    }
 
 }

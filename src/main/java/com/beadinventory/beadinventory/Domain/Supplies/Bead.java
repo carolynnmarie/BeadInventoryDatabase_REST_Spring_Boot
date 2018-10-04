@@ -8,6 +8,7 @@ import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape;
 import javax.persistence.Id;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.TreeSet;
 
 @Entity
 public class Bead implements Serializable {
@@ -17,22 +18,22 @@ public class Bead implements Serializable {
     @Column(name = "BEAD_ID")
     private long id;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "MATERIAL")
     private Material material;
+    @Column(name = "MATERIAL")
+    public String getMaterialString(){
+        return material.toString();
+    }
 
     private MaterialCategory materialCategory;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "MATERIAL_CATEGORY")
-    public MaterialCategory getMaterialCategory(){
-        return materialCategory;
+    @Column
+    public String getMaterialCategoryString(){
+        return materialCategory.toString();
     }
 
     private Shape shape;
-    @Enumerated(EnumType.STRING)
     @Column(name = "SHAPE")
-    public Shape getShape(){
-        return shape;
+    public String getShapeString(){
+        return shape.toString();
     }
 
     @Column(name = "COLOR")
@@ -53,13 +54,13 @@ public class Bead implements Serializable {
     @Column(name = "PRICE_POINT")
     private double pricePoint;
 
-    @Column(name = "BRAND")
-    private String brands;
+    @Column(name = "BRANDS")
+    private TreeSet<String> brands;
 
     public Bead(){ }
 
     public Bead(Material material, Shape shape, String color, int size, String quality, long quantity,
-                String description, double pricePoint, String brands) {
+                String description, double pricePoint, TreeSet<String> brands) {
         this.material = material;
         this.materialCategory = material.getCategory();
         this.shape = shape;
@@ -144,16 +145,32 @@ public class Bead implements Serializable {
         this.shape = shape;
     }
 
-    public String getBrands() {
-        return brands;
+    public MaterialCategory getMaterialCategory() {
+        return materialCategory;
     }
 
-    public void setBrands(String brands) {
+    public Shape getShape() {
+        return shape;
+    }
+
+    public void setBrands(TreeSet<String> brands) {
         this.brands = brands;
     }
 
+    public TreeSet<String> getBrands() {
+        return brands;
+    }
+
+    public String getBrandsString(){
+        String b = "";
+        for (String item:brands) {
+            b+= item;
+        }
+        return b;
+    }
+
     public void setAll(Material material, Shape shape, String color, int size, String quality, long quantity,
-                       String description, double pricePoint, String brands){
+                       String description, double pricePoint, TreeSet<String> brands){
         this.material = material;
         this.materialCategory = material.getCategory();
         this.shape = shape;
@@ -169,7 +186,7 @@ public class Bead implements Serializable {
     @Override
     public String toString(){
         return "Material: " + material + ", Shape: " + shape + ", Color: " + color + ", Size: " + size + "mm, Price point: "
-                + pricePoint + ", Quality: " + quality + ", Quantity: " + quantity + ", Brands: " + brands + ", Description: " +
+                + pricePoint + ", Quality: " + quality + ", Quantity: " + quantity + ", Brands: " + getBrandsString() + ", Description: " +
                 description;
     }
 }

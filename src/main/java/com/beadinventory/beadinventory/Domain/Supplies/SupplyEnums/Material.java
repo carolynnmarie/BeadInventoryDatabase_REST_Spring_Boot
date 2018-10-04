@@ -65,7 +65,8 @@ public enum Material {
         this.category = category;
     }
 
-    public String getMaterial() {
+    @Override
+    public String toString() {
         return material;
     }
 

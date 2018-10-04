@@ -26,4 +26,9 @@ public enum FindingCategory {
     SPLIT_RING,
     CONNECTOR,
     SPACER;
+
+    @Override
+    public String toString(){
+        return name().toLowerCase().replace('_',' ');
+    }
 }

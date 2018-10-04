@@ -1,13 +1,17 @@
 package com.beadinventory.beadinventory.Service.SuppliesServices;
 
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.FindingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,12 +47,7 @@ public class FindingService {
         return new ResponseEntity<>(list,OK);
     }
 
-    public ResponseEntity<List<Finding>> getAllOfCategoryAndMaterialAndLength(FindingCategory category, Material material, int length){
-        List<Finding> list = findingRepo.findFindingsByCategoryAndMaterialAndLength(category, material, length);
-        return new ResponseEntity<>(list,OK);
-    }
-
-    public ResponseEntity<List<Finding>> getAllOfCategoryAndLength(FindingCategory category, int length){
+    public ResponseEntity<List<Finding>> getAllOfCategoryAndLength(FindingCategory category, double length){
         List<Finding> list = findingRepo.findFindingsByCategoryAndLength(category, length);
         return new ResponseEntity<>(list,OK);
     }
@@ -59,28 +58,32 @@ public class FindingService {
         return new ResponseEntity<>(finding,OK);
     }
 
-//    public ResponseEntity<Finding> createFinding(Finding finding){
-//        try{
-//            Finding finding1 = findingRepo.save(finding);
-//            return new ResponseEntity<>(finding1,CREATED);
-//        } catch (Exception e){
-//            return new ResponseEntity<>(BAD_REQUEST);
-//        }
-//    }
 
-//    public ResponseEntity<Finding> updateFindingQuantity(long findingId, int quantity){
-//        Optional<Finding> f = findingRepo.findById(findingId);
-//        Finding finding = f.get();
-//        finding.setQuantity(quantity);
-//        finding.setId(findingId);
-//        return new ResponseEntity<>(finding,OK);
-//    }
-//
-//    public ResponseEntity<Finding> updateFinding(Long id, Finding finding){
-//        finding.setId(id);
-//        findingRepo.save(finding);
-//        return new ResponseEntity<>(finding,OK);
-//    }
+    public ResponseEntity<Finding> createFinding(Finding finding){
+        Finding finding1 = findingRepo.save(finding);
+        URI newAccountUri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(finding.getId())
+                .toUri();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setLocation(newAccountUri);
+        return new ResponseEntity<>(finding1, responseHeaders,CREATED);
+    }
+
+    public ResponseEntity<Finding> updateFindingQuantity(long findingId, int quantity){
+        Optional<Finding> f = findingRepo.findById(findingId);
+        Finding finding = f.get();
+        finding.setQuantity(quantity);
+        finding.setId(findingId);
+        return new ResponseEntity<>(finding,OK);
+    }
+
+    public ResponseEntity<Finding> updateFinding(Long id, Finding finding){
+        finding.setId(id);
+        findingRepo.save(finding);
+        return new ResponseEntity<>(finding,OK);
+    }
 
     public ResponseEntity deleteFinding(Finding finding){
         findingRepo.delete(finding);

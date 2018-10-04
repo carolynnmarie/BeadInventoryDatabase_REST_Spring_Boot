@@ -38,7 +38,8 @@ public enum Shape {
         this.shape = shape;
     }
 
-    public String getShape() {
+    @Override
+    public String toString() {
         return shape;
     }
 }
