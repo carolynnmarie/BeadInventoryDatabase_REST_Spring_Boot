@@ -3,6 +3,7 @@ package com.beadinventory.beadinventory.Domain.FinishedPieces;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
@@ -13,6 +14,12 @@ import java.util.Map;
 @Table(name = "NECKLACE")
 public class Necklace extends AllFinishedPieces {
 
+
+    private FindingCategory clasp;
+    @Column
+    public String getClasp(){
+        return clasp.toString();
+    }
 
     @Column(name = "FINDINGS")
     protected LinkedHashMap<Finding, Integer> findings;
@@ -56,6 +63,13 @@ public class Necklace extends AllFinishedPieces {
 
     public void setLengthInch(double lengthInch) {
         this.lengthInch = lengthInch;
+    }
+
+    public String describeNecklace(){
+        String description = "The necklace is " + lengthInch + " inches long, on " + stringingMaterial + ", with a " + getClasp();
+        description += (hasNaturalStones)?", with natural stone beads":"";
+        description += (hasSwarovski)?", with Swarovski crystals":"";
+        return description;
     }
 
 

@@ -1,7 +1,6 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringingMaterialCategory;
 
 
@@ -15,25 +14,18 @@ public class StringingMaterial implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "STRINGING_MATERIAL_ID")
-    private int id;
+    private long id;
 
-    private StringingMaterialCategory category;
     @Enumerated(EnumType.STRING)
-    @Column(name = "CATEGORY")
-    public StringingMaterialCategory getFindingCategory() {
-        return category;
-    }
+    @Column(name = "SM_CATEGORY")
+    private StringingMaterialCategory sMCategory;
 
-    private Material material;
     @Enumerated(EnumType.STRING)
     @Column(name = "MATERIAL")
-    public Material getMaterial(){
-        return material;
-    }
-
+    private Material material;
 
     @Column(name = "WIDTH")
-    private int widthMM;
+    private String width;
 
     @Column(name = "STRANDS")
     private int strands;
@@ -44,38 +36,52 @@ public class StringingMaterial implements Serializable {
     @Column(name = "PRICE_PER_INCH")
     private double pricePerInch;
 
-    @Column(name = "LENGTH")
-    private double availableLength;
-
     @Column(name = "BRAND")
     private String brand;
 
 
-    public StringingMaterial(StringingMaterialCategory category, Material material, int widthMM, int strands, String quality, double pricePerInch, double availableLength,String brand) {
-        this.category = category;
+    public StringingMaterial(StringingMaterialCategory sMCategory, Material material, String width, int strands, String quality,
+                             double pricePerInch, String brand) {
+        this.sMCategory = sMCategory;
         this.material = material;
-        this.widthMM = widthMM;
+        this.width = width;
         this.strands = strands;
         this.quality = quality;
         this.pricePerInch = pricePerInch;
-        this.availableLength = availableLength;
+
         this.brand = brand;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setMaterial(Material material) {
         this.material = material;
     }
 
-    public int getWidthMM() {
-        return widthMM;
+    public Material getMaterial(){
+        return material;
     }
 
-    public void setWidthMM(int widthMM) {
-        this.widthMM = widthMM;
+    public StringingMaterialCategory getsMCategory() {
+        return sMCategory;
+    }
+
+    public void setsMCategory(StringingMaterialCategory sMCategory) {
+        this.sMCategory = sMCategory;
+    }
+
+    public String getWidth() {
+        return width;
+    }
+
+    public void setWidth(String width) {
+        this.width = width;
     }
 
     public int getStrands() {
@@ -110,11 +116,4 @@ public class StringingMaterial implements Serializable {
         this.pricePerInch = pricePerInch;
     }
 
-    public double getAvailableLength() {
-        return availableLength;
-    }
-
-    public void setAvailableLength(double availableLength) {
-        this.availableLength = availableLength;
-    }
 }

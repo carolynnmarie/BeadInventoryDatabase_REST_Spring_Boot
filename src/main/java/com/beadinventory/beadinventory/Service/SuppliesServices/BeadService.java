@@ -81,23 +81,12 @@ public class BeadService {
     }
 
 
-
     public ResponseEntity<Optional<Bead>> getBeadById(long id){
         try {
             Optional<Bead> bead = beadRepository.findById(id);
             return new ResponseEntity<>(bead, OK);
         } catch (NoSuchElementException e){
             return new ResponseEntity<>(Optional.of(new Bead()), NOT_FOUND);
-        }
-    }
-
-    public ResponseEntity<TreeSet<String>> getBrandsByBeadId(long id){
-        try {
-            Optional<Bead> bead = beadRepository.findById(id);
-            TreeSet<String> brands = bead.get().getBrands();
-            return new ResponseEntity<>(brands, OK);
-        } catch (NoSuchElementException e){
-            return new ResponseEntity<>(new TreeSet<>(), NOT_FOUND);
         }
     }
 

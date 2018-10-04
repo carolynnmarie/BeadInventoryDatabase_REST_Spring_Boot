@@ -106,12 +106,12 @@ public class FindingServiceTest {
     @Test
     public void getAllOfCategoryAndLength(){
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin, headPin));
-        given(mockFindingRepo.findFindingsByCategoryAndLength(EYE_PIN,5.08)).willReturn(list);
+        given(mockFindingRepo.findFindingsByCategoryAndLengthCM(EYE_PIN,5.08)).willReturn(list);
 
         ResponseEntity<List<Finding>> expected = new ResponseEntity<>(list,OK);
         ResponseEntity<List<Finding>> actual = mockFindingService.getAllOfCategoryAndLength(EYE_PIN,5.08);
 
-        verify(mockFindingRepo).findFindingsByCategoryAndLength(any(FindingCategory.class),anyDouble());
+        verify(mockFindingRepo).findFindingsByCategoryAndLengthCM(any(FindingCategory.class),anyDouble());
         Assert.assertEquals(expected,actual);
     }
 
@@ -150,23 +150,44 @@ public class FindingServiceTest {
 
     @Test
     public void updateFindingQuantityTest(){
-        given(mockFindingRepo.save(headPin)).willReturn(headPin);
+        Optional<Finding> oFinding = Optional.of(headPin);
+        given(mockFindingRepo.findById(anyLong())).willReturn(oFinding);
+        given(mockFindingRepo.save(any(Finding.class))).willReturn(headPin);
+
+        ResponseEntity<Finding> expected = new ResponseEntity<>(headPin,OK);
+        ResponseEntity<Finding> actual = mockFindingService.updateFindingQuantity(headPin.getId(),15);
+
+        verify(mockFindingRepo).findById(anyLong());
+        verify(mockFindingRepo).save(any(Finding.class));
+        Assert.assertEquals(expected,actual);
     }
 
     @Test
-    public void updateFindingTest(){}
+    public void updateFindingTest(){
+        given(mockFindingRepo.save(any(Finding.class))).willReturn(headPin);
+
+        ResponseEntity<Finding> expected = new ResponseEntity<>(headPin,OK);
+        ResponseEntity<Finding> actual = mockFindingService.updateFinding(headPin.getId(),headPin);
+
+        verify(mockFindingRepo).save(any(Finding.class));
+        Assert.assertEquals(expected,actual);
+    }
 
     @Test
-    public void deleteFindingTest(){}
+    public void deleteFindingTest(){
+        ResponseEntity expected = new ResponseEntity(OK);
+        ResponseEntity actual = mockFindingService.deleteById(headPin.getId());
+
+        verify(mockFindingRepo).deleteById(anyLong());
+        Assert.assertEquals(expected,actual);
+    }
 
     @Test
-    public void deleteFindingByIdTest(){}
+    public void deleteFindingByIdTest(){
+        ResponseEntity expected = new ResponseEntity(OK);
+        ResponseEntity actual = mockFindingService.deleteFinding(lobsterClasp2);
+
+        verify(mockFindingRepo).delete(any(Finding.class));
+        Assert.assertEquals(expected,actual);
+    }
 }
-/*
-ResponseEntity<Finding> findById(long id)
-ResponseEntity<Finding> createFinding(Finding finding)
-ResponseEntity<Finding> updateFindingQuantity(long findingId, int quantity)
-ResponseEntity<Finding> updateFinding(Long id, Finding finding)
-ResponseEntity deleteFinding(Finding finding)
-ResponseEntity deleteById(long id)
- */

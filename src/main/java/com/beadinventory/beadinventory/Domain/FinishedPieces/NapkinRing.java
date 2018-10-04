@@ -18,11 +18,16 @@ public class NapkinRing extends AllFinishedPieces {
     @Column(name = "FINDINGS")
     private LinkedHashMap<Finding, Integer> findings;
 
+    @Column(name = "QUANTITY")
+    private int quantity;
+
     public NapkinRing(LinkedHashMap<Bead, Integer> beads, StringingMaterial stringingMaterial, LinkedHashMap<Finding, Integer> findings,
-                      int hoursSpent, double difficultyLevel, double price, boolean hasSwarovski, boolean hasNaturalStones, String description, LinkedHashMap<Bead, Integer> beads1, StringingMaterial stringingMaterial1, LinkedHashMap<Finding, Integer> findings1, int hoursSpent1, double difficultyLevel1, double price1, boolean hasSwarovski1, boolean hasNaturalStones1, String description1) {
+                      int hoursSpent, double difficultyLevel, double price, boolean hasSwarovski, boolean hasNaturalStones, String description,
+                      int quantity) {
         super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
         this.stringingMaterial = stringingMaterial;
         this.findings = findings;
+        this.quantity = quantity;
     }
 
     public StringingMaterial getStringingMaterial() {
@@ -41,8 +46,22 @@ public class NapkinRing extends AllFinishedPieces {
         this.findings = findings;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public void setAutoPrice() {
-
+        if(quantity == 4){
+            price = 20;
+        } else if(quantity == 6){
+            price = 29;
+        } else {
+            price = quantity*4.75;
+        }
     }
 }

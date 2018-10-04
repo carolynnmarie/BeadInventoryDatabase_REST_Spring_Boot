@@ -49,7 +49,7 @@ public class BeadRepoTest {
     private Bead bead5 = new Bead(AMETHYST, ROUND,"light purple",4,"poor",10,
             "translucent purple with some white", 0.2,brands);
 
-
+    
 
     @Test
     public void findBeadsByMaterial() {

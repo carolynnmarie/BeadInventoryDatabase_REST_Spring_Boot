@@ -3,7 +3,7 @@ package com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums;
 
 public enum FindingCategory {
     LOBSTER_CLASP,
-    TOGGLE_CLASP,
+    LOOP_AND_TOGGLE_CLASP,
     MAGNETIC_CLASP,
     THREADED_BARREL_CLASP,
     RING_CLASP,

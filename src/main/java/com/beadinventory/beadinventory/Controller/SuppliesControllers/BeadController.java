@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -27,25 +28,73 @@ public class BeadController {
     }
 
     @RequestMapping(value = "/beads", method = GET)
-    public ResponseEntity<List<Bead>> getAllBeads(){
+    public ResponseEntity<List<Bead>> findAllBeads(){
         return beadService.getAllBeads();
     }
 
+    @RequestMapping(value = "/beads", method = GET)
+    public ResponseEntity<List<Bead>> findAllOrderByCategory(){
+        return beadService.getAllOrderByCategory();
+    }
+
+    @RequestMapping(value = "/beads", method = GET)
+    public ResponseEntity<List<Bead>> findAllOrderByMaterial(){
+        return beadService.getAllOrderByMaterial();
+    }
+
     @RequestMapping(value = "/beads/{material_category}", method = GET)
-    public ResponseEntity<List<Bead>> getAllOfCategory(@PathVariable("material_category") MaterialCategory material_category){
+    public ResponseEntity<List<Bead>> findAllOfCategory(@PathVariable("material_category") MaterialCategory material_category){
         return beadService.getAllOfCategory(material_category);
     }
 
     @RequestMapping(value = "/beads/{material}", method = GET)
-    public ResponseEntity<List<Bead>> getAllOfMaterial(@PathVariable("material")Material material){
+    public ResponseEntity<List<Bead>> findAllOfMaterial(@PathVariable("material")Material material){
         return beadService.getAllOfMaterial(material);
     }
 
+    @RequestMapping(value = "/beads/{material}/{color}",method = GET)
+    public ResponseEntity<List<Bead>> findAllOfMaterialAndColor(@PathVariable("material") Material material, @PathVariable("color") String color){
+        return beadService.getAllOfMaterialAndColor(material,color);
+    }
 
+    @RequestMapping(value = "/beads/{material}/{size}",method = GET)
+    public ResponseEntity<List<Bead>> findAllOfMaterialAndSize(@PathVariable("material") Material material,@PathVariable("size") int size){
+        return beadService.getAllOfMaterialAndSize(material,size);
+    }
+
+    @RequestMapping(value = "/beads/{quantity}", method = GET)
+    public ResponseEntity<List<Bead>> findAllWithQuantityLessThan(@PathVariable("quantity") long quantity){
+        return beadService.getAllQuantityLessThan(quantity);
+    }
+
+    @RequestMapping(value = "/beads/{id}", method = GET)
+    public ResponseEntity<Optional<Bead>> findBeadById(@PathVariable("id") long id){
+        return beadService.getBeadById(id);
+    }
 
     @RequestMapping(value = "/beads", method = POST)
     public ResponseEntity<Bead> createBead(@RequestBody Bead bead){
         return beadService.createBead(bead);
+    }
+
+    @RequestMapping(value = "/beads/{id}", method = PUT)
+    public ResponseEntity<Bead> updateBeadQuantity(@PathVariable("id") long id, @RequestBody long quantity){
+        return beadService.updateBeadQuantity(id,quantity);
+    }
+
+    @RequestMapping(value = "/beads/{id}", method = PUT)
+    public ResponseEntity<Bead> updateBead(@PathVariable("id") long id, @RequestBody Bead bead){
+        return beadService.updateBead(id,bead);
+    }
+
+    @RequestMapping(value = "/beads/{id}", method = DELETE)
+    public ResponseEntity deleteBeadById(@PathVariable("id") long id){
+        return beadService.deleteBeadById(id);
+    }
+
+    @RequestMapping(value = "/beads",method = DELETE)
+    public ResponseEntity deleteBead(@RequestBody Bead bead){
+        return beadService.deleteBead(bead);
     }
 
 }

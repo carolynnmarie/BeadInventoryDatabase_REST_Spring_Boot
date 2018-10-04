@@ -1,6 +1,5 @@
 package com.beadinventory.beadinventory.Service.SuppliesServices;
 
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
@@ -48,7 +47,7 @@ public class FindingService {
     }
 
     public ResponseEntity<List<Finding>> getAllOfCategoryAndLength(FindingCategory category, double length){
-        List<Finding> list = findingRepo.findFindingsByCategoryAndLength(category, length);
+        List<Finding> list = findingRepo.findFindingsByCategoryAndLengthCM(category, length);
         return new ResponseEntity<>(list,OK);
     }
 
@@ -76,7 +75,8 @@ public class FindingService {
         Finding finding = f.get();
         finding.setQuantity(quantity);
         finding.setId(findingId);
-        return new ResponseEntity<>(finding,OK);
+        Finding finding1 = findingRepo.save(finding);
+        return new ResponseEntity<>(finding1,OK);
     }
 
     public ResponseEntity<Finding> updateFinding(Long id, Finding finding){

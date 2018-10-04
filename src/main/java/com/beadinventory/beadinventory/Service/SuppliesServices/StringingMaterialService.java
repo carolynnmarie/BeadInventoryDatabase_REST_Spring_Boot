@@ -1,10 +1,10 @@
 package com.beadinventory.beadinventory.Service.SuppliesServices;
 
 import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringingMaterialCategory;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.StringingMaterialRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -32,10 +32,13 @@ public class StringingMaterialService {
     }
 
     public ResponseEntity<List<StringingMaterial>> getAllOfCategory(StringingMaterialCategory category){
-        Iterable<StringingMaterial> iList = strMtrlRepo.findStringingMaterialsByCategory(category);
-        List<StringingMaterial> list = new ArrayList<>();
-        iList.forEach(e->list.add(e));
-        return new ResponseEntity<>(list, OK);
+        List<StringingMaterial> iList = strMtrlRepo.findStringingMaterialsBySMCategory(category);
+        return new ResponseEntity<>(iList, OK);
+    }
+
+    public ResponseEntity<List<StringingMaterial>> getAllOfMaterial(Material material){
+        List<StringingMaterial> list = strMtrlRepo.findStringingMaterialsByMaterial(material);
+        return new ResponseEntity<>(list,OK);
     }
 
     public ResponseEntity<StringingMaterial> getById(Long sMId){
@@ -44,6 +47,19 @@ public class StringingMaterialService {
         return new ResponseEntity<>(stringingMaterial,OK);
     }
 
+    public ResponseEntity<StringingMaterial> updateStringingMaterial(long id, StringingMaterial stringingMaterial){
+        stringingMaterial.setId(id);
+        StringingMaterial sM = strMtrlRepo.save(stringingMaterial);
+        return new ResponseEntity<>(sM,OK);
+    }
 
+    public ResponseEntity deleteById(long id){
+        strMtrlRepo.deleteById(id);
+        return new ResponseEntity(OK);
+    }
 
+    public ResponseEntity deleteStringingMaterial(StringingMaterial stringingMaterial){
+        strMtrlRepo.delete(stringingMaterial);
+        return new ResponseEntity(OK);
+    }
 }
