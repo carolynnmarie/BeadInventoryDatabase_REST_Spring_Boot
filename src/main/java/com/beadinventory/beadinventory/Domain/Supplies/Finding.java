@@ -17,14 +17,14 @@ public class Finding implements Serializable {
     private long id;
 
     private FindingCategory category;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "CATEGORY")
     public FindingCategory getFindingCategory() {
         return category;
     }
 
     private Material material;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "MATERIAL")
     public Material getMaterial(){
         return material;

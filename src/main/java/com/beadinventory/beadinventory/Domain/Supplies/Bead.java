@@ -18,23 +18,13 @@ public class Bead implements Serializable {
     @Column(name = "BEAD_ID")
     private long id;
 
-    private Material material;
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "MATERIAL")
-    public String getMaterialString(){
-        return material.toString();
-    }
+    private Material material;
 
-    private MaterialCategory materialCategory;
-    @Column
-    public String getMaterialCategoryString(){
-        return materialCategory.toString();
-    }
-
-    private Shape shape;
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "SHAPE")
-    public String getShapeString(){
-        return shape.toString();
-    }
+    private Shape shape;
 
     @Column(name = "COLOR")
     private String color;
@@ -62,7 +52,6 @@ public class Bead implements Serializable {
     public Bead(Material material, Shape shape, String color, int size, String quality, long quantity,
                 String description, double pricePoint, TreeSet<String> brands) {
         this.material = material;
-        this.materialCategory = material.getCategory();
         this.shape = shape;
         this.color = color;
         this.size = size;
@@ -137,20 +126,20 @@ public class Bead implements Serializable {
         this.pricePoint = pricePoint;
     }
 
-    public void setMaterialCategory(MaterialCategory materialCategory) {
-        this.materialCategory = materialCategory;
-    }
-
     public void setShape(Shape shape) {
         this.shape = shape;
     }
 
-    public MaterialCategory getMaterialCategory() {
-        return materialCategory;
-    }
-
     public Shape getShape() {
         return shape;
+    }
+
+    public String getMaterialString(){
+        return material.toString();
+    }
+
+    public String getShapeString(){
+        return shape.toString();
     }
 
     public void setBrands(TreeSet<String> brands) {
@@ -172,7 +161,6 @@ public class Bead implements Serializable {
     public void setAll(Material material, Shape shape, String color, int size, String quality, long quantity,
                        String description, double pricePoint, TreeSet<String> brands){
         this.material = material;
-        this.materialCategory = material.getCategory();
         this.shape = shape;
         this.color = color;
         this.size = size;

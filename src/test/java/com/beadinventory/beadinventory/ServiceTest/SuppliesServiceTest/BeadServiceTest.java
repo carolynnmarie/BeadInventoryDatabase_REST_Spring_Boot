@@ -75,43 +75,6 @@ public class BeadServiceTest {
     }
 
     @Test
-    public void getAllOrderByMaterialTest(){
-        List<Bead> beadsSorted = new ArrayList<>(Arrays.asList(bead3,bead1,bead4,bead5,bead2));
-        List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead2,bead3,bead4,bead5));
-        given(mockBeadRepo.findAll()).willReturn(beads);
-
-        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(beadsSorted,OK);
-        ResponseEntity<List<Bead>> actual = mockBeadService.getAllOrderByMaterial();
-
-        verify(mockBeadRepo).findAll();
-        Assert.assertEquals(expected,actual);
-    }
-    @Test
-    public void getAllOrderByCategorytest(){
-        List<Bead> beadsSorted = new ArrayList<>(Arrays.asList(bead3,bead1,bead2,bead4,bead5));
-        List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead2,bead3,bead4,bead5));
-        given(mockBeadRepo.findAll()).willReturn(beads);
-
-        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(beadsSorted,OK);
-        ResponseEntity<List<Bead>> actual = mockBeadService.getAllOrderByCategory();
-
-        verify(mockBeadRepo).findAll();
-        Assert.assertEquals(expected,actual);
-    }
-
-    @Test
-    public void getAllOfMaterialCategoryTest(){
-        List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead2,bead3,bead4,bead5));
-        List<Bead> beads2 = new ArrayList<>(Arrays.asList(bead1,bead2,bead4,bead5));
-        given(mockBeadRepo.findAll()).willReturn(beads);
-        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(beads2,OK);
-        ResponseEntity<List<Bead>> actual = mockBeadService.getAllOfCategory(MaterialCategory.SEMI_PRECIOUS_STONE);
-
-        verify(mockBeadRepo).findAll();
-        Assert.assertEquals(expected,actual);
-    }
-
-    @Test
     public void getAllOfMaterialTest(){
         List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
         given(mockBeadRepo.findByMaterial(AMETHYST)).willReturn(beads);

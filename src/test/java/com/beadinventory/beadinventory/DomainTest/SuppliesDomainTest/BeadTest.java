@@ -50,14 +50,6 @@ public class BeadTest {
     }
 
     @Test
-    public void getMaterialCategoryTest(){
-//        MaterialCategory expected = SEMI_PRECIOUS_STONE;
-        String expected = "semi precious stone";
-        String actual = bead1.getMaterialCategoryString();
-        Assert.assertEquals(expected,actual);
-    }
-
-    @Test
     public void getShapeTest(){
         String expected = "round";
         String actual = bead2.getShapeString();

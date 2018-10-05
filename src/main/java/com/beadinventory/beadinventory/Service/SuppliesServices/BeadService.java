@@ -33,27 +33,6 @@ public class BeadService {
         return new ResponseEntity<>(beads,OK);
     }
 
-    public ResponseEntity<List<Bead>> getAllOrderByCategory(){
-        List<Bead> beads = (List<Bead>)beadRepository.findAll();
-        Collections.sort(beads,Comparator.comparing(Bead::getMaterialCategoryString));
-        return new ResponseEntity<>(beads, OK);
-    }
-
-    public ResponseEntity<List<Bead>> getAllOrderByMaterial(){
-        List<Bead> beads = (List<Bead>)beadRepository.findAll();
-        Collections.sort(beads,Comparator.comparing(Bead::getMaterial));
-        return new ResponseEntity<>(beads, OK);
-    }
-
-    public ResponseEntity<List<Bead>> getAllOfCategory(MaterialCategory category){
-        List<Bead> beads = (List<Bead>)beadRepository.findAll();
-        List<Bead> filteredList = beads
-                .stream()
-                .filter(e->e.getMaterialCategory().equals(category))
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(filteredList,OK);
-    }
-
 
     public ResponseEntity<List<Bead>> getAllOfMaterial(Material material){
         List<Bead> beads = beadRepository.findByMaterial(material);

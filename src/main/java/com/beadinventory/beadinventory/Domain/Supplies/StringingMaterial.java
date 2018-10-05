@@ -16,11 +16,11 @@ public class StringingMaterial implements Serializable {
     @Column(name = "STRINGING_MATERIAL_ID")
     private long id;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "SM_CATEGORY")
     private StringingMaterialCategory sMCategory;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "MATERIAL")
     private Material material;
 

@@ -65,32 +65,32 @@ public class BeadRepoTest {
         assertThat(list).containsExactly(bead1,bead4,bead5);
     }
 
-    @Test
-    public void findBeadsByMaterialAndColor() {
-        entityManager.persist(bead1);
-        entityManager.persist(bead2);
-        entityManager.persist(bead3);
-        entityManager.persist(bead4);
-        entityManager.persist(bead5);
-        entityManager.flush();
+//    @Test
+//    public void findBeadsByMaterialAndColor() {
+//        entityManager.persist(bead1);
+//        entityManager.persist(bead2);
+//        entityManager.persist(bead3);
+//        entityManager.persist(bead4);
+//        entityManager.persist(bead5);
+//        entityManager.flush();
+//
+//        List<Bead> list = beadRepo.findByMaterialAndColor(AMETHYST, "purple");
+//        assertThat(list).containsExactly(bead1,bead4);
+//
+//    }
 
-        List<Bead> list = beadRepo.findByMaterialAndColor(AMETHYST, "purple");
-        assertThat(list).containsExactly(bead1,bead4);
-
-    }
-
-    @Test
-    public void findBeadsByMaterialAndSize() {
-        entityManager.persist(bead1);
-        entityManager.persist(bead2);
-        entityManager.persist(bead3);
-        entityManager.persist(bead4);
-        entityManager.persist(bead5);
-        entityManager.flush();
-
-        List<Bead> list = beadRepo.findByMaterialAndSize(JASPER,4);
-        assertThat(list).containsExactly(bead2);
-    }
+//    @Test
+//    public void findBeadsByMaterialAndSize() {
+//        entityManager.persist(bead1);
+//        entityManager.persist(bead2);
+//        entityManager.persist(bead3);
+//        entityManager.persist(bead4);
+//        entityManager.persist(bead5);
+//        entityManager.flush();
+//
+//        List<Bead> list = beadRepo.findByMaterialAndSize(JASPER,4);
+//        assertThat(list).containsExactly(bead2);
+//    }
 
     @Test
     public void findBeadsByShape() {
