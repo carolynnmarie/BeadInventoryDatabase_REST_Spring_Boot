@@ -53,25 +53,12 @@ public class BeadContIntegrationTest {
     private ObjectMapper mapper = new ObjectMapper();
 
     @Before
-    public void setup() {
+    public void setUp(){
         bead1.setId(1L);
-        bead2.setId(2L);
-        bead3.setId(3L);
-        bead4.setId(4L);
-        bead5.setId(5L);
     }
-    /*
-            Iterable<Account> accounts = singletonList(account);
-        ResponseEntity<Iterable<Account>> expected = new ResponseEntity<>(accounts, HttpStatus.OK);
-        given(accountController.getAllAccounts()).willReturn(expected);
 
-        mockMvc.perform(get("/accounts")
-                .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-     */
     @Test
-    public void getAllBeadsIntegTest() throws Exception{
+    public void findAllBeadsIntegTest() throws Exception{
         List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead2,bead3,bead4,bead5));
         ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list, OK);
         given(mockBeadController.findAllBeads()).willReturn(expected);
@@ -82,14 +69,110 @@ public class BeadContIntegrationTest {
     }
 
     @Test
-    public void getBeadByIdTest() throws Exception{
+    public void findAllOfMaterialIntegTest() throws Exception{
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
+        given(mockBeadController.findAllOfMaterial(AMETHYST)).willReturn(expected);
+
+        mockMvc.perform(get("/beads")
+                .param("material",AMETHYST.toString())
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void findAllOfMaterialAndColorIntegTest() throws Exception{
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
+        given(mockBeadController.findAllOfMaterialAndColor(AMETHYST,"purple")).willReturn(expected);
+
+        mockMvc.perform(get("/beads")
+                .param("material",AMETHYST.toString())
+                .param("color","purple")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void findAllOfMaterialAndSizeIntegTest() throws Exception{
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead5));
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
+        given(mockBeadController.findAllOfMaterialAndSize(AMETHYST,4)).willReturn(expected);
+
+        mockMvc.perform(get("/beads")
+                .param("material",AMETHYST.toString())
+                .param("size", String.valueOf(4))
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void findAllWithQuantityLessThanIntegTest() throws Exception{
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead2,bead3,bead5));
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
+        given(mockBeadController.findAllWithQuantityLessThan(12L)).willReturn(expected);
+
+        mockMvc.perform(get("/beads")
+                .param("quantity",String.valueOf(12L))
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getBeadByIdIntegTest() throws Exception{
         Optional<Bead> oBead = Optional.of(bead1);
         ResponseEntity<Optional<Bead>> expected = new ResponseEntity<>(oBead,OK);
         given(mockBeadController.findBeadById(1L)).willReturn(expected);
 
-        mockMvc.perform(get("/beads/{id}",1L).contentType(APPLICATION_JSON))
+        mockMvc.perform(get("/beads/{id}",1L)
+                .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
+    @Test
+    public void updateBeadIntegTest() throws Exception{
+        ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,OK);
+        given(mockBeadController.updateBead(bead1.getId(),bead1)).willReturn(expected);
 
+        String body = mapper.writeValueAsString(bead1);
+        mockMvc.perform(put("/beads/{id}",bead1.getId())
+                .content(body)
+                .characterEncoding("utf-8")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void createBeadIntegTest() throws Exception{
+        ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,CREATED);
+        given(mockBeadController.createBead(bead1)).willReturn(mock(ResponseEntity.class));
+
+        String body = mapper.writeValueAsString(bead1);
+        mockMvc.perform(post("/beads")
+                .content(body)
+                .characterEncoding("utf-8")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteBeadByIdIntegTest() throws Exception{
+        given(mockBeadController.deleteBeadById(bead1.getId())).willReturn(new ResponseEntity(OK));
+
+        mockMvc.perform(delete("/beads/{id}",bead1.getId())
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteBeadIntegTest() throws Exception{
+        given(mockBeadController.deleteBead(bead1)).willReturn(new ResponseEntity(OK));
+
+        String body = mapper.writeValueAsString(bead1);
+        mockMvc.perform(delete("/beads")
+                .content(body)
+                .characterEncoding("utf-8")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
 }
