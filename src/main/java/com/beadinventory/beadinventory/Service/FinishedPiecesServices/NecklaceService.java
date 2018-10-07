@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import static org.springframework.http.HttpStatus.*;
 
 @Service
-public class NecklaceService {
+public class NecklaceService extends AllFinishedPiecesService {
 
     private NecklaceRepo necklaceRepo;
     private BeadRepo beadRepo;

@@ -52,8 +52,24 @@ public class FindingRepoTest {
         assertThat(list).containsExactly(eyePin, headPin);
     }
 
+    @Test
+    public void findFindingsByCategoryAndLengthCMTest(){
+        entityManager.persist(eyePin);
+        entityManager.persist(headPin);
+        entityManager.flush();
+
+        List<Finding> list = mockFindingRepo.findFindingsByCategoryAndLengthCM(HEAD_PIN,5.08);
+        assertThat(list).containsExactly(headPin);
+    }
+
+    @Test
+    public void findFindingsByCategoryAndMaterial(){
+        entityManager.persist(eyePin);
+        entityManager.persist(headPin);
+        entityManager.flush();
+
+        List<Finding> list = mockFindingRepo.findFindingsByCategoryAndMaterial(HEAD_PIN,BRIGHT_SILVER_PLATED);
+        assertThat(list).containsExactly(headPin);
+    }
+
 }
-/*
-    List<Finding> findFindingsByCategoryAndLengthCM(FindingCategory category, double length);
-    List<Finding> findFindingsByCategoryAndMaterial(FindingCategory category, Material material);
- */

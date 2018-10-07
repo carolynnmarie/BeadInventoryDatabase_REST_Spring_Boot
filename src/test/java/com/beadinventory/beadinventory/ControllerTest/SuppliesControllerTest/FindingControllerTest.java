@@ -11,6 +11,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.*;
 
@@ -21,6 +23,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.http.HttpStatus.*;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @SuppressWarnings("unchecked")
 @RunWith(SpringRunner.class)
@@ -51,6 +54,48 @@ public class FindingControllerTest {
         splitRing = new Finding(SPLIT_RING,BRASS,"smallest",1,.01,25,brands);
     }
 
+    @Test
+    public void findAllFindingsTest(){
 
+    }
+
+    @Test
+    public void findAllOfCategoryTest(){
+
+    }
+
+    @Test
+    public void findAllOfMaterial(){
+
+    }
+
+    @Test
+    public void findAllOfCategoryAndMaterialTest(){
+
+    }
+
+    @Test
+    public void findAllOfCategoryAndLengthTest(){
+
+    }
+
+    @Test
+    public void getFindingByIdTest(){
+
+    }
 
 }
+/*
+ResponseEntity<List<Finding>> findAllFindings()
+ResponseEntity<List<Finding>> findAllOfCategory(@RequestParam(value = "findingCategory")FindingCategory findingCategory)
+ResponseEntity<List<Finding>> findAllOfMaterial(@RequestParam(value = "material")Material material)
+ResponseEntity<List<Finding>> findAllOfCategoryAndMaterial(@RequestParam(value = "category") FindingCategory category,
+                                                                      @RequestParam(value = "material") Material material)
+ResponseEntity<List<Finding>> findAllOfCategoryAndLength(@RequestParam(value = "category") FindingCategory category,
+                                                                    @RequestParam(value = "length") double length)
+ResponseEntity<Finding> getFindingById(@PathVariable("id") long id)
+ResponseEntity<Finding> createFinding(@RequestBody Finding finding)
+ResponseEntity<Finding> updateFinding(@PathVariable("id")long id, @RequestBody Finding finding)
+ResponseEntity deleteFindingById(@PathVariable("id") long id)
+ResponseEntity deleteFinding(@RequestBody Finding finding)
+ */

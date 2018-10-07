@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BraceletRepo extends CrudRepository<Bracelet,Long> {
+public interface BraceletRepo extends AllFinishedPiecesRepo<Bracelet> {
 }

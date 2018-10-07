@@ -46,14 +46,17 @@ public enum Material {
 
     SEED("seed bead",MaterialCategory.SEED),
 
-    PAPER("paper", OTHER),
-    CERAMIC("ceramic", OTHER),
-    ACRYLIC("acrylic", OTHER),
-    WOOD("wood", OTHER),
-    PLASTIC("plastic", OTHER),
-    COTTON("cotton", OTHER),
-    LEATHER("leather", OTHER),
-    FAUX_LEATHER("faux leather", OTHER);
+    PAPER("paper", MaterialCategory.OTHER),
+    CERAMIC("ceramic", MaterialCategory.OTHER),
+    ACRYLIC("acrylic", MaterialCategory.OTHER),
+    WOOD("wood", MaterialCategory.OTHER),
+    PLASTIC("plastic", MaterialCategory.OTHER),
+
+    COTTON("cotton", MaterialCategory.OTHER),
+    LEATHER("leather", MaterialCategory.OTHER),
+    FAUX_LEATHER("faux leather", MaterialCategory.OTHER),
+    HEMP("HEMP",MaterialCategory.OTHER),
+    OTHER("other",MaterialCategory.OTHER);
 
 
 

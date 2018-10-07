@@ -4,7 +4,6 @@ import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.util.LinkedHashMap;
@@ -79,7 +78,7 @@ public class Necklace extends AllFinishedPieces {
         for(Map.Entry<Bead,Integer> entry: beads.entrySet()){
             beadPrice += (entry.getKey().getPricePoint()*entry.getValue());
         }
-        double stringPrice = stringingMaterial.getPricePerInch()*lengthInch;
+        double stringPrice = stringingMaterial.getPricePerFoot()*lengthInch;
         double findingPrice = 0.0;
         for(Map.Entry<Finding,Integer> entry: findings.entrySet()){
             findingPrice += (entry.getKey().getPricePoint()*entry.getValue());

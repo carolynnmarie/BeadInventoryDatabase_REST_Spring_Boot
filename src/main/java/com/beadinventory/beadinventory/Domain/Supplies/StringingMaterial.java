@@ -33,21 +33,21 @@ public class StringingMaterial implements Serializable {
     @Column(name = "QUALITY")
     private String quality;
 
-    @Column(name = "PRICE_PER_INCH")
-    private double pricePerInch;
+    @Column(name = "PRICE_PER_FOOT")
+    private double pricePerFoot;
 
     @Column(name = "BRAND")
     private String brand;
 
 
     public StringingMaterial(StringingMaterialCategory sMCategory, Material material, String width, int strands, String quality,
-                             double pricePerInch, String brand) {
+                             double pricePerFoot, String brand) {
         this.sMCategory = sMCategory;
         this.material = material;
         this.width = width;
         this.strands = strands;
         this.quality = quality;
-        this.pricePerInch = pricePerInch;
+        this.pricePerFoot = pricePerFoot;
 
         this.brand = brand;
     }
@@ -108,12 +108,12 @@ public class StringingMaterial implements Serializable {
         this.quality = quality;
     }
 
-    public double getPricePerInch() {
-        return pricePerInch;
+    public double getPricePerFoot() {
+        return pricePerFoot;
     }
 
-    public void setPricePerInch(double pricePerInch) {
-        this.pricePerInch = pricePerInch;
+    public void setPricePerFoot(double pricePerFoot) {
+        this.pricePerFoot = pricePerFoot;
     }
 
 }

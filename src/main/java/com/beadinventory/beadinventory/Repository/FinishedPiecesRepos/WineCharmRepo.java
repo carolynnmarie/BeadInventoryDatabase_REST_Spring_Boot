@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface WineCharmRepo extends CrudRepository<WineCharm, Long> {
+public interface WineCharmRepo extends AllFinishedPiecesRepo<WineCharm> {
 }

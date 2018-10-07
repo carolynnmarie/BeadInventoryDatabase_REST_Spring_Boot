@@ -5,13 +5,10 @@ import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Materi
 public enum StringingMaterialCategory {
     BEADING_WIRE("beading wire"),
     BEADING_THREAD("beading thread"),
-    WAXED_COTTON("waxed cotton cord"),
     ELASTIC("elastic"),
     STRETCHY_FILAMENT("stretchy filament"),
     NON_STRETCHY_FILAMENT("non-stretchy filament"),
-    HEMP("hemp cord"),
-    FAUX_SUEDE("faux-suede cord"),
-    LEATHER_SUEDE("leather cord"),
+    CORD("cord"),
     CHAIN("chain"),
     WRAPPING_WIRE("bead wrapping wire"),
     MEMORY_WIRE("memory wire");

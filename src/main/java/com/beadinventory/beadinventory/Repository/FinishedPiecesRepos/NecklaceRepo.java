@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface NecklaceRepo extends CrudRepository<Necklace, Long> {
+public interface NecklaceRepo extends AllFinishedPiecesRepo<Necklace> {
 }

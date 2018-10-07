@@ -3,5 +3,5 @@ package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EarringsService {
+public class EarringsService extends AllFinishedPiecesService {
 }
