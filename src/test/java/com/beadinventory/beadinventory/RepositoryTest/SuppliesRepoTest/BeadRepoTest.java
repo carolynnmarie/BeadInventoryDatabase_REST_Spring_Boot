@@ -24,8 +24,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 
 
-
-
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = NONE)
@@ -49,10 +47,9 @@ public class BeadRepoTest {
     private Bead bead5 = new Bead(AMETHYST, ROUND,"light purple",4,"poor",10,
             "translucent purple with some white", 0.2,brands);
 
-    
 
     @Test
-    public void findBeadsByMaterial() {
+    public void findBeadsByMaterialTest() {
         entityManager.persist(bead1);
         entityManager.persist(bead2);
         entityManager.persist(bead3);
@@ -65,32 +62,32 @@ public class BeadRepoTest {
         assertThat(list).containsExactly(bead1,bead4,bead5);
     }
 
-//    @Test
-//    public void findBeadsByMaterialAndColor() {
-//        entityManager.persist(bead1);
-//        entityManager.persist(bead2);
-//        entityManager.persist(bead3);
-//        entityManager.persist(bead4);
-//        entityManager.persist(bead5);
-//        entityManager.flush();
-//
-//        List<Bead> list = beadRepo.findByMaterialAndColor(AMETHYST, "purple");
-//        assertThat(list).containsExactly(bead1,bead4);
-//
-//    }
+    @Test
+    public void findBeadsByMaterialAndColor() {
+        entityManager.persist(bead1);
+        entityManager.persist(bead2);
+        entityManager.persist(bead3);
+        entityManager.persist(bead4);
+        entityManager.persist(bead5);
+        entityManager.flush();
 
-//    @Test
-//    public void findBeadsByMaterialAndSize() {
-//        entityManager.persist(bead1);
-//        entityManager.persist(bead2);
-//        entityManager.persist(bead3);
-//        entityManager.persist(bead4);
-//        entityManager.persist(bead5);
-//        entityManager.flush();
-//
-//        List<Bead> list = beadRepo.findByMaterialAndSize(JASPER,4);
-//        assertThat(list).containsExactly(bead2);
-//    }
+        List<Bead> list = beadRepo.findByMaterialAndColor(AMETHYST, "purple");
+        assertThat(list).containsExactly(bead1,bead4);
+
+    }
+
+    @Test
+    public void findBeadsByMaterialAndSize() {
+        entityManager.persist(bead1);
+        entityManager.persist(bead2);
+        entityManager.persist(bead3);
+        entityManager.persist(bead4);
+        entityManager.persist(bead5);
+        entityManager.flush();
+
+        List<Bead> list = beadRepo.findByMaterialAndSize(JASPER,4);
+        assertThat(list).containsExactly(bead2);
+    }
 
     @Test
     public void findBeadsByShape() {

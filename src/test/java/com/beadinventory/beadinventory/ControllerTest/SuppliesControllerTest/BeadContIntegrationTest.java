@@ -64,6 +64,7 @@ public class BeadContIntegrationTest {
         given(mockBeadController.findAllBeads()).willReturn(expected);
 
         mockMvc.perform(get("/beads")
+                .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -76,6 +77,7 @@ public class BeadContIntegrationTest {
 
         mockMvc.perform(get("/beads")
                 .param("material",AMETHYST.toString())
+                .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -89,6 +91,7 @@ public class BeadContIntegrationTest {
         mockMvc.perform(get("/beads")
                 .param("material",AMETHYST.toString())
                 .param("color","purple")
+                .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -102,6 +105,7 @@ public class BeadContIntegrationTest {
         mockMvc.perform(get("/beads")
                 .param("material",AMETHYST.toString())
                 .param("size", String.valueOf(4))
+                .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -114,6 +118,7 @@ public class BeadContIntegrationTest {
 
         mockMvc.perform(get("/beads")
                 .param("quantity",String.valueOf(12L))
+                .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -125,6 +130,7 @@ public class BeadContIntegrationTest {
         given(mockBeadController.findBeadById(1L)).willReturn(expected);
 
         mockMvc.perform(get("/beads/{id}",1L)
+                .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -160,6 +166,7 @@ public class BeadContIntegrationTest {
         given(mockBeadController.deleteBeadById(bead1.getId())).willReturn(new ResponseEntity(OK));
 
         mockMvc.perform(delete("/beads/{id}",bead1.getId())
+                .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
     }

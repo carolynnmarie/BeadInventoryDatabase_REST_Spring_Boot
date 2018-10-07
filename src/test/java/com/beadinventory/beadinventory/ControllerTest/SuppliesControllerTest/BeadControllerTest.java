@@ -63,29 +63,29 @@ public class BeadControllerTest {
     }
 
 
-//    @Test
-//    public void testFindAllOfMaterial(){
-//        List<Bead> list = new ArrayList<>(Arrays.asList(bead2));
-//        given(mockBeadService.getAllOfMaterial(JASPER)).willReturn(new ResponseEntity<>(list,OK));
-//
-//        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
-//        ResponseEntity<List<Bead>> actual = mockBeadController.findAllOfMaterial(JASPER);
-//
-//        verify(mockBeadService).getAllOfMaterial(any(Material.class));
-//        Assert.assertEquals(expected, actual);
-//    }
+    @Test
+    public void testFindAllOfMaterial(){
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead2));
+        given(mockBeadService.getAllOfMaterial(JASPER)).willReturn(new ResponseEntity<>(list,OK));
 
-//    @Test
-//    public void findAllOfMaterialAndColorTest(){
-//        List<Bead> list = new ArrayList<>(Arrays.asList(bead2));
-//        given(mockBeadService.getAllOfMaterialAndColor(any(Material.class),any(String.class))).willReturn(new ResponseEntity<>(list,OK));
-//
-//        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list, OK);
-//        ResponseEntity<List<Bead>> actual = mockBeadController.findAllOfMaterialAndColor(JASPER,"black");
-//
-//        verify(mockBeadService).getAllOfMaterialAndColor(any(Material.class),any(String.class));
-//        Assert.assertEquals(expected, actual);
-//    }
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
+        ResponseEntity<List<Bead>> actual = mockBeadController.findAllOfMaterial(JASPER);
+
+        verify(mockBeadService).getAllOfMaterial(any(Material.class));
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void findAllOfMaterialAndColorTest(){
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead2));
+        given(mockBeadService.getAllOfMaterialAndColor(any(Material.class),any(String.class))).willReturn(new ResponseEntity<>(list,OK));
+
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list, OK);
+        ResponseEntity<List<Bead>> actual = mockBeadController.findAllOfMaterialAndColor(JASPER,"black");
+
+        verify(mockBeadService).getAllOfMaterialAndColor(any(Material.class),any(String.class));
+        Assert.assertEquals(expected, actual);
+    }
 
     @Test
     public void findAllOfMaterialAndSizeTest(){
@@ -119,29 +119,29 @@ public class BeadControllerTest {
         Assert.assertEquals(expected, actual);
     }
 
-//    @Test
-//    public void updateBeadQuantityTest(){
-//        given(mockBeadService.updateBeadQuantity(anyLong(),anyLong())).willReturn(new ResponseEntity<>(bead3,OK));
-//        ResponseEntity<Bead> expected = new ResponseEntity<>(bead3,OK);
-//        ResponseEntity<Bead> actual = mockBeadController.updateBeadQuantity(bead3.getId(),20L);
-//        verify(mockBeadService).updateBeadQuantity(anyLong(),anyLong());
-//        Assert.assertEquals(expected,actual);
-//    }
+    @Test
+    public void updateBeadQuantityTest(){
+        given(mockBeadService.updateBeadQuantity(anyLong(),anyLong())).willReturn(new ResponseEntity<>(bead3,OK));
+        ResponseEntity<Bead> expected = new ResponseEntity<>(bead3,OK);
+        ResponseEntity<Bead> actual = mockBeadController.updateBeadQuantity(bead3.getId(),20L);
+        verify(mockBeadService).updateBeadQuantity(anyLong(),anyLong());
+        Assert.assertEquals(expected,actual);
+    }
 
     @Test
     public void updateBeadTest(){
 
     }
-//
-//    @Test
-//    public void deleteBeadByIdTest(){
-//        ResponseEntity expected = new ResponseEntity(OK);
-//        given(mockBeadService.deleteBeadById(2L)).willReturn(expected);
-//        ResponseEntity actual = mockBeadController.deleteBeadById(2L);
-//
-//        verify(mockBeadService).deleteBeadById(anyLong());
-//        Assert.assertEquals(expected,actual);
-//    }
+
+    @Test
+    public void deleteBeadByIdTest(){
+        ResponseEntity expected = new ResponseEntity(OK);
+        given(mockBeadService.deleteBeadById(2L)).willReturn(expected);
+        ResponseEntity actual = mockBeadController.deleteBeadById(2L);
+
+        verify(mockBeadService).deleteBeadById(anyLong());
+        Assert.assertEquals(expected,actual);
+    }
 
     @Test
     public void deleteBeadTest(){
