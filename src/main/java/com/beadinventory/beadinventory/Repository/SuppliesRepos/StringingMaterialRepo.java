@@ -10,6 +10,8 @@ import java.util.List;
 
 @Repository
 public interface StringingMaterialRepo extends CrudRepository<StringingMaterial,Long> {
+
     List<StringingMaterial> findStringingMaterialsBySMCategory(StringingMaterialCategory category);
+
     List<StringingMaterial> findStringingMaterialsByMaterial(Material material);
 }

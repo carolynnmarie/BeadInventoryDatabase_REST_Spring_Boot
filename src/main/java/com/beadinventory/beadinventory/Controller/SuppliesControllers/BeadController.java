@@ -52,7 +52,7 @@ public class BeadController {
     }
 
     @RequestMapping(value = "/beads/{id}", method = GET)
-    public ResponseEntity<Optional<Bead>> findBeadById(@PathVariable("id") long id){
+    public ResponseEntity<Bead> findBeadById(@PathVariable("id") long id){
         return beadService.getBeadById(id);
     }
 

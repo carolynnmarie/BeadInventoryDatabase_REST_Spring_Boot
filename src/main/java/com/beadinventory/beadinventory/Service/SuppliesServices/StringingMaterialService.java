@@ -72,9 +72,4 @@ public class StringingMaterialService {
         strMtrlRepo.deleteById(id);
         return new ResponseEntity(OK);
     }
-
-    public ResponseEntity deleteStringingMaterial(StringingMaterial stringingMaterial){
-        strMtrlRepo.delete(stringingMaterial);
-        return new ResponseEntity(OK);
-    }
 }

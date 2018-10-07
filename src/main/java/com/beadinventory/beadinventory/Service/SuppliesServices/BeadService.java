@@ -60,12 +60,13 @@ public class BeadService {
     }
 
 
-    public ResponseEntity<Optional<Bead>> getBeadById(long id){
+    public ResponseEntity<Bead> getBeadById(long id){
         try {
-            Optional<Bead> bead = beadRepository.findById(id);
+            Optional<Bead> obead = beadRepository.findById(id);
+            Bead bead = obead.get();
             return new ResponseEntity<>(bead, OK);
         } catch (NoSuchElementException e){
-            return new ResponseEntity<>(Optional.of(new Bead()), NOT_FOUND);
+            return new ResponseEntity<>(new Bead(), NOT_FOUND);
         }
     }
 
@@ -87,6 +88,15 @@ public class BeadService {
         bead.setQuantity(quantity);
         bead = beadRepository.save(bead);
         return new ResponseEntity<>(bead, OK);
+    }
+
+    public ResponseEntity<Bead> removeBeadQuantity(long beadId, long quantityToRemove){
+        Optional<Bead> oBead = beadRepository.findById(beadId);
+        Bead bead = oBead.get();
+        Long updatedQuantity = bead.getQuantity() - quantityToRemove;
+        bead.setQuantity(updatedQuantity);
+        bead = beadRepository.save(bead);
+        return new ResponseEntity<>(bead,OK);
     }
 
     public ResponseEntity<Bead> updateBead(Long id, Bead bead){

@@ -10,7 +10,9 @@ import java.util.List;
 
 @Repository
 public interface FindingRepo extends CrudRepository<Finding,Long> {
+
     List<Finding> findAll();
+
     List<Finding> findFindingsByCategory(FindingCategory findingCategory);
 
     List<Finding> findFindingsByMaterial(Material material);

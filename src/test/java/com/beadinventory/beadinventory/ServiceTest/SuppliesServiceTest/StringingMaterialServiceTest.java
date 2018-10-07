@@ -135,11 +135,4 @@ public class StringingMaterialServiceTest {
         Assert.assertEquals(expected,actual);
     }
 
-    @Test
-    public void deleteStringingMaterialTest() {
-        ResponseEntity expected = new ResponseEntity(OK);
-        ResponseEntity actual = mockSMService.deleteStringingMaterial(beadingWire);
-        verify(mockSMRepo).delete(any(StringingMaterial.class));
-        Assert.assertEquals(expected,actual);
-    }
 }
