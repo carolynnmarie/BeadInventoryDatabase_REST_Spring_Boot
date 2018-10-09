@@ -67,7 +67,7 @@ public class StringingMaterialTest {
 
 }
 /*
-StringingMaterialCategory getsMCategory()
+StringingMaterialCategory getStringingMaterialCategory()
 Material getMaterial()
 String getWidth()
 int getStrands()

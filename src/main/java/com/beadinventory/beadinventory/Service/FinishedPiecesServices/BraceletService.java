@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -22,6 +23,7 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> {
     public BraceletService(BraceletRepo braceletRepo){
         this.braceletRepo = braceletRepo;
     }
+
 
     public ResponseEntity<Bracelet> createBracelet(Bracelet bracelet){
         Bracelet bracelet1 = braceletRepo.save(bracelet);

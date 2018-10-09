@@ -21,13 +21,19 @@ public class NapkinRing extends AllFinishedPieces {
     @Column(name = "QUANTITY")
     private int quantity;
 
+    @Column(name = "COLOR_SCHEME")
+    private String colorScheme;
+
+    public NapkinRing(){}
+
     public NapkinRing(LinkedHashMap<Bead, Integer> beads, StringingMaterial stringingMaterial, LinkedHashMap<Finding, Integer> findings,
                       int hoursSpent, double difficultyLevel, double price, boolean hasSwarovski, boolean hasNaturalStones, String description,
-                      int quantity) {
+                      int quantity, String colorScheme) {
         super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
         this.stringingMaterial = stringingMaterial;
         this.findings = findings;
         this.quantity = quantity;
+        this.colorScheme = colorScheme;
     }
 
     public StringingMaterial getStringingMaterial() {
@@ -52,6 +58,14 @@ public class NapkinRing extends AllFinishedPieces {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getColorScheme() {
+        return colorScheme;
+    }
+
+    public void setColorScheme(String colorScheme) {
+        this.colorScheme = colorScheme;
     }
 
     @Override

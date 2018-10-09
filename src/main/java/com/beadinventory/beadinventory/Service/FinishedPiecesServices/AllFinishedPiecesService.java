@@ -23,13 +23,13 @@ public abstract class AllFinishedPiecesService<T extends AllFinishedPieces> {
     @Autowired
     private BeadService beadService;
 
-    public ResponseEntity<T> updateBeadRepoCount(T item){
+    public void updateBeadRepoCount(T item){
         LinkedHashMap<Bead, Integer> beads = item.getBeads();
         for(Map.Entry<Bead,Integer> beadEntry: beads.entrySet()){
             Long beadId = beadEntry.getKey().getId();
             beadService.removeBeadQuantity(beadId,beadEntry.getValue());
         }
-        return new ResponseEntity<>(item,OK);
+
     }
 
 

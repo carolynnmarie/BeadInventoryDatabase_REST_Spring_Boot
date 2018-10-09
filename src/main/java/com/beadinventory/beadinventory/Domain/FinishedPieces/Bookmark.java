@@ -18,11 +18,17 @@ public class Bookmark extends AllFinishedPieces {
     @Column(name = "STRING_COLOR")
     private String stringColor;
 
+    @Column(name = "BEAD_COLOR")
+    private String beadColor;
+
+    public Bookmark(){}
+
     public Bookmark(LinkedHashMap<Bead, Integer> beads, int hoursSpent, double difficultyLevel, double price, boolean hasSwarovski,
-                    boolean hasNaturalStones, String description, Material stringMaterial, String stringColor) {
+                    boolean hasNaturalStones, String description, Material stringMaterial, String stringColor, String beadColor) {
         super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
         this.stringMaterial = stringMaterial;
         this.stringColor = stringColor;
+        this.beadColor = beadColor;
     }
 
     public Material getStringMaterial() {
@@ -41,8 +47,16 @@ public class Bookmark extends AllFinishedPieces {
         this.stringColor = stringColor;
     }
 
+    public String getBeadColor() {
+        return beadColor;
+    }
+
+    public void setBeadColor(String beadColor) {
+        this.beadColor = beadColor;
+    }
+
     @Override
     public void setAutoPrice() {
-
+        this.price = 10;
     }
 }

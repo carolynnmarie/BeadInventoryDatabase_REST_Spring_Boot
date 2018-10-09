@@ -3,7 +3,6 @@ package com.beadinventory.beadinventory.Domain.FinishedPieces;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory;
 
 
 import javax.persistence.*;
@@ -15,22 +14,21 @@ import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Materi
 @Table(name = "EARRINGS")
 public class Earrings extends AllFinishedPieces {
 
-    private Material wireMaterial;
-    @Column(name = "EARWIRE_MATERIAL")
-    public String getWireMaterial(){
-        return wireMaterial.toString();
-    }
+    @Column(name = "IS_EARWIRE_STERLING_SILVER")
+    private boolean isSterlingSilver;
 
     @Column(name = "FINDINGS")
     private LinkedHashMap<Finding, Integer> findings;
 
+    public Earrings(){}
 
     public Earrings(LinkedHashMap<Bead, Integer> beads, int hoursSpent,
                     double difficultyLevel, double price, boolean hasSwarovski, boolean hasNaturalStones, String description,
-                    LinkedHashMap<Finding, Integer> findings, Material wireMaterial) {
+                    LinkedHashMap<Finding, Integer> findings, boolean isSterlingSilver) {
         super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
         this.findings = findings;
-        this.wireMaterial = wireMaterial;
+        this.isSterlingSilver = isSterlingSilver;
+
     }
 
     public LinkedHashMap<Finding, Integer> getFindings() {
@@ -41,12 +39,16 @@ public class Earrings extends AllFinishedPieces {
         this.findings = findings;
     }
 
-    public void setWireMaterial(Material wireMaterial) {
-        this.wireMaterial = wireMaterial;
+    public boolean isSterlingSilver() {
+        return isSterlingSilver;
+    }
+
+    public void setSterlingSilver(boolean sterlingSilver) {
+        isSterlingSilver = sterlingSilver;
     }
 
     @Override
     public void setAutoPrice() {
-        this.price = (wireMaterial.equals(FULL_STERLING_SILVER))?18:15;
+        this.price = (isSterlingSilver)?18:15;
     }
 }

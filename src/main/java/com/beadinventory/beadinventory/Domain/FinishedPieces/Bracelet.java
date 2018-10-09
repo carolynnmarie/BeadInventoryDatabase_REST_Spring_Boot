@@ -25,6 +25,7 @@ public class Bracelet extends AllFinishedPieces {
     @Column(name = "LENGTH")
     private double lengthInch;
 
+    public Bracelet(){}
 
     public Bracelet(LinkedHashMap<Bead, Integer> beads,  int hoursSpent, double difficultyLevel, double price, String description,
                     boolean hasNaturalStones, boolean hasSwarovski,BraceletType braceletType, StringingMaterial stringingMaterial,

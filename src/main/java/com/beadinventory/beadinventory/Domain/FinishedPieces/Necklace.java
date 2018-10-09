@@ -4,6 +4,7 @@ import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringingMaterialCategory;
 
 import javax.persistence.*;
 import java.util.LinkedHashMap;
@@ -14,11 +15,9 @@ import java.util.Map;
 public class Necklace extends AllFinishedPieces {
 
 
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "CLASP")
     private FindingCategory clasp;
-    @Column
-    public String getClasp(){
-        return clasp.toString();
-    }
 
     @Column(name = "FINDINGS")
     protected LinkedHashMap<Finding, Integer> findings;
@@ -26,17 +25,23 @@ public class Necklace extends AllFinishedPieces {
     @Column(name = "STRINGING_MATERIAL")
     private StringingMaterial stringingMaterial;
 
+    @Column(name = "STRINGING_MATERIAL_CATEGORY")
+    private StringingMaterialCategory stringingMaterialCategory;
+
     @Column(name = "LENGTH")
     private double lengthInch;
 
+    public Necklace(){}
 
     public Necklace(LinkedHashMap<Bead, Integer> beads, StringingMaterial stringingMaterial, LinkedHashMap<Finding, Integer> findings,
                     double lengthInch, int hoursSpent, double difficultyLevel, String description, boolean hasNaturalStones,
-                    boolean hasSwarovski, double price) {
+                    boolean hasSwarovski, double price, FindingCategory clasp) {
         super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
         this.findings = findings;
         this.stringingMaterial = stringingMaterial;
         this.lengthInch = lengthInch;
+        this.clasp = clasp;
+        this.stringingMaterialCategory = stringingMaterial.getsMCategory();
     }
 
 
@@ -64,8 +69,28 @@ public class Necklace extends AllFinishedPieces {
         this.lengthInch = lengthInch;
     }
 
+    public String getClaspString(){
+        return clasp.toString();
+    }
+
+    public FindingCategory getClasp() {
+        return clasp;
+    }
+
+    public void setClasp(FindingCategory clasp) {
+        this.clasp = clasp;
+    }
+
+    public StringingMaterialCategory getStringingMaterialCategory() {
+        return stringingMaterialCategory;
+    }
+
+    public void setStringingMaterialCategory(StringingMaterialCategory stringingMaterialCategory) {
+        this.stringingMaterialCategory = stringingMaterialCategory;
+    }
+
     public String describeNecklace(){
-        String description = "The necklace is " + lengthInch + " inches long, on " + stringingMaterial + ", with a " + getClasp();
+        String description = "The necklace is " + lengthInch + " inches long, on " + stringingMaterial + ", with a " + getClaspString();
         description += (hasNaturalStones)?", with natural stone beads":"";
         description += (hasSwarovski)?", with Swarovski crystals":"";
         return description;
