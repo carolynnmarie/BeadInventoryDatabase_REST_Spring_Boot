@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface EarringsRepo extends AllFinishedPiecesRepo<Earrings> {
 
-    List<Earrings> findEarringsBySterlingSilverIsTrue();
+//    List<Earrings> findEarringsBySterlingSilverIsTrue();
 }

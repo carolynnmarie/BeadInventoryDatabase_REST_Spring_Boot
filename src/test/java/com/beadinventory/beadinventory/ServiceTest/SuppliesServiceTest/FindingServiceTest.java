@@ -104,18 +104,6 @@ public class FindingServiceTest {
     }
 
     @Test
-    public void getAllOfCategoryAndLength(){
-        List<Finding> list = new ArrayList<>(Arrays.asList(eyePin, headPin));
-        given(mockFindingRepo.findFindingsByCategoryAndLengthCM(EYE_PIN,5.08)).willReturn(list);
-
-        ResponseEntity<List<Finding>> expected = new ResponseEntity<>(list,OK);
-        ResponseEntity<List<Finding>> actual = mockFindingService.getAllOfCategoryAndLength(EYE_PIN,5.08);
-
-        verify(mockFindingRepo).findFindingsByCategoryAndLengthCM(any(FindingCategory.class),anyDouble());
-        Assert.assertEquals(expected,actual);
-    }
-
-    @Test
     public void findByIdTest(){
         eyePin.setId(1L);
         Optional<Finding> oFinding = Optional.of(eyePin);

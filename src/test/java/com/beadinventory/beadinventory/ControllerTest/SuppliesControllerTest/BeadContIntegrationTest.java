@@ -125,8 +125,7 @@ public class BeadContIntegrationTest {
 
     @Test
     public void getBeadByIdIntegTest() throws Exception{
-        Optional<Bead> oBead = Optional.of(bead1);
-        ResponseEntity<Optional<Bead>> expected = new ResponseEntity<>(oBead,OK);
+        ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,OK);
         given(mockBeadController.findBeadById(1L)).willReturn(expected);
 
         mockMvc.perform(get("/beads/{id}",1L)

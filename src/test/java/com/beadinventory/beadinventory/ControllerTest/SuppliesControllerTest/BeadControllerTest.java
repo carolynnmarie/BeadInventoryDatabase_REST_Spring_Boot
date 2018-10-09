@@ -99,10 +99,9 @@ public class BeadControllerTest {
 
     @Test
     public void findBeadByIdTest(){
-        Optional<Bead> oBead = Optional.of(bead1);
-        given(mockBeadService.getBeadById(anyLong())).willReturn(new ResponseEntity<>(oBead,OK));
-        ResponseEntity<Optional<Bead>> expected = new ResponseEntity<>(oBead,OK);
-        ResponseEntity<Optional<Bead>> actual = mockBeadController.findBeadById(1L);
+        given(mockBeadService.getBeadById(anyLong())).willReturn(new ResponseEntity<>(bead1,OK));
+        ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,OK);
+        ResponseEntity<Bead> actual = mockBeadController.findBeadById(1L);
 
         verify(mockBeadService).getBeadById(anyLong());
         Assert.assertEquals(expected, actual);

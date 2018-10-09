@@ -17,8 +17,7 @@ public interface FindingRepo extends CrudRepository<Finding,Long> {
 
     List<Finding> findFindingsByMaterial(Material material);
 
-    List<Finding> findFindingsByCategoryAndLengthCM(FindingCategory category, double length);
-
     List<Finding> findFindingsByCategoryAndMaterial(FindingCategory category, Material material);
+
 
 }

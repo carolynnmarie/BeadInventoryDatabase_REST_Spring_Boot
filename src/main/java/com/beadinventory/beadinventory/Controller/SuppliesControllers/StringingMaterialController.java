@@ -48,7 +48,8 @@ public class StringingMaterialController {
     }
 
     @RequestMapping(value = "/stringing_materials/{id}",method = PUT)
-    public ResponseEntity<StringingMaterial> updateStringingMaterial(@PathVariable("id")long id, @RequestBody StringingMaterial stringingMaterial){
+    public ResponseEntity<StringingMaterial> updateStringingMaterial(@PathVariable("id")long id,
+                                                                     @RequestBody StringingMaterial stringingMaterial){
         return sMService.updateStringingMaterial(id,stringingMaterial);
     }
 

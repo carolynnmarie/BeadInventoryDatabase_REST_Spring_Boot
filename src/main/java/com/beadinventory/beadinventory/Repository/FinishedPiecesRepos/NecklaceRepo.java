@@ -15,7 +15,7 @@ public interface NecklaceRepo extends AllFinishedPiecesRepo<Necklace> {
 
     List<Necklace> findAllByStringingMaterialCategory(StringingMaterialCategory category);
 
-    List<Necklace> findNecklacesByHasNaturalStonesIsTrue();
+    List<Necklace> findNecklacesByHasNaturalStonesTrue();
 
-    List<Necklace> findNecklacesByHasSwarovskiIsTrue();
+    List<Necklace> findNecklacesByHasSwarovskiTrue();
 }

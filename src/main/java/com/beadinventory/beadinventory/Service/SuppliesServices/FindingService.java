@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -46,9 +47,10 @@ public class FindingService {
         return new ResponseEntity<>(list,OK);
     }
 
-    public ResponseEntity<List<Finding>> getAllOfCategoryAndLength(FindingCategory category, double length){
-        List<Finding> list = findingRepo.findFindingsByCategoryAndLengthCM(category, length);
-        return new ResponseEntity<>(list,OK);
+    public ResponseEntity<List<Finding>> getAllOfCategoryType(String type){
+        List<Finding> fullList = findingRepo.findAll();
+        List<Finding> filteredList = fullList.stream().filter(e->e.getFindingCategory().getType().equals(type)).collect(Collectors.toList());
+        return new ResponseEntity<>(filteredList,OK);
     }
 
     public ResponseEntity<Finding> findById(long id){

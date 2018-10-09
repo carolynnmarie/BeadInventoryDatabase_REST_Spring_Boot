@@ -44,10 +44,9 @@ public class FindingController {
         return findingService.getAllOfCategoryAndMaterial(category,material);
     }
 
-    @RequestMapping(value = "/findings/category/length", method = GET)
-    public ResponseEntity<List<Finding>> findAllOfCategoryAndLength(@RequestParam(value = "category") FindingCategory category,
-                                                                    @RequestParam(value = "length") double length){
-        return findingService.getAllOfCategoryAndLength(category, length);
+    @RequestMapping(value = "/findings/type", method = GET)
+    public ResponseEntity<List<Finding>> findAllOfCategoryType(@RequestBody String type){
+        return findingService.getAllOfCategoryType(type);
     }
 
     @RequestMapping(value = "/findings/{id}", method = GET)

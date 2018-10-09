@@ -16,19 +16,14 @@ public class Finding implements Serializable {
     @Column(name = "FINDING_ID")
     private long id;
 
-    private FindingCategory category;
     @Enumerated(value = EnumType.STRING)
     @Column(name = "CATEGORY")
-    public FindingCategory getFindingCategory() {
-        return category;
-    }
+    private FindingCategory category;
 
-    private Material material;
+
     @Enumerated(value = EnumType.STRING)
     @Column(name = "MATERIAL")
-    public Material getMaterial(){
-        return material;
-    }
+    private Material material;
 
     @Column(name = "DETAILS")
     private String details;
@@ -114,5 +109,17 @@ public class Finding implements Serializable {
 
     public void setBrand(TreeSet<String> brand) {
         this.brand = brand;
+    }
+
+    public FindingCategory getFindingCategory() {
+        return category;
+    }
+
+    public void setCategory(FindingCategory category) {
+        this.category = category;
+    }
+
+    public Material getMaterial() {
+        return material;
     }
 }
