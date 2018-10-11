@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -20,13 +21,30 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> {
     private NecklaceRepo necklaceRepo;
 
 
-
     @Autowired
     public NecklaceService(NecklaceRepo necklaceRepo, BeadRepo beadRepo){
         this.necklaceRepo = necklaceRepo;
     }
 
-    public ResponseEntity<Necklace> createNecklace(Necklace necklace){
+
+
+    @Override
+    ResponseEntity<List<Necklace>> getAllItems() {
+        return null;
+    }
+
+    @Override
+    ResponseEntity<Necklace> getItemById(long id) {
+        return null;
+    }
+
+    @Override
+    long getQuantity(long id) {
+        return 0;
+    }
+
+    @Override
+    public ResponseEntity<Necklace> createItem(Necklace necklace){
         updateBeadRepoCount(necklace);
         Necklace necklace1 = necklaceRepo.save(necklace);
         URI newAccountUri = ServletUriComponentsBuilder
@@ -40,4 +58,23 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> {
     }
 
 
+    @Override
+    ResponseEntity<Necklace> updateItem(long id, Necklace item) {
+        return null;
+    }
+
+    @Override
+    ResponseEntity<Necklace> updatePrice(long id, int price) {
+        return null;
+    }
+
+    @Override
+    ResponseEntity<Necklace> updateDescription(long id, String description) {
+        return null;
+    }
+
+    @Override
+    ResponseEntity deleteItem(Necklace item) {
+        return null;
+    }
 }

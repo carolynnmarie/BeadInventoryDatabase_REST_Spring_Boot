@@ -20,15 +20,14 @@ public class Earrings extends AllFinishedPieces {
     @Column(name = "FINDINGS")
     private LinkedHashMap<Finding, Integer> findings;
 
+
     public Earrings(){}
 
-    public Earrings(LinkedHashMap<Bead, Integer> beads, int hoursSpent,
-                    double difficultyLevel, double price, boolean hasSwarovski, boolean hasNaturalStones, String description,
+    public Earrings(LinkedHashMap<Bead, Integer> beads, int hoursSpent, double difficultyLevel, double price, String description,
                     LinkedHashMap<Finding, Integer> findings, boolean isSterlingSilver) {
-        super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
+        super(beads, hoursSpent, difficultyLevel, price, description);
         this.findings = findings;
         this.isSterlingSilver = isSterlingSilver;
-
     }
 
     public LinkedHashMap<Finding, Integer> getFindings() {

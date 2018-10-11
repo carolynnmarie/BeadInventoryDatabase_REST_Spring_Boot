@@ -1,6 +1,7 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 
 import javax.persistence.*;
 import java.util.LinkedHashMap;
@@ -14,9 +15,9 @@ public class WineCharm extends AllFinishedPieces {
 
     public WineCharm(){}
 
-    public WineCharm(LinkedHashMap<Bead, Integer> beads, int hoursSpent, double difficultyLevel, double price, boolean hasSwarovski,
-                     boolean hasNaturalStones, String description, int quantity) {
-        super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
+    public WineCharm(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings, double price, String description,
+                     int quantity) {
+        super(beads, findings, price, description);
         this.quantity = quantity;
     }
 

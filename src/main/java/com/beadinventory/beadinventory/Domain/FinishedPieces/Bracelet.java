@@ -22,6 +22,18 @@ public class Bracelet extends AllFinishedPieces {
     @Column(name = "FINDINGS")
     private LinkedHashMap<Finding, Integer> findings;
 
+    @Column(name = "HAS_SWAROVSKI")
+    private boolean hasSwarovski;
+
+    @Column(name = "HAS_NATURAL_STONES")
+    private boolean hasNaturalStones;
+
+    @Column(name = "HOURS_SPENT")
+    private int hoursSpent;
+
+    @Column(name = "DIFFICULTY_LEVEL")
+    private double difficultyLevel;
+
     @Column(name = "LENGTH")
     private double lengthInch;
 
@@ -30,11 +42,31 @@ public class Bracelet extends AllFinishedPieces {
     public Bracelet(LinkedHashMap<Bead, Integer> beads,  int hoursSpent, double difficultyLevel, double price, String description,
                     boolean hasNaturalStones, boolean hasSwarovski,BraceletType braceletType, StringingMaterial stringingMaterial,
                     LinkedHashMap<Finding, Integer> findings, double lengthInch) {
-        super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
+        super(beads, findings, price, description);
         this.braceletType = braceletType;
-        this.findings = findings;
+
         this.stringingMaterial = stringingMaterial;
         this.lengthInch = lengthInch;
+        this.hasSwarovski = hasSwarovski;
+        this.hasNaturalStones = hasNaturalStones;
+        this.hoursSpent = hoursSpent;
+        this.difficultyLevel = difficultyLevel;
+    }
+
+    public int getHoursSpent() {
+        return hoursSpent;
+    }
+
+    public void setHoursSpent(int hoursSpent) {
+        this.hoursSpent = hoursSpent;
+    }
+
+    public double getDifficultyLevel() {
+        return difficultyLevel;
+    }
+
+    public void setDifficultyLevel(double difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
     }
 
     public StringingMaterial getStringingMaterial() {

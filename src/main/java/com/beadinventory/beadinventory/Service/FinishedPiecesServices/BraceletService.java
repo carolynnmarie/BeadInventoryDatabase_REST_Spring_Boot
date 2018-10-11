@@ -37,4 +37,44 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> {
         responseHeaders.setLocation(newAccountUri);
         return new ResponseEntity<>(bracelet1,responseHeaders,CREATED);
     }
+
+    @Override
+    ResponseEntity<List<Bracelet>> getAllItems() {
+        return null;
+    }
+
+    @Override
+    ResponseEntity<Bracelet> getItemById(long id) {
+        return null;
+    }
+
+    @Override
+    long getQuantity(long id) {
+        return 0;
+    }
+
+    @Override
+    ResponseEntity<Bracelet> createItem(Bracelet item) {
+        return null;
+    }
+
+    @Override
+    ResponseEntity<Bracelet> updateItem(long id, Bracelet item) {
+        return null;
+    }
+
+    @Override
+    ResponseEntity<Bracelet> updatePrice(long id, int price) {
+        return null;
+    }
+
+    @Override
+    ResponseEntity<Bracelet> updateDescription(long id, String description) {
+        return null;
+    }
+
+    @Override
+    ResponseEntity deleteItem(Bracelet item) {
+        return null;
+    }
 }

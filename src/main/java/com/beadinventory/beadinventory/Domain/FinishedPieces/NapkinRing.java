@@ -15,9 +15,6 @@ public class NapkinRing extends AllFinishedPieces {
     @Column(name = "STRINGING_MATERIAL")
     private StringingMaterial stringingMaterial;
 
-    @Column(name = "FINDINGS")
-    private LinkedHashMap<Finding, Integer> findings;
-
     @Column(name = "QUANTITY")
     private int quantity;
 
@@ -27,11 +24,9 @@ public class NapkinRing extends AllFinishedPieces {
     public NapkinRing(){}
 
     public NapkinRing(LinkedHashMap<Bead, Integer> beads, StringingMaterial stringingMaterial, LinkedHashMap<Finding, Integer> findings,
-                      int hoursSpent, double difficultyLevel, double price, boolean hasSwarovski, boolean hasNaturalStones, String description,
-                      int quantity, String colorScheme) {
-        super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
+                      double price, String description, int quantity, String colorScheme) {
+        super(beads, findings, price, description);
         this.stringingMaterial = stringingMaterial;
-        this.findings = findings;
         this.quantity = quantity;
         this.colorScheme = colorScheme;
     }

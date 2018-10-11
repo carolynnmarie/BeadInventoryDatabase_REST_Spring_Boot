@@ -32,6 +32,15 @@ public abstract class AllFinishedPiecesService<T extends AllFinishedPieces> {
 
     }
 
+    abstract ResponseEntity<List<T>> getAllItems();
+    abstract ResponseEntity<T> getItemById(long id);
+    abstract long getQuantity(long id);
+    abstract ResponseEntity<T> createItem(T item);
+    abstract ResponseEntity<T> updateItem(long id, T item);
+    abstract ResponseEntity<T> updatePrice(long id, int price);
+    abstract ResponseEntity<T> updateDescription(long id, String description);
+    abstract ResponseEntity deleteItem(T item);
+
 
 
 }

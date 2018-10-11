@@ -1,7 +1,6 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 
 import javax.persistence.*;
@@ -15,19 +14,19 @@ public class Bookmark extends AllFinishedPieces {
     @Column(name = "STRING_MATERIAL")
     private Material stringMaterial;
 
-    @Column(name = "STRING_COLOR")
-    private String stringColor;
+    @Column(name = "COLOR_SCHEME")
+    private String colorScheme;
 
     @Column(name = "BEAD_COLOR")
     private String beadColor;
 
     public Bookmark(){}
 
-    public Bookmark(LinkedHashMap<Bead, Integer> beads, int hoursSpent, double difficultyLevel, double price, boolean hasSwarovski,
-                    boolean hasNaturalStones, String description, Material stringMaterial, String stringColor, String beadColor) {
-        super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
+    public Bookmark(LinkedHashMap<Bead, Integer> beads, int hoursSpent, double difficultyLevel, double price, String description,
+                    Material stringMaterial, String colorScheme, String beadColor) {
+        super(beads, hoursSpent, difficultyLevel, price, description);
         this.stringMaterial = stringMaterial;
-        this.stringColor = stringColor;
+        this.colorScheme = colorScheme;
         this.beadColor = beadColor;
     }
 
@@ -39,12 +38,12 @@ public class Bookmark extends AllFinishedPieces {
         this.stringMaterial = stringMaterial;
     }
 
-    public String getStringColor() {
-        return stringColor;
+    public String getColorScheme() {
+        return colorScheme;
     }
 
-    public void setStringColor(String stringColor) {
-        this.stringColor = stringColor;
+    public void setColorScheme(String colorScheme) {
+        this.colorScheme = colorScheme;
     }
 
     public String getBeadColor() {

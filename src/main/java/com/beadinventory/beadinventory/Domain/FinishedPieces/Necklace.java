@@ -19,14 +19,25 @@ public class Necklace extends AllFinishedPieces {
     @Column(name = "CLASP")
     private FindingCategory clasp;
 
-    @Column(name = "FINDINGS")
-    protected LinkedHashMap<Finding, Integer> findings;
-
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "STRINGING_MATERIAL")
     private StringingMaterial stringingMaterial;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "STRINGING_MATERIAL_CATEGORY")
     private StringingMaterialCategory stringingMaterialCategory;
+
+    @Column(name = "HAS_SWAROVSKI")
+    protected boolean hasSwarovski;
+
+    @Column(name = "HOURS_SPENT")
+    protected int hoursSpent;
+
+    @Column(name = "DIFFICULTY_LEVEL")
+    protected double difficultyLevel;
+
+    @Column(name = "HAS_NATURAL_STONES")
+    protected boolean hasNaturalStones;
 
     @Column(name = "LENGTH")
     private double lengthInch;
@@ -36,12 +47,16 @@ public class Necklace extends AllFinishedPieces {
     public Necklace(LinkedHashMap<Bead, Integer> beads, StringingMaterial stringingMaterial, LinkedHashMap<Finding, Integer> findings,
                     double lengthInch, int hoursSpent, double difficultyLevel, String description, boolean hasNaturalStones,
                     boolean hasSwarovski, double price, FindingCategory clasp) {
-        super(beads, hoursSpent, difficultyLevel, price, hasSwarovski, hasNaturalStones, description);
+        super(beads, findings, price,  description);
         this.findings = findings;
         this.stringingMaterial = stringingMaterial;
         this.lengthInch = lengthInch;
         this.clasp = clasp;
+        this.hasSwarovski = hasSwarovski;
+        this.hasNaturalStones = hasNaturalStones;
         this.stringingMaterialCategory = stringingMaterial.getsMCategory();
+        this.hoursSpent = hoursSpent;
+        this.difficultyLevel =  difficultyLevel;
     }
 
 
@@ -59,6 +74,22 @@ public class Necklace extends AllFinishedPieces {
 
     public void setStringingMaterial(StringingMaterial stringingMaterial) {
         this.stringingMaterial = stringingMaterial;
+    }
+
+    public int getHoursSpent() {
+        return hoursSpent;
+    }
+
+    public void setHoursSpent(int hoursSpent) {
+        this.hoursSpent = hoursSpent;
+    }
+
+    public double getDifficultyLevel() {
+        return difficultyLevel;
+    }
+
+    public void setDifficultyLevel(double difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
     }
 
     public double getLengthInch() {
