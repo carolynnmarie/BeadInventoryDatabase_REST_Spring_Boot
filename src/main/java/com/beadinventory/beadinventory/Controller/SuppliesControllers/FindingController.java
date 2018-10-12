@@ -60,6 +60,12 @@ public class FindingController {
     }
 
     @RequestMapping(value = "/findings/{id}", method = PUT)
+    public ResponseEntity<Finding> updateQuantity(@PathVariable("id") long id, @RequestParam(value = "quantity") long quantity){
+        return findingService.updateFindingQuantity(id, quantity);
+    }
+
+
+    @RequestMapping(value = "/findings/{id}", method = PUT)
     public ResponseEntity<Finding> updateFinding(@PathVariable("id")long id, @RequestBody Finding finding){
         return findingService.updateFinding(id,finding);
     }

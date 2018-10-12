@@ -19,5 +19,6 @@ public interface FindingRepo extends CrudRepository<Finding,Long> {
 
     List<Finding> findFindingsByCategoryAndMaterial(FindingCategory category, Material material);
 
+    Finding findById(long id);
 
 }

@@ -1,7 +1,7 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
+import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import javax.persistence.*;
 import java.util.LinkedHashMap;
@@ -13,11 +13,12 @@ import static com.beadinventory.beadinventory.Domain.FinishedPieces.BraceletType
 @Table(name = "BRACELET")
 public class Bracelet extends AllFinishedPieces {
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "BRACELET_TYPE")
     private BraceletType braceletType;
 
     @Column(name = "STRINGING_MATERIAL")
-    private StringingMaterial stringingMaterial;
+    private StringWire stringWire;
 
     @Column(name = "FINDINGS")
     private LinkedHashMap<Finding, Integer> findings;
@@ -28,29 +29,30 @@ public class Bracelet extends AllFinishedPieces {
     @Column(name = "HAS_NATURAL_STONES")
     private boolean hasNaturalStones;
 
+    @Column(name = "LENGTH")
+    private int lengthInch;
+
     @Column(name = "HOURS_SPENT")
     private int hoursSpent;
 
     @Column(name = "DIFFICULTY_LEVEL")
     private double difficultyLevel;
 
-    @Column(name = "LENGTH")
-    private double lengthInch;
+
 
     public Bracelet(){}
 
     public Bracelet(LinkedHashMap<Bead, Integer> beads,  int hoursSpent, double difficultyLevel, double price, String description,
-                    boolean hasNaturalStones, boolean hasSwarovski,BraceletType braceletType, StringingMaterial stringingMaterial,
-                    LinkedHashMap<Finding, Integer> findings, double lengthInch) {
+                    boolean hasNaturalStones, boolean hasSwarovski,BraceletType braceletType, StringWire stringWire,
+                    LinkedHashMap<Finding, Integer> findings, int lengthInch) {
         super(beads, findings, price, description);
         this.braceletType = braceletType;
-
-        this.stringingMaterial = stringingMaterial;
-        this.lengthInch = lengthInch;
+        this.stringWire = stringWire;
         this.hasSwarovski = hasSwarovski;
         this.hasNaturalStones = hasNaturalStones;
         this.hoursSpent = hoursSpent;
         this.difficultyLevel = difficultyLevel;
+        this.lengthInch = lengthInch;
     }
 
     public int getHoursSpent() {
@@ -69,12 +71,12 @@ public class Bracelet extends AllFinishedPieces {
         this.difficultyLevel = difficultyLevel;
     }
 
-    public StringingMaterial getStringingMaterial() {
-        return stringingMaterial;
+    public StringWire getStringWire() {
+        return stringWire;
     }
 
-    public void setStringingMaterial(StringingMaterial stringingMaterial) {
-        this.stringingMaterial = stringingMaterial;
+    public void setStringWire(StringWire stringWire) {
+        this.stringWire = stringWire;
     }
 
     public LinkedHashMap<Finding, Integer> getFindings() {
@@ -85,14 +87,37 @@ public class Bracelet extends AllFinishedPieces {
         this.findings = findings;
     }
 
-    public double getLengthInch() {
+    public BraceletType getBraceletType() {
+        return braceletType;
+    }
+
+    public void setBraceletType(BraceletType braceletType) {
+        this.braceletType = braceletType;
+    }
+
+    public boolean isHasSwarovski() {
+        return hasSwarovski;
+    }
+
+    public void setHasSwarovski(boolean hasSwarovski) {
+        this.hasSwarovski = hasSwarovski;
+    }
+
+    public boolean isHasNaturalStones() {
+        return hasNaturalStones;
+    }
+
+    public void setHasNaturalStones(boolean hasNaturalStones) {
+        this.hasNaturalStones = hasNaturalStones;
+    }
+
+    public int getLengthInch() {
         return lengthInch;
     }
 
-    public void setLengthInch(double lengthInch) {
+    public void setLengthInch(int lengthInch) {
         this.lengthInch = lengthInch;
     }
-
 
     @Override
     public void setAutoPrice() {

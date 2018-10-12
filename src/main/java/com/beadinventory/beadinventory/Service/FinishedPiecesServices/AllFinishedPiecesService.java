@@ -32,14 +32,13 @@ public abstract class AllFinishedPiecesService<T extends AllFinishedPieces> {
 
     }
 
-    abstract ResponseEntity<List<T>> getAllItems();
-    abstract ResponseEntity<T> getItemById(long id);
-    abstract long getQuantity(long id);
-    abstract ResponseEntity<T> createItem(T item);
-    abstract ResponseEntity<T> updateItem(long id, T item);
-    abstract ResponseEntity<T> updatePrice(long id, int price);
-    abstract ResponseEntity<T> updateDescription(long id, String description);
-    abstract ResponseEntity deleteItem(T item);
+    public abstract ResponseEntity<List<T>> getAllItems();
+    public abstract ResponseEntity<T> getItemById(long id);
+    public abstract ResponseEntity<T> createItem(T item);
+    public abstract ResponseEntity<T> updateItem(long id, T item);
+    public abstract ResponseEntity<T> updatePriceOfOne(long id, double price);
+    public abstract ResponseEntity<T> updateDescription(long id, String description);
+    public abstract ResponseEntity deleteItem(T item);
 
 
 

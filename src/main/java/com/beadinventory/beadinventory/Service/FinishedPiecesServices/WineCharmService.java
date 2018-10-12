@@ -9,42 +9,41 @@ import java.util.List;
 @Service
 public class WineCharmService extends AllFinishedPiecesService<WineCharm> {
     @Override
-    ResponseEntity<List<WineCharm>> getAllItems() {
+    public ResponseEntity<List<WineCharm>> getAllItems() {
         return null;
     }
 
     @Override
-    ResponseEntity<WineCharm> getItemById(long id) {
+    public ResponseEntity<WineCharm> getItemById(long id) {
         return null;
     }
 
-    @Override
-    long getQuantity(long id) {
+    public long getQuantity(long id) {
         return 0;
     }
 
     @Override
-    ResponseEntity<WineCharm> createItem(WineCharm item) {
+    public ResponseEntity<WineCharm> createItem(WineCharm item) {
         return null;
     }
 
     @Override
-    ResponseEntity<WineCharm> updateItem(long id, WineCharm item) {
+    public ResponseEntity<WineCharm> updateItem(long id, WineCharm item) {
+        return null;
+    }
+
+
+    public ResponseEntity<WineCharm> updatePriceOfOne(long id, double price) {
         return null;
     }
 
     @Override
-    ResponseEntity<WineCharm> updatePrice(long id, int price) {
+    public ResponseEntity<WineCharm> updateDescription(long id, String description) {
         return null;
     }
 
     @Override
-    ResponseEntity<WineCharm> updateDescription(long id, String description) {
-        return null;
-    }
-
-    @Override
-    ResponseEntity deleteItem(WineCharm item) {
+    public ResponseEntity deleteItem(WineCharm item) {
         return null;
     }
 }

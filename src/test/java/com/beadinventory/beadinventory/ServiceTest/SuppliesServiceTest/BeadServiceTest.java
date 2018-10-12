@@ -137,7 +137,7 @@ public class BeadServiceTest {
 
     @Test
     public void getBeadByIdTest(){
-        given(mockBeadRepo.findById(anyLong())).willReturn(Optional.of(bead1));
+        given(mockBeadRepo.findById(anyLong())).willReturn(bead1);
         ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,OK);
         ResponseEntity<Bead> actual = mockBeadService.getBeadById(bead1.getId());
 
@@ -145,7 +145,7 @@ public class BeadServiceTest {
         Assert.assertEquals(expected,actual);
     }
 
-    //ResponseEntity<TreeSet<String>> getBrandsByBeadId(long id)
+
 
     @Test
     public void createBeadTest(){
@@ -170,8 +170,7 @@ public class BeadServiceTest {
 
     @Test
     public void updateBeadQuantityTest(){
-        Optional<Bead> oBead = Optional.of(bead1);
-        given(mockBeadRepo.findById(anyLong())).willReturn(oBead);
+        given(mockBeadRepo.findById(anyLong())).willReturn(bead1);
         given(mockBeadRepo.save(any(Bead.class))).willReturn(bead1);
 
         ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,OK);

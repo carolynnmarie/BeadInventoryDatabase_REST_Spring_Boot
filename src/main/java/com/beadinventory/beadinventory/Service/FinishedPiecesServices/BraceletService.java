@@ -25,7 +25,25 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> {
     }
 
 
-    public ResponseEntity<Bracelet> createBracelet(Bracelet bracelet){
+    @Override
+    public ResponseEntity<List<Bracelet>> getAllItems() {
+        List<Bracelet> list = braceletRepo.findAll();
+        return new ResponseEntity<>(list,OK);
+    }
+
+    @Override
+    public ResponseEntity<Bracelet> getItemById(long id) {
+        Bracelet bracelet = braceletRepo.findById(id);
+        return new ResponseEntity<>(bracelet,OK);
+    }
+
+    public ResponseEntity<Long> getTotalBraceletCount(){
+        Long count = braceletRepo.count();
+        return new ResponseEntity<>(count, OK);
+    }
+
+    @Override
+    public ResponseEntity<Bracelet> createItem(Bracelet bracelet){
         Bracelet bracelet1 = braceletRepo.save(bracelet);
         updateBeadRepoCount(bracelet);
         URI newAccountUri = ServletUriComponentsBuilder
@@ -39,42 +57,26 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> {
     }
 
     @Override
-    ResponseEntity<List<Bracelet>> getAllItems() {
+    public ResponseEntity<Bracelet> updateItem(long id, Bracelet item) {
+        item.setId(id);
+        Bracelet bracelet = braceletRepo.save(item);
+        return new ResponseEntity<>(bracelet, OK);
+    }
+
+    @Override
+    public ResponseEntity<Bracelet> updatePriceOfOne(long id, double price) {
+        Bracelet bracelet = braceletRepo.findById(id);
+        bracelet.setPrice(price);
         return null;
     }
 
     @Override
-    ResponseEntity<Bracelet> getItemById(long id) {
+    public ResponseEntity<Bracelet> updateDescription(long id, String description) {
         return null;
     }
 
     @Override
-    long getQuantity(long id) {
-        return 0;
-    }
-
-    @Override
-    ResponseEntity<Bracelet> createItem(Bracelet item) {
-        return null;
-    }
-
-    @Override
-    ResponseEntity<Bracelet> updateItem(long id, Bracelet item) {
-        return null;
-    }
-
-    @Override
-    ResponseEntity<Bracelet> updatePrice(long id, int price) {
-        return null;
-    }
-
-    @Override
-    ResponseEntity<Bracelet> updateDescription(long id, String description) {
-        return null;
-    }
-
-    @Override
-    ResponseEntity deleteItem(Bracelet item) {
+    public ResponseEntity deleteItem(Bracelet item) {
         return null;
     }
 }

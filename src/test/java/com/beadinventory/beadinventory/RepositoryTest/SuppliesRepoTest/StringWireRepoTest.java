@@ -1,7 +1,7 @@
 package com.beadinventory.beadinventory.RepositoryTest.SuppliesRepoTest;
 
-import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
-import com.beadinventory.beadinventory.Repository.SuppliesRepos.StringingMaterialRepo;
+import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
+import com.beadinventory.beadinventory.Repository.SuppliesRepos.StringWireRepo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringingMaterialCategory.*;
+import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,17 +22,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = NONE)
-public class StringingMaterialRepoTest {
+public class StringWireRepoTest {
 
     @Autowired
     private EntityManager entityManager;
 
     @Autowired
-    private StringingMaterialRepo mockSMRepo;
+    private StringWireRepo mockSMRepo;
 
-    private StringingMaterial beadingWire = new StringingMaterial(BEADING_WIRE,BRIGHT_SILVER_PLATED,".5 mm",7,"good",.5,"Beadalon");
-    private StringingMaterial brassChain = new StringingMaterial(CHAIN,BRASS,"thin",1,"okay",.5,"bead landing");
-    private StringingMaterial leatherCord = new StringingMaterial(CORD,LEATHER,"medium",1,"okay",.5,"bead landing");
+    private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7,"good",.5,"Beadalon");
+    private StringWire brassChain = new StringWire(CHAIN,BRASS,"brass","thin",1,"okay",.5,"bead landing");
+    private StringWire leatherCord = new StringWire(CORD,LEATHER,"black","medium",1,"okay",.5,"bead landing");
 
     @Test
     public void findStringingMaterialsBySMCategoryTest(){
@@ -41,7 +41,7 @@ public class StringingMaterialRepoTest {
         entityManager.persist(leatherCord);
         entityManager.flush();
 
-        List<StringingMaterial> list = mockSMRepo.findStringingMaterialsBySMCategory(CORD);
+        List<StringWire> list = mockSMRepo.findStringingMaterialsByStringWireCategory(CORD);
         assertThat(list).containsExactly(leatherCord);
     }
 
@@ -52,12 +52,12 @@ public class StringingMaterialRepoTest {
         entityManager.persist(leatherCord);
         entityManager.flush();
 
-        List<StringingMaterial> list = mockSMRepo.findStringingMaterialsByMaterial(BRASS);
+        List<StringWire> list = mockSMRepo.findStringingMaterialsByMaterial(BRASS);
         assertThat(list).containsExactly(brassChain);
     }
 
     }
 /*
-    List<StringingMaterial> findStringingMaterialsBySMCategory(StringingMaterialCategory category);
-    List<StringingMaterial> findStringingMaterialsByMaterial(Material material);
+    List<StringWire> findStringingMaterialsByStringWireCategory(StringWireCategory category);
+    List<StringWire> findStringingMaterialsByMaterial(Material material);
  */

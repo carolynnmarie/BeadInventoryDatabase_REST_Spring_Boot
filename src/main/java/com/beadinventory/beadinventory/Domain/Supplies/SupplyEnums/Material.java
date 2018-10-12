@@ -1,7 +1,5 @@
 package com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums;
 
-import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
-
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory.*;
 public enum Material {
 

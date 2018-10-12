@@ -1,7 +1,7 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
+import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 
 import javax.persistence.*;
@@ -13,30 +13,31 @@ public class NapkinRing extends AllFinishedPieces {
 
 
     @Column(name = "STRINGING_MATERIAL")
-    private StringingMaterial stringingMaterial;
-
-    @Column(name = "QUANTITY")
-    private int quantity;
+    private StringWire stringWire;
 
     @Column(name = "COLOR_SCHEME")
     private String colorScheme;
 
+    @Column(name = "QUANTITY")
+    private int quantity;
+
+
     public NapkinRing(){}
 
-    public NapkinRing(LinkedHashMap<Bead, Integer> beads, StringingMaterial stringingMaterial, LinkedHashMap<Finding, Integer> findings,
-                      double price, String description, int quantity, String colorScheme) {
+    public NapkinRing(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings,
+                      double price, String description, StringWire stringWire, int quantity, String colorScheme) {
         super(beads, findings, price, description);
-        this.stringingMaterial = stringingMaterial;
+        this.stringWire = stringWire;
         this.quantity = quantity;
         this.colorScheme = colorScheme;
     }
 
-    public StringingMaterial getStringingMaterial() {
-        return stringingMaterial;
+    public StringWire getStringWire() {
+        return stringWire;
     }
 
-    public void setStringingMaterial(StringingMaterial stringingMaterial) {
-        this.stringingMaterial = stringingMaterial;
+    public void setStringWire(StringWire stringWire) {
+        this.stringWire = stringWire;
     }
 
     public LinkedHashMap<Finding, Integer> getFindings() {
@@ -62,6 +63,8 @@ public class NapkinRing extends AllFinishedPieces {
     public void setColorScheme(String colorScheme) {
         this.colorScheme = colorScheme;
     }
+
+
 
     @Override
     public void setAutoPrice() {

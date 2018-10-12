@@ -1,25 +1,25 @@
 package com.beadinventory.beadinventory.DomainTest.SuppliesDomainTest;
 
-import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
+import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringingMaterialCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
 import org.junit.Assert;
 import org.junit.Test;
 
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringingMaterialCategory.*;
+import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;
 
-public class StringingMaterialTest {
+public class StringWireTest {
 
-    private StringingMaterial beadingWire = new StringingMaterial(BEADING_WIRE,BRIGHT_SILVER_PLATED,".5 mm",7,"good",.5,"Beadalon");
-    private StringingMaterial brassChain = new StringingMaterial(CHAIN,BRASS,"thin",1,"okay",.5,"bead landing");
-    private StringingMaterial leatherCord = new StringingMaterial(CORD,LEATHER,"medium",1,"okay",.5,"bead landing");
+    private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7,"good",.5,"Beadalon");
+    private StringWire brassChain = new StringWire(CHAIN,BRASS,"brass","thin",1,"okay",.5,"bead landing");
+    private StringWire leatherCord = new StringWire(CORD,LEATHER,"black","medium",1,"okay",.5,"bead landing");
 
     @Test
     public void getStringingCategoryTest(){
-        StringingMaterialCategory expected = BEADING_WIRE;
-        StringingMaterialCategory actual = beadingWire.getsMCategory();
+        StringWireCategory expected = BEADING_WIRE;
+        StringWireCategory actual = beadingWire.getStringWireCategory();
         Assert.assertEquals(expected,actual);
     }
 
@@ -67,7 +67,7 @@ public class StringingMaterialTest {
 
 }
 /*
-StringingMaterialCategory getStringingMaterialCategory()
+StringWireCategory getStringWireCategory()
 Material getMaterial()
 String getWidth()
 int getStrands()

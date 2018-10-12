@@ -35,10 +35,12 @@ public class Finding implements Serializable {
     private double pricePoint;
 
     @Column(name = "QUANTITY")
-    private int quantity;
+    private long quantity;
 
     @Column(name = "BRAND")
     private TreeSet<String> brand;
+
+    public Finding(){}
 
     public Finding(FindingCategory category, Material material, String details, double lengthCM, double pricePoint,
                    int quantity, TreeSet<String> brand) {
@@ -79,11 +81,11 @@ public class Finding implements Serializable {
         this.pricePoint = pricePoint;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 

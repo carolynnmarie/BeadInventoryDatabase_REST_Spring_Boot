@@ -2,6 +2,7 @@ package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import javafx.beans.DefaultProperty;
 
 import javax.persistence.Id;
 import javax.persistence.*;
@@ -24,7 +25,6 @@ public abstract class AllFinishedPieces {
 
     @Column(name = "PRICE")
     protected double price;
-
 
     @Column(name = "DESCRIPTION")
     protected String description;

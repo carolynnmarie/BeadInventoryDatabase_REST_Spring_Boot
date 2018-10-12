@@ -1,8 +1,6 @@
 package com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory.STRINGING;
-
-public enum StringingMaterialCategory {
+public enum StringWireCategory {
     BEADING_WIRE("beading wire"),
     BEADING_THREAD("beading thread"),
     ELASTIC("elastic"),
@@ -15,7 +13,7 @@ public enum StringingMaterialCategory {
 
     private String mCategory;
 
-    StringingMaterialCategory(String mCategory){
+    StringWireCategory(String mCategory){
         this.mCategory = mCategory;
     }
 

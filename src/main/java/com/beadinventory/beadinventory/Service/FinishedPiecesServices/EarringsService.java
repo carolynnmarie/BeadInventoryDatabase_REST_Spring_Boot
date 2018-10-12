@@ -9,42 +9,37 @@ import java.util.List;
 @Service
 public class EarringsService extends AllFinishedPiecesService<Earrings> {
     @Override
-    ResponseEntity<List<Earrings>> getAllItems() {
+    public ResponseEntity<List<Earrings>> getAllItems() {
         return null;
     }
 
     @Override
-    ResponseEntity<Earrings> getItemById(long id) {
+    public ResponseEntity<Earrings> getItemById(long id) {
         return null;
     }
 
     @Override
-    long getQuantity(long id) {
-        return 0;
-    }
-
-    @Override
-    ResponseEntity<Earrings> createItem(Earrings item) {
+    public ResponseEntity<Earrings> createItem(Earrings item) {
         return null;
     }
 
     @Override
-    ResponseEntity<Earrings> updateItem(long id, Earrings item) {
+    public ResponseEntity<Earrings> updateItem(long id, Earrings item) {
         return null;
     }
 
     @Override
-    ResponseEntity<Earrings> updatePrice(long id, int price) {
+    public ResponseEntity<Earrings> updatePriceOfOne(long id, double price) {
         return null;
     }
 
     @Override
-    ResponseEntity<Earrings> updateDescription(long id, String description) {
+    public ResponseEntity<Earrings> updateDescription(long id, String description) {
         return null;
     }
 
     @Override
-    ResponseEntity deleteItem(Earrings item) {
+    public ResponseEntity deleteItem(Earrings item) {
         return null;
     }
 }

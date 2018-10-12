@@ -106,8 +106,7 @@ public class FindingServiceTest {
     @Test
     public void findByIdTest(){
         eyePin.setId(1L);
-        Optional<Finding> oFinding = Optional.of(eyePin);
-        given(mockFindingRepo.findById(anyLong())).willReturn(oFinding);
+        given(mockFindingRepo.findById(anyLong())).willReturn(eyePin);
 
         ResponseEntity<Finding> expected = new ResponseEntity<>(eyePin,OK);
         ResponseEntity<Finding> actual = mockFindingService.findById(eyePin.getId());
@@ -138,8 +137,7 @@ public class FindingServiceTest {
 
     @Test
     public void updateFindingQuantityTest(){
-        Optional<Finding> oFinding = Optional.of(headPin);
-        given(mockFindingRepo.findById(anyLong())).willReturn(oFinding);
+        given(mockFindingRepo.findById(anyLong())).willReturn(headPin);
         given(mockFindingRepo.save(any(Finding.class))).willReturn(headPin);
 
         ResponseEntity<Finding> expected = new ResponseEntity<>(headPin,OK);

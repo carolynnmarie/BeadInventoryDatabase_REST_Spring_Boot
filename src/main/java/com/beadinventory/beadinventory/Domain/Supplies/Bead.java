@@ -151,24 +151,9 @@ public class Bead implements Serializable {
     }
 
     public String getBrandsString(){
-        String b = "";
-        for (String item:brands) {
-            b+= item;
-        }
-        return b;
-    }
-
-    public void setAll(Material material, Shape shape, String color, int size, String quality, long quantity,
-                       String description, double pricePoint, TreeSet<String> brands){
-        this.material = material;
-        this.shape = shape;
-        this.color = color;
-        this.size = size;
-        this.quality = quality;
-        this.quantity = quantity;
-        this.description = description;
-        this.pricePoint = pricePoint;
-        this.brands = brands;
+        StringBuilder builder = new StringBuilder();
+        brands.stream().forEach(e-> builder.append(e).append(" "));
+        return builder.toString();
     }
 
     @Override

@@ -6,20 +6,16 @@ import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.OVAL;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.RONDELLE;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.ROUND;
+import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 

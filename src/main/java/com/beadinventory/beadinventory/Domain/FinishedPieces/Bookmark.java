@@ -1,6 +1,7 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 
 import javax.persistence.*;
@@ -14,20 +15,21 @@ public class Bookmark extends AllFinishedPieces {
     @Column(name = "STRING_MATERIAL")
     private Material stringMaterial;
 
-    @Column(name = "COLOR_SCHEME")
-    private String colorScheme;
+    @Column(name = "STRING_COLOR")
+    private String stringColor;
 
-    @Column(name = "BEAD_COLOR")
-    private String beadColor;
+    @Column(name = "LENGTH")
+    private int lengthInch;
+
 
     public Bookmark(){}
 
-    public Bookmark(LinkedHashMap<Bead, Integer> beads, int hoursSpent, double difficultyLevel, double price, String description,
-                    Material stringMaterial, String colorScheme, String beadColor) {
-        super(beads, hoursSpent, difficultyLevel, price, description);
+    public Bookmark(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings, double price, String description,
+                    Material stringMaterial, int lengthInch, String stringColor) {
+        super(beads, findings, price, description);
         this.stringMaterial = stringMaterial;
-        this.colorScheme = colorScheme;
-        this.beadColor = beadColor;
+        this.lengthInch = lengthInch;
+        this.stringColor = stringColor;
     }
 
     public Material getStringMaterial() {
@@ -38,20 +40,20 @@ public class Bookmark extends AllFinishedPieces {
         this.stringMaterial = stringMaterial;
     }
 
-    public String getColorScheme() {
-        return colorScheme;
+    public int getLengthInch() {
+        return lengthInch;
     }
 
-    public void setColorScheme(String colorScheme) {
-        this.colorScheme = colorScheme;
+    public void setLengthInch(int lengthInch) {
+        this.lengthInch = lengthInch;
     }
 
-    public String getBeadColor() {
-        return beadColor;
+    public String getStringColor() {
+        return stringColor;
     }
 
-    public void setBeadColor(String beadColor) {
-        this.beadColor = beadColor;
+    public void setStringColor(String stringColor) {
+        this.stringColor = stringColor;
     }
 
     @Override

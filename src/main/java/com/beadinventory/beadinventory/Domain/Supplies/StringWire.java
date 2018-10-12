@@ -1,7 +1,7 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringingMaterialCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
 
 
 import javax.persistence.*;
@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-public class StringingMaterial implements Serializable {
+public class StringWire implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -17,12 +17,15 @@ public class StringingMaterial implements Serializable {
     private long id;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "SM_CATEGORY")
-    private StringingMaterialCategory sMCategory;
+    @Column(name = "CATEGORY")
+    private StringWireCategory stringWireCategory;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "MATERIAL")
     private Material material;
+
+    @Column(name = "COLOR")
+    private String color;
 
     @Column(name = "WIDTH")
     private String width;
@@ -39,16 +42,17 @@ public class StringingMaterial implements Serializable {
     @Column(name = "BRAND")
     private String brand;
 
+    public StringWire(){ }
 
-    public StringingMaterial(StringingMaterialCategory sMCategory, Material material, String width, int strands, String quality,
-                             double pricePerFoot, String brand) {
-        this.sMCategory = sMCategory;
+    public StringWire(StringWireCategory stringWireCategory, Material material, String color, String width, int strands, String quality,
+                      double pricePerFoot, String brand) {
+        this.stringWireCategory = stringWireCategory;
         this.material = material;
         this.width = width;
         this.strands = strands;
         this.quality = quality;
         this.pricePerFoot = pricePerFoot;
-
+        this.color = color;
         this.brand = brand;
     }
 
@@ -68,12 +72,12 @@ public class StringingMaterial implements Serializable {
         return material;
     }
 
-    public StringingMaterialCategory getsMCategory() {
-        return sMCategory;
+    public StringWireCategory getStringWireCategory() {
+        return stringWireCategory;
     }
 
-    public void setsMCategory(StringingMaterialCategory sMCategory) {
-        this.sMCategory = sMCategory;
+    public void setStringWireCategory(StringWireCategory stringWireCategory) {
+        this.stringWireCategory = stringWireCategory;
     }
 
     public String getWidth() {
@@ -116,4 +120,11 @@ public class StringingMaterial implements Serializable {
         this.pricePerFoot = pricePerFoot;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 }

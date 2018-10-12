@@ -1,4 +1,4 @@
 package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 
-public class StrMtrlContIntegrationTest {
+public class StringWireContIntegrationTest {
 }

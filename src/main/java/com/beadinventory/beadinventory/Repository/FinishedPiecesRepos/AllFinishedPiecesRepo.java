@@ -8,6 +8,11 @@ import java.util.List;
 
 @NoRepositoryBean
 public interface AllFinishedPiecesRepo<T extends AllFinishedPieces> extends CrudRepository<T,Long> {
-//    long countAll();
+
+    @Override
+    long count();
+
+    List<T> findAll();
+    T findById(long id);
 
 }

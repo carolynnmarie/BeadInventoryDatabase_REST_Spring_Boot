@@ -22,26 +22,21 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> {
 
 
     @Autowired
-    public NecklaceService(NecklaceRepo necklaceRepo, BeadRepo beadRepo){
+    public NecklaceService(NecklaceRepo necklaceRepo){
         this.necklaceRepo = necklaceRepo;
     }
 
 
-
     @Override
-    ResponseEntity<List<Necklace>> getAllItems() {
+    public ResponseEntity<List<Necklace>> getAllItems() {
         return null;
     }
 
     @Override
-    ResponseEntity<Necklace> getItemById(long id) {
+    public ResponseEntity<Necklace> getItemById(long id) {
         return null;
     }
 
-    @Override
-    long getQuantity(long id) {
-        return 0;
-    }
 
     @Override
     public ResponseEntity<Necklace> createItem(Necklace necklace){
@@ -59,22 +54,22 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> {
 
 
     @Override
-    ResponseEntity<Necklace> updateItem(long id, Necklace item) {
+    public ResponseEntity<Necklace> updateItem(long id, Necklace item) {
+        return null;
+    }
+
+
+    public ResponseEntity<Necklace> updatePriceOfOne(long id, double price) {
         return null;
     }
 
     @Override
-    ResponseEntity<Necklace> updatePrice(long id, int price) {
+    public ResponseEntity<Necklace> updateDescription(long id, String description) {
         return null;
     }
 
     @Override
-    ResponseEntity<Necklace> updateDescription(long id, String description) {
-        return null;
-    }
-
-    @Override
-    ResponseEntity deleteItem(Necklace item) {
+    public ResponseEntity deleteItem(Necklace item) {
         return null;
     }
 }

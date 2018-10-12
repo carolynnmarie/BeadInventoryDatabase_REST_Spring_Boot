@@ -9,42 +9,41 @@ import java.util.List;
 @Service
 public class NapkinRingService extends AllFinishedPiecesService<NapkinRing> {
     @Override
-    ResponseEntity<List<NapkinRing>> getAllItems() {
+    public ResponseEntity<List<NapkinRing>> getAllItems() {
         return null;
     }
 
     @Override
-    ResponseEntity<NapkinRing> getItemById(long id) {
+    public ResponseEntity<NapkinRing> getItemById(long id) {
         return null;
     }
 
-    @Override
-    long getQuantity(long id) {
+    public long getQuantity(long id) {
         return 0;
     }
 
     @Override
-    ResponseEntity<NapkinRing> createItem(NapkinRing item) {
+    public ResponseEntity<NapkinRing> createItem(NapkinRing item) {
         return null;
     }
 
     @Override
-    ResponseEntity<NapkinRing> updateItem(long id, NapkinRing item) {
+    public ResponseEntity<NapkinRing> updateItem(long id, NapkinRing item) {
         return null;
     }
 
     @Override
-    ResponseEntity<NapkinRing> updatePrice(long id, int price) {
+    public ResponseEntity<NapkinRing> updatePriceOfOne(long id, double price) {
         return null;
     }
 
     @Override
-    ResponseEntity<NapkinRing> updateDescription(long id, String description) {
+    public ResponseEntity<NapkinRing> updateDescription(long id, String description) {
         return null;
     }
 
     @Override
-    ResponseEntity deleteItem(NapkinRing item) {
+    public ResponseEntity deleteItem(NapkinRing item) {
         return null;
     }
 }

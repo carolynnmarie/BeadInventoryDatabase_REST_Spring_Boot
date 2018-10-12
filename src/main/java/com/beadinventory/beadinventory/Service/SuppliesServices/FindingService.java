@@ -54,8 +54,7 @@ public class FindingService {
     }
 
     public ResponseEntity<Finding> findById(long id){
-        Optional<Finding> find = findingRepo.findById(id);
-        Finding finding = find.get();
+        Finding finding = findingRepo.findById(id);
         return new ResponseEntity<>(finding,OK);
     }
 
@@ -72,9 +71,13 @@ public class FindingService {
         return new ResponseEntity<>(finding1, responseHeaders,CREATED);
     }
 
-    public ResponseEntity<Finding> updateFindingQuantity(long findingId, int quantity){
-        Optional<Finding> f = findingRepo.findById(findingId);
-        Finding finding = f.get();
+    public ResponseEntity<Long> getFindingQuantity(long id){
+        Finding finding = findingRepo.findById(id);
+        return new ResponseEntity<>(finding.getQuantity(), OK);
+    }
+
+    public ResponseEntity<Finding> updateFindingQuantity(long findingId, long quantity){
+        Finding finding = findingRepo.findById(findingId);
         finding.setQuantity(quantity);
         finding.setId(findingId);
         Finding finding1 = findingRepo.save(finding);

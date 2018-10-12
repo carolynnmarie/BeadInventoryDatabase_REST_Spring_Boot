@@ -1,10 +1,10 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.StringingMaterial;
+import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringingMaterialCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
 
 import javax.persistence.*;
 import java.util.LinkedHashMap;
@@ -15,20 +15,21 @@ import java.util.Map;
 public class Necklace extends AllFinishedPieces {
 
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "CLASP")
-    private FindingCategory clasp;
-
-    @Enumerated(value = EnumType.STRING)
     @Column(name = "STRINGING_MATERIAL")
-    private StringingMaterial stringingMaterial;
+    private StringWire stringWire;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "STRINGING_MATERIAL_CATEGORY")
-    private StringingMaterialCategory stringingMaterialCategory;
+    private StringWireCategory stringWireCategory;
+
+    @Column(name = "CLASP")
+    private FindingCategory clasp;
 
     @Column(name = "HAS_SWAROVSKI")
     protected boolean hasSwarovski;
+
+    @Column(name = "HAS_NATURAL_STONES")
+    protected boolean hasNaturalStones;
 
     @Column(name = "HOURS_SPENT")
     protected int hoursSpent;
@@ -36,25 +37,21 @@ public class Necklace extends AllFinishedPieces {
     @Column(name = "DIFFICULTY_LEVEL")
     protected double difficultyLevel;
 
-    @Column(name = "HAS_NATURAL_STONES")
-    protected boolean hasNaturalStones;
-
     @Column(name = "LENGTH")
     private double lengthInch;
 
     public Necklace(){}
 
-    public Necklace(LinkedHashMap<Bead, Integer> beads, StringingMaterial stringingMaterial, LinkedHashMap<Finding, Integer> findings,
+    public Necklace(LinkedHashMap<Bead, Integer> beads, StringWire stringWire, LinkedHashMap<Finding, Integer> findings,
                     double lengthInch, int hoursSpent, double difficultyLevel, String description, boolean hasNaturalStones,
                     boolean hasSwarovski, double price, FindingCategory clasp) {
         super(beads, findings, price,  description);
-        this.findings = findings;
-        this.stringingMaterial = stringingMaterial;
+        this.stringWire = stringWire;
         this.lengthInch = lengthInch;
         this.clasp = clasp;
         this.hasSwarovski = hasSwarovski;
         this.hasNaturalStones = hasNaturalStones;
-        this.stringingMaterialCategory = stringingMaterial.getsMCategory();
+        this.stringWireCategory = stringWire.getStringWireCategory();
         this.hoursSpent = hoursSpent;
         this.difficultyLevel =  difficultyLevel;
     }
@@ -68,12 +65,12 @@ public class Necklace extends AllFinishedPieces {
         this.findings = findings;
     }
 
-    public StringingMaterial getStringingMaterial() {
-        return stringingMaterial;
+    public StringWire getStringWire() {
+        return stringWire;
     }
 
-    public void setStringingMaterial(StringingMaterial stringingMaterial) {
-        this.stringingMaterial = stringingMaterial;
+    public void setStringWire(StringWire stringWire) {
+        this.stringWire = stringWire;
     }
 
     public int getHoursSpent() {
@@ -112,21 +109,34 @@ public class Necklace extends AllFinishedPieces {
         this.clasp = clasp;
     }
 
-    public StringingMaterialCategory getStringingMaterialCategory() {
-        return stringingMaterialCategory;
+    public StringWireCategory getStringWireCategory() {
+        return stringWireCategory;
     }
 
-    public void setStringingMaterialCategory(StringingMaterialCategory stringingMaterialCategory) {
-        this.stringingMaterialCategory = stringingMaterialCategory;
+    public void setStringWireCategory(StringWireCategory stringWireCategory) {
+        this.stringWireCategory = stringWireCategory;
     }
 
     public String describeNecklace(){
-        String description = "The necklace is " + lengthInch + " inches long, on " + stringingMaterial + ", with a " + getClaspString();
+        String description = "The necklace is " + lengthInch + " inches long, on " + stringWire + ", with a " + getClaspString() + " clasp";
         description += (hasNaturalStones)?", with natural stone beads":"";
         description += (hasSwarovski)?", with Swarovski crystals":"";
         return description;
     }
 
+    public boolean isHasSwarovski() { return hasSwarovski; }
+
+    public void setHasSwarovski(boolean hasSwarovski) {
+        this.hasSwarovski = hasSwarovski;
+    }
+
+    public boolean isHasNaturalStones() {
+        return hasNaturalStones;
+    }
+
+    public void setHasNaturalStones(boolean hasNaturalStones) {
+        this.hasNaturalStones = hasNaturalStones;
+    }
 
     @Override
     public void setAutoPrice() {
@@ -134,13 +144,13 @@ public class Necklace extends AllFinishedPieces {
         for(Map.Entry<Bead,Integer> entry: beads.entrySet()){
             beadPrice += (entry.getKey().getPricePoint()*entry.getValue());
         }
-        double stringPrice = stringingMaterial.getPricePerFoot()*lengthInch;
+        double stringPrice = stringWire.getPricePerFoot()*lengthInch;
         double findingPrice = 0.0;
         for(Map.Entry<Finding,Integer> entry: findings.entrySet()){
             findingPrice += (entry.getKey().getPricePoint()*entry.getValue());
         }
         this.price = beadPrice + stringPrice + findingPrice + (hoursSpent*8)*difficultyLevel;
-        if(hasSwarovski) price += 7;
+        if(hasSwarovski) price += 5;
         if(hasNaturalStones) price += 5;
     }
 
