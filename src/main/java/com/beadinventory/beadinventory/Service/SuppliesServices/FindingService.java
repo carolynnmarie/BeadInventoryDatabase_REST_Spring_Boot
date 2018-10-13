@@ -1,19 +1,16 @@
 package com.beadinventory.beadinventory.Service.SuppliesServices;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.FindingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.stream.*;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -32,6 +29,12 @@ public class FindingService {
         return new ResponseEntity<>(list, OK);
     }
 
+    public ResponseEntity<List<Finding>> getAllOfCategoryType(String type){
+        List<Finding> fullList = findingRepo.findAll();
+        List<Finding> filteredList = fullList.stream().filter(e->e.getFindingCategory().getType().equals(type)).collect(Collectors.toList());
+        return new ResponseEntity<>(filteredList,OK);
+    }
+
     public ResponseEntity<List<Finding>> getAllOfCategory(FindingCategory findingCategory){
         List<Finding> list = findingRepo.findFindingsByCategory(findingCategory);
         return new ResponseEntity<>(list,OK);
@@ -45,12 +48,6 @@ public class FindingService {
     public ResponseEntity<List<Finding>> getAllOfCategoryAndMaterial(FindingCategory category, Material material){
         List<Finding> list = findingRepo.findFindingsByCategoryAndMaterial(category,material);
         return new ResponseEntity<>(list,OK);
-    }
-
-    public ResponseEntity<List<Finding>> getAllOfCategoryType(String type){
-        List<Finding> fullList = findingRepo.findAll();
-        List<Finding> filteredList = fullList.stream().filter(e->e.getFindingCategory().getType().equals(type)).collect(Collectors.toList());
-        return new ResponseEntity<>(filteredList,OK);
     }
 
     public ResponseEntity<Finding> findById(long id){

@@ -1,19 +1,15 @@
 package com.beadinventory.beadinventory.Service.SuppliesServices;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -59,11 +55,11 @@ public class BeadService {
     }
 
     public ResponseEntity<Bead> getBeadById(long id){
-        try {
+        try{
             Bead bead = beadRepository.findById(id);
-            return new ResponseEntity<>(bead, OK);
-        } catch (NoSuchElementException e){
-            return new ResponseEntity<>(new Bead(), NOT_FOUND);
+            return new ResponseEntity<>(bead,OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(new Bead(),BAD_REQUEST);
         }
     }
 
@@ -79,16 +75,12 @@ public class BeadService {
         return new ResponseEntity<>(bead1, responseHeaders, CREATED);
     }
 
-    public ResponseEntity<Long> getBeadQuantity(long id){
-        Bead bead = beadRepository.findById(id);
-        return new ResponseEntity<>(bead.getQuantity(), OK);
-    }
 
     public ResponseEntity<Bead> updateBeadQuantity(long beadId, long quantity){
         Bead bead = beadRepository.findById(beadId);
         bead.setQuantity(quantity);
-        bead = beadRepository.save(bead);
-        return new ResponseEntity<>(bead, OK);
+        Bead bead1 = beadRepository.save(bead);
+        return new ResponseEntity<>(bead1, OK);
     }
 
     public ResponseEntity<Bead> removeBeadQuantity(long beadId, long quantityToRemove){

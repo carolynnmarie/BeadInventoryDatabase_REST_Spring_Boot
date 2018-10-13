@@ -7,19 +7,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class WineCharmService extends AllFinishedPiecesService<WineCharm> {
+public class WineCharmService extends AllFinishedPiecesService implements AllFinishedPiecesSvsInterface<WineCharm>  {
+
+
     @Override
     public ResponseEntity<List<WineCharm>> getAllItems() {
         return null;
     }
 
     @Override
-    public ResponseEntity<WineCharm> getItemById(long id) {
+    public ResponseEntity<Long> getTotalCount() {
         return null;
     }
 
-    public long getQuantity(long id) {
-        return 0;
+    @Override
+    public ResponseEntity<WineCharm> getItemById(long id) {
+        return null;
     }
 
     @Override
@@ -32,8 +35,8 @@ public class WineCharmService extends AllFinishedPiecesService<WineCharm> {
         return null;
     }
 
-
-    public ResponseEntity<WineCharm> updatePriceOfOne(long id, double price) {
+    @Override
+    public ResponseEntity<List<WineCharm>> updatePriceOfAll(double amountToAdd) {
         return null;
     }
 

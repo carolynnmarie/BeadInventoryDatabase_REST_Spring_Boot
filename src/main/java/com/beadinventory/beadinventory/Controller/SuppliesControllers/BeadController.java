@@ -5,9 +5,7 @@ import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import com.beadinventory.beadinventory.Service.SuppliesServices.BeadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -26,49 +24,63 @@ public class BeadController {
 
 
     @RequestMapping(value = "/beads", method = GET)
-    public ResponseEntity<List<Bead>> findAllBeads(){
-        return beadService.getAllBeads();
+    public List<Bead> findAllBeads(){
+        ResponseEntity<List<Bead>> response = beadService.getAllBeads();
+        return response.getBody();
     }
 
     @RequestMapping(value = "/beads/material", method = GET)
-    public ResponseEntity<List<Bead>> findAllOfMaterial(@RequestParam(value = "material")Material material){
-        return beadService.getAllOfMaterial(material);
+    public List<Bead> findAllOfMaterial(@RequestParam(value = "material")Material material){
+        ResponseEntity<List<Bead>> response = beadService.getAllOfMaterial(material);
+        return response.getBody();
     }
 
     @RequestMapping(value = "/beads/material/color",method = GET)
-    public ResponseEntity<List<Bead>> findAllOfMaterialAndColor(@RequestParam(value = "material") Material material, @RequestParam(value = "color") String color){
-        return beadService.getAllOfMaterialAndColor(material,color);
+    public List<Bead> findAllOfMaterialAndColor(@RequestParam(value = "material") Material material, @RequestParam(value = "color") String color){
+        ResponseEntity<List<Bead>> response = beadService.getAllOfMaterialAndColor(material,color);
+        return response.getBody();
     }
 
     @RequestMapping(value = "/beads/material/size",method = GET)
-    public ResponseEntity<List<Bead>> findAllOfMaterialAndSize(@RequestParam(value ="material") Material material,
+    public List<Bead> findAllOfMaterialAndSize(@RequestParam(value ="material") Material material,
                                                                @RequestParam(value = "size") int size){
-        return beadService.getAllOfMaterialAndSize(material,size);
+
+        ResponseEntity<List<Bead>> response = beadService.getAllOfMaterialAndSize(material,size);
+        return response.getBody();
     }
 
     @RequestMapping(value = "/beads/quantity", method = RequestMethod.GET)
-    public ResponseEntity<List<Bead>> findAllWithQuantityLessThan(@RequestParam(value = "quantity") long quantity){
-        return beadService.getAllQuantityLessThan(quantity);
+    public List<Bead> findAllWithQuantityLessThan(@RequestParam(value = "quantity") long quantity){
+        ResponseEntity<List<Bead>> response = beadService.getAllQuantityLessThan(quantity);
+        return response.getBody();
     }
 
     @RequestMapping(value = "/beads/{id}", method = GET)
-    public ResponseEntity<Bead> findBeadById(@PathVariable("id") long id){
-        return beadService.getBeadById(id);
+    public Bead findBeadById(@PathVariable("id") long id){
+        ResponseEntity<Bead> response = beadService.getBeadById(id);
+        return response.getBody();
+    }
+
+    public long findBeadQuantity(long id){
+        Bead bead = findBeadById(id);
+        return bead.getQuantity();
     }
 
     @RequestMapping(value = "/beads", method = POST)
     public ResponseEntity<Bead> createBead(@RequestBody Bead bead){
+
         return beadService.createBead(bead);
     }
 
     @RequestMapping(value = "/beads/{id}/quantity", method = PUT)
-    public ResponseEntity<Bead> updateBeadQuantity(@PathVariable("id") long id, @RequestParam(value = "quantity") long quantity){
-        return beadService.updateBeadQuantity(id,quantity);
+    public Long updateBeadQuantity(@PathVariable("id") long id, @RequestParam(value = "quantity") long quantity){
+        return beadService.updateBeadQuantity(id,quantity).getBody().getQuantity();
     }
 
     @RequestMapping(value = "/beads/{id}", method = PUT)
-    public ResponseEntity<Bead> updateBead(@PathVariable("id") long id, @RequestBody Bead bead){
-        return beadService.updateBead(id,bead);
+    public Bead updateBead(@PathVariable("id") long id, @RequestBody Bead bead){
+        ResponseEntity<Bead> response = beadService.updateBead(id,bead);
+        return response.getBody();
     }
 
     @RequestMapping(value = "/beads/{id}", method = DELETE)

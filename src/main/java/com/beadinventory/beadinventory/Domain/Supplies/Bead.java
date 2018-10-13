@@ -156,10 +156,10 @@ public class Bead implements Serializable {
         return builder.toString();
     }
 
-    @Override
-    public String toString(){
-        return "Material: " + material + ", Shape: " + shape + ", Color: " + color + ", Size: " + size + "mm, Price point: "
-                + pricePoint + ", Quality: " + quality + ", Quantity: " + quantity + ", Brands: " + getBrandsString() + ", Description: " +
-                description;
-    }
+//    @Override
+//    public String toString(){
+//        return "Material: " + material + ", Shape: " + shape + ", Color: " + color + ", Size: " + size + "mm, Price point: "
+//                + pricePoint + ", Quality: " + quality + ", Quantity: " + quantity + ", Brands: " + getBrandsString() + ", Description: " +
+//                description;
+//    }
 }

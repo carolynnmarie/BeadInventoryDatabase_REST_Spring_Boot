@@ -1,8 +1,7 @@
 package com.beadinventory.beadinventory.Controller.SuppliesControllers;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import com.beadinventory.beadinventory.Service.SuppliesServices.FindingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,34 +23,34 @@ public class FindingController {
     }
 
     @RequestMapping(value = "/findings", method = GET)
-    public ResponseEntity<List<Finding>> findAllFindings(){
-        return findingService.getAllFindings();
-    }
-
-    @RequestMapping(value = "/findings/findingCategory", method = GET)
-    public ResponseEntity<List<Finding>> findAllOfCategory(@RequestParam(value = "findingCategory")FindingCategory findingCategory){
-        return findingService.getAllOfCategory(findingCategory);
-    }
-
-    @RequestMapping(value = "/findings/material", method = GET)
-    public ResponseEntity<List<Finding>> findAllOfMaterial(@RequestParam(value = "material")Material material){
-        return findingService.getAllOfMaterial(material);
-    }
-
-    @RequestMapping(value = "/findings/category/material", method = GET)
-    public ResponseEntity<List<Finding>> findAllOfCategoryAndMaterial(@RequestParam(value = "category") FindingCategory category,
-                                                                      @RequestParam(value = "material") Material material){
-        return findingService.getAllOfCategoryAndMaterial(category,material);
+    public List<Finding> findAllFindings(){
+        return findingService.getAllFindings().getBody();
     }
 
     @RequestMapping(value = "/findings/type", method = GET)
-    public ResponseEntity<List<Finding>> findAllOfCategoryType(@RequestBody String type){
-        return findingService.getAllOfCategoryType(type);
+    public List<Finding> findAllOfCategoryType(@RequestBody String type){
+        return findingService.getAllOfCategoryType(type).getBody();
+    }
+
+    @RequestMapping(value = "/findings/findingCategory", method = GET)
+    public List<Finding> findAllOfCategory(@RequestParam(value = "findingCategory")FindingCategory findingCategory){
+        return findingService.getAllOfCategory(findingCategory).getBody();
+    }
+
+    @RequestMapping(value = "/findings/material", method = GET)
+    public List<Finding> findAllOfMaterial(@RequestParam(value = "material")Material material){
+        return findingService.getAllOfMaterial(material).getBody();
+    }
+
+    @RequestMapping(value = "/findings/category/material", method = GET)
+    public List<Finding> findAllOfCategoryAndMaterial(@RequestParam(value = "category") FindingCategory category,
+                                                                      @RequestParam(value = "material") Material material){
+        return findingService.getAllOfCategoryAndMaterial(category,material).getBody();
     }
 
     @RequestMapping(value = "/findings/{id}", method = GET)
-    public ResponseEntity<Finding> getFindingById(@PathVariable("id") long id){
-        return findingService.findById(id);
+    public Finding getFindingById(@PathVariable("id") long id){
+        return findingService.findById(id).getBody();
     }
 
     @RequestMapping(value = "/findings", method = POST)
@@ -59,15 +58,14 @@ public class FindingController {
         return findingService.createFinding(finding);
     }
 
-    @RequestMapping(value = "/findings/{id}", method = PUT)
-    public ResponseEntity<Finding> updateQuantity(@PathVariable("id") long id, @RequestParam(value = "quantity") long quantity){
-        return findingService.updateFindingQuantity(id, quantity);
+    @RequestMapping(value = "/findings/{id}/quantity", method = PUT)
+    public Long updateQuantity(@PathVariable("id") long id, @RequestParam(value = "quantity") long quantity){
+        return findingService.updateFindingQuantity(id, quantity).getBody().getQuantity();
     }
 
-
     @RequestMapping(value = "/findings/{id}", method = PUT)
-    public ResponseEntity<Finding> updateFinding(@PathVariable("id")long id, @RequestBody Finding finding){
-        return findingService.updateFinding(id,finding);
+    public Finding updateFinding(@PathVariable("id")long id, @RequestBody Finding finding){
+        return findingService.updateFinding(id,finding).getBody();
     }
 
     @RequestMapping(value = "/findings/{id}",method = DELETE)

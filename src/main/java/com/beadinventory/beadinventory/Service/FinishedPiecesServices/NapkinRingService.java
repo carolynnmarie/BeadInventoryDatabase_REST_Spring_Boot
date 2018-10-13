@@ -7,9 +7,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class NapkinRingService extends AllFinishedPiecesService<NapkinRing> {
+public class NapkinRingService extends AllFinishedPiecesService<NapkinRing> implements AllFinishedPiecesSvsInterface<NapkinRing> {
     @Override
     public ResponseEntity<List<NapkinRing>> getAllItems() {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<Long> getTotalCount() {
         return null;
     }
 
@@ -33,7 +38,7 @@ public class NapkinRingService extends AllFinishedPiecesService<NapkinRing> {
     }
 
     @Override
-    public ResponseEntity<NapkinRing> updatePriceOfOne(long id, double price) {
+    public ResponseEntity<List<NapkinRing>> updatePriceOfAll(double amountToAdd) {
         return null;
     }
 

@@ -1,19 +1,15 @@
 package com.beadinventory.beadinventory.Service.SuppliesServices;
 
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.StringWireRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.springframework.http.HttpStatus.*;
 

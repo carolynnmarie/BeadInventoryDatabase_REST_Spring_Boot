@@ -29,33 +29,10 @@ public abstract class AllFinishedPiecesService<T extends AllFinishedPieces> {
             Long beadId = beadEntry.getKey().getId();
             beadService.removeBeadQuantity(beadId,beadEntry.getValue());
         }
-
     }
 
-    public abstract ResponseEntity<List<T>> getAllItems();
-    public abstract ResponseEntity<T> getItemById(long id);
-    public abstract ResponseEntity<T> createItem(T item);
-    public abstract ResponseEntity<T> updateItem(long id, T item);
-    public abstract ResponseEntity<T> updatePriceOfOne(long id, double price);
-    public abstract ResponseEntity<T> updateDescription(long id, String description);
-    public abstract ResponseEntity deleteItem(T item);
+
 
 
 
 }
-/*
-private BeadRepo beadRepo;
-
-    public void removeFromBeadRepo(T item){
-        LinkedHashMap<Bead, Integer> beads = item.getBeads();
-        for(Map.Entry<Bead,Integer> bEntry: beads.entrySet()){
-            Long id = bEntry.getKey().getId();
-            Optional<Bead> oBead = beadRepo.findById(id);
-            Bead bead = oBead.get();
-            Long oldQuantity = bead.getQuantity();
-            Long quantity = oldQuantity - bEntry.getValue();
-            bead.setQuantity(quantity);
-            beadRepo.save(bead);
-        }
-    }
- */

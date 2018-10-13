@@ -1,22 +1,16 @@
 package com.beadinventory.beadinventory.ServiceTest.SuppliesServiceTest;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
 import com.beadinventory.beadinventory.Service.SuppliesServices.BeadService;
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
+import org.mockito.*;
+import org.springframework.http.*;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -137,14 +131,14 @@ public class BeadServiceTest {
 
     @Test
     public void getBeadByIdTest(){
+        bead1.setId(1L);
         given(mockBeadRepo.findById(anyLong())).willReturn(bead1);
         ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,OK);
-        ResponseEntity<Bead> actual = mockBeadService.getBeadById(bead1.getId());
+        ResponseEntity<Bead> actual = mockBeadService.getBeadById(1L);
 
         verify(mockBeadRepo).findById(anyLong());
         Assert.assertEquals(expected,actual);
     }
-
 
 
     @Test
@@ -170,6 +164,7 @@ public class BeadServiceTest {
 
     @Test
     public void updateBeadQuantityTest(){
+        bead1.setQuantity(10);
         given(mockBeadRepo.findById(anyLong())).willReturn(bead1);
         given(mockBeadRepo.save(any(Bead.class))).willReturn(bead1);
 

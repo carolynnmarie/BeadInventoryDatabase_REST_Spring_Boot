@@ -17,4 +17,6 @@ public interface NecklaceRepo extends AllFinishedPiecesRepo<Necklace> {
     List<Necklace> findNecklacesByHasNaturalStonesTrue();
 
     List<Necklace> findNecklacesByHasSwarovskiTrue();
+
+    Necklace findById(long id);
 }

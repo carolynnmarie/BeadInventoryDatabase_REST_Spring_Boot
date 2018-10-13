@@ -20,7 +20,6 @@ public class Finding implements Serializable {
     @Column(name = "CATEGORY")
     private FindingCategory category;
 
-
     @Enumerated(value = EnumType.STRING)
     @Column(name = "MATERIAL")
     private Material material;

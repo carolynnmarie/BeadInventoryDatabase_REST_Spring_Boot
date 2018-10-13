@@ -1,8 +1,7 @@
 package com.beadinventory.beadinventory.Controller.SuppliesControllers;
 
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import com.beadinventory.beadinventory.Service.SuppliesServices.StringWireService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,34 +22,34 @@ public class StringingMaterialController {
     }
 
     @RequestMapping(value = "/stringing_materials",method = GET)
-    public ResponseEntity<List<StringWire>> getAllStringingMaterials(){
-        return sMService.getAllStringingMaterials();
+    public List<StringWire> getAllStringingMaterials(){
+        return sMService.getAllStringingMaterials().getBody();
     }
 
     @RequestMapping(value = "/stringing_materials/category", method = GET)
-    public ResponseEntity<List<StringWire>> getAllOfCategory(@RequestParam(value = "category")StringWireCategory category){
-        return sMService.getAllOfCategory(category);
+    public List<StringWire> getAllOfCategory(@RequestParam(value = "category")StringWireCategory category){
+        return sMService.getAllOfCategory(category).getBody();
     }
 
     @RequestMapping(value = "/stringing_materials/material", method = GET)
-    public ResponseEntity<List<StringWire>> getAllOfMaterial(@RequestParam(value = "material")Material material){
-        return sMService.getAllOfMaterial(material);
+    public List<StringWire> getAllOfMaterial(@RequestParam(value = "material")Material material){
+        return sMService.getAllOfMaterial(material).getBody();
     }
 
     @RequestMapping(value = "/stringing_materials/{id}",method = GET)
-    public ResponseEntity<StringWire> getById(@PathVariable("id")long id){
-        return sMService.getById(id);
+    public StringWire getById(@PathVariable("id")long id){
+        return sMService.getById(id).getBody();
     }
 
     @RequestMapping(value = "/stringing_materials", method = POST)
-    public ResponseEntity<StringWire> createStringingMaterial(@RequestBody StringWire stringWire){
-        return sMService.createStringingMaterial(stringWire);
+    public StringWire createStringingMaterial(@RequestBody StringWire stringWire){
+        return sMService.createStringingMaterial(stringWire).getBody();
     }
 
     @RequestMapping(value = "/stringing_materials/{id}",method = PUT)
-    public ResponseEntity<StringWire> updateStringingMaterial(@PathVariable("id")long id,
+    public StringWire updateStringingMaterial(@PathVariable("id")long id,
                                                               @RequestBody StringWire stringWire){
-        return sMService.updateStringingMaterial(id, stringWire);
+        return sMService.updateStringingMaterial(id, stringWire).getBody();
     }
 
     @RequestMapping(value = "/stringing_materials/{id}", method = DELETE)

@@ -1,6 +1,7 @@
 package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Necklace;
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.InventoryManager;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.NecklaceRepo;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
@@ -11,12 +12,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.*;
 
 @Service
-public class NecklaceService extends AllFinishedPiecesService<Necklace> {
+public class NecklaceService extends AllFinishedPiecesService<Necklace> implements AllFinishedPiecesSvsInterface<Necklace> {
 
     private NecklaceRepo necklaceRepo;
 
@@ -29,6 +31,11 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> {
 
     @Override
     public ResponseEntity<List<Necklace>> getAllItems() {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<Long> getTotalCount() {
         return null;
     }
 
@@ -61,6 +68,18 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> {
 
     public ResponseEntity<Necklace> updatePriceOfOne(long id, double price) {
         return null;
+    }
+
+    @Override
+    public ResponseEntity<List<Necklace>> updatePriceOfAll(double amountToAdd) {
+        return null;
+    }
+
+    public ResponseEntity<Necklace> updateBeads(long id, LinkedHashMap<Bead,Integer> beads){
+        Necklace necklace = necklaceRepo.findById(id);
+        necklace.setBeads(beads);
+        Necklace necklace1 = necklaceRepo.save(necklace);
+        return new ResponseEntity<>(necklace1, OK);
     }
 
     @Override

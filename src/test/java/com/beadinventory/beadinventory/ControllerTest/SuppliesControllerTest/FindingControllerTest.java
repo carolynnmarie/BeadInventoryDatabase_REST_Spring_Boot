@@ -1,32 +1,23 @@
 package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
+
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.FindingController;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import com.beadinventory.beadinventory.Service.SuppliesServices.FindingService;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.http.HttpStatus.*;
-import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @SuppressWarnings("unchecked")
 @RunWith(SpringRunner.class)
@@ -67,10 +58,20 @@ public class FindingControllerTest {
         List<Finding> list = new ArrayList<>(Arrays.asList(headPin,eyePin,lobsterClasp,lobsterClasp2,splitRing));
         ResponseEntity<List<Finding>> expected = new ResponseEntity<>(list, OK);
         given(mockFindingService.getAllFindings()).willReturn(expected);
-        ResponseEntity<List<Finding>> actual = mockFindingController.findAllFindings();
+        List<Finding> actual = mockFindingController.findAllFindings();
 
         verify(mockFindingService).getAllFindings();
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(list,actual);
+    }
+    @Test
+    public void findAllOfCategoryTypeTest(){
+        List<Finding> list = new ArrayList<>(Arrays.asList(headPin,eyePin));
+        ResponseEntity<List<Finding>> expected = new ResponseEntity<>(list,OK);
+        given(mockFindingService.getAllOfCategoryType("pin")).willReturn(expected);
+        List<Finding> actual = mockFindingController.findAllOfCategoryType("pin");
+
+        verify(mockFindingService).getAllOfCategoryType(any(String.class));
+        Assert.assertEquals(list,actual);
     }
 
     @Test
@@ -78,10 +79,10 @@ public class FindingControllerTest {
         List<Finding> list = new ArrayList<>(Arrays.asList(lobsterClasp2,lobsterClasp));
         ResponseEntity<List<Finding>> expected = new ResponseEntity<>(list,OK);
         given(mockFindingService.getAllOfCategory(LOBSTER_CLASP)).willReturn(expected);
-        ResponseEntity<List<Finding>> actual = mockFindingController.findAllOfCategory(LOBSTER_CLASP);
+        List<Finding> actual = mockFindingController.findAllOfCategory(LOBSTER_CLASP);
 
         verify((mockFindingService)).getAllOfCategory(any(FindingCategory.class));
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(list,actual);
     }
 
     @Test
@@ -89,10 +90,10 @@ public class FindingControllerTest {
         List<Finding> list = new ArrayList<>(Arrays.asList(headPin,eyePin,lobsterClasp));
         ResponseEntity<List<Finding>> expected = new ResponseEntity<>(list,OK);
         given(mockFindingService.getAllOfMaterial(BRIGHT_SILVER_PLATED)).willReturn(expected);
-        ResponseEntity<List<Finding>> actual = mockFindingController.findAllOfMaterial(BRIGHT_SILVER_PLATED);
+        List<Finding> actual = mockFindingController.findAllOfMaterial(BRIGHT_SILVER_PLATED);
 
         verify((mockFindingService)).getAllOfMaterial(any(Material.class));
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(list,actual);
     }
 
     @Test
@@ -100,31 +101,22 @@ public class FindingControllerTest {
         List<Finding> list = new ArrayList<>(Arrays.asList(headPin));
         ResponseEntity<List<Finding>> expected = new ResponseEntity<>(list,OK);
         given(mockFindingService.getAllOfCategoryAndMaterial(HEAD_PIN,BRIGHT_SILVER_PLATED)).willReturn(expected);
-        ResponseEntity<List<Finding>> actual = mockFindingController.findAllOfCategoryAndMaterial(HEAD_PIN,BRIGHT_SILVER_PLATED);
+        List<Finding> actual = mockFindingController.findAllOfCategoryAndMaterial(HEAD_PIN,BRIGHT_SILVER_PLATED);
 
         verify(mockFindingService).getAllOfCategoryAndMaterial(any(FindingCategory.class),any(Material.class));
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(list,actual);
     }
 
-    @Test
-    public void findAllOfCategoryTypeTest(){
-        List<Finding> list = new ArrayList<>(Arrays.asList(headPin,eyePin));
-        ResponseEntity<List<Finding>> expected = new ResponseEntity<>(list,OK);
-        given(mockFindingService.getAllOfCategoryType("pin")).willReturn(expected);
-        ResponseEntity<List<Finding>> actual = mockFindingController.findAllOfCategoryType("pin");
 
-        verify(mockFindingService).getAllOfCategoryType(any(String.class));
-        Assert.assertEquals(expected,actual);
-    }
 
     @Test
     public void getFindingByIdTest(){
         ResponseEntity<Finding> expected = new ResponseEntity<>(eyePin,OK);
         given(mockFindingService.findById(anyLong())).willReturn(expected);
-        ResponseEntity<Finding> actual = mockFindingController.getFindingById(eyePin.getId());
+        Finding actual = mockFindingController.getFindingById(eyePin.getId());
 
         verify(mockFindingService).findById(anyLong());
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(eyePin,actual);
     }
 
     @Test
@@ -141,10 +133,10 @@ public class FindingControllerTest {
     public void updateFindingTest(){
         ResponseEntity<Finding> expected = new ResponseEntity<>(eyePin,OK);
         given(mockFindingService.updateFinding(eyePin.getId(),eyePin)).willReturn(expected);
-        ResponseEntity<Finding> actual = mockFindingController.updateFinding(eyePin.getId(),eyePin);
+        Finding actual = mockFindingController.updateFinding(eyePin.getId(),eyePin);
 
         verify(mockFindingService).updateFinding(anyLong(),any(Finding.class));
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(eyePin,actual);
     }
 
     @Test

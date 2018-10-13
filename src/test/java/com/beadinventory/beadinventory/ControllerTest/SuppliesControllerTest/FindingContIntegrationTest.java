@@ -3,6 +3,7 @@ package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.FindingController;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.http.HttpStatus.*;
 import static org.mockito.Mockito.mock;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.MediaType.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,23 +35,132 @@ public class FindingContIntegrationTest {
     @MockBean
     private FindingController mockFindingController;
 
+    private ObjectMapper mapper = new ObjectMapper();
+
 
     private TreeSet<String> brands;
     private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,25,brands);
     private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);
-//    private Finding lobsterClasp;
-//    private Finding lobsterClasp2;
-//    private Finding splitRing;
+
+
+    @Test
+    public void findAllFindingsIntegTest() throws Exception{
+        List<Finding> list = new ArrayList<>(Arrays.asList(eyePin,headPin));
+        ResponseEntity<List<Finding>> entity = new ResponseEntity<>(list, OK);
+        given(mockFindingController.findAllFindings()).willReturn(list);
+
+        mockMvc.perform(get("/findings")
+                .contentType(APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+                .andExpect(status().isOk());
+    }
 
     @Test
     public void findAllOfCategoryTypeIntegTest() throws Exception{
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin,headPin));
         ResponseEntity<List<Finding>> expected = new ResponseEntity<>(list,OK);
-        given(mockFindingController.findAllOfCategoryType("pin")).willReturn(expected);
+        given(mockFindingController.findAllOfCategoryType("pin")).willReturn(list);
+
         mockMvc.perform(get("/findings")
-                .characterEncoding("utf-8")
                 .content("pin")
+                .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void findAllOfCategoryIntegTest() throws Exception{
+        List<Finding> list = new ArrayList<>(Arrays.asList(eyePin));
+        ResponseEntity<List<Finding>> entity = new ResponseEntity<>(list,OK);
+        given(mockFindingController.findAllOfCategory(EYE_PIN)).willReturn(list);
+
+        mockMvc.perform(get("/findings",EYE_PIN)
+                .contentType(APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void findAllOfMaterialIntegTest() throws Exception{
+        List<Finding> list = new ArrayList<>(Arrays.asList(eyePin,headPin));
+        ResponseEntity<List<Finding>> entity = new ResponseEntity<>(list,OK);
+        given(mockFindingController.findAllOfMaterial(BRIGHT_SILVER_PLATED)).willReturn(list);
+
+        mockMvc.perform(get("/findings",BRIGHT_SILVER_PLATED)
+                .characterEncoding("utf-8")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void findAllOfCategoryAndMaterialIntegTest() throws Exception{
+        List<Finding> list = new ArrayList<>(Arrays.asList(eyePin));
+        ResponseEntity<List<Finding>> entity = new ResponseEntity<>(list,OK);
+        given(mockFindingController.findAllOfCategoryAndMaterial(EYE_PIN,BRIGHT_SILVER_PLATED)).willReturn(list);
+
+        mockMvc.perform((get("/findings",EYE_PIN,BRIGHT_SILVER_PLATED)
+                .contentType(APPLICATION_JSON)
+                .characterEncoding("utf-8")))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getFindingByIdIntegTest() throws Exception {
+        headPin.setId(2L);
+        ResponseEntity<Finding> entity = new ResponseEntity<>(headPin,OK);
+        given(mockFindingController.getFindingById(headPin.getId())).willReturn(headPin);
+
+        mockMvc.perform(get("/findings/{id}",2L)
+                .characterEncoding("utf-8")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void createFindingIntegTest() throws Exception{
+        given(mockFindingController.createFinding(headPin)).willReturn(mock(ResponseEntity.class));
+
+        String body = mapper.writeValueAsString(headPin);
+        mockMvc.perform(post("/findings")
+                .content(body)
+                .contentType(APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void updateFindingIntegTest() throws Exception{
+        headPin.setId(3L);
+        given(mockFindingController.updateFinding(headPin.getId(),headPin)).willReturn(headPin);
+
+        String body = mapper.writeValueAsString(headPin);
+        mockMvc.perform(put("/findings/{id}",3L)
+                .content(body)
+                .contentType(APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteFindingByIdIntegTest() throws Exception{
+        eyePin.setId(1L);
+        given(mockFindingController.deleteFindingById(1L)).willReturn(new ResponseEntity(OK));
+
+        mockMvc.perform(delete("/findings/{id}",1L)
+                .contentType(APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteFindingIntegTest() throws Exception {
+        given(mockFindingController.deleteFinding(headPin)).willReturn(new ResponseEntity(OK));
+
+        String body = mapper.writeValueAsString(headPin);
+        mockMvc.perform(delete("/findings")
+                .contentType(APPLICATION_JSON)
+                .content(body)
+                .characterEncoding("utf-8"))
                 .andExpect(status().isOk());
     }
 }

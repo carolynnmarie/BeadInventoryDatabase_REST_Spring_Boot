@@ -9,8 +9,6 @@ import java.util.List;
 @NoRepositoryBean
 public interface AllFinishedPiecesRepo<T extends AllFinishedPieces> extends CrudRepository<T,Long> {
 
-    @Override
-    long count();
 
     List<T> findAll();
     T findById(long id);
