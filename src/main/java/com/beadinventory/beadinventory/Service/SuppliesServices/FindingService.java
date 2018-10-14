@@ -57,7 +57,7 @@ public class FindingService {
 
 
     public ResponseEntity<Finding> createFinding(Finding finding){
-        Finding finding1 = findingRepo.save(finding);
+        finding = findingRepo.save(finding);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
@@ -65,7 +65,7 @@ public class FindingService {
                 .toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(newAccountUri);
-        return new ResponseEntity<>(finding1, responseHeaders,CREATED);
+        return new ResponseEntity<>(finding,responseHeaders,HttpStatus.CREATED);
     }
 
     public ResponseEntity<Long> getFindingQuantity(long id){

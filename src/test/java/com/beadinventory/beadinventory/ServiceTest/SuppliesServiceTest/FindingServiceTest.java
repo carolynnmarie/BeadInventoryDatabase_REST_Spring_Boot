@@ -1,21 +1,16 @@
 package com.beadinventory.beadinventory.ServiceTest.SuppliesServiceTest;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.FindingRepo;
 import com.beadinventory.beadinventory.Service.SuppliesServices.FindingService;
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
+import org.mockito.*;
+import org.springframework.http.*;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;

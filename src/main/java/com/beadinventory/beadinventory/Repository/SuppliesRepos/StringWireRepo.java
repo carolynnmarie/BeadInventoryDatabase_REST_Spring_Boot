@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface StringWireRepo extends CrudRepository<StringWire,Long> {
 
-    List<StringWire> findStringingMaterialsByStringWireCategory(StringWireCategory category);
+    List<StringWire> findAllByStringWireCategory(StringWireCategory category);
 
-    List<StringWire> findStringingMaterialsByMaterial(Material material);
+    List<StringWire> findAllByMaterial(Material material);
 }

@@ -29,6 +29,11 @@ public class BeadService {
         return new ResponseEntity<>(beads,OK);
     }
 
+    public ResponseEntity<List<Bead>> getAllOrderByMaterial(){
+        List<Bead> beads = beadRepository.findAllOrderByMaterial();
+        return new ResponseEntity<>(beads,OK);
+    }
+
     public ResponseEntity<List<Bead>> getAllOfMaterial(Material material){
         List<Bead> beads = beadRepository.findByMaterial(material);
         return new ResponseEntity<>(beads, OK);

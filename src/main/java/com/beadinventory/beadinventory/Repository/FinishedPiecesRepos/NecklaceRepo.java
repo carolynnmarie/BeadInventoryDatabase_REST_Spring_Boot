@@ -9,8 +9,6 @@ import java.util.List;
 
 @Repository
 public interface NecklaceRepo extends AllFinishedPiecesRepo<Necklace> {
-//
-//    List<Necklace> findAllByStringingMaterial(StringWire stringWire);
 
     List<Necklace> findAllByStringWireCategory(StringWireCategory category);
 

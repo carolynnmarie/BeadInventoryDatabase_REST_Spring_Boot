@@ -23,7 +23,7 @@ public class StringWireService {
         this.strMtrlRepo = stringWireRepo;
     }
 
-    public ResponseEntity<List<StringWire>> getAllStringingMaterials(){
+    public ResponseEntity<List<StringWire>> getAllStringWire(){
         Iterable<StringWire> iList = strMtrlRepo.findAll();
         List<StringWire> list = new ArrayList<>();
         iList.forEach(e->list.add(e));
@@ -31,12 +31,12 @@ public class StringWireService {
     }
 
     public ResponseEntity<List<StringWire>> getAllOfCategory(StringWireCategory category){
-        List<StringWire> iList = strMtrlRepo.findStringingMaterialsByStringWireCategory(category);
+        List<StringWire> iList = strMtrlRepo.findAllByStringWireCategory(category);
         return new ResponseEntity<>(iList, OK);
     }
 
     public ResponseEntity<List<StringWire>> getAllOfMaterial(Material material){
-        List<StringWire> list = strMtrlRepo.findStringingMaterialsByMaterial(material);
+        List<StringWire> list = strMtrlRepo.findAllByMaterial(material);
         return new ResponseEntity<>(list,OK);
     }
 
@@ -46,7 +46,7 @@ public class StringWireService {
         return new ResponseEntity<>(stringWire,OK);
     }
 
-    public ResponseEntity<StringWire> createStringingMaterial(StringWire stringWire){
+    public ResponseEntity<StringWire> createStringWire(StringWire stringWire){
         StringWire sM1 = strMtrlRepo.save(stringWire);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -58,7 +58,7 @@ public class StringWireService {
         return new ResponseEntity<>(sM1,responseHeaders,CREATED);
     }
 
-    public ResponseEntity<StringWire> updateStringingMaterial(long id, StringWire stringWire){
+    public ResponseEntity<StringWire> updateStringWire(long id, StringWire stringWire){
         stringWire.setId(id);
         StringWire sM = strMtrlRepo.save(stringWire);
         return new ResponseEntity<>(sM,OK);

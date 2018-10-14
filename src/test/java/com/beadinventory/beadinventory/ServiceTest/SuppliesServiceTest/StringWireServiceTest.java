@@ -50,7 +50,7 @@ public class StringWireServiceTest {
         given(mockSMRepo.findAll()).willReturn(iList);
 
         ResponseEntity<List<StringWire>> expected = new ResponseEntity<>(list, OK);
-        ResponseEntity<List<StringWire>> actual = mockSMService.getAllStringingMaterials();
+        ResponseEntity<List<StringWire>> actual = mockSMService.getAllStringWire();
 
         verify(mockSMRepo).findAll();
         Assert.assertEquals(expected,actual);
@@ -59,24 +59,24 @@ public class StringWireServiceTest {
     @Test
     public void getAllOfCategoryTest() {
         List<StringWire> list = new ArrayList<>(Arrays.asList(beadingWire));
-        given(mockSMRepo.findStringingMaterialsByStringWireCategory(BEADING_WIRE)).willReturn(list);
+        given(mockSMRepo.findAllByStringWireCategory(BEADING_WIRE)).willReturn(list);
 
         ResponseEntity<List<StringWire>> expected = new ResponseEntity<>(list, OK);
         ResponseEntity<List<StringWire>> actual = mockSMService.getAllOfCategory(BEADING_WIRE);
 
-        verify(mockSMRepo).findStringingMaterialsByStringWireCategory(any(StringWireCategory.class));
+        verify(mockSMRepo).findAllByStringWireCategory(any(StringWireCategory.class));
         Assert.assertEquals(expected,actual);
     }
 
     @Test
     public void getAllOfMaterialTest() {
         List<StringWire> list = new ArrayList<>(Arrays.asList(beadingWire));
-        given(mockSMRepo.findStringingMaterialsByMaterial(BRIGHT_SILVER_PLATED)).willReturn(list);
+        given(mockSMRepo.findAllByMaterial(BRIGHT_SILVER_PLATED)).willReturn(list);
 
         ResponseEntity<List<StringWire>> expected = new ResponseEntity<>(list, OK);
         ResponseEntity<List<StringWire>> actual = mockSMService.getAllOfMaterial(BRIGHT_SILVER_PLATED);
 
-        verify(mockSMRepo).findStringingMaterialsByMaterial(any(Material.class));
+        verify(mockSMRepo).findAllByMaterial(any(Material.class));
         Assert.assertEquals(expected,actual);
     }
 
@@ -107,7 +107,7 @@ public class StringWireServiceTest {
         given(mockSMRepo.save(any(StringWire.class))).willReturn(beadingWire);
 
         ResponseEntity<StringWire> expected = new ResponseEntity<>(beadingWire,responseHeaders,CREATED);
-        ResponseEntity<StringWire> actual = mockSMService.createStringingMaterial(beadingWire);
+        ResponseEntity<StringWire> actual = mockSMService.createStringWire(beadingWire);
 
         verify(mockSMRepo).save(any(StringWire.class));
         Assert.assertEquals(expected,actual);
@@ -116,7 +116,7 @@ public class StringWireServiceTest {
     public void updateStringingMaterialTest() {
         given(mockSMRepo.save(any(StringWire.class))).willReturn(beadingWire);
         ResponseEntity<StringWire> expected = new ResponseEntity<>(beadingWire,OK);
-        ResponseEntity<StringWire> actual = mockSMService.updateStringingMaterial(beadingWire.getId(),beadingWire);
+        ResponseEntity<StringWire> actual = mockSMService.updateStringWire(beadingWire.getId(),beadingWire);
         verify(mockSMRepo).save(any(StringWire.class));
         Assert.assertEquals(expected,actual);
     }

@@ -4,8 +4,7 @@ import com.beadinventory.beadinventory.Controller.SuppliesControllers.BeadContro
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -71,6 +70,16 @@ public class BeadContIntegrationTest {
     }
 
     @Test
+    public void getAllOrderByMaterialIntegTest() throws Exception {
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead4,bead5,bead2,bead3));
+        given(mockBeadController.findAllOrderByMaterial()).willReturn(list);
+
+        mockMvc.perform(get("/beads.getAllOrderByMaterial")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     public void findAllOfMaterialIntegTest() throws Exception{
         List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
         ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
@@ -82,6 +91,8 @@ public class BeadContIntegrationTest {
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+
+
 
     @Test
     public void findAllOfMaterialAndColorIntegTest() throws Exception{

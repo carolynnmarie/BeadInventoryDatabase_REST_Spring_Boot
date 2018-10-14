@@ -29,17 +29,16 @@ public class BeadTest {
         bead3 = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",
                 0.05,brands);
 
-//        bead1.setId(1);
-//        bead2.setId(2);
-//        bead3.setId(3);
+        bead1.setId(1);
+        bead2.setId(2);
+        bead3.setId(3);
     }
 
     @Test
     public void getIdTest(){
-        System.out.println(bead2.getId());
-//        long expected = 3L;
-//        long actual = bead3.getId();
-//        Assert.assertEquals(expected,actual);
+        long expected = 3L;
+        long actual = bead3.getId();
+        Assert.assertEquals(expected,actual);
     }
 
     @Test

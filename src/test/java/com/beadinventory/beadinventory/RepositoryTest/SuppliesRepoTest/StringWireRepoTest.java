@@ -41,7 +41,7 @@ public class StringWireRepoTest {
         entityManager.persist(leatherCord);
         entityManager.flush();
 
-        List<StringWire> list = mockSMRepo.findStringingMaterialsByStringWireCategory(CORD);
+        List<StringWire> list = mockSMRepo.findAllByStringWireCategory(CORD);
         assertThat(list).containsExactly(leatherCord);
     }
 
@@ -52,12 +52,8 @@ public class StringWireRepoTest {
         entityManager.persist(leatherCord);
         entityManager.flush();
 
-        List<StringWire> list = mockSMRepo.findStringingMaterialsByMaterial(BRASS);
+        List<StringWire> list = mockSMRepo.findAllByMaterial(BRASS);
         assertThat(list).containsExactly(brassChain);
     }
 
     }
-/*
-    List<StringWire> findStringingMaterialsByStringWireCategory(StringWireCategory category);
-    List<StringWire> findStringingMaterialsByMaterial(Material material);
- */

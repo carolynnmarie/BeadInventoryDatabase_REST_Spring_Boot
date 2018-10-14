@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -25,28 +25,34 @@ public class BeadController {
 
     @RequestMapping(value = "/beads", method = GET)
     public List<Bead> findAllBeads(){
-        ResponseEntity<List<Bead>> response = beadService.getAllBeads();
-        return response.getBody();
+        return beadService.getAllBeads().getBody();
+    }
+
+    @RequestMapping(value = "/beads.getAllOrderByMaterial", method = GET)
+    public List<Bead> findAllOrderByMaterial(){
+        return beadService.getAllOrderByMaterial().getBody();
     }
 
     @RequestMapping(value = "/beads/material", method = GET)
     public List<Bead> findAllOfMaterial(@RequestParam(value = "material")Material material){
-        ResponseEntity<List<Bead>> response = beadService.getAllOfMaterial(material);
-        return response.getBody();
+        return beadService.getAllOfMaterial(material).getBody();
     }
 
     @RequestMapping(value = "/beads/material/color",method = GET)
     public List<Bead> findAllOfMaterialAndColor(@RequestParam(value = "material") Material material, @RequestParam(value = "color") String color){
-        ResponseEntity<List<Bead>> response = beadService.getAllOfMaterialAndColor(material,color);
-        return response.getBody();
+        return beadService.getAllOfMaterialAndColor(material,color).getBody();
     }
+
+//    public List<Bead> getAllOfMaterialCategory(MaterialCategory category){
+//        List<Bead> list = findAllBeads();
+//        List<Bead> listCategory = list.stream().filter(e-> e.getMaterial().getCategory().equals(category)).collect(Collectors.toList());
+//        return listCategory;
+//    }
 
     @RequestMapping(value = "/beads/material/size",method = GET)
     public List<Bead> findAllOfMaterialAndSize(@RequestParam(value ="material") Material material,
                                                                @RequestParam(value = "size") int size){
-
-        ResponseEntity<List<Bead>> response = beadService.getAllOfMaterialAndSize(material,size);
-        return response.getBody();
+        return beadService.getAllOfMaterialAndSize(material,size).getBody();
     }
 
     @RequestMapping(value = "/beads/quantity", method = RequestMethod.GET)

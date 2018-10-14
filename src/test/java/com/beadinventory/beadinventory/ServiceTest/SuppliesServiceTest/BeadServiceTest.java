@@ -69,6 +69,17 @@ public class BeadServiceTest {
     }
 
     @Test
+    public void getAllOrderByMaterialTest(){
+        List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead4,bead5,bead2,bead3));
+        given(mockBeadRepo.findAllOrderByMaterial()).willReturn(beads);
+        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(beads,OK);
+        ResponseEntity<List<Bead>> actual = mockBeadService.getAllOrderByMaterial();
+
+        verify(mockBeadRepo).findAllOrderByMaterial();
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
     public void getAllOfMaterialTest(){
         List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
         given(mockBeadRepo.findByMaterial(AMETHYST)).willReturn(beads);
@@ -78,7 +89,6 @@ public class BeadServiceTest {
         verify(mockBeadRepo).findByMaterial(any(Material.class));
         Assert.assertEquals(expected,actual);
     }
-
 
     @Test
     public void getAllOfMaterialAndColorTest(){

@@ -50,10 +50,11 @@ public enum Material {
     WOOD("wood", MaterialCategory.OTHER),
     PLASTIC("plastic", MaterialCategory.OTHER),
 
-    COTTON("cotton", MaterialCategory.OTHER),
-    LEATHER("leather", MaterialCategory.OTHER),
-    FAUX_LEATHER("faux leather", MaterialCategory.OTHER),
-    HEMP("HEMP",MaterialCategory.OTHER),
+    COTTON("cotton", STRINGING),
+    WAXED_COTTON("waxed cotton", STRINGING),
+    LEATHER("leather", STRINGING),
+    FAUX_LEATHER("faux leather", STRINGING),
+    HEMP("HEMP",STRINGING),
     OTHER("other",MaterialCategory.OTHER);
 
 

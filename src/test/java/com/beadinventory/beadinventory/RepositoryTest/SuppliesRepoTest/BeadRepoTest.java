@@ -59,7 +59,7 @@ public class BeadRepoTest {
     }
 
     @Test
-    public void findBeadsByMaterialAndColor() {
+    public void findBeadsByMaterialAndColorTest() {
         entityManager.persist(bead1);
         entityManager.persist(bead2);
         entityManager.persist(bead3);
@@ -73,7 +73,7 @@ public class BeadRepoTest {
     }
 
     @Test
-    public void findBeadsByMaterialAndSize() {
+    public void findBeadsByMaterialAndSizeTest() {
         entityManager.persist(bead1);
         entityManager.persist(bead2);
         entityManager.persist(bead3);
@@ -86,7 +86,7 @@ public class BeadRepoTest {
     }
 
     @Test
-    public void findBeadsByShape() {
+    public void findBeadsByShapeTest() {
         entityManager.persist(bead1);
         entityManager.persist(bead2);
         entityManager.persist(bead3);
@@ -99,7 +99,7 @@ public class BeadRepoTest {
     }
 
     @Test
-    public void findByQuantityIsLessThan() {
+    public void findByQuantityIsLessThanTest() {
         entityManager.persist(bead1);
         entityManager.persist(bead2);
         entityManager.persist(bead3);
@@ -110,5 +110,18 @@ public class BeadRepoTest {
         List<Bead> list = beadRepo.findByQuantityIsLessThan(12);
         assertThat(list).containsExactly(bead2,bead3,bead5);
 
+    }
+
+    @Test
+    public void findAllOrderByMaterialTest(){
+        entityManager.persist(bead1);
+        entityManager.persist(bead2);
+        entityManager.persist(bead3);
+        entityManager.persist(bead4);
+        entityManager.persist(bead5);
+        entityManager.flush();
+
+        List<Bead> list = beadRepo.findAllOrderByMaterial();
+        assertThat(list).containsExactly(bead1,bead4,bead5,bead2,bead3);
     }
 }

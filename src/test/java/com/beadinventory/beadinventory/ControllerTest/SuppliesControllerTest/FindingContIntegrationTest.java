@@ -9,10 +9,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
@@ -46,7 +50,6 @@ public class FindingContIntegrationTest {
     @Test
     public void findAllFindingsIntegTest() throws Exception{
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin,headPin));
-        ResponseEntity<List<Finding>> entity = new ResponseEntity<>(list, OK);
         given(mockFindingController.findAllFindings()).willReturn(list);
 
         mockMvc.perform(get("/findings")
@@ -58,7 +61,6 @@ public class FindingContIntegrationTest {
     @Test
     public void findAllOfCategoryTypeIntegTest() throws Exception{
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin,headPin));
-        ResponseEntity<List<Finding>> expected = new ResponseEntity<>(list,OK);
         given(mockFindingController.findAllOfCategoryType("pin")).willReturn(list);
 
         mockMvc.perform(get("/findings")
@@ -71,7 +73,6 @@ public class FindingContIntegrationTest {
     @Test
     public void findAllOfCategoryIntegTest() throws Exception{
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin));
-        ResponseEntity<List<Finding>> entity = new ResponseEntity<>(list,OK);
         given(mockFindingController.findAllOfCategory(EYE_PIN)).willReturn(list);
 
         mockMvc.perform(get("/findings",EYE_PIN)
@@ -83,7 +84,6 @@ public class FindingContIntegrationTest {
     @Test
     public void findAllOfMaterialIntegTest() throws Exception{
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin,headPin));
-        ResponseEntity<List<Finding>> entity = new ResponseEntity<>(list,OK);
         given(mockFindingController.findAllOfMaterial(BRIGHT_SILVER_PLATED)).willReturn(list);
 
         mockMvc.perform(get("/findings",BRIGHT_SILVER_PLATED)
@@ -107,7 +107,6 @@ public class FindingContIntegrationTest {
     @Test
     public void getFindingByIdIntegTest() throws Exception {
         headPin.setId(2L);
-        ResponseEntity<Finding> entity = new ResponseEntity<>(headPin,OK);
         given(mockFindingController.getFindingById(headPin.getId())).willReturn(headPin);
 
         mockMvc.perform(get("/findings/{id}",2L)

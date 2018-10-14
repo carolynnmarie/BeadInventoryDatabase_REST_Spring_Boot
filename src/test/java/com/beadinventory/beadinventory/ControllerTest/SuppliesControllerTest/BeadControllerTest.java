@@ -36,6 +36,10 @@ public class BeadControllerTest {
             0.1, brands);
     private Bead bead3 = new Bead(STONE, ROUND, "tan", 6, "ok", 7,
             "with design cut into bead", 0.05, brands);
+    private Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple",
+            0.2,brands);
+    private Bead bead5 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple",
+            0.2,brands);
 
 
     @Before
@@ -53,6 +57,16 @@ public class BeadControllerTest {
         List<Bead> actual = mockBeadController.findAllBeads();
 
         verify(mockBeadService).getAllBeads();
+        Assert.assertEquals(list, actual);
+    }
+
+    @Test
+    public void testOrderByMaterial(){
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead4,bead5,bead2,bead3));
+        given(mockBeadService.getAllOrderByMaterial()).willReturn(new ResponseEntity<>(list,OK));
+        List<Bead> actual = mockBeadController.findAllOrderByMaterial();
+
+        verify(mockBeadService).getAllOrderByMaterial();
         Assert.assertEquals(list, actual);
     }
 

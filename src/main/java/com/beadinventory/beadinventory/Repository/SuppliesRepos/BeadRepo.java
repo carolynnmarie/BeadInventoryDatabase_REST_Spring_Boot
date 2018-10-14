@@ -6,7 +6,6 @@ import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 
 import java.util.List;
 
@@ -26,5 +25,7 @@ public interface BeadRepo extends CrudRepository<Bead,Long> {
 
     Bead findById(long id);
 
+    @Query(value = "SELECT b FROM Bead b ORDER BY material")
+    List<Bead> findAllOrderByMaterial();
 
 }
