@@ -11,7 +11,7 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
-public class BookmarkController extends AllFinishedPiecesController implements AllFinishedPiecesContInterface<Bookmark> {
+public class BookmarkController implements AllFinishedPiecesContInterface<Bookmark> {
 
     private BookmarkService bookmarkService;
 
@@ -27,8 +27,8 @@ public class BookmarkController extends AllFinishedPiecesController implements A
     }
 
     @Override
-    @RequestMapping(value = "/bookmarks",method = GET)
-    public Long getTotalItemCount(@RequestParam(value = "count") long count) {
+    @RequestMapping(value = "/bookmarks.count",method = GET)
+    public Long getTotalItemCount() {
         return null;
     }
 
@@ -46,7 +46,7 @@ public class BookmarkController extends AllFinishedPiecesController implements A
 
     @Override
     @RequestMapping(value = "/bookmarks/{id}", method = PUT)
-    public Bookmark updateItem(long id, Bookmark item) {
+    public Bookmark updateItem(@PathVariable("id") long id, Bookmark item) {
         return null;
     }
 

@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface BraceletRepo extends AllFinishedPiecesRepo<Bracelet> {
+
     List<Bracelet> findBraceletsByBraceletType(BraceletType braceletType);
 }

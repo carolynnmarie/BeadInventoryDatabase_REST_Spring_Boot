@@ -1,19 +1,15 @@
 package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bracelet;
+import com.beadinventory.beadinventory.Domain.FinishedPieces.BraceletType;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.BraceletRepo;
-import org.mockito.internal.util.collections.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -34,11 +30,15 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> implemen
         return new ResponseEntity<>(list,OK);
     }
 
-    public ResponseEntity<Long> getTotalCount(){
-        Long count = braceletRepo.count();
+    public ResponseEntity<Long> getTotalCount(long count){
+        count = braceletRepo.count();
         return new ResponseEntity<>(count, OK);
     }
 
+    public ResponseEntity<List<Bracelet>> findByBraceletType(BraceletType braceletType){
+        List<Bracelet> bracelets = braceletRepo.findBraceletsByBraceletType(braceletType);
+        return new ResponseEntity<>(bracelets,OK);
+    }
 
     @Override
     public ResponseEntity<Bracelet> getItemById(long id) {
@@ -86,20 +86,24 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> implemen
         for(Bracelet bracelet: list){
             bracelet.setPrice(bracelet.getPrice()+amountToAdd);
         }
-        Iterable<Bracelet> iBracelets = list;
-        Iterable<Bracelet> iterable = braceletRepo.saveAll(iBracelets);
+        Iterable<Bracelet> iterable = list;
+        iterable = braceletRepo.saveAll(iterable);
         List<Bracelet> braceletList = new ArrayList<>();
         iterable.forEach(e->braceletList.add(e));
-        return new ResponseEntity<>(braceletList,OK);
+        return new ResponseEntity<>(list,OK);
     }
 
     @Override
     public ResponseEntity<Bracelet> updateDescription(long id, String description) {
-        return null;
+        Bracelet bracelet = braceletRepo.findById(id);
+        bracelet.setDescription(description);
+        bracelet = braceletRepo.save(bracelet);
+        return new ResponseEntity<>(bracelet,OK);
     }
 
     @Override
     public ResponseEntity deleteItem(Bracelet item) {
-        return null;
+        braceletRepo.delete(item);
+        return new ResponseEntity(OK);
     }
 }

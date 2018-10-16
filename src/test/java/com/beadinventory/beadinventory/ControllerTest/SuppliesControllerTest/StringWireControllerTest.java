@@ -1,6 +1,6 @@
 package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 
-import com.beadinventory.beadinventory.Controller.SuppliesControllers.StringWirelController;
+import com.beadinventory.beadinventory.Controller.SuppliesControllers.StringWireController;
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.BEADING_WIRE;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.CHAIN;
@@ -31,7 +30,7 @@ public class StringWireControllerTest {
     StringWireService mockService;
 
     @InjectMocks
-    StringWirelController mockController;
+    StringWireController mockController;
 
     private StringWire beadingWire;
     private StringWire brassChain;
@@ -110,8 +109,6 @@ public class StringWireControllerTest {
 
 }
 /*
-StringWire getById(@PathVariable("id")long id)
-StringWire createStringWire(@RequestBody StringWire stringingMaterial)
 StringWire updateStringWire(@PathVariable("id")long id, @RequestBody StringWire stringingMaterial)
 ResponseEntity deleteStringWireById(@PathVariable("id") long id)
  */

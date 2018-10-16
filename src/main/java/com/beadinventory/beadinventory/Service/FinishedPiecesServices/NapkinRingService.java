@@ -14,7 +14,7 @@ public class NapkinRingService extends AllFinishedPiecesService<NapkinRing> impl
     }
 
     @Override
-    public ResponseEntity<Long> getTotalCount() {
+    public ResponseEntity<Long> getTotalCount(long count) {
         return null;
     }
 
@@ -44,6 +44,10 @@ public class NapkinRingService extends AllFinishedPiecesService<NapkinRing> impl
 
     @Override
     public ResponseEntity<NapkinRing> updateDescription(long id, String description) {
+        return null;
+    }
+
+    public ResponseEntity<NapkinRing> updateQuantity(long id, int quantity){
         return null;
     }
 

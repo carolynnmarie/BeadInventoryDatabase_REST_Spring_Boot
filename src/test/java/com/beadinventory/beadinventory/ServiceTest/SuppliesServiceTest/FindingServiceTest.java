@@ -144,6 +144,20 @@ public class FindingServiceTest {
     }
 
     @Test
+    public void removeFindingQuantityTest(){
+        given(mockFindingRepo.findById(anyLong())).willReturn(headPin);
+        given(mockFindingRepo.save(any(Finding.class))).willReturn(headPin);
+
+        long expected = 15;
+        ResponseEntity<Finding> response = mockFindingService.removeFindingQuantity(headPin.getId(),5);
+        long actual = response.getBody().getQuantity();
+
+        verify(mockFindingRepo).findById(anyLong());
+        verify(mockFindingRepo).save(any(Finding.class));
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
     public void updateFindingTest(){
         given(mockFindingRepo.save(any(Finding.class))).willReturn(headPin);
 

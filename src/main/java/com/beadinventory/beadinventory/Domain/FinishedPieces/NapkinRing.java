@@ -24,12 +24,12 @@ public class NapkinRing extends AllFinishedPieces {
 
     public NapkinRing(){}
 
-    public NapkinRing(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings,
-                      double price, String description, StringWire stringWire, int quantity, String colorScheme) {
+    public NapkinRing(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings, double price, String description,
+                      StringWire stringWire, String colorScheme, int quantity) {
         super(beads, findings, price, description);
         this.stringWire = stringWire;
-        this.quantity = quantity;
         this.colorScheme = colorScheme;
+        this.quantity = quantity;
     }
 
     public StringWire getStringWire() {
@@ -38,14 +38,6 @@ public class NapkinRing extends AllFinishedPieces {
 
     public void setStringWire(StringWire stringWire) {
         this.stringWire = stringWire;
-    }
-
-    public LinkedHashMap<Finding, Integer> getFindings() {
-        return findings;
-    }
-
-    public void setFindings(LinkedHashMap<Finding, Integer> findings) {
-        this.findings = findings;
     }
 
     public int getQuantity() {
@@ -73,7 +65,7 @@ public class NapkinRing extends AllFinishedPieces {
         } else if(quantity == 6){
             price = 29;
         } else {
-            price = quantity*4.75;
+            price = Math.round(quantity*4.75);
         }
     }
 }

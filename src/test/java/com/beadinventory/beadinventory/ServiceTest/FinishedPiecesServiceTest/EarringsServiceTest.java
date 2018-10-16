@@ -49,7 +49,7 @@ public class EarringsServiceTest {
         findings.put(eyePin,2);
         findings.put(headPin,1);
 
-        this.earrings = new Earrings(beads,15,"dangles",findings,true);
+        this.earrings = new Earrings(beads,findings,15,"dangles",true);
         earrings.setId(1L);
     }
 

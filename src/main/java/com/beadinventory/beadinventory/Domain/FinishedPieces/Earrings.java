@@ -2,47 +2,36 @@ package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 
 
 import javax.persistence.*;
 import java.util.LinkedHashMap;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.FULL_STERLING_SILVER;
-
 @Entity
 @Table(name = "EARRINGS")
 public class Earrings extends AllFinishedPieces {
 
-    @Column(name = "IS_EARWIRE_STERLING_SILVER")
-    private boolean isSterlingSilver;
+    @Column(name = "STERLING_SILVER")
+    private boolean sterlingSilverYorN;
 
     public Earrings(){}
 
-    public Earrings(LinkedHashMap<Bead, Integer> beads, double price, String description, LinkedHashMap<Finding, Integer> findings,
-                    boolean isSterlingSilver) {
+    public Earrings(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings, double price, String description,
+                    boolean sterlingSilverYorN) {
         super(beads, findings, price, description);
-        this.isSterlingSilver = isSterlingSilver;
+        this.sterlingSilverYorN = sterlingSilverYorN;
     }
 
-    public LinkedHashMap<Finding, Integer> getFindings() {
-        return findings;
+    public boolean getSterlingSilverYorN() {
+        return sterlingSilverYorN;
     }
 
-    public void setFindings(LinkedHashMap<Finding, Integer> findings) {
-        this.findings = findings;
-    }
-
-    public boolean isSterlingSilver() {
-        return isSterlingSilver;
-    }
-
-    public void setSterlingSilver(boolean sterlingSilver) {
-        isSterlingSilver = sterlingSilver;
+    public void setSterlingSilverYorN(boolean sterlingSilverYorN) {
+        this.sterlingSilverYorN = sterlingSilverYorN;
     }
 
     @Override
     public void setAutoPrice() {
-        this.price = (isSterlingSilver)?18:15;
+        this.price = (sterlingSilverYorN)?18:15;
     }
 }

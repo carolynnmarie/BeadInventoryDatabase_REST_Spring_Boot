@@ -3,10 +3,14 @@ package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.BookmarkRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.List;
+import java.net.URI;
+import java.util.*;
+
+import static org.springframework.http.HttpStatus.*;
 
 @Service
 public class BookmarkService extends AllFinishedPiecesService<Bookmark> implements AllFinishedPiecesSvsInterface<Bookmark> {
@@ -20,41 +24,68 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
 
     @Override
     public ResponseEntity<List<Bookmark>> getAllItems() {
-        return null;
+        List<Bookmark> list = bookmarkRepo.findAll();
+        return new ResponseEntity<>(list, OK);
     }
 
     @Override
-    public ResponseEntity<Long> getTotalCount() {
-        return null;
+    public ResponseEntity<Long> getTotalCount(long count) {
+        count = bookmarkRepo.count();
+        return new ResponseEntity<>(count,OK);
     }
 
     @Override
     public ResponseEntity<Bookmark> getItemById(long id) {
-        return null;
+        Bookmark bookmark = bookmarkRepo.findById(id);
+        return new ResponseEntity<>(bookmark,OK);
     }
 
     @Override
     public ResponseEntity<Bookmark> createItem(Bookmark item) {
-        return null;
+        updateBeadRepoCount(item);
+        updateFindingRepoCount(item);
+        Bookmark bookmark = bookmarkRepo.save(item);
+        URI newAccountUri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(item.getId())
+                .toUri();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setLocation(newAccountUri);
+        return new ResponseEntity<>(bookmark,responseHeaders,CREATED);
     }
 
     @Override
     public ResponseEntity<Bookmark> updateItem(long id, Bookmark item) {
-        return null;
+        item.setId(id);
+        Bookmark bookmark = bookmarkRepo.save(item);
+        return new ResponseEntity<>(bookmark,OK);
     }
 
     @Override
     public ResponseEntity<List<Bookmark>> updatePriceOfAll(double amountToAdd) {
-        return null;
+        List<Bookmark> bookmarks = bookmarkRepo.findAll();
+        for(Bookmark bookmark:bookmarks){
+            bookmark.setPrice(bookmark.getPrice()+ amountToAdd);
+        }
+        Iterable<Bookmark> iBookmark = bookmarks;
+        iBookmark = bookmarkRepo.saveAll(iBookmark);
+        List<Bookmark> list = new ArrayList<>();
+        iBookmark.forEach(e->list.add(e));
+        return new ResponseEntity<>(list,OK);
     }
 
     @Override
     public ResponseEntity<Bookmark> updateDescription(long id, String description) {
-        return null;
+        Bookmark bookmark = bookmarkRepo.findById(id);
+        bookmark.setDescription(description);
+        bookmark = bookmarkRepo.save(bookmark);
+        return new ResponseEntity<>(bookmark,OK);
     }
 
     @Override
     public ResponseEntity deleteItem(Bookmark item) {
-        return null;
+        bookmarkRepo.delete(item);
+        return new ResponseEntity(OK);
     }
 }

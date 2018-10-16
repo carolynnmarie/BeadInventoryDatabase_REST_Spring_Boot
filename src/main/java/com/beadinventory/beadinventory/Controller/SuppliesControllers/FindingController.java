@@ -14,6 +14,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 
 @RestController
+@RequestMapping(value = "/findings")
 public class FindingController {
 
     private FindingService findingService;
@@ -23,59 +24,58 @@ public class FindingController {
         this.findingService = findingService;
     }
 
-    @RequestMapping(value = "/findings", method = GET)
+    @RequestMapping(value = "", method = GET)
     public List<Finding> findAllFindings(){
         return findingService.getAllFindings().getBody();
     }
 
-    @RequestMapping(value = "/findings/type", method = GET)
+    @RequestMapping(value = "/type", method = GET)
     public List<Finding> findAllOfCategoryType(@RequestBody String type){
         return findingService.getAllOfCategoryType(type).getBody();
     }
 
-    @RequestMapping(value = "/findings/findingCategory", method = GET)
+    @RequestMapping(value = "/findingCategory", method = GET)
     public List<Finding> findAllOfCategory(@RequestParam(value = "findingCategory")FindingCategory findingCategory){
         return findingService.getAllOfCategory(findingCategory).getBody();
     }
 
-    @RequestMapping(value = "/findings/material", method = GET)
+    @RequestMapping(value = "/material", method = GET)
     public List<Finding> findAllOfMaterial(@RequestParam(value = "material")Material material){
         return findingService.getAllOfMaterial(material).getBody();
     }
 
-    @RequestMapping(value = "/findings/category/material", method = GET)
+    @RequestMapping(value = "/category/material", method = GET)
     public List<Finding> findAllOfCategoryAndMaterial(@RequestParam(value = "category") FindingCategory category,
                                                                       @RequestParam(value = "material") Material material){
         return findingService.getAllOfCategoryAndMaterial(category,material).getBody();
     }
 
-    @RequestMapping(value = "/findings/{id}", method = GET)
+    @RequestMapping(value = "/{id}", method = GET)
     public Finding getFindingById(@PathVariable("id") long id){
         return findingService.findById(id).getBody();
     }
 
-    @RequestMapping(value = "/findings", method = POST)
+    @RequestMapping(value = "", method = POST)
     public ResponseEntity<Finding> createFinding(@RequestBody Finding finding){
-
         return findingService.createFinding(finding);
     }
 
-    @RequestMapping(value = "/findings/{id}/quantity", method = PUT)
+    @RequestMapping(value = "/{id}/quantity", method = PUT)
     public Long updateQuantity(@PathVariable("id") long id, @RequestParam(value = "quantity") long quantity){
         return findingService.updateFindingQuantity(id, quantity).getBody().getQuantity();
     }
 
-    @RequestMapping(value = "/findings/{id}", method = PUT)
+    @RequestMapping(value = "/{id}", method = PUT)
     public Finding updateFinding(@PathVariable("id")long id, @RequestBody Finding finding){
         return findingService.updateFinding(id,finding).getBody();
     }
 
-    @RequestMapping(value = "/findings/{id}",method = DELETE)
+    @RequestMapping(value = "/{id}",method = DELETE)
     public ResponseEntity deleteFindingById(@PathVariable("id") long id){
         return findingService.deleteById(id);
     }
 
-    @RequestMapping(value = "/findings", method = DELETE)
+    @RequestMapping(value = "", method = DELETE)
     public ResponseEntity deleteFinding(@RequestBody Finding finding){
         return findingService.deleteFinding(finding);
     }

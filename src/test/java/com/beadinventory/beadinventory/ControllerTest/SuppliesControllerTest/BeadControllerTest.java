@@ -3,6 +3,7 @@ package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.BeadController;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory;
 import com.beadinventory.beadinventory.Service.SuppliesServices.BeadService;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -158,7 +159,7 @@ public class BeadControllerTest {
     @Test
     public void deleteBeadByIdTest(){
         ResponseEntity expected = new ResponseEntity(OK);
-        given(mockBeadService.deleteBeadById(2L)).willReturn(expected);
+        given(mockBeadService.deleteBeadById(anyLong())).willReturn(expected);
         ResponseEntity actual = mockBeadController.deleteBeadById(2L);
 
         verify(mockBeadService).deleteBeadById(anyLong());
@@ -167,7 +168,31 @@ public class BeadControllerTest {
 
     @Test
     public void deleteBeadTest(){
+        ResponseEntity expected = new ResponseEntity(OK);
+        given(mockBeadService.deleteBead(any(Bead.class))).willReturn(expected);
+        ResponseEntity actual = mockBeadController.deleteBead(bead3);
 
+        verify(mockBeadService).deleteBead(any(Bead.class));
+        Assert.assertEquals(expected,actual);
     }
 
+    @Test
+    public void getAllOfMaterialCategoryTest(){
+        MaterialCategory category = MaterialCategory.SEMI_PRECIOUS_STONE;
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead2,bead3,bead4,bead5));
+        given(mockBeadService.getAllBeads()).willReturn(new ResponseEntity<>(list, OK));
+
+        List<Bead> expected = new ArrayList<>(Arrays.asList(bead1,bead4,bead5,bead2));
+        List<Bead> actual = mockBeadController.getAllOfMaterialCategory(category);
+
+        verify(mockBeadService).getAllBeads();
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void findBeadQuantityTest(){
+        long expected = 20L;
+        long actual = mockBeadController.findBeadQuantity(bead1);
+        Assert.assertEquals(expected,actual);
+    }
 }

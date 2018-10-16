@@ -16,7 +16,7 @@ public class WineCharmService extends AllFinishedPiecesService implements AllFin
     }
 
     @Override
-    public ResponseEntity<Long> getTotalCount() {
+    public ResponseEntity<Long> getTotalCount(long count) {
         return null;
     }
 
@@ -42,6 +42,10 @@ public class WineCharmService extends AllFinishedPiecesService implements AllFin
 
     @Override
     public ResponseEntity<WineCharm> updateDescription(long id, String description) {
+        return null;
+    }
+
+    public ResponseEntity<WineCharm> updateQuantity(long id, int quantity){
         return null;
     }
 

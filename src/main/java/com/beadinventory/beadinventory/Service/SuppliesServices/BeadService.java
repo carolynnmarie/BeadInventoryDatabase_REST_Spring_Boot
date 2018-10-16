@@ -92,8 +92,8 @@ public class BeadService {
         Bead bead = beadRepository.findById(beadId);
         Long updatedQuantity = bead.getQuantity() - quantityToRemove;
         bead.setQuantity(updatedQuantity);
-        bead = beadRepository.save(bead);
-        return new ResponseEntity<>(bead,OK);
+        Bead bead2 = beadRepository.save(bead);
+        return new ResponseEntity<>(bead2,OK);
     }
 
     public ResponseEntity<Bead> updateBead(Long id, Bead bead){

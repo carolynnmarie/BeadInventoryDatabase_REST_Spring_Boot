@@ -2,6 +2,7 @@ package com.beadinventory.beadinventory.Repository.FinishedPiecesRepos;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Necklace;
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
 import org.springframework.stereotype.Repository;
 
@@ -11,10 +12,7 @@ import java.util.List;
 public interface NecklaceRepo extends AllFinishedPiecesRepo<Necklace> {
 
     List<Necklace> findAllByStringWireCategory(StringWireCategory category);
-
     List<Necklace> findNecklacesByHasNaturalStonesTrue();
-
     List<Necklace> findNecklacesByHasSwarovskiTrue();
-
-    Necklace findById(long id);
+    List<Necklace> findNecklacesByClasp(FindingCategory clasp);
 }

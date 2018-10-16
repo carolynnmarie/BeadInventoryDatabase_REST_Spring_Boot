@@ -6,6 +6,7 @@ import javafx.beans.DefaultProperty;
 
 import javax.persistence.Id;
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 
@@ -17,11 +18,13 @@ public abstract class AllFinishedPieces {
     @Column(name = "ID")
     private long id;
 
+    @Lob
     @Column(name = "BEADS")
-    protected LinkedHashMap<Bead,Integer> beads;
+    protected HashMap<Bead,Integer> beads;
 
+    @Lob
     @Column(name = "FINDINGS")
-    protected LinkedHashMap<Finding, Integer> findings;
+    protected HashMap<Finding, Integer> findings;
 
     @Column(name = "PRICE")
     protected double price;
@@ -32,19 +35,27 @@ public abstract class AllFinishedPieces {
     public AllFinishedPieces() {
     }
 
-    public AllFinishedPieces(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding,Integer> findings,  double price, String description) {
+    public AllFinishedPieces(HashMap<Bead, Integer> beads, HashMap<Finding,Integer> findings,  double price, String description) {
         this.beads = beads;
         this.findings = findings;
         this.price = price;
         this.description = description;
     }
 
-    public LinkedHashMap<Bead, Integer> getBeads() {
+    public HashMap<Bead, Integer> getBeads() {
         return beads;
     }
 
-    public void setBeads(LinkedHashMap<Bead, Integer> beads) {
+    public void setBeads(HashMap<Bead, Integer> beads) {
         this.beads = beads;
+    }
+
+    public HashMap<Finding, Integer> getFindings() {
+        return findings;
+    }
+
+    public void setFindings(HashMap<Finding, Integer> findings) {
+        this.findings = findings;
     }
 
     public void setId(long id) {

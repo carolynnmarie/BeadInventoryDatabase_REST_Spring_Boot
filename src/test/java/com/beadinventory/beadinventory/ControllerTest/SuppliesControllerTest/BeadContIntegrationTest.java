@@ -13,18 +13,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.*;
 
+import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.http.MediaType.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.*;
-
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
 import static org.springframework.http.HttpStatus.*;
+
 
 @SuppressWarnings("unchecked")
 @RunWith(SpringRunner.class)

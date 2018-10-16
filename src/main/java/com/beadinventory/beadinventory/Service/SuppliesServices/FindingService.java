@@ -81,6 +81,16 @@ public class FindingService {
         return new ResponseEntity<>(finding1,OK);
     }
 
+    public ResponseEntity<Finding> removeFindingQuantity(long findingId, long quantityToRemove){
+        Finding finding = findingRepo.findById(findingId);
+        long lowerQuantity = finding.getQuantity()-quantityToRemove;
+        finding.setQuantity(lowerQuantity);
+        Finding finding1 = findingRepo.save(finding);
+        return new ResponseEntity<>(finding1,OK);
+
+    }
+
+
     public ResponseEntity<Finding> updateFinding(Long id, Finding finding){
         finding.setId(id);
         findingRepo.save(finding);

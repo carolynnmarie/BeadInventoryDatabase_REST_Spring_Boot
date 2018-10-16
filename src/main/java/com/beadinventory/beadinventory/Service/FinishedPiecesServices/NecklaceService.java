@@ -2,6 +2,8 @@ package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Necklace;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
 import com.beadinventory.beadinventory.InventoryManager;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.NecklaceRepo;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
@@ -22,7 +24,6 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
 
     private NecklaceRepo necklaceRepo;
 
-
     @Autowired
     public NecklaceService(NecklaceRepo necklaceRepo){
         this.necklaceRepo = necklaceRepo;
@@ -34,8 +35,24 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
         return null;
     }
 
+    public ResponseEntity<List<Necklace>> getAllOfStringWireCategory(StringWireCategory category){
+        return null;
+    }
+
+    public ResponseEntity<List<Necklace>> getAllWithNaturalStones(){
+        return null;
+    }
+
+    public ResponseEntity<List<Necklace>> getAllWithSwarovski(){
+        return null;
+    }
+
+    public ResponseEntity<List<Necklace>> getAllOfClaspType(FindingCategory clasp){
+        return null;
+    }
+
     @Override
-    public ResponseEntity<Long> getTotalCount() {
+    public ResponseEntity<Long> getTotalCount(long count) {
         return null;
     }
 
@@ -48,6 +65,7 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
     @Override
     public ResponseEntity<Necklace> createItem(Necklace necklace){
         updateBeadRepoCount(necklace);
+        updateFindingRepoCount(necklace);
         Necklace necklace1 = necklaceRepo.save(necklace);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()

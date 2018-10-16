@@ -36,7 +36,7 @@ public class WineCharm extends AllFinishedPieces {
         } else if(quantity == 6){
             price = 23;
         } else{
-            price = quantity*3.75;
+            price = Math.round(quantity*3.75);
         }
     }
 

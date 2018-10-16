@@ -20,9 +20,6 @@ public class Bracelet extends AllFinishedPieces {
     @Column(name = "STRINGING_MATERIAL")
     private StringWire stringWire;
 
-    @Column(name = "FINDINGS")
-    private LinkedHashMap<Finding, Integer> findings;
-
     @Column(name = "HAS_SWAROVSKI")
     private boolean hasSwarovski;
 
@@ -32,44 +29,19 @@ public class Bracelet extends AllFinishedPieces {
     @Column(name = "LENGTH")
     private int lengthInch;
 
-    @Column(name = "HOURS_SPENT")
-    private int hoursSpent;
-
-    @Column(name = "DIFFICULTY_LEVEL")
-    private double difficultyLevel;
-
-
 
     public Bracelet(){}
 
-    public Bracelet(LinkedHashMap<Bead, Integer> beads,  int hoursSpent, double difficultyLevel, double price, String description,
-                    boolean hasNaturalStones, boolean hasSwarovski,BraceletType braceletType, StringWire stringWire,
-                    LinkedHashMap<Finding, Integer> findings, int lengthInch) {
+    public Bracelet(LinkedHashMap<Bead, Integer> beads,LinkedHashMap<Finding, Integer> findings, double price, String description,
+                    BraceletType braceletType, StringWire stringWire, boolean hasSwarovski, boolean hasNaturalStones, int lengthInch){
         super(beads, findings, price, description);
         this.braceletType = braceletType;
         this.stringWire = stringWire;
         this.hasSwarovski = hasSwarovski;
         this.hasNaturalStones = hasNaturalStones;
-        this.hoursSpent = hoursSpent;
-        this.difficultyLevel = difficultyLevel;
         this.lengthInch = lengthInch;
     }
 
-    public int getHoursSpent() {
-        return hoursSpent;
-    }
-
-    public void setHoursSpent(int hoursSpent) {
-        this.hoursSpent = hoursSpent;
-    }
-
-    public double getDifficultyLevel() {
-        return difficultyLevel;
-    }
-
-    public void setDifficultyLevel(double difficultyLevel) {
-        this.difficultyLevel = difficultyLevel;
-    }
 
     public StringWire getStringWire() {
         return stringWire;
@@ -77,14 +49,6 @@ public class Bracelet extends AllFinishedPieces {
 
     public void setStringWire(StringWire stringWire) {
         this.stringWire = stringWire;
-    }
-
-    public LinkedHashMap<Finding, Integer> getFindings() {
-        return findings;
-    }
-
-    public void setFindings(LinkedHashMap<Finding, Integer> findings) {
-        this.findings = findings;
     }
 
     public BraceletType getBraceletType() {
@@ -121,8 +85,8 @@ public class Bracelet extends AllFinishedPieces {
 
     @Override
     public void setAutoPrice() {
-        this.price = (braceletType.equals(CHILD)||braceletType.equals(MEDICAL))?15:18;
-        price += (hasSwarovski || hasNaturalStones)? 2:0;
+        this.price = (getBraceletType().equals(CHILD)||getBraceletType().equals(MEDICAL))?15:18;
+        price += (isHasSwarovski() || isHasNaturalStones())? 2:0;
     }
 
 }

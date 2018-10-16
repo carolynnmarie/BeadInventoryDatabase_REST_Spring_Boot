@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AllFinishedPiecesSvsInterface<T extends AllFinishedPieces> {
     ResponseEntity<List<T>> getAllItems();
-    ResponseEntity<Long> getTotalCount();
+    ResponseEntity<Long> getTotalCount(long count);
     ResponseEntity<T> getItemById(long id);
     ResponseEntity<T> createItem(T item);
     ResponseEntity<T> updateItem(long id, T item);

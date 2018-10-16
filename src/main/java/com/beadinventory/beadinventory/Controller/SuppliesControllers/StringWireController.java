@@ -13,12 +13,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @RequestMapping(value = "/stringing_materials")
-public class StringWirelController {
+public class StringWireController {
 
     private StringWireService sMService;
 
     @Autowired
-    public StringWirelController(StringWireService sMService){
+    public StringWireController(StringWireService sMService){
         this.sMService = sMService;
     }
 

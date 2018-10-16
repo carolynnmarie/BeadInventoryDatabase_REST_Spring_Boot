@@ -3,7 +3,7 @@ package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Earrings;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.EarringsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -26,8 +26,13 @@ public class EarringsService extends AllFinishedPiecesService<Earrings> implemen
     }
 
     @Override
-    public ResponseEntity<Long> getTotalCount() {
+    public ResponseEntity<Long> getTotalCount(long count) {
         return new ResponseEntity<>(earringsRepo.count(),OK) ;
+    }
+
+    public ResponseEntity<List<Earrings>> getAllSterlingSilver(){
+        List<Earrings> list = earringsRepo.findEarringsBySterlingSilverYorNIsTrue();
+        return new ResponseEntity<>(list,OK);
     }
 
     @Override

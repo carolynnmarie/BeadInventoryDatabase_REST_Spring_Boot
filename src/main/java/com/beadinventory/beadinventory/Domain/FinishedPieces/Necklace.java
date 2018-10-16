@@ -22,6 +22,7 @@ public class Necklace extends AllFinishedPieces {
     @Column(name = "STRINGING_MATERIAL_CATEGORY")
     private StringWireCategory stringWireCategory;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "CLASP")
     private FindingCategory clasp;
 
@@ -54,15 +55,6 @@ public class Necklace extends AllFinishedPieces {
         this.stringWireCategory = stringWire.getStringWireCategory();
         this.hoursSpent = hoursSpent;
         this.difficultyLevel =  difficultyLevel;
-    }
-
-
-    public LinkedHashMap<Finding, Integer> getFindings() {
-        return findings;
-    }
-
-    public void setFindings(LinkedHashMap<Finding, Integer> findings) {
-        this.findings = findings;
     }
 
     public StringWire getStringWire() {
