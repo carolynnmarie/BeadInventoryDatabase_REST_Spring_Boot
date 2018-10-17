@@ -43,8 +43,8 @@ public class StringWireController {
     }
 
     @RequestMapping(value = "/stringing_materials", method = POST)
-    public StringWire createStringWire(@RequestBody StringWire stringWire){
-        return sMService.createStringWire(stringWire).getBody();
+    public ResponseEntity<StringWire> createStringWire(@RequestBody StringWire stringWire){
+        return sMService.createStringWire(stringWire);
     }
 
     @RequestMapping(value = "/stringing_materials/{id}",method = PUT)

@@ -92,7 +92,7 @@ public class StringWireControllerTest {
     public void createStringWireTest(){
         StringWire expected = leatherCord;
         given(mockService.createStringWire(leatherCord)).willReturn(new ResponseEntity<>(expected,CREATED));
-        StringWire actual = mockController.createStringWire(leatherCord);
+        StringWire actual = mockController.createStringWire(leatherCord).getBody();
 
         verify(mockService).createStringWire(any(StringWire.class));
         Assert.assertEquals(expected,actual);

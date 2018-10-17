@@ -4,12 +4,13 @@ package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.StringWireController;
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -18,6 +19,8 @@ import java.util.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -74,13 +77,49 @@ public class StringWireContIntegrationTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    public void getByIdIntegTest() throws Exception{
+        given(mockController.getById(brassChain.getId())).willReturn(brassChain);
+
+        mockMvc.perform(get("/stringing_materials/{id}",brassChain.getId())
+                .characterEncoding("utf-8")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void createStringWireIntegTest() throws Exception{
+        given(mockController.createStringWire(brassChain)).willReturn(mock(ResponseEntity.class));
+
+        String body = mapper.writeValueAsString(brassChain);
+        mockMvc.perform(post("/stringing_materials")
+                .content(body)
+                .contentType(APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void updateStringWireIntegTest() throws Exception{
+        given(mockController.updateStringWire(beadingWire.getId(),beadingWire)).willReturn(beadingWire);
+
+        String body = mapper.writeValueAsString(beadingWire);
+        mockMvc.perform(put("/stringing_materials/{id}",beadingWire.getId())
+                .content(body)
+                .contentType(APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void deleteStringWireByIdIntegTest() throws Exception{
+        given(mockController.deleteStringWireById(beadingWire.getId())).willReturn(new ResponseEntity(OK));
+
+        mockMvc.perform(delete("/stringing_materials/{id}",beadingWire.getId())
+                .characterEncoding("utf-8")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
 }
-/*
-List<StringWire> getAllOfCategory(@RequestParam(value = "category")StringWireCategory category)
-List<StringWire> getAllOfMaterial(@RequestParam(value = "material")Material material)
-StringWire getById(@PathVariable("id")long id)
-StringWire createStringWire(@RequestBody StringWire stringWire)
-StringWire updateStringWire(@PathVariable("id")long id,
-                                       @RequestBody StringWire stringWire)
-ResponseEntity deleteStringWireById(@PathVariable("id") long id)
- */
