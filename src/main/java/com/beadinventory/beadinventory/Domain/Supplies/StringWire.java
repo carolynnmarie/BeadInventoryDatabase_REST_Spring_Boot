@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "stringing_materials")
 public class StringWire implements Serializable {
 
     @Id

@@ -100,15 +100,22 @@ public class StringWireControllerTest {
 
     @Test
     public void updateStringWireTest(){
+        StringWire expected = leatherCord;
+        given(mockService.updateStringWire(leatherCord.getId(),leatherCord)).willReturn(new ResponseEntity<>(leatherCord,OK));
+        StringWire actual = mockController.updateStringWire(leatherCord.getId(),leatherCord);
 
+        verify(mockService).updateStringWire(anyLong(),any(StringWire.class));
+        Assert.assertEquals(expected,actual);
     }
 
     @Test
-    public void deleteStringWireByIdTest(){}
+    public void deleteStringWireByIdTest(){
+        ResponseEntity expected = new ResponseEntity(OK);
+        given(mockService.deleteById(leatherCord.getId())).willReturn(expected);
+        ResponseEntity actual = mockController.deleteStringWireById(leatherCord.getId());
 
+        verify(mockService).deleteById(anyLong());
+        Assert.assertEquals(expected,actual);
+    }
 
 }
-/*
-StringWire updateStringWire(@PathVariable("id")long id, @RequestBody StringWire stringingMaterial)
-ResponseEntity deleteStringWireById(@PathVariable("id") long id)
- */

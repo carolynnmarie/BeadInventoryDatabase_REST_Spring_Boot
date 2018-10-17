@@ -34,24 +34,24 @@ public class BeadController {
     }
 
     @RequestMapping(value = "/beads/material", method = GET)
-    public List<Bead> findAllOfMaterial(@RequestParam(value = "material")Material material){
+    public List<Bead> findAllOfMaterial(@RequestAttribute(value = "material")Material material){
         return beadService.getAllOfMaterial(material).getBody();
     }
 
     @RequestMapping(value = "/beads/material/color",method = GET)
-    public List<Bead> findAllOfMaterialAndColor(@RequestParam(value = "material") Material material,
-                                                @RequestParam(value = "color") String color){
+    public List<Bead> findAllOfMaterialAndColor(@RequestAttribute(value = "material") Material material,
+                                                @RequestAttribute(value = "color") String color){
         return beadService.getAllOfMaterialAndColor(material,color).getBody();
     }
 
     @RequestMapping(value = "/beads/material/size",method = GET)
-    public List<Bead> findAllOfMaterialAndSize(@RequestParam(value ="material") Material material,
-                                               @RequestParam(value = "size") int size){
+    public List<Bead> findAllOfMaterialAndSize(@RequestAttribute(value ="material") Material material,
+                                               @RequestAttribute(value = "size") int size){
         return beadService.getAllOfMaterialAndSize(material,size).getBody();
     }
 
     @RequestMapping(value = "/beads/quantity", method = RequestMethod.GET)
-    public List<Bead> findAllWithQuantityLessThan(@RequestParam(value = "quantity") long quantity){
+    public List<Bead> findAllWithQuantityLessThan(@RequestAttribute(value = "quantity") long quantity){
         ResponseEntity<List<Bead>> response = beadService.getAllQuantityLessThan(quantity);
         return response.getBody();
     }
@@ -68,7 +68,7 @@ public class BeadController {
     }
 
     @RequestMapping(value = "/beads/{id}/quantity", method = PUT)
-    public Long updateBeadQuantity(@PathVariable("id") long id, @RequestParam(value = "quantity") long quantity){
+    public Long updateBeadQuantity(@PathVariable("id") long id, @RequestAttribute(value = "quantity") long quantity){
         return beadService.updateBeadQuantity(id,quantity).getBody().getQuantity();
     }
 

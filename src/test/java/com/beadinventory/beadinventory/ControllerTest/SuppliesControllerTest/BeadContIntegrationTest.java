@@ -3,6 +3,7 @@ package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.BeadController;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -17,6 +18,9 @@ import java.util.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.http.MediaType.*;
@@ -39,16 +43,11 @@ public class BeadContIntegrationTest {
     private ObjectMapper mapper = new ObjectMapper();
 
     TreeSet<String> brands = new TreeSet<>(Arrays.asList("Bead Gallery"));
-    private Bead bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20, "translucent purple",
-            0.2, brands);
-    private Bead bead2 = new Bead(JASPER, ROUND, "black", 4, "good", 10, "",
-            0.1, brands);
-    private Bead bead3 = new Bead(STONE, ROUND, "tan", 6, "ok", 7,
-            "with design cut into bead", 0.05, brands);
-    private Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple",
-            0.2,brands);
-    private Bead bead5 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple",
-            0.2,brands);
+    private Bead bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20, "translucent purple", 0.2, brands);
+    private Bead bead2 = new Bead(JASPER, ROUND, "black", 4, "good", 10, "", 0.1, brands);
+    private Bead bead3 = new Bead(STONE, ROUND, "tan", 6, "ok", 7, "with design cut into bead", 0.05, brands);
+    private Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple", 0.2,brands);
+    private Bead bead5 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple", 0.2,brands);
 
 
 
@@ -81,11 +80,10 @@ public class BeadContIntegrationTest {
     @Test
     public void findAllOfMaterialIntegTest() throws Exception{
         List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
-        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
         given(mockBeadController.findAllOfMaterial(AMETHYST)).willReturn(list);
 
-        mockMvc.perform(get("/beads")
-                .param("material",AMETHYST.toString())
+        mockMvc.perform(get("/beads/material")
+                .requestAttr("material",AMETHYST)
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -96,12 +94,11 @@ public class BeadContIntegrationTest {
     @Test
     public void findAllOfMaterialAndColorIntegTest() throws Exception{
         List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
-        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
         given(mockBeadController.findAllOfMaterialAndColor(AMETHYST,"purple")).willReturn(list);
 
-        mockMvc.perform(get("/beads")
-                .param("material",AMETHYST.toString())
-                .param("color","purple")
+        mockMvc.perform(get("/beads/material/color")
+                .requestAttr("material", AMETHYST)
+                .requestAttr("color","purple")
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -113,9 +110,9 @@ public class BeadContIntegrationTest {
         ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
         given(mockBeadController.findAllOfMaterialAndSize(AMETHYST,4)).willReturn(list);
 
-        mockMvc.perform(get("/beads")
-                .param("material",AMETHYST.toString())
-                .param("size", String.valueOf(4))
+        mockMvc.perform(get("/beads/material/size",any(Material.class), anyInt())
+                .requestAttr("material",AMETHYST)
+                .requestAttr("size", 4)
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -124,11 +121,10 @@ public class BeadContIntegrationTest {
     @Test
     public void findAllWithQuantityLessThanIntegTest() throws Exception{
         List<Bead> list = new ArrayList<>(Arrays.asList(bead2,bead3,bead5));
-        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
         given(mockBeadController.findAllWithQuantityLessThan(12L)).willReturn(list);
 
-        mockMvc.perform(get("/beads")
-                .param("quantity",String.valueOf(12L))
+        mockMvc.perform(get("/beads/quantity",anyLong())
+                .requestAttr("quantity",12L)
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -136,7 +132,6 @@ public class BeadContIntegrationTest {
 
     @Test
     public void getBeadByIdIntegTest() throws Exception{
-        ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,OK);
         given(mockBeadController.findBeadById(1L)).willReturn(bead1);
 
         mockMvc.perform(get("/beads/{id}",1L)
@@ -160,11 +155,10 @@ public class BeadContIntegrationTest {
 
     @Test
     public void updateBeadQuantityIntegTest() throws Exception{
-        ResponseEntity<Bead> entity = new ResponseEntity<>(bead1,OK);
-        given(mockBeadController.updateBeadQuantity(1L,10)).willReturn(10L);
+        given(mockBeadController.updateBeadQuantity(bead1.getId(),10)).willReturn(10L);
 
-        mockMvc.perform(put("/beads/{id}/quantity",bead1.getId())
-                .param("quantity",String.valueOf(10L))
+        mockMvc.perform(put("/beads/{id}/quantity",bead1.getId(),10L)
+                .requestAttr("quantity",10L)
                 .contentType(APPLICATION_JSON)
                 .characterEncoding("utf-8"))
                 .andExpect(status().isOk());
@@ -172,7 +166,6 @@ public class BeadContIntegrationTest {
 
     @Test
     public void updateBeadIntegTest() throws Exception{
-        ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,OK);
         given(mockBeadController.updateBead(bead1.getId(),bead1)).willReturn(bead1);
 
         String body = mapper.writeValueAsString(bead1);

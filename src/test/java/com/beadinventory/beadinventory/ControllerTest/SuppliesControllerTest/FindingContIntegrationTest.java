@@ -3,6 +3,8 @@ package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.FindingController;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -59,7 +61,7 @@ public class FindingContIntegrationTest {
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin,headPin));
         given(mockFindingController.findAllOfCategoryType("pin")).willReturn(list);
 
-        mockMvc.perform(get("/findings")
+        mockMvc.perform(get("/findings/type")
                 .content("pin")
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
@@ -71,7 +73,8 @@ public class FindingContIntegrationTest {
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin));
         given(mockFindingController.findAllOfCategory(EYE_PIN)).willReturn(list);
 
-        mockMvc.perform(get("/findings",EYE_PIN)
+        mockMvc.perform(get("/findings/findingCategory",FindingCategory.class)
+                .requestAttr("findingCategory",EYE_PIN)
                 .contentType(APPLICATION_JSON)
                 .characterEncoding("utf-8"))
                 .andExpect(status().isOk());
@@ -82,7 +85,8 @@ public class FindingContIntegrationTest {
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin,headPin));
         given(mockFindingController.findAllOfMaterial(BRIGHT_SILVER_PLATED)).willReturn(list);
 
-        mockMvc.perform(get("/findings",BRIGHT_SILVER_PLATED)
+        mockMvc.perform(get("/findings/material",Material.class)
+                .requestAttr("material",BRIGHT_SILVER_PLATED)
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -93,7 +97,9 @@ public class FindingContIntegrationTest {
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin));
         given(mockFindingController.findAllOfCategoryAndMaterial(EYE_PIN,BRIGHT_SILVER_PLATED)).willReturn(list);
 
-        mockMvc.perform((get("/findings",EYE_PIN,BRIGHT_SILVER_PLATED)
+        mockMvc.perform((get("/findings/findingCategory/material",FindingCategory.class,Material.class)
+                .requestAttr("findingCategory",EYE_PIN)
+                .requestAttr("material",BRIGHT_SILVER_PLATED)
                 .contentType(APPLICATION_JSON)
                 .characterEncoding("utf-8")))
                 .andExpect(status().isOk());

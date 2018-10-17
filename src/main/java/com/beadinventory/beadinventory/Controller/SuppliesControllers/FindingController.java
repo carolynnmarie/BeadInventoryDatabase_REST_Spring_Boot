@@ -35,18 +35,18 @@ public class FindingController {
     }
 
     @RequestMapping(value = "/findingCategory", method = GET)
-    public List<Finding> findAllOfCategory(@RequestParam(value = "findingCategory")FindingCategory findingCategory){
+    public List<Finding> findAllOfCategory(@RequestAttribute(value = "findingCategory")FindingCategory findingCategory){
         return findingService.getAllOfCategory(findingCategory).getBody();
     }
 
     @RequestMapping(value = "/material", method = GET)
-    public List<Finding> findAllOfMaterial(@RequestParam(value = "material")Material material){
+    public List<Finding> findAllOfMaterial(@RequestAttribute(value = "material")Material material){
         return findingService.getAllOfMaterial(material).getBody();
     }
 
-    @RequestMapping(value = "/category/material", method = GET)
-    public List<Finding> findAllOfCategoryAndMaterial(@RequestParam(value = "category") FindingCategory category,
-                                                                      @RequestParam(value = "material") Material material){
+    @RequestMapping(value = "/findingCategory/material", method = GET)
+    public List<Finding> findAllOfCategoryAndMaterial(@RequestAttribute(value = "findingCategory") FindingCategory category,
+                                                                      @RequestAttribute(value = "material") Material material){
         return findingService.getAllOfCategoryAndMaterial(category,material).getBody();
     }
 
@@ -61,7 +61,7 @@ public class FindingController {
     }
 
     @RequestMapping(value = "/{id}/quantity", method = PUT)
-    public Long updateQuantity(@PathVariable("id") long id, @RequestParam(value = "quantity") long quantity){
+    public Long updateQuantity(@PathVariable("id") long id, @RequestAttribute(value = "quantity") long quantity){
         return findingService.updateFindingQuantity(id, quantity).getBody().getQuantity();
     }
 
