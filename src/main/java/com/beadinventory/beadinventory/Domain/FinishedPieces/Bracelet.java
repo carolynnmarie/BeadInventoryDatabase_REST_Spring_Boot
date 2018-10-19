@@ -59,7 +59,7 @@ public class Bracelet extends AllFinishedPieces {
         this.braceletType = braceletType;
     }
 
-    public boolean isHasSwarovski() {
+    public boolean getHasSwarovski() {
         return hasSwarovski;
     }
 
@@ -67,7 +67,7 @@ public class Bracelet extends AllFinishedPieces {
         this.hasSwarovski = hasSwarovski;
     }
 
-    public boolean isHasNaturalStones() {
+    public boolean getHasNaturalStones() {
         return hasNaturalStones;
     }
 
@@ -86,7 +86,7 @@ public class Bracelet extends AllFinishedPieces {
     @Override
     public void setAutoPrice() {
         this.price = (getBraceletType().equals(CHILD)||getBraceletType().equals(MEDICAL))?15:18;
-        price += (isHasSwarovski() || isHasNaturalStones())? 2:0;
+        price += (getHasSwarovski() || getHasNaturalStones())? 2:0;
     }
 
 }

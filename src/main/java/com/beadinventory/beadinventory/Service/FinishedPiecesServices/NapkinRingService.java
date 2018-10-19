@@ -1,21 +1,21 @@
 package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 
-import com.beadinventory.beadinventory.Domain.FinishedPieces.NapkinRing;
+import com.beadinventory.beadinventory.Domain.FinishedPieces.NapkinRingSet;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class NapkinRingService extends AllFinishedPiecesService<NapkinRing> implements AllFinishedPiecesSvsInterface<NapkinRing> {
+public class NapkinRingService extends AllFinishedPiecesService<NapkinRingSet> implements AllFinishedPiecesSvsInterface<NapkinRingSet> {
     @Override
-    public ResponseEntity<List<NapkinRing>> getAllItems() {
+    public ResponseEntity<List<NapkinRingSet>> getAllItems() {
         return null;
     }
 
 
     @Override
-    public ResponseEntity<NapkinRing> getItemById(long id) {
+    public ResponseEntity<NapkinRingSet> getItemById(long id) {
         return null;
     }
 
@@ -24,31 +24,31 @@ public class NapkinRingService extends AllFinishedPiecesService<NapkinRing> impl
     }
 
     @Override
-    public ResponseEntity<NapkinRing> createItem(NapkinRing item) {
+    public ResponseEntity<NapkinRingSet> createItem(NapkinRingSet item) {
         return null;
     }
 
     @Override
-    public ResponseEntity<NapkinRing> updateItem(long id, NapkinRing item) {
+    public ResponseEntity<NapkinRingSet> updateItem(long id, NapkinRingSet item) {
         return null;
     }
 
     @Override
-    public ResponseEntity<List<NapkinRing>> updatePriceOfAll(double amountToAdd) {
+    public ResponseEntity<List<NapkinRingSet>> updatePriceOfAll(double amountToAdd) {
         return null;
     }
 
     @Override
-    public ResponseEntity<NapkinRing> updateDescription(long id, String description) {
+    public ResponseEntity<NapkinRingSet> updateDescription(long id, String description) {
         return null;
     }
 
-    public ResponseEntity<NapkinRing> updateQuantity(long id, int quantity){
+    public ResponseEntity<NapkinRingSet> updateQuantity(long id, int quantity){
         return null;
     }
 
     @Override
-    public ResponseEntity deleteItem(NapkinRing item) {
+    public ResponseEntity deleteItem(NapkinRingSet item) {
         return null;
     }
 }

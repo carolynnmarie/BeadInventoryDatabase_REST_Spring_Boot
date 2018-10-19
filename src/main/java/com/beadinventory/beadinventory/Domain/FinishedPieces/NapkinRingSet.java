@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 
 @Entity
 @Table(name = "NAPKIN_RING")
-public class NapkinRing extends AllFinishedPieces {
+public class NapkinRingSet extends AllFinishedPieces {
 
 
     @Column(name = "STRINGING_MATERIAL")
@@ -21,15 +21,15 @@ public class NapkinRing extends AllFinishedPieces {
     @Column(name = "QUANTITY")
     private int quantity;
 
+    public NapkinRingSet(){}
 
-    public NapkinRing(){}
-
-    public NapkinRing(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings, double price, String description,
-                      StringWire stringWire, String colorScheme, int quantity) {
+    public NapkinRingSet(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings, double price, String description,
+                         StringWire stringWire, String colorScheme, int quantity) {
         super(beads, findings, price, description);
         this.stringWire = stringWire;
         this.colorScheme = colorScheme;
         this.quantity = quantity;
+
     }
 
     public StringWire getStringWire() {
@@ -56,16 +56,10 @@ public class NapkinRing extends AllFinishedPieces {
         this.colorScheme = colorScheme;
     }
 
-
-
     @Override
     public void setAutoPrice() {
-        if(quantity == 4){
-            price = 20;
-        } else if(quantity == 6){
-            price = 29;
-        } else {
-            price = Math.round(quantity*4.75);
-        }
+        price = (quantity == 4)?20:(quantity == 6)?29: Math.round(quantity*4.75);
     }
+
+
 }

@@ -19,10 +19,6 @@ public class Necklace extends AllFinishedPieces {
     private StringWire stringWire;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "STRINGING_MATERIAL_CATEGORY")
-    private StringWireCategory stringWireCategory;
-
-    @Enumerated(value = EnumType.STRING)
     @Column(name = "CLASP")
     private FindingCategory clasp;
 
@@ -52,7 +48,6 @@ public class Necklace extends AllFinishedPieces {
         this.clasp = clasp;
         this.hasSwarovski = hasSwarovski;
         this.hasNaturalStones = hasNaturalStones;
-        this.stringWireCategory = stringWire.getStringWireCategory();
         this.hoursSpent = hoursSpent;
         this.difficultyLevel =  difficultyLevel;
     }
@@ -89,10 +84,6 @@ public class Necklace extends AllFinishedPieces {
         this.lengthInch = lengthInch;
     }
 
-    public String getClaspString(){
-        return clasp.toString();
-    }
-
     public FindingCategory getClasp() {
         return clasp;
     }
@@ -101,23 +92,9 @@ public class Necklace extends AllFinishedPieces {
         this.clasp = clasp;
     }
 
-    public StringWireCategory getStringWireCategory() {
-        return stringWireCategory;
+    public boolean getHasSwarovski() {
+        return hasSwarovski;
     }
-
-    public void setStringWireCategory(StringWireCategory stringWireCategory) {
-        this.stringWireCategory = stringWireCategory;
-    }
-
-    public String describeNecklace(){
-        String description = "The necklace is " + getLengthInch() + " inches long, on " + getStringWire() + ", with a " +
-                getClaspString() + " clasp";
-        description += (getHasNaturalStones())?", with natural stone beads":"";
-        description += (getHasSwarovski())?", with Swarovski crystals":"";
-        return description;
-    }
-
-    public boolean getHasSwarovski() { return hasSwarovski; }
 
     public void setHasSwarovski(boolean hasSwarovski) {
         this.hasSwarovski = hasSwarovski;
@@ -129,6 +106,14 @@ public class Necklace extends AllFinishedPieces {
 
     public void setHasNaturalStones(boolean hasNaturalStones) {
         this.hasNaturalStones = hasNaturalStones;
+    }
+
+    public String describeNecklace(){
+        String description = "The necklace is " + getLengthInch() + " inches long, on " + getStringWire().getStringWireCategory().toString() + ", with a " +
+                clasp.toString();
+        description += (getHasNaturalStones())?", with natural stone beads":"";
+        description += (getHasSwarovski())?", with Swarovski crystals":"";
+        return description;
     }
 
     @Override
@@ -145,6 +130,7 @@ public class Necklace extends AllFinishedPieces {
         this.price = beadPrice + stringPrice + findingPrice + (hoursSpent*8)*difficultyLevel;
         if(getHasSwarovski()) price += 5;
         if(getHasNaturalStones()) price += 5;
+        price = Math.ceil(price);
     }
 
 }

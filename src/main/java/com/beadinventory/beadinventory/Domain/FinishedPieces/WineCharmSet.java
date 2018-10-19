@@ -8,15 +8,15 @@ import java.util.LinkedHashMap;
 
 @Entity
 @Table(name = "WINE_CHARM")
-public class WineCharm extends AllFinishedPieces {
+public class WineCharmSet extends AllFinishedPieces {
 
     @Column(name = "QUANTITY")
     private int quantity;
 
-    public WineCharm(){}
+    public WineCharmSet(){}
 
-    public WineCharm(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings, double price, String description,
-                     int quantity) {
+    public WineCharmSet(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings, double price, String description,
+                        int quantity) {
         super(beads, findings, price, description);
         this.quantity = quantity;
     }

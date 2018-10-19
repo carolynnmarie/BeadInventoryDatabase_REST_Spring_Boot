@@ -1,4 +1,4 @@
 package com.beadinventory.beadinventory.ControllerTest.FinishedPiecesControllerTest;
 
-public class WineCharmsContIntegrationTest {
+public class NapkinRingSetContIntegrationTest {
 }

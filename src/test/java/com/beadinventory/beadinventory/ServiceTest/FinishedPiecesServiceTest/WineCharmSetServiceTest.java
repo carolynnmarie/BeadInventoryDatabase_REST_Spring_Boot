@@ -1,4 +1,4 @@
 package com.beadinventory.beadinventory.ServiceTest.FinishedPiecesServiceTest;
 
-public class WineCharmServiceTest {
+public class WineCharmSetServiceTest {
 }
