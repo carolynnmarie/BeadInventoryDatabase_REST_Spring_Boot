@@ -16,11 +16,6 @@ public class WineCharmController implements AllFinishedPiecesContInterface<WineC
     }
 
     @Override
-    public Long getTotalItemCount() {
-        return null;
-    }
-
-    @Override
     public WineCharm findItemById(long id) {
         return null;
     }
@@ -48,5 +43,9 @@ public class WineCharmController implements AllFinishedPiecesContInterface<WineC
     @Override
     public ResponseEntity deleteItem(WineCharm item) {
         return null;
+    }
+
+    public int getTotalItemCount() {
+        return findAllItems().size();
     }
 }

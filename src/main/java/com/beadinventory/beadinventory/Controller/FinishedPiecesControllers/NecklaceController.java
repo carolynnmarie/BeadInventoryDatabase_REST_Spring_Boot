@@ -30,10 +30,8 @@ public class NecklaceController implements AllFinishedPiecesContInterface<Neckla
         return null;
     }
 
-    @Override
-    public Long getTotalItemCount() {
-        return null;
-    }
+
+
 
     public List<Necklace> findAllOfStringWireCategory(StringWireCategory category){
         return null;
@@ -79,5 +77,9 @@ public class NecklaceController implements AllFinishedPiecesContInterface<Neckla
     @Override
     public ResponseEntity deleteItem(Necklace item) {
         return null;
+    }
+
+    public int getTotalItemCount() {
+        return findAllItems().size();
     }
 }

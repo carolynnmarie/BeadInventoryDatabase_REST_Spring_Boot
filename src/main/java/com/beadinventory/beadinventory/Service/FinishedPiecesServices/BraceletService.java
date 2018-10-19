@@ -30,10 +30,6 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> implemen
         return new ResponseEntity<>(list,OK);
     }
 
-    public ResponseEntity<Long> getTotalCount(long count){
-        count = braceletRepo.count();
-        return new ResponseEntity<>(count, OK);
-    }
 
     public ResponseEntity<List<Bracelet>> findByBraceletType(BraceletType braceletType){
         List<Bracelet> bracelets = braceletRepo.findBraceletsByBraceletType(braceletType);

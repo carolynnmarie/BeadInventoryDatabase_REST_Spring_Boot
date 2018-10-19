@@ -25,10 +25,6 @@ public class EarringsService extends AllFinishedPiecesService<Earrings> implemen
         return null;
     }
 
-    @Override
-    public ResponseEntity<Long> getTotalCount(long count) {
-        return new ResponseEntity<>(earringsRepo.count(),OK) ;
-    }
 
     public ResponseEntity<List<Earrings>> getAllSterlingSilver(){
         List<Earrings> list = earringsRepo.findEarringsBySterlingSilverYorNIsTrue();

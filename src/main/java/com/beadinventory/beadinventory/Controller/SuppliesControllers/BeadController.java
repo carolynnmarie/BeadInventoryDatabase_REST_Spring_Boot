@@ -23,67 +23,67 @@ public class BeadController {
     }
 
 
-    @RequestMapping(value = "/beads", method = GET)
+    @GetMapping(value = "/beads")
     public List<Bead> findAllBeads(){
         return beadService.getAllBeads().getBody();
     }
 
-    @RequestMapping(value = "/beads.getAllOrderByMaterial", method = GET)
+    @GetMapping(value = "/beads.getAllOrderByMaterial")
     public List<Bead> findAllOrderByMaterial(){
         return beadService.getAllOrderByMaterial().getBody();
     }
 
-    @RequestMapping(value = "/beads/material", method = GET)
+    @GetMapping(value = "/beads", params = "material")
     public List<Bead> findAllOfMaterial(@RequestAttribute(value = "material")Material material){
         return beadService.getAllOfMaterial(material).getBody();
     }
 
-    @RequestMapping(value = "/beads/material/color",method = GET)
+    @GetMapping(value = "/beads", params = {"material", "color"})
     public List<Bead> findAllOfMaterialAndColor(@RequestAttribute(value = "material") Material material,
                                                 @RequestAttribute(value = "color") String color){
         return beadService.getAllOfMaterialAndColor(material,color).getBody();
     }
 
-    @RequestMapping(value = "/beads/material/size",method = GET)
+    @GetMapping(value = "/beads", params = {"material","size"})
     public List<Bead> findAllOfMaterialAndSize(@RequestAttribute(value ="material") Material material,
                                                @RequestAttribute(value = "size") int size){
         return beadService.getAllOfMaterialAndSize(material,size).getBody();
     }
 
-    @RequestMapping(value = "/beads/quantity", method = RequestMethod.GET)
+    @GetMapping(value = "/beads", params = "quantity")
     public List<Bead> findAllWithQuantityLessThan(@RequestAttribute(value = "quantity") long quantity){
         ResponseEntity<List<Bead>> response = beadService.getAllQuantityLessThan(quantity);
         return response.getBody();
     }
 
-    @RequestMapping(value = "/beads/{id}", method = GET)
+    @GetMapping(value = "/beads/{id}")
     public Bead findBeadById(@PathVariable("id") long id){
         ResponseEntity<Bead> response = beadService.getBeadById(id);
         return response.getBody();
     }
 
-    @RequestMapping(value = "/beads", method = POST)
+    @PostMapping(value = "/beads")
     public ResponseEntity<Bead> createBead(@RequestBody Bead bead){
         return beadService.createBead(bead);
     }
 
-    @RequestMapping(value = "/beads/{id}/quantity", method = PUT)
-    public Long updateBeadQuantity(@PathVariable("id") long id, @RequestAttribute(value = "quantity") long quantity){
-        return beadService.updateBeadQuantity(id,quantity).getBody().getQuantity();
+    @PutMapping(value = "/beads/{id}", params = "quantity")
+    public Bead updateBeadQuantity(@PathVariable("id") long id, @RequestAttribute(value = "quantity") long quantity){
+        return beadService.updateBeadQuantity(id,quantity).getBody();
     }
 
-    @RequestMapping(value = "/beads/{id}", method = PUT)
+    @PutMapping(value = "/beads/{id}")
     public Bead updateBead(@PathVariable("id") long id, @RequestBody Bead bead){
         ResponseEntity<Bead> response = beadService.updateBead(id,bead);
         return response.getBody();
     }
 
-    @RequestMapping(value = "/beads/{id}", method = DELETE)
+    @DeleteMapping(value = "/beads/{id}")
     public ResponseEntity deleteBeadById(@PathVariable("id") long id){
         return beadService.deleteBeadById(id);
     }
 
-    @RequestMapping(value = "/beads",method = DELETE)
+    @DeleteMapping(value = "/beads")
     public ResponseEntity deleteBead(@RequestBody Bead bead){
         return beadService.deleteBead(bead);
     }

@@ -11,6 +11,7 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
+@RequestMapping(value = "/bookmarks")
 public class BookmarkController implements AllFinishedPiecesContInterface<Bookmark> {
 
     private BookmarkService bookmarkService;
@@ -21,50 +22,48 @@ public class BookmarkController implements AllFinishedPiecesContInterface<Bookma
     }
 
     @Override
-    @RequestMapping(value = "/bookmarks", method = GET)
+    @GetMapping()
     public List<Bookmark> findAllItems() {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/bookmarks.count",method = GET)
-    public Long getTotalItemCount() {
-        return null;
-    }
-
-    @Override
-    @RequestMapping(value = "/bookmarks/{id}", method = GET)
+    @GetMapping(value = "/{id}")
     public Bookmark findItemById(@PathVariable("id") long id) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/bookmarks", method = POST)
+    @PostMapping()
     public Bookmark createItem(@RequestBody Bookmark item) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/bookmarks/{id}", method = PUT)
-    public Bookmark updateItem(@PathVariable("id") long id, Bookmark item) {
+    @PutMapping(value = "/{id}")
+    public Bookmark updateItem(@PathVariable("id") long id, @RequestBody Bookmark item) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/bookmarks/price", method = PUT)
-    public List<Bookmark> updatePriceOfAll(@RequestParam(value = "price") double price) {
+    @PutMapping(params = "price")
+    public List<Bookmark> updatePriceOfAll(@RequestAttribute(value = "price") double price) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/bookmarks/{id}/description", method = PUT)
-    public Bookmark updateDescription(@PathVariable("id") long id, @RequestParam(value = "description") String description) {
+    @PutMapping(value = "/{id}", params = "description")
+    public Bookmark updateDescription(@PathVariable("id") long id, @RequestAttribute(value = "description") String description) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/bookmarks", method = DELETE)
+    @DeleteMapping()
     public ResponseEntity deleteItem(@RequestBody Bookmark item) {
         return null;
+    }
+
+    public int getTotalItemCount(){
+        return findAllItems().size();
     }
 }

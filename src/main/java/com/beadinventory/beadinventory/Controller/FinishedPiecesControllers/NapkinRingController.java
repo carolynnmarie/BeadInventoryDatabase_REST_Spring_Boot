@@ -2,6 +2,7 @@ package com.beadinventory.beadinventory.Controller.FinishedPiecesControllers;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.NapkinRing;
 import com.beadinventory.beadinventory.Service.FinishedPiecesServices.NapkinRingService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,58 +13,59 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 @RestController
+@RequestMapping(value = "/napkin_ring")
 public class NapkinRingController implements AllFinishedPiecesContInterface<NapkinRing> {
 
 
     @Override
-    @RequestMapping(value = "/napkin_ring", method = GET)
+    @GetMapping()
     public List<NapkinRing> findAllItems() {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "napkin_ring.count")
-    public Long getTotalItemCount() {
-        return null;
-    }
-
-    @Override
-    @RequestMapping(value = "/napkin_ring/{id}", method = GET)
+    @GetMapping(value = "/{id}")
     public NapkinRing findItemById(@PathVariable("id") long id) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/napkin_ring", method = POST)
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public NapkinRing createItem(@RequestBody NapkinRing item) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/napkin_ring/{id}")
+    @PutMapping(value = "/{id}")
     public NapkinRing updateItem(@PathVariable("id") long id, @RequestBody NapkinRing item) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/napkin_ring/price", method = PUT)
-    public List<NapkinRing> updatePriceOfAll(@RequestParam(value = "price") double amountToAdd) {
+    @PutMapping( params = "price")
+    public List<NapkinRing> updatePriceOfAll(@RequestAttribute(value = "price") double amountToAdd) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/napkin_ring/{id}/description", method = PUT)
-    public NapkinRing updateDescription(@PathVariable("id") long id, @RequestParam(value = "description") String description) {
+    @PutMapping(value = "/{id}", params = "description")
+    public NapkinRing updateDescription(@PathVariable("id") long id, @RequestAttribute(value = "description") String description) {
         return null;
     }
 
-    @RequestMapping(value = "/napkin_ring/{id}/quantity", method = PUT)
-    public NapkinRing updateQuantity(@PathVariable("id") long id, @RequestParam(value = "quantity") int quantity){
+    @PutMapping(value = "/{id}", params = "quantity")
+    public NapkinRing updateQuantity(@PathVariable("id") long id, @RequestAttribute(value = "quantity") int quantity){
         return null;
     }
 
     @Override
+    @DeleteMapping()
     public ResponseEntity deleteItem(NapkinRing item) {
         return null;
+    }
+
+    public int getTotalItemCount(){
+        return findAllItems().size();
     }
 }

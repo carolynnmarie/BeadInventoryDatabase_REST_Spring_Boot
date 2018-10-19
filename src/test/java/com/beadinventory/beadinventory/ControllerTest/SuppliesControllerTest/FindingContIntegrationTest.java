@@ -19,6 +19,8 @@ import java.util.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.http.HttpStatus.*;
@@ -40,8 +42,9 @@ public class FindingContIntegrationTest {
     private ObjectMapper mapper = new ObjectMapper();
 
 
-    private TreeSet<String> brands;
+    private TreeSet<String> brands = new TreeSet<>(Arrays.asList("beadalon"));
     private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,25,brands);
+    private Finding eyePin2 = new Finding(EYE_PIN, BRASS,"thin",5.08,5.08,25,brands);
     private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);
 
 
@@ -61,20 +64,21 @@ public class FindingContIntegrationTest {
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin,headPin));
         given(mockFindingController.findAllOfCategoryType("pin")).willReturn(list);
 
-        mockMvc.perform(get("/findings/type")
-                .content("pin")
+        mockMvc.perform(get("/findings")
+                .param("type","pin")
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
     }
 
     @Test
     public void findAllOfCategoryIntegTest() throws Exception{
-        List<Finding> list = new ArrayList<>(Arrays.asList(eyePin));
+        List<Finding> list = new ArrayList<>(Arrays.asList(eyePin, eyePin2));
         given(mockFindingController.findAllOfCategory(EYE_PIN)).willReturn(list);
 
-        mockMvc.perform(get("/findings/findingCategory",FindingCategory.class)
+        mockMvc.perform(get("/findings")
                 .requestAttr("findingCategory",EYE_PIN)
+                .param("findingCategory", String.valueOf(FindingCategory.class))
                 .contentType(APPLICATION_JSON)
                 .characterEncoding("utf-8"))
                 .andExpect(status().isOk());
@@ -85,7 +89,9 @@ public class FindingContIntegrationTest {
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin,headPin));
         given(mockFindingController.findAllOfMaterial(BRIGHT_SILVER_PLATED)).willReturn(list);
 
-        mockMvc.perform(get("/findings/material",Material.class)
+        String mParam = mapper.writeValueAsString(BRIGHT_SILVER_PLATED);
+        mockMvc.perform(get("/findings")
+                .param("material", String.valueOf(Material.class))
                 .requestAttr("material",BRIGHT_SILVER_PLATED)
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
@@ -97,7 +103,9 @@ public class FindingContIntegrationTest {
         List<Finding> list = new ArrayList<>(Arrays.asList(eyePin));
         given(mockFindingController.findAllOfCategoryAndMaterial(EYE_PIN,BRIGHT_SILVER_PLATED)).willReturn(list);
 
-        mockMvc.perform((get("/findings/findingCategory/material",FindingCategory.class,Material.class)
+        mockMvc.perform((get("/findings")
+                .param("findingCategory", String.valueOf(FindingCategory.class))
+                .param("material", String.valueOf(Material.class))
                 .requestAttr("findingCategory",EYE_PIN)
                 .requestAttr("material",BRIGHT_SILVER_PLATED)
                 .contentType(APPLICATION_JSON)

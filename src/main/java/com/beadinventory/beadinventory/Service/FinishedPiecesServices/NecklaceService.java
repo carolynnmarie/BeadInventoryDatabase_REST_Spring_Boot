@@ -2,20 +2,14 @@ package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Necklace;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
-import com.beadinventory.beadinventory.InventoryManager;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.NecklaceRepo;
-import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -32,35 +26,26 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
 
     @Override
     public ResponseEntity<List<Necklace>> getAllItems() {
-        return null;
-    }
-
-    public ResponseEntity<List<Necklace>> getAllOfStringWireCategory(StringWireCategory category){
-        return null;
+        List<Necklace> necklaces = necklaceRepo.findAll();
+        return new ResponseEntity<>(necklaces,OK);
     }
 
     public ResponseEntity<List<Necklace>> getAllWithNaturalStones(){
-        return null;
+        List<Necklace> necklaces = necklaceRepo.findNecklacesByHasNaturalStonesTrue();
+        return new ResponseEntity<>(necklaces,OK);
     }
 
     public ResponseEntity<List<Necklace>> getAllWithSwarovski(){
-        return null;
+        List<Necklace> necklaces = necklaceRepo.findNecklacesByHasSwarovskiTrue();
+        return new ResponseEntity<>(necklaces,OK);
     }
 
-    public ResponseEntity<List<Necklace>> getAllOfClaspType(FindingCategory clasp){
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Long> getTotalCount(long count) {
-        return null;
-    }
 
     @Override
     public ResponseEntity<Necklace> getItemById(long id) {
-        return null;
+        Necklace necklace = necklaceRepo.findById(id);
+        return new ResponseEntity<>(necklace,OK);
     }
-
 
     @Override
     public ResponseEntity<Necklace> createItem(Necklace necklace){
@@ -80,17 +65,29 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
 
     @Override
     public ResponseEntity<Necklace> updateItem(long id, Necklace item) {
-        return null;
+        Necklace necklace = necklaceRepo.findById(id);
+        item.setId(necklace.getId());
+        Necklace necklace1 = necklaceRepo.save(item);
+        return new ResponseEntity<>(necklace1, OK);
     }
 
 
     public ResponseEntity<Necklace> updatePriceOfOne(long id, double price) {
-        return null;
+        Necklace necklace = necklaceRepo.findById(id);
+        necklace.setPrice(price);
+        Necklace necklace1 = necklaceRepo.save(necklace);
+        return new ResponseEntity<>(necklace1,OK);
     }
 
     @Override
     public ResponseEntity<List<Necklace>> updatePriceOfAll(double amountToAdd) {
-        return null;
+        List<Necklace> necklaces = necklaceRepo.findAll();
+        for(Necklace necklace: necklaces){
+            necklace.setPrice(necklace.getPrice() + amountToAdd);
+        }
+        Iterable<Necklace> iterable = necklaces;
+        necklaceRepo.saveAll(iterable);
+        return new ResponseEntity<>(necklaces,OK);
     }
 
     public ResponseEntity<Necklace> updateBeads(long id, LinkedHashMap<Bead,Integer> beads){
@@ -102,11 +99,15 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
 
     @Override
     public ResponseEntity<Necklace> updateDescription(long id, String description) {
-        return null;
+        Necklace necklace = necklaceRepo.findById(id);
+        necklace.setDescription(description);
+        Necklace necklace1 = necklaceRepo.save(necklace);
+        return new ResponseEntity<>(necklace1,OK);
     }
 
     @Override
     public ResponseEntity deleteItem(Necklace item) {
-        return null;
+        necklaceRepo.delete(item);
+        return new ResponseEntity(OK);
     }
 }

@@ -91,8 +91,9 @@ public class FindingService {
     }
 
 
-    public ResponseEntity<Finding> updateFinding(Long id, Finding finding){
-        finding.setId(id);
+    public ResponseEntity<Finding> updateFinding(long id, Finding finding){
+        Finding finding1 = findingRepo.findById(id);
+        finding.setId(finding1.getId());
         findingRepo.save(finding);
         return new ResponseEntity<>(finding,OK);
     }

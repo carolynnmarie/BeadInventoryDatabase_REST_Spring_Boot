@@ -3,13 +3,13 @@ package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.StringWireController;
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -58,7 +58,8 @@ public class StringWireContIntegrationTest {
         List<StringWire> list = new ArrayList<>(Arrays.asList(leatherCord));
         given(mockController.getAllOfCategory(CORD)).willReturn(list);
 
-        mockMvc.perform(get("/stringing_materials/category")
+        mockMvc.perform(get("/stringing_materials")
+                .param("category", String.valueOf(StringWireCategory.class))
                 .requestAttr("category",CORD)
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
@@ -70,7 +71,8 @@ public class StringWireContIntegrationTest {
         List<StringWire> list = new ArrayList<>(Arrays.asList(leatherCord));
         given(mockController.getAllOfMaterial(LEATHER)).willReturn(list);
 
-        mockMvc.perform(get("/stringing_materials/material")
+        mockMvc.perform(get("/stringing_materials")
+                .param("material", String.valueOf(Material.class))
                 .requestAttr("material", LEATHER)
                 .contentType(APPLICATION_JSON)
                 .characterEncoding("utf-8"))

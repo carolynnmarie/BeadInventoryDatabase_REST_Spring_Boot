@@ -20,11 +20,11 @@ public abstract class AllFinishedPieces {
 
     @Lob
     @Column(name = "BEADS")
-    protected HashMap<Bead,Integer> beads;
+    protected LinkedHashMap<Bead,Integer> beads;
 
     @Lob
     @Column(name = "FINDINGS")
-    protected HashMap<Finding, Integer> findings;
+    protected LinkedHashMap<Finding, Integer> findings;
 
     @Column(name = "PRICE")
     protected double price;
@@ -35,26 +35,26 @@ public abstract class AllFinishedPieces {
     public AllFinishedPieces() {
     }
 
-    public AllFinishedPieces(HashMap<Bead, Integer> beads, HashMap<Finding,Integer> findings,  double price, String description) {
+    public AllFinishedPieces(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding,Integer> findings,  double price, String description) {
         this.beads = beads;
         this.findings = findings;
         this.price = price;
         this.description = description;
     }
 
-    public HashMap<Bead, Integer> getBeads() {
+    public LinkedHashMap<Bead, Integer> getBeads() {
         return beads;
     }
 
-    public void setBeads(HashMap<Bead, Integer> beads) {
+    public void setBeads(LinkedHashMap<Bead, Integer> beads) {
         this.beads = beads;
     }
 
-    public HashMap<Finding, Integer> getFindings() {
+    public LinkedHashMap<Finding, Integer> getFindings() {
         return findings;
     }
 
-    public void setFindings(HashMap<Finding, Integer> findings) {
+    public void setFindings(LinkedHashMap<Finding, Integer> findings) {
         this.findings = findings;
     }
 

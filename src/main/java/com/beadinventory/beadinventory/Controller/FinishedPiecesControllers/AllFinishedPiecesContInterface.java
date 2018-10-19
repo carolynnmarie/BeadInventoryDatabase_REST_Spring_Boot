@@ -12,7 +12,6 @@ import java.util.List;
 public interface AllFinishedPiecesContInterface<T extends AllFinishedPieces> {
 
     List<T> findAllItems();
-    Long getTotalItemCount();
     T findItemById(@PathVariable("id") long id);
     T createItem(@RequestBody T item);
     T updateItem(@PathVariable("id")long id, @RequestBody T item);

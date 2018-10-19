@@ -29,12 +29,6 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
     }
 
     @Override
-    public ResponseEntity<Long> getTotalCount(long count) {
-        count = bookmarkRepo.count();
-        return new ResponseEntity<>(count,OK);
-    }
-
-    @Override
     public ResponseEntity<Bookmark> getItemById(long id) {
         Bookmark bookmark = bookmarkRepo.findById(id);
         return new ResponseEntity<>(bookmark,OK);

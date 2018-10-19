@@ -73,7 +73,8 @@ public class BeadContIntegrationTest {
         given(mockBeadController.findAllOrderByMaterial()).willReturn(list);
 
         mockMvc.perform(get("/beads.getAllOrderByMaterial")
-                .contentType(APPLICATION_JSON))
+                .contentType(APPLICATION_JSON)
+                .characterEncoding("utf-8"))
                 .andExpect(status().isOk());
     }
 
@@ -82,7 +83,8 @@ public class BeadContIntegrationTest {
         List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
         given(mockBeadController.findAllOfMaterial(AMETHYST)).willReturn(list);
 
-        mockMvc.perform(get("/beads/material")
+        mockMvc.perform(get("/beads")
+                .param("material", String.valueOf(Material.class))
                 .requestAttr("material",AMETHYST)
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
@@ -96,7 +98,9 @@ public class BeadContIntegrationTest {
         List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
         given(mockBeadController.findAllOfMaterialAndColor(AMETHYST,"purple")).willReturn(list);
 
-        mockMvc.perform(get("/beads/material/color")
+        mockMvc.perform(get("/beads")
+                .param("material", String.valueOf(Material.class))
+                .param("color", "purple")
                 .requestAttr("material", AMETHYST)
                 .requestAttr("color","purple")
                 .characterEncoding("utf-8")
@@ -110,7 +114,9 @@ public class BeadContIntegrationTest {
         ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
         given(mockBeadController.findAllOfMaterialAndSize(AMETHYST,4)).willReturn(list);
 
-        mockMvc.perform(get("/beads/material/size",any(Material.class), anyInt())
+        mockMvc.perform(get("/beads")
+                .param("material", String.valueOf(Material.class))
+                .param("size", String.valueOf(4))
                 .requestAttr("material",AMETHYST)
                 .requestAttr("size", 4)
                 .characterEncoding("utf-8")
@@ -123,7 +129,8 @@ public class BeadContIntegrationTest {
         List<Bead> list = new ArrayList<>(Arrays.asList(bead2,bead3,bead5));
         given(mockBeadController.findAllWithQuantityLessThan(12L)).willReturn(list);
 
-        mockMvc.perform(get("/beads/quantity",anyLong())
+        mockMvc.perform(get("/beads")
+                .param("quantity", String.valueOf(12L))
                 .requestAttr("quantity",12L)
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
@@ -155,9 +162,11 @@ public class BeadContIntegrationTest {
 
     @Test
     public void updateBeadQuantityIntegTest() throws Exception{
-        given(mockBeadController.updateBeadQuantity(bead1.getId(),10)).willReturn(10L);
+        bead1.setQuantity(10);
+        given(mockBeadController.updateBeadQuantity(bead1.getId(),10)).willReturn(bead1);
 
-        mockMvc.perform(put("/beads/{id}/quantity",bead1.getId(),10L)
+        mockMvc.perform(put("/beads/{id}",bead1.getId())
+                .param("quantity",String.valueOf(10L))
                 .requestAttr("quantity",10L)
                 .contentType(APPLICATION_JSON)
                 .characterEncoding("utf-8"))

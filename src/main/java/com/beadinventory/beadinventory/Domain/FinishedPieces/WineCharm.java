@@ -31,13 +31,7 @@ public class WineCharm extends AllFinishedPieces {
 
     @Override
     public void setAutoPrice() {
-        if(quantity == 4){
-            price = 16;
-        } else if(quantity == 6){
-            price = 23;
-        } else{
-            price = Math.round(quantity*3.75);
-        }
+        price = (quantity == 4)? 16: (quantity == 6)? 23: Math.round(quantity*3.75);
     }
 
 }

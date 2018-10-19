@@ -11,8 +11,7 @@ import java.util.List;
 @Repository
 public interface NecklaceRepo extends AllFinishedPiecesRepo<Necklace> {
 
-    List<Necklace> findAllByStringWireCategory(StringWireCategory category);
     List<Necklace> findNecklacesByHasNaturalStonesTrue();
     List<Necklace> findNecklacesByHasSwarovskiTrue();
-    List<Necklace> findNecklacesByClasp(FindingCategory clasp);
+
 }

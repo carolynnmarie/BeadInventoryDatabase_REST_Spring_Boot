@@ -13,10 +13,6 @@ public class NapkinRingService extends AllFinishedPiecesService<NapkinRing> impl
         return null;
     }
 
-    @Override
-    public ResponseEntity<Long> getTotalCount(long count) {
-        return null;
-    }
 
     @Override
     public ResponseEntity<NapkinRing> getItemById(long id) {

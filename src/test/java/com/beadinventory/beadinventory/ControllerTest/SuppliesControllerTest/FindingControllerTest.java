@@ -63,6 +63,7 @@ public class FindingControllerTest {
         verify(mockFindingService).getAllFindings();
         Assert.assertEquals(list,actual);
     }
+
     @Test
     public void findAllOfCategoryTypeTest(){
         List<Finding> list = new ArrayList<>(Arrays.asList(headPin,eyePin));

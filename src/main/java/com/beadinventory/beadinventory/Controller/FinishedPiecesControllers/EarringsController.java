@@ -26,12 +26,6 @@ public class EarringsController implements AllFinishedPiecesContInterface<Earrin
         return null;
     }
 
-    @Override
-    @RequestMapping(value = "/earrings.count", method = GET)
-    public Long getTotalItemCount() {
-        return null;
-    }
-
     @RequestMapping(value = "/earrings.getAllSterlingSilver", method = GET)
     public List<Earrings> findAllSterlingSilver(){
         return null;
@@ -55,20 +49,20 @@ public class EarringsController implements AllFinishedPiecesContInterface<Earrin
         return null;
     }
 
-    @RequestMapping(value = "/earrings/{id}/price", method = PUT)
-    public Earrings updatePriceOfOne(@PathVariable("id") long id, @RequestParam(value = "price") double price){
+    @RequestMapping(value = "/earrings/{id}",params = "price", method = PUT)
+    public Earrings updatePriceOfOne(@PathVariable("id") long id, @RequestAttribute(value = "price") double price){
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/earrings/price", method = PUT)
-    public List<Earrings> updatePriceOfAll(@RequestParam(value = "price") double amountToAdd) {
+    @RequestMapping(value = "/earrings",params = "price", method = PUT)
+    public List<Earrings> updatePriceOfAll(@RequestAttribute(value = "price") double amountToAdd) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/earrings/{id}/description", method = PUT)
-    public Earrings updateDescription(@PathVariable("id") long id, @RequestParam("description") String description) {
+    @RequestMapping(value = "/earrings/{id}", params = "description", method = PUT)
+    public Earrings updateDescription(@PathVariable("id") long id, @RequestAttribute("description") String description) {
         return null;
     }
 
@@ -76,5 +70,9 @@ public class EarringsController implements AllFinishedPiecesContInterface<Earrin
     @RequestMapping(value = "/earrings", method = DELETE)
     public ResponseEntity deleteItem(@RequestBody Earrings item) {
         return null;
+    }
+
+    public int getTotalItemCount(){
+        return findAllItems().size();
     }
 }

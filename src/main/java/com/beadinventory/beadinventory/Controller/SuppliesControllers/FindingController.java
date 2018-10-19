@@ -24,58 +24,59 @@ public class FindingController {
         this.findingService = findingService;
     }
 
-    @RequestMapping(value = "", method = GET)
+    @GetMapping(value = "")
     public List<Finding> findAllFindings(){
         return findingService.getAllFindings().getBody();
     }
 
-    @RequestMapping(value = "/type", method = GET)
-    public List<Finding> findAllOfCategoryType(@RequestBody String type){
+    @GetMapping(value = "", params = "type")
+    public List<Finding> findAllOfCategoryType(@RequestParam(name = "type") String type){
         return findingService.getAllOfCategoryType(type).getBody();
     }
 
-    @RequestMapping(value = "/findingCategory", method = GET)
+
+    @GetMapping(value = "", params = "findingCategory")
     public List<Finding> findAllOfCategory(@RequestAttribute(value = "findingCategory")FindingCategory findingCategory){
         return findingService.getAllOfCategory(findingCategory).getBody();
     }
 
-    @RequestMapping(value = "/material", method = GET)
+    @GetMapping(params = "material")
     public List<Finding> findAllOfMaterial(@RequestAttribute(value = "material")Material material){
         return findingService.getAllOfMaterial(material).getBody();
     }
 
-    @RequestMapping(value = "/findingCategory/material", method = GET)
+    @GetMapping(params = {"findingCategory","material"})
     public List<Finding> findAllOfCategoryAndMaterial(@RequestAttribute(value = "findingCategory") FindingCategory category,
                                                                       @RequestAttribute(value = "material") Material material){
         return findingService.getAllOfCategoryAndMaterial(category,material).getBody();
     }
 
-    @RequestMapping(value = "/{id}", method = GET)
+    @GetMapping(value = "/{id}")
     public Finding getFindingById(@PathVariable("id") long id){
         return findingService.findById(id).getBody();
     }
 
-    @RequestMapping(value = "", method = POST)
+    @PostMapping(value = "")
     public ResponseEntity<Finding> createFinding(@RequestBody Finding finding){
         return findingService.createFinding(finding);
     }
 
-    @RequestMapping(value = "/{id}/quantity", method = PUT)
+    @PutMapping(value = "/{id}/quantity")
     public Long updateQuantity(@PathVariable("id") long id, @RequestAttribute(value = "quantity") long quantity){
         return findingService.updateFindingQuantity(id, quantity).getBody().getQuantity();
     }
 
-    @RequestMapping(value = "/{id}", method = PUT)
+    @PutMapping(value = "/{id}")
     public Finding updateFinding(@PathVariable("id")long id, @RequestBody Finding finding){
         return findingService.updateFinding(id,finding).getBody();
     }
 
-    @RequestMapping(value = "/{id}",method = DELETE)
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity deleteFindingById(@PathVariable("id") long id){
         return findingService.deleteById(id);
     }
 
-    @RequestMapping(value = "", method = DELETE)
+    @DeleteMapping(value = "")
     public ResponseEntity deleteFinding(@RequestBody Finding finding){
         return findingService.deleteFinding(finding);
     }

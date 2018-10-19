@@ -10,58 +10,58 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
+@RequestMapping(value = "/bracelets")
 public class BraceletController implements AllFinishedPiecesContInterface<Bracelet> {
 
     @Override
-    @RequestMapping(value = "/bracelets", method = GET)
+    @GetMapping()
     public List<Bracelet> findAllItems() {
         return null;
     }
 
-    @Override
-    @RequestMapping(value = "/bracelets.count", method = GET)
-    public Long getTotalItemCount() {
-        return null;
-    }
 
-    @RequestMapping(value = "/bracelets/bracelet_type", method = GET)
-    public List<Bracelet> findAllOfBraceletType(@RequestParam (value = "bracelet_type")BraceletType bracelet_type){
+    @GetMapping(value = "/bracelet_type")
+    public List<Bracelet> findAllOfBraceletType(@RequestAttribute (value = "bracelet_type")BraceletType bracelet_type){
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/bracelets/{id}",method = GET)
+    @GetMapping(value = "/{id}")
     public Bracelet findItemById(@PathVariable("id") long id) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/bracelets", method = POST)
+    @PostMapping()
     public Bracelet createItem(@RequestBody Bracelet item) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/bracelets/{id}")
+    @PutMapping(value = "/{id}")
     public Bracelet updateItem(@PathVariable("id") long id, @RequestBody Bracelet item) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/bracelets/price", method = PUT)
-    public List<Bracelet> updatePriceOfAll(@RequestParam(value = "price") double amountToAdd) {
+    @PutMapping(params = "price")
+    public List<Bracelet> updatePriceOfAll(@RequestAttribute(value = "price") double amountToAdd) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/bracelets/{id}/description", method = PUT)
-    public Bracelet updateDescription(@PathVariable("id") long id, @RequestParam(value = "description") String description) {
+    @PutMapping(value = "/{id}", params = "description")
+    public Bracelet updateDescription(@PathVariable("id") long id, @RequestAttribute(value = "description") String description) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/bracelets", method = DELETE)
+    @DeleteMapping()
     public ResponseEntity deleteItem(@RequestBody Bracelet item) {
         return null;
+    }
+
+    public int getTotalItemCount(){
+        return findAllItems().size();
     }
 }

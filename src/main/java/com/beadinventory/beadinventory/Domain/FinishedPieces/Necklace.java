@@ -110,19 +110,20 @@ public class Necklace extends AllFinishedPieces {
     }
 
     public String describeNecklace(){
-        String description = "The necklace is " + lengthInch + " inches long, on " + stringWire + ", with a " + getClaspString() + " clasp";
-        description += (hasNaturalStones)?", with natural stone beads":"";
-        description += (hasSwarovski)?", with Swarovski crystals":"";
+        String description = "The necklace is " + getLengthInch() + " inches long, on " + getStringWire() + ", with a " +
+                getClaspString() + " clasp";
+        description += (getHasNaturalStones())?", with natural stone beads":"";
+        description += (getHasSwarovski())?", with Swarovski crystals":"";
         return description;
     }
 
-    public boolean isHasSwarovski() { return hasSwarovski; }
+    public boolean getHasSwarovski() { return hasSwarovski; }
 
     public void setHasSwarovski(boolean hasSwarovski) {
         this.hasSwarovski = hasSwarovski;
     }
 
-    public boolean isHasNaturalStones() {
+    public boolean getHasNaturalStones() {
         return hasNaturalStones;
     }
 
@@ -133,17 +134,17 @@ public class Necklace extends AllFinishedPieces {
     @Override
     public void setAutoPrice() {
         double beadPrice = 0.0;
-        for(Map.Entry<Bead,Integer> entry: beads.entrySet()){
-            beadPrice += (entry.getKey().getPricePoint()*entry.getValue());
-        }
-        double stringPrice = stringWire.getPricePerFoot()*lengthInch;
         double findingPrice = 0.0;
-        for(Map.Entry<Finding,Integer> entry: findings.entrySet()){
-            findingPrice += (entry.getKey().getPricePoint()*entry.getValue());
+        double stringPrice = stringWire.getPricePerFoot()*lengthInch;
+        for(Map.Entry<Bead,Integer> bead: beads.entrySet()){
+            beadPrice += (bead.getKey().getPricePoint()*bead.getValue());
+        }
+        for(Map.Entry<Finding,Integer> finding: findings.entrySet()){
+            findingPrice += (finding.getKey().getPricePoint()*finding.getValue());
         }
         this.price = beadPrice + stringPrice + findingPrice + (hoursSpent*8)*difficultyLevel;
-        if(hasSwarovski) price += 5;
-        if(hasNaturalStones) price += 5;
+        if(getHasSwarovski()) price += 5;
+        if(getHasNaturalStones()) price += 5;
     }
 
 }

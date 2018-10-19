@@ -12,7 +12,7 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
-@RequestMapping(value = "")
+@RequestMapping(value = "/stringing_materials")
 public class StringWireController {
 
     private StringWireService sMService;
@@ -22,38 +22,38 @@ public class StringWireController {
         this.sMService = sMService;
     }
 
-    @RequestMapping(value = "/stringing_materials",method = GET)
+    @GetMapping()
     public List<StringWire> getAllStringWire(){
         return sMService.getAllStringWire().getBody();
     }
 
-    @RequestMapping(value = "/stringing_materials/category", method = GET)
+    @GetMapping(params = "category")
     public List<StringWire> getAllOfCategory(@RequestAttribute(name = "category") StringWireCategory category){
         return sMService.getAllOfCategory(category).getBody();
     }
 
-    @RequestMapping(value = "/stringing_materials/material", method = GET)
+    @GetMapping(params = "material")
     public List<StringWire> getAllOfMaterial(@RequestAttribute(name = "material") Material material){
         return sMService.getAllOfMaterial(material).getBody();
     }
 
-    @RequestMapping(value = "/stringing_materials/{id}",method = GET)
+    @GetMapping(value = "/{id}")
     public StringWire getById(@PathVariable("id")long id){
         return sMService.getById(id).getBody();
     }
 
-    @RequestMapping(value = "/stringing_materials", method = POST)
+    @PostMapping()
     public ResponseEntity<StringWire> createStringWire(@RequestBody StringWire stringWire){
         return sMService.createStringWire(stringWire);
     }
 
-    @RequestMapping(value = "/stringing_materials/{id}",method = PUT)
+    @PutMapping(value = "/{id}")
     public StringWire updateStringWire(@PathVariable("id")long id,
                                        @RequestBody StringWire stringWire){
         return sMService.updateStringWire(id, stringWire).getBody();
     }
 
-    @RequestMapping(value = "/stringing_materials/{id}", method = DELETE)
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity deleteStringWireById(@PathVariable("id") long id){
         return sMService.deleteById(id);
     }
