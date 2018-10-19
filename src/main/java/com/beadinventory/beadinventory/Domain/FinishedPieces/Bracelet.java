@@ -17,6 +17,7 @@ public class Bracelet extends AllFinishedPieces {
     @Column(name = "BRACELET_TYPE")
     private BraceletType braceletType;
 
+    @Lob
     @Column(name = "STRINGING_MATERIAL")
     private StringWire stringWire;
 

@@ -15,6 +15,7 @@ import java.util.Map;
 public class Necklace extends AllFinishedPieces {
 
 
+    @Lob
     @Column(name = "STRINGING_MATERIAL")
     private StringWire stringWire;
 

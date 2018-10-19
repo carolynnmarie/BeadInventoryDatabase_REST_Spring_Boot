@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 @Table(name = "BOOKMARK")
 public class Bookmark extends AllFinishedPieces {
 
+    @Lob
     @Enumerated(value = EnumType.STRING)
     @Column(name = "STRING_MATERIAL")
     private Material stringMaterial;

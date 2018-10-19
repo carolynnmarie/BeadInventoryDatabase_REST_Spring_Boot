@@ -12,6 +12,7 @@ import java.util.LinkedHashMap;
 public class NapkinRingSet extends AllFinishedPieces {
 
 
+    @Lob
     @Column(name = "STRINGING_MATERIAL")
     private StringWire stringWire;
 
