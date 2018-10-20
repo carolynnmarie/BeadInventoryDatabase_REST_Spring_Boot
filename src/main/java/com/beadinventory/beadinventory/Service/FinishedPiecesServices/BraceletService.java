@@ -49,8 +49,9 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> implemen
 
     @Override
     public ResponseEntity<Bracelet> createItem(Bracelet bracelet){
+        bracelet.setBeads(updateBeadRepoCount(bracelet));
+        bracelet.setFindings(updateFindingRepoCount(bracelet));
         Bracelet bracelet1 = braceletRepo.save(bracelet);
-        //updateBeadRepoCount(bracelet);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
@@ -77,7 +78,7 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> implemen
     }
 
 
-    public ResponseEntity<List<Bracelet>> updatePriceOfAll(double amountToAdd){
+    public ResponseEntity<List<Bracelet>> increasePriceOfAll(double amountToAdd){
         List<Bracelet> list = braceletRepo.findAll();
         for(Bracelet bracelet: list){
             bracelet.setPrice(bracelet.getPrice()+amountToAdd);

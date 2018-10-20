@@ -5,7 +5,9 @@ import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.EarringsRe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.*;
 
 import static org.springframework.http.HttpStatus.*;
@@ -22,7 +24,8 @@ public class EarringsService extends AllFinishedPiecesService<Earrings> implemen
 
     @Override
     public ResponseEntity<List<Earrings>> getAllItems() {
-        return null;
+        List<Earrings> list = earringsRepo.findAll();
+        return new ResponseEntity<>(list,OK);
     }
 
 
@@ -43,31 +46,63 @@ public class EarringsService extends AllFinishedPiecesService<Earrings> implemen
 
     @Override
     public ResponseEntity<Earrings> createItem(Earrings item) {
-        return null;
+        item.setBeads(updateBeadRepoCount(item));
+        item.setFindings(updateFindingRepoCount(item));
+        Earrings earrings = earringsRepo.save(item);
+        URI newAccountUri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(earrings.getId())
+                .toUri();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setLocation(newAccountUri);
+        return new ResponseEntity<>(earrings,responseHeaders,CREATED);
     }
 
     @Override
     public ResponseEntity<Earrings> updateItem(long id, Earrings item) {
-        return null;
+        item.setId(id);
+        Earrings earrings = earringsRepo.save(item);
+        return new ResponseEntity<>(earrings,OK);
     }
 
 
     public ResponseEntity<Earrings> updatePriceOfOne(long id, double price) {
-        return null;
+        try{
+            Earrings earrings = earringsRepo.findById(id);
+            earrings.setPrice(price);
+            Earrings earrings1 = earringsRepo.save(earrings);
+            return new ResponseEntity<>(earrings1,OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(new Earrings(),BAD_REQUEST);
+        }
     }
 
     @Override
-    public ResponseEntity<List<Earrings>> updatePriceOfAll(double amountToAdd) {
-        return null;
+    public ResponseEntity<List<Earrings>> increasePriceOfAll(double amountToAdd) {
+        Iterable<Earrings> iEarrings = earringsRepo.findAll();
+        iEarrings.forEach(earrings -> earrings.setPrice(earrings.getPrice() + amountToAdd));
+        iEarrings = earringsRepo.saveAll(iEarrings);
+        List<Earrings> list = new ArrayList<>();
+        iEarrings.forEach(e-> list.add(e));
+        return new ResponseEntity<>(list,OK);
     }
 
     @Override
     public ResponseEntity<Earrings> updateDescription(long id, String description) {
-        return null;
+        try{
+            Earrings earrings = earringsRepo.findById(id);
+            earrings.setDescription(description);
+            Earrings earrings1 = earringsRepo.save(earrings);
+            return new ResponseEntity<>(earrings1,OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(new Earrings(),BAD_REQUEST);
+        }
     }
 
     @Override
     public ResponseEntity deleteItem(Earrings item) {
-        return null;
+        earringsRepo.delete(item);
+        return new ResponseEntity(OK);
     }
 }

@@ -80,19 +80,19 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
     }
 
     @Override
-    public ResponseEntity<List<Necklace>> updatePriceOfAll(double amountToAdd) {
-        List<Necklace> necklaces = necklaceRepo.findAll();
-        for(Necklace necklace: necklaces){
-            necklace.setPrice(necklace.getPrice() + amountToAdd);
-        }
-        Iterable<Necklace> iterable = necklaces;
-        necklaceRepo.saveAll(iterable);
-        return new ResponseEntity<>(necklaces,OK);
+    public ResponseEntity<List<Necklace>> increasePriceOfAll(double amountToAdd) {
+        Iterable<Necklace> necklaces = necklaceRepo.findAll();
+        necklaces.forEach(necklace -> necklace.setPrice(necklace.getPrice() + amountToAdd));
+        necklaceRepo.saveAll(necklaces);
+        List<Necklace> list = new ArrayList<>();
+        necklaces.forEach(necklace -> list.add(necklace));
+        return new ResponseEntity<>(list,OK);
     }
 
     public ResponseEntity<Necklace> updateBeads(long id, LinkedHashMap<Bead,Integer> beads){
         Necklace necklace = necklaceRepo.findById(id);
         necklace.setBeads(beads);
+        necklace.setBeads(updateBeadRepoCount(necklace));
         Necklace necklace1 = necklaceRepo.save(necklace);
         return new ResponseEntity<>(necklace1, OK);
     }

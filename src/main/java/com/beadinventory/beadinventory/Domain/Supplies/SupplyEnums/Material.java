@@ -51,6 +51,7 @@ public enum Material {
     PLASTIC("plastic", MaterialCategory.OTHER),
 
     COTTON("cotton", STRINGING),
+    POLYESTER("polyester",STRINGING),
     WAXED_COTTON("waxed cotton", STRINGING),
     LEATHER("leather", STRINGING),
     FAUX_LEATHER("faux leather", STRINGING),

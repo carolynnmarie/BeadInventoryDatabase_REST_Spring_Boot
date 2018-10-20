@@ -1,6 +1,7 @@
 package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.BookmarkRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -37,6 +38,7 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
 
     @Override
     public ResponseEntity<Bookmark> createItem(Bookmark item) {
+        LinkedHashMap<Bead, Integer> beads = item.getBeads();
         item.setBeads(updateBeadRepoCount(item));
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -57,15 +59,12 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
     }
 
     @Override
-    public ResponseEntity<List<Bookmark>> updatePriceOfAll(double amountToAdd) {
-        List<Bookmark> bookmarks = bookmarkRepo.findAll();
-        for(Bookmark bookmark:bookmarks){
-            bookmark.setPrice(bookmark.getPrice()+ amountToAdd);
-        }
-        Iterable<Bookmark> iBookmark = bookmarks;
-        iBookmark = bookmarkRepo.saveAll(iBookmark);
+    public ResponseEntity<List<Bookmark>> increasePriceOfAll(double amountToAdd) {
+        Iterable<Bookmark> bookmarks = bookmarkRepo.findAll();
+        bookmarks.forEach(bookmark -> bookmark.setPrice(bookmark.getPrice()+ amountToAdd));
+        bookmarks = bookmarkRepo.saveAll(bookmarks);
         List<Bookmark> list = new ArrayList<>();
-        iBookmark.forEach(e->list.add(e));
+        bookmarks.forEach(e->list.add(e));
         return new ResponseEntity<>(list,OK);
     }
 
@@ -73,8 +72,8 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
     public ResponseEntity<Bookmark> updateDescription(long id, String description) {
         Bookmark bookmark = bookmarkRepo.findById(id);
         bookmark.setDescription(description);
-        bookmark = bookmarkRepo.save(bookmark);
-        return new ResponseEntity<>(bookmark,OK);
+        Bookmark bookmark2 = bookmarkRepo.save(bookmark);
+        return new ResponseEntity<>(bookmark2 ,OK);
     }
 
     @Override
