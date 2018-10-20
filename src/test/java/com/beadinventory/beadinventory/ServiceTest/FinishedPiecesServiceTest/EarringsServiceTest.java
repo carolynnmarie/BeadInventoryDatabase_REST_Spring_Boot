@@ -54,7 +54,7 @@ public class EarringsServiceTest {
     }
 
     @Test
-    public void getItemByIdTest1(){
+    public void updatePriceOfOneTest(){
         given(mockEarringsRepo.findById(1L)).willReturn(earrings);
 
     }

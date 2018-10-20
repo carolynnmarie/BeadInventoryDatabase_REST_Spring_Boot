@@ -49,8 +49,8 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
 
     @Override
     public ResponseEntity<Necklace> createItem(Necklace necklace){
-        updateBeadRepoCount(necklace);
-        updateFindingRepoCount(necklace);
+        necklace.setBeads(updateBeadRepoCount(necklace));
+        necklace.setFindings(updateFindingRepoCount(necklace));
         Necklace necklace1 = necklaceRepo.save(necklace);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()

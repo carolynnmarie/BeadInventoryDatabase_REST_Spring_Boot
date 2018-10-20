@@ -15,6 +15,7 @@ import static org.springframework.http.HttpStatus.*;
 @Service
 public class BookmarkService extends AllFinishedPiecesService<Bookmark> implements AllFinishedPiecesSvsInterface<Bookmark> {
 
+
     private BookmarkRepo bookmarkRepo;
 
     @Autowired
@@ -36,9 +37,7 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
 
     @Override
     public ResponseEntity<Bookmark> createItem(Bookmark item) {
-        updateBeadRepoCount(item);
-        updateFindingRepoCount(item);
-        Bookmark bookmark = bookmarkRepo.save(item);
+        item.setBeads(updateBeadRepoCount(item));
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
@@ -46,6 +45,7 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
                 .toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(newAccountUri);
+        Bookmark bookmark = bookmarkRepo.save(item);
         return new ResponseEntity<>(bookmark,responseHeaders,CREATED);
     }
 
@@ -82,4 +82,6 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
         bookmarkRepo.delete(item);
         return new ResponseEntity(OK);
     }
+
+
 }

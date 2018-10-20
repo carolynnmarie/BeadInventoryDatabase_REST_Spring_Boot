@@ -7,6 +7,7 @@ import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape;
 
 import javax.persistence.Id;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.TreeSet;
 
@@ -16,6 +17,7 @@ public class Bead implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "BEAD_ID")
+    @NotNull
     private long id;
 
     @Enumerated(value = EnumType.STRING)

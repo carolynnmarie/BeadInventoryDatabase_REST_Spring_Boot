@@ -3,4 +3,7 @@ package com.beadinventory.beadinventory.ServiceTest.FinishedPiecesServiceTest;
 public class BraceletServiceTest {
 
 }
-//    List<Bracelet> findBraceletsByBraceletType(BraceletType braceletType);
+
+/*
+ResponseEntity<List<Bracelet>> findByBraceletType(BraceletType braceletType)
+ */

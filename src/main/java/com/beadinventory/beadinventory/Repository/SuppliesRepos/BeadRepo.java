@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -24,6 +25,8 @@ public interface BeadRepo extends CrudRepository<Bead,Long> {
     List<Bead> findByQuantityIsLessThan(long quantity);
 
     Bead findById(long id);
+
+    Bead findFirstById(long id);
 
     @Query(value = "SELECT b FROM Bead b ORDER BY material")
     List<Bead> findAllOrderByMaterial();

@@ -50,7 +50,7 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> implemen
     @Override
     public ResponseEntity<Bracelet> createItem(Bracelet bracelet){
         Bracelet bracelet1 = braceletRepo.save(bracelet);
-        updateBeadRepoCount(bracelet);
+        //updateBeadRepoCount(bracelet);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")

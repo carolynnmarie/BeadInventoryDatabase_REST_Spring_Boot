@@ -6,6 +6,7 @@ import javafx.beans.DefaultProperty;
 
 import javax.persistence.Id;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -14,8 +15,9 @@ import java.util.LinkedHashMap;
 public abstract class AllFinishedPieces {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
+    @NotNull
     private long id;
 
     @Lob

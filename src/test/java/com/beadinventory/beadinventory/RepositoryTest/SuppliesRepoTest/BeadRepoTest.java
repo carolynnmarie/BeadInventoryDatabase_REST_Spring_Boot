@@ -124,4 +124,31 @@ public class BeadRepoTest {
         List<Bead> list = beadRepo.findAllOrderByMaterial();
         assertThat(list).containsExactly(bead1,bead4,bead5,bead2,bead3);
     }
+
+    @Test
+    public void getBeadByIdTest(){
+        long id = entityManager.persistAndGetId(bead1,Long.class);
+        entityManager.flush();
+
+        Bead bead = beadRepo.findById(id);
+        assertThat(bead).isEqualTo(bead1);
+    }
+
+    @Test
+    public void saveTest(){
+        entityManager.persist(bead1);
+        entityManager.flush();
+
+        Bead bead = beadRepo.save(bead1);
+        assertThat(bead).isEqualTo(bead1);
+    }
+
+    @Test
+    public void getBeIdTest2(){
+        Long id = entityManager.persistAndGetId(bead2,Long.class);
+        entityManager.flush();
+
+        Optional<Bead> oBead = beadRepo.findById(id);
+        assertThat(oBead).contains(bead2);
+    }
 }

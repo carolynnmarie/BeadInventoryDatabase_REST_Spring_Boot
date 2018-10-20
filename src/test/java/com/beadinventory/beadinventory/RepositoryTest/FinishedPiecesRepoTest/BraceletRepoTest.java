@@ -63,5 +63,14 @@ public class BraceletRepoTest {
         List<Bracelet> list = mockBraceletRepo.findBraceletsByBraceletType(MEDICAL);
         assertThat(list).contains(bracelet);
     }
+
+    @Test
+    public void testGetById(){
+        long id = entityManager.persistAndGetId(bracelet,Long.class);
+        entityManager.flush();
+
+        Bracelet bracelet2 = mockBraceletRepo.findById(id);
+        assertThat(bracelet2).isEqualToComparingFieldByField(bracelet);
+    }
 }
 //    List<Bracelet> findBraceletsByBraceletType(BraceletType braceletType);
