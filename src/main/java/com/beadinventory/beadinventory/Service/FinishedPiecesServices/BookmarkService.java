@@ -38,7 +38,6 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
 
     @Override
     public ResponseEntity<Bookmark> createItem(Bookmark item) {
-        LinkedHashMap<Bead, Integer> beads = item.getBeads();
         item.setBeads(updateBeadRepoCount(item));
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -62,7 +61,7 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
     public ResponseEntity<List<Bookmark>> increasePriceOfAll(double amountToAdd) {
         Iterable<Bookmark> bookmarks = bookmarkRepo.findAll();
         bookmarks.forEach(bookmark -> bookmark.setPrice(bookmark.getPrice()+ amountToAdd));
-        bookmarks = bookmarkRepo.saveAll(bookmarks);
+        bookmarkRepo.saveAll(bookmarks);
         List<Bookmark> list = new ArrayList<>();
         bookmarks.forEach(e->list.add(e));
         return new ResponseEntity<>(list,OK);
@@ -72,8 +71,8 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
     public ResponseEntity<Bookmark> updateDescription(long id, String description) {
         Bookmark bookmark = bookmarkRepo.findById(id);
         bookmark.setDescription(description);
-        Bookmark bookmark2 = bookmarkRepo.save(bookmark);
-        return new ResponseEntity<>(bookmark2 ,OK);
+        bookmarkRepo.save(bookmark);
+        return new ResponseEntity<>(bookmark ,OK);
     }
 
     @Override

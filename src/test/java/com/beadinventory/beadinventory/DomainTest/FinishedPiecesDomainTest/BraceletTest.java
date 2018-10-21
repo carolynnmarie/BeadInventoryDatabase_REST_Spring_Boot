@@ -49,7 +49,7 @@ public class BraceletTest {
         findings.put(lobsterClasp2,2);
         this.beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7,"good",.5,"Beadalon");
 
-        this.bracelet = new Bracelet(beads,findings,15,"",MEDICAL,beadingWire,false,true,4);
+        this.bracelet = new Bracelet(beads,findings,15,"",MEDICAL,beadingWire,true,false,4);
     }
 
     @Test

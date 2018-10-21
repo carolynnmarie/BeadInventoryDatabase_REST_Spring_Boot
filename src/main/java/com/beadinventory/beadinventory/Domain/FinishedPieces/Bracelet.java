@@ -34,12 +34,12 @@ public class Bracelet extends AllFinishedPieces {
     public Bracelet(){}
 
     public Bracelet(LinkedHashMap<Bead, Integer> beads,LinkedHashMap<Finding, Integer> findings, double price, String description,
-                    BraceletType braceletType, StringWire stringWire, boolean hasSwarovski, boolean hasNaturalStones, int lengthInch){
+                    BraceletType braceletType, StringWire stringWire, boolean hasNaturalStones, boolean hasSwarovski, int lengthInch){
         super(beads, findings, price, description);
         this.braceletType = braceletType;
         this.stringWire = stringWire;
-        this.hasSwarovski = hasSwarovski;
         this.hasNaturalStones = hasNaturalStones;
+        this.hasSwarovski = hasSwarovski;
         this.lengthInch = lengthInch;
     }
 

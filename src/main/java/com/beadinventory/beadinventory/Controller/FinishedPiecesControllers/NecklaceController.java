@@ -31,8 +31,6 @@ public class NecklaceController implements AllFinishedPiecesContInterface<Neckla
     }
 
 
-
-
     public List<Necklace> findAllOfStringWireCategory(StringWireCategory category){
         return null;
     }

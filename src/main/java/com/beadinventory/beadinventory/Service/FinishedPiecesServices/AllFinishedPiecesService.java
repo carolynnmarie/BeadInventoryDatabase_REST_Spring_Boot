@@ -42,8 +42,8 @@ public abstract class AllFinishedPiecesService<T extends AllFinishedPieces> {
         for(Map.Entry<Bead,Integer> beadEntry: beads.entrySet()){
             Bead bead = beadEntry.getKey();
             bead.setQuantity(bead.getQuantity()-beadEntry.getValue());
-            Bead bead1 = beadRepo.save(bead);
-            beadMap.put(bead1,beadEntry.getValue());
+            beadRepo.save(bead);
+            beadMap.put(bead,beadEntry.getValue());
         }
         return beadMap;
     }
@@ -54,8 +54,8 @@ public abstract class AllFinishedPiecesService<T extends AllFinishedPieces> {
         for(Map.Entry<Finding,Integer> entry: findings.entrySet()){
             Finding finding = entry.getKey();
             finding.setQuantity(finding.getQuantity()-entry.getValue());
-            Finding finding1 = findingRepo.save(finding);
-            findingMap.put(finding1,entry.getValue());
+            findingRepo.save(finding);
+            findingMap.put(finding,entry.getValue());
         }
         return findingMap;
     }

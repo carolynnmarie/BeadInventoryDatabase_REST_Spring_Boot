@@ -44,7 +44,7 @@ public class NecklaceTest {
         findings.put(lobsterClasp2, 1);
         findings.put(splitRing,1);
         this.beadingWire = new StringWire(BEADING_WIRE, BRIGHT_SILVER_PLATED, "silver", ".5 mm", 7, "good", .1, "Beadalon");
-        this.necklace = new Necklace(beads,beadingWire,findings,20,3,1,"",true,false,40,LOBSTER_CLASP);
+        this.necklace = new Necklace(beads,findings,beadingWire,20,3,1,"",true,false,40,LOBSTER_CLASP);
     }
 
 //getStringWireTest, getLengthInchTest, getSwarovskiTest, and getNaturalStonesTest are present in BraceletTest class

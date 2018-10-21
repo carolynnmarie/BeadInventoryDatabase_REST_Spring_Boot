@@ -40,7 +40,7 @@ public class Necklace extends AllFinishedPieces {
 
     public Necklace(){}
 
-    public Necklace(LinkedHashMap<Bead, Integer> beads, StringWire stringWire, LinkedHashMap<Finding, Integer> findings,
+    public Necklace(LinkedHashMap<Bead, Integer> beads,LinkedHashMap<Finding, Integer> findings, StringWire stringWire,
                     double lengthInch, int hoursSpent, double difficultyLevel, String description, boolean hasNaturalStones,
                     boolean hasSwarovski, double price, FindingCategory clasp) {
         super(beads, findings, price,  description);

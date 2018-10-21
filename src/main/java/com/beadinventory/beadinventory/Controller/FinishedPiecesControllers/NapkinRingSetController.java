@@ -24,6 +24,8 @@ public class NapkinRingSetController implements AllFinishedPiecesContInterface<N
         return null;
     }
 
+    //int getQuantityOfItemsInSet(long id)
+
     @Override
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)

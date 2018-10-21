@@ -65,8 +65,8 @@ public class BraceletServiceTest {
         findings2.put(lobsterClasp2,1);
         findings2.put(splitRing,1);
 
-        this.bracelet = new Bracelet(beads,findings,15,"",MEDICAL,elastic,false,true,4);
-        this.bracelet2 = new Bracelet(beads,findings2,18,"",NORMAL,beadingWire,false,true,6);
+        this.bracelet = new Bracelet(beads,findings,15,"",MEDICAL,elastic,true,false,4);
+        this.bracelet2 = new Bracelet(beads,findings2,18,"",NORMAL,beadingWire,true,false,6);
     }
 
     @Test

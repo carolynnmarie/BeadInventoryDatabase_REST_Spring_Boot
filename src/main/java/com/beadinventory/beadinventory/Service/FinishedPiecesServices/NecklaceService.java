@@ -67,16 +67,16 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
     public ResponseEntity<Necklace> updateItem(long id, Necklace item) {
         Necklace necklace = necklaceRepo.findById(id);
         item.setId(necklace.getId());
-        Necklace necklace1 = necklaceRepo.save(item);
-        return new ResponseEntity<>(necklace1, OK);
+        necklaceRepo.save(item);
+        return new ResponseEntity<>(necklace, OK);
     }
 
 
     public ResponseEntity<Necklace> updatePriceOfOne(long id, double price) {
         Necklace necklace = necklaceRepo.findById(id);
         necklace.setPrice(price);
-        Necklace necklace1 = necklaceRepo.save(necklace);
-        return new ResponseEntity<>(necklace1,OK);
+        necklaceRepo.save(necklace);
+        return new ResponseEntity<>(necklace,OK);
     }
 
     @Override
@@ -93,16 +93,16 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
         Necklace necklace = necklaceRepo.findById(id);
         necklace.setBeads(beads);
         necklace.setBeads(updateBeadRepoCount(necklace));
-        Necklace necklace1 = necklaceRepo.save(necklace);
-        return new ResponseEntity<>(necklace1, OK);
+        necklaceRepo.save(necklace);
+        return new ResponseEntity<>(necklace, OK);
     }
 
     @Override
     public ResponseEntity<Necklace> updateDescription(long id, String description) {
         Necklace necklace = necklaceRepo.findById(id);
         necklace.setDescription(description);
-        Necklace necklace1 = necklaceRepo.save(necklace);
-        return new ResponseEntity<>(necklace1,OK);
+        necklaceRepo.save(necklace);
+        return new ResponseEntity<>(necklace,OK);
     }
 
     @Override

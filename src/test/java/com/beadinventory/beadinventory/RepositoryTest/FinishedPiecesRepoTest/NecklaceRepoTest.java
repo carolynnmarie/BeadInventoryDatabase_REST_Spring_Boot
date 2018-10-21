@@ -53,7 +53,7 @@ public class NecklaceRepoTest {
         findings.put(lobsterClasp2,1);
         findings.put(splitRing,1);
         StringWire beadingWire =new StringWire(BEADING_WIRE, BRIGHT_SILVER_PLATED, "silver",".5 mm",7,"good",.1,"Beadalon");
-        this.necklace = new Necklace(beads, beadingWire, findings,20,3,1,"",true,true,40,LOBSTER_CLASP);
+        this.necklace = new Necklace(beads,findings, beadingWire, 20,3,1,"",true,true,40,LOBSTER_CLASP);
     }
 
     @Test

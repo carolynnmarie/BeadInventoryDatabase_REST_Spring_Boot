@@ -25,6 +25,7 @@ public class BraceletController implements AllFinishedPiecesContInterface<Bracel
         return null;
     }
 
+
     @Override
     @GetMapping(value = "/{id}")
     public Bracelet findItemById(@PathVariable("id") long id) {
@@ -42,6 +43,8 @@ public class BraceletController implements AllFinishedPiecesContInterface<Bracel
     public Bracelet updateItem(@PathVariable("id") long id, @RequestBody Bracelet item) {
         return null;
     }
+
+    //ResponseEntity<Bracelet> updatePriceOfOne(long id, double price)
 
     @Override
     @PutMapping(params = "price")
