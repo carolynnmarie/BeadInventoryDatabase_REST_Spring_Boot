@@ -4,11 +4,9 @@ import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
 
 import javax.persistence.*;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 @Table(name = "NECKLACE")
@@ -40,9 +38,9 @@ public class Necklace extends AllFinishedPieces {
 
     public Necklace(){}
 
-    public Necklace(LinkedHashMap<Bead, Integer> beads,LinkedHashMap<Finding, Integer> findings, StringWire stringWire,
-                    double lengthInch, int hoursSpent, double difficultyLevel, String description, boolean hasNaturalStones,
-                    boolean hasSwarovski, double price, FindingCategory clasp) {
+    public Necklace(Map<Bead, Integer> beads, Map<Finding, Integer> findings, StringWire stringWire, double lengthInch, int hoursSpent,
+                    double difficultyLevel, String description, boolean hasNaturalStones, boolean hasSwarovski, double price,
+                    FindingCategory clasp) {
         super(beads, findings, price,  description);
         this.stringWire = stringWire;
         this.lengthInch = lengthInch;
@@ -110,8 +108,8 @@ public class Necklace extends AllFinishedPieces {
     }
 
     public String describeNecklace(){
-        String description = "The necklace is " + getLengthInch() + " inches long, on " + getStringWire().getStringWireCategory().toString() + ", with a " +
-                clasp.toString();
+        String description = "The necklace is " + getLengthInch() + " inches long, on " + getStringWire().getStringWireCategory().toString()
+                + ", with a " + clasp.toString();
         description += (getHasNaturalStones())?", with natural stone beads":"";
         description += (getHasSwarovski())?", with Swarovski crystals":"";
         return description;

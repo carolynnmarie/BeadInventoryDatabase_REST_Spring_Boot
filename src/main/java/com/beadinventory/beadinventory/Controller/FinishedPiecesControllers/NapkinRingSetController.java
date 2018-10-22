@@ -1,15 +1,24 @@
 package com.beadinventory.beadinventory.Controller.FinishedPiecesControllers;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.NapkinRingSet;
+import com.beadinventory.beadinventory.Service.FinishedPiecesServices.NapkinRingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/napkin_ring")
 public class NapkinRingSetController implements AllFinishedPiecesContInterface<NapkinRingSet> {
+
+    private NapkinRingService napkinRingService;
+
+    @Autowired
+    public NapkinRingSetController(NapkinRingService napkinRingService){
+        this.napkinRingService = napkinRingService;
+    }
 
 
     @Override
@@ -24,12 +33,16 @@ public class NapkinRingSetController implements AllFinishedPiecesContInterface<N
         return null;
     }
 
-    //int getQuantityOfItemsInSet(long id)
+
+    @GetMapping(value = "/{id}")
+    public int getSetSize(@PathVariable("id") long id){
+        return napkinRingService.getQuantityOfItemsInSet(id);
+    }
 
     @Override
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public NapkinRingSet createItem(@RequestBody NapkinRingSet item) {
+    public ResponseEntity<NapkinRingSet> createItem(@RequestBody NapkinRingSet item) {
         return null;
     }
 

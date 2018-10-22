@@ -1,6 +1,8 @@
 package com.beadinventory.beadinventory.Controller.FinishedPiecesControllers;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.WineCharmSet;
+import com.beadinventory.beadinventory.Service.FinishedPiecesServices.WineCharmService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,6 +11,12 @@ import java.util.List;
 @RestController
 public class WineCharmSetController implements AllFinishedPiecesContInterface<WineCharmSet> {
 
+    private WineCharmService wineCharmService;
+
+    @Autowired
+    public WineCharmSetController(WineCharmService wineCharmService){
+        this.wineCharmService = wineCharmService;
+    }
 
     @Override
     public List<WineCharmSet> findAllItems() {
@@ -21,7 +29,7 @@ public class WineCharmSetController implements AllFinishedPiecesContInterface<Wi
     }
 
     @Override
-    public WineCharmSet createItem(WineCharmSet item) {
+    public ResponseEntity<WineCharmSet> createItem(WineCharmSet item) {
         return null;
     }
 

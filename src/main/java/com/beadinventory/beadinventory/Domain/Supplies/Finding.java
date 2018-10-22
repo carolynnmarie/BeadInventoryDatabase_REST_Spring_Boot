@@ -4,16 +4,16 @@ import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCatego
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 
 import javax.persistence.*;
-import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.TreeSet;
+import java.util.*;
 
 @Entity
+@Table(name = "FINDING")
 public class Finding implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "FINDING_ID")
+    @Column(name = "FID")
     private long id;
 
     @Enumerated(value = EnumType.STRING)
@@ -36,13 +36,14 @@ public class Finding implements Serializable {
     @Column(name = "QUANTITY")
     private long quantity;
 
+    @ElementCollection
     @Column(name = "BRAND")
-    private TreeSet<String> brand;
+    private List<String> brand;
 
     public Finding(){}
 
     public Finding(FindingCategory category, Material material, String details, double lengthCM, double pricePoint,
-                   int quantity, TreeSet<String> brand) {
+                   int quantity, List<String> brand) {
         this.category = category;
         this.material = material;
         this.details = details;
@@ -104,11 +105,11 @@ public class Finding implements Serializable {
         this.material = material;
     }
 
-    public TreeSet<String> getBrand() {
+    public List<String> getBrand() {
         return brand;
     }
 
-    public void setBrand(TreeSet<String> brand) {
+    public void setBrand(List<String> brand) {
         this.brand = brand;
     }
 

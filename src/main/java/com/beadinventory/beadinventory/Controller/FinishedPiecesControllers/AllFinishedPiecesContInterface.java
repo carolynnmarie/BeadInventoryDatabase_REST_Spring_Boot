@@ -13,7 +13,7 @@ public interface AllFinishedPiecesContInterface<T extends AllFinishedPieces> {
 
     List<T> findAllItems();
     T findItemById(@PathVariable("id") long id);
-    T createItem(@RequestBody T item);
+    ResponseEntity<T> createItem(@RequestBody T item);
     T updateItem(@PathVariable("id")long id, @RequestBody T item);
     List<T> updatePriceOfAll(@RequestParam(value = "price") double amountToAdd);
     T updateDescription(@PathVariable("id") long id, @RequestParam(value = "description") String description);

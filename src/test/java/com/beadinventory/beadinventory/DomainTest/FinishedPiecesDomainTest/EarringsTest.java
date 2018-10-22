@@ -1,11 +1,8 @@
 package com.beadinventory.beadinventory.DomainTest.FinishedPiecesDomainTest;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Earrings;
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import com.beadinventory.beadinventory.Domain.Supplies.*;
+import org.junit.*;
 
 import java.util.*;
 
@@ -19,20 +16,20 @@ public class EarringsTest {
     private Finding eyePin;
     private Finding headPin;
     private Finding earWire;
-    private LinkedHashMap<Bead,Integer> beads;
-    private LinkedHashMap<Finding, Integer> findings;
+    private HashMap<Bead,Integer> beads;
+    private HashMap<Finding, Integer> findings;
     private Earrings earrings;
 
     @Before
     public void setUp(){
-        TreeSet<String> brands = new TreeSet<>(Arrays.asList("Bead Gallery"));
+        List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
         this.bead = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,brands);
-        this.beads = new LinkedHashMap<>();
+        this.beads = new HashMap<>();
         beads.put(bead,3);
         this.eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);
         this.headPin= new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);
         this.earWire = new Finding(EAR_WIRE,FULL_STERLING_SILVER,"",2.0,.1,2,brands);
-        this.findings = new LinkedHashMap<>();
+        this.findings = new HashMap<>();
         findings.put(eyePin,2);
         findings.put(headPin,1);
         findings.put(earWire,2);

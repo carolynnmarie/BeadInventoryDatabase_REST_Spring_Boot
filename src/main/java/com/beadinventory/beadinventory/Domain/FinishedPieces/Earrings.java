@@ -5,7 +5,7 @@ import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 
 
 import javax.persistence.*;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 @Entity
 @Table(name = "EARRINGS")
@@ -16,8 +16,7 @@ public class Earrings extends AllFinishedPieces {
 
     public Earrings(){}
 
-    public Earrings(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings, double price, String description,
-                    boolean sterlingSilverYorN) {
+    public Earrings(Map<Bead, Integer> beads, Map<Finding, Integer> findings, double price, String description, boolean sterlingSilverYorN) {
         super(beads, findings, price, description);
         this.sterlingSilverYorN = sterlingSilverYorN;
     }

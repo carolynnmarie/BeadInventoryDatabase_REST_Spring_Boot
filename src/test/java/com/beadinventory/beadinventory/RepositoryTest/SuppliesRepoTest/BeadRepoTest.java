@@ -31,7 +31,7 @@ public class BeadRepoTest {
     @Autowired
     private BeadRepo beadRepo;
 
-    TreeSet<String> brands = new TreeSet<>(Arrays.asList("Bead Gallery"));
+    List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
     private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,
             "translucent purple with some white", 0.2,brands);
     private Bead bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",

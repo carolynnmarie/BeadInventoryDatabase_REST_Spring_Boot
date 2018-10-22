@@ -5,7 +5,7 @@ import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 
 import javax.persistence.*;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 @Entity
 @Table(name = "BOOKMARK")
@@ -25,7 +25,7 @@ public class Bookmark extends AllFinishedPieces {
 
     public Bookmark(){}
 
-    public Bookmark(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings, double price, String description,
+    public Bookmark(Map<Bead, Integer> beads, Map<Finding, Integer> findings, double price, String description,
                     Material stringMaterial, String stringColor, int lengthInch) {
         super(beads, findings, price, description);
         this.stringMaterial = stringMaterial;

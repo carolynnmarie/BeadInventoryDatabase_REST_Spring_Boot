@@ -2,31 +2,31 @@ package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import javafx.beans.DefaultProperty;
 
 import javax.persistence.Id;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 @MappedSuperclass
-public abstract class AllFinishedPieces {
+public abstract class AllFinishedPieces implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
-    @NotNull
     private long id;
 
-    @Lob
-    @Column(name = "BEADS")
-    protected LinkedHashMap<Bead,Integer> beads;
+    @ElementCollection
+    @CollectionTable(name = "BEAD_TABLE", joinColumns = @JoinColumn(name = "ALL_ID"))
+    @MapKeyJoinColumn(name = "BID", referencedColumnName = "BID")
+    @Column(name)
+    protected Map<Bead, Integer> beads;
 
-    @Lob
-    @Column(name = "FINDINGS")
-    protected LinkedHashMap<Finding, Integer> findings;
+    @ManyToMany
+    @MapKeyJoinColumn(table = "FINDING", name = "FID", referencedColumnName = "FID")
+    protected Map<Finding, Integer> findings;
 
     @Column(name = "PRICE")
     protected double price;
@@ -37,26 +37,26 @@ public abstract class AllFinishedPieces {
     public AllFinishedPieces() {
     }
 
-    public AllFinishedPieces(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding,Integer> findings,  double price, String description) {
+    public AllFinishedPieces(Map<Bead, Integer> beads, Map<Finding, Integer> findings, double price, String description) {
         this.beads = beads;
         this.findings = findings;
         this.price = price;
         this.description = description;
     }
 
-    public LinkedHashMap<Bead, Integer> getBeads() {
+    public Map<Bead, Integer> getBeads() {
         return beads;
     }
 
-    public void setBeads(LinkedHashMap<Bead, Integer> beads) {
+    public void setBeads(HashMap<Bead, Integer> beads) {
         this.beads = beads;
     }
 
-    public LinkedHashMap<Finding, Integer> getFindings() {
+    public Map<Finding, Integer> getFindings() {
         return findings;
     }
 
-    public void setFindings(LinkedHashMap<Finding, Integer> findings) {
+    public void setFindings(HashMap<Finding, Integer> findings) {
         this.findings = findings;
     }
 

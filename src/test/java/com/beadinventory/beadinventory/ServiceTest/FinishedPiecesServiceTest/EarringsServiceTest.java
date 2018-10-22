@@ -35,13 +35,13 @@ public class EarringsServiceTest {
     public void setUp() throws Exception{
         MockitoAnnotations.initMocks(this);
 
-        LinkedHashMap<Bead,Integer> beads = new LinkedHashMap<>();
-        TreeSet<String> beadBrands = new TreeSet<>(Arrays.asList("Bead Gallery"));
+        HashMap<Bead,Integer> beads = new HashMap<>();
+        List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
         Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"purple", 0.2,beadBrands);
         beads.put(bead1,3);
 
-        LinkedHashMap<Finding,Integer> findings = new LinkedHashMap<>();
-        TreeSet<String> findingBrands = new TreeSet<>(Arrays.asList("Beadalon","bead landing"));
+        HashMap<Finding,Integer> findings = new HashMap<>();
+        List<String> findingBrands = new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
         Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,findingBrands);
         Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,findingBrands);
         Finding earWire = new Finding(EAR_WIRE,FULL_STERLING_SILVER,"",2.0,.1,2,findingBrands);

@@ -1,8 +1,7 @@
 package com.beadinventory.beadinventory.RepositoryTest.FinishedPiecesRepoTest;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Earrings;
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.Domain.Supplies.*;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.EarringsRepo;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -34,12 +33,12 @@ public class EarringsRepoTest {
 
     @Before
     public void setUp(){
-        LinkedHashMap<Bead,Integer> beads = new LinkedHashMap<>();
-        TreeSet<String> beadBrands = new TreeSet<>(Arrays.asList("Bead Gallery"));
+        HashMap<Bead,Integer> beads = new HashMap<>();
+        List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
         Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"purple", 0.2,beadBrands);
         beads.put(bead1,3);
-        LinkedHashMap<Finding,Integer> findings = new LinkedHashMap<>();
-        TreeSet<String> findingBrands= new TreeSet<>(Arrays.asList("Beadalon","bead landing"));
+        HashMap<Finding,Integer> findings = new HashMap<>();
+        List<String> findingBrands= new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
         Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,findingBrands);
         Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,beadBrands);
         findings.put(eyePin,2);

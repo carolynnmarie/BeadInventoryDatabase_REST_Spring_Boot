@@ -29,7 +29,7 @@ public class FindingControllerTest {
     @InjectMocks
     private FindingController mockFindingController;
 
-    private TreeSet<String> brands;
+    private List<String> brands;
     private Finding eyePin;
     private Finding headPin;
     private Finding lobsterClasp;
@@ -40,7 +40,7 @@ public class FindingControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        brands = new TreeSet<>(Arrays.asList("Beadalon","bead landing"));
+        brands = new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
         eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,25,brands);
         eyePin.setId(1L);
         headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);

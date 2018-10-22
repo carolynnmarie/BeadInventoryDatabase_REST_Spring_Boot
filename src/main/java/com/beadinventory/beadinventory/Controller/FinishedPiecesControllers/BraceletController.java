@@ -2,6 +2,8 @@ package com.beadinventory.beadinventory.Controller.FinishedPiecesControllers;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bracelet;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.BraceletType;
+import com.beadinventory.beadinventory.Service.FinishedPiecesServices.BraceletService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +15,18 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RequestMapping(value = "/bracelets")
 public class BraceletController implements AllFinishedPiecesContInterface<Bracelet> {
 
+    private BraceletService braceletService;
+
+    @Autowired
+    public BraceletController(BraceletService braceletService){
+        this.braceletService = braceletService;
+    }
+
     @Override
     @GetMapping()
     public List<Bracelet> findAllItems() {
         return null;
     }
-
 
     @GetMapping(value = "/bracelet_type")
     public List<Bracelet> findAllOfBraceletType(@RequestAttribute (value = "bracelet_type")BraceletType bracelet_type){
@@ -34,7 +42,7 @@ public class BraceletController implements AllFinishedPiecesContInterface<Bracel
 
     @Override
     @PostMapping()
-    public Bracelet createItem(@RequestBody Bracelet item) {
+    public ResponseEntity<Bracelet> createItem(@RequestBody Bracelet item) {
         return null;
     }
 

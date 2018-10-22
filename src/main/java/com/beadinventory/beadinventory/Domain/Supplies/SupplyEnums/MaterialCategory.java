@@ -1,6 +1,8 @@
 package com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums;
 
-public enum MaterialCategory {
+import java.io.Serializable;
+
+public enum MaterialCategory implements Serializable {
 
     NATURAL_STONE,
     SEMI_PRECIOUS_STONE,

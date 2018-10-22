@@ -1,6 +1,8 @@
 package com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums;
 
-public enum StringWireCategory {
+import java.io.Serializable;
+
+public enum StringWireCategory implements Serializable {
     BEADING_WIRE("beading wire"),
     BEADING_THREAD("beading thread"),
     ELASTIC("elastic"),

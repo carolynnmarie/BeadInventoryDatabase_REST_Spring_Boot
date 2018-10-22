@@ -12,8 +12,7 @@ import org.mockito.*;
 import org.springframework.http.*;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -53,22 +52,22 @@ public class BookmarkServiceTest {
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        TreeSet<String> beadBrands = new TreeSet<>(Arrays.asList("Bead Gallery"));
+        List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
         bead1 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white",
                 0.2,beadBrands);
         bead2 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white",
                 0.2,beadBrands);
         bead3  = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05, beadBrands);
-        TreeSet<String> findingBrands = new TreeSet<>(Arrays.asList("bead landing"));
+        List<String> findingBrands = new ArrayList<>(Arrays.asList("bead landing"));
         headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,findingBrands);
 
-        LinkedHashMap<Bead, Integer> beads = new LinkedHashMap<>();
+        HashMap<Bead, Integer> beads = new HashMap<>();
         beads.put(bead1,1);
         beads.put(bead2,1);
-        LinkedHashMap<Finding, Integer> findings = new LinkedHashMap<>();
+        HashMap<Finding, Integer> findings = new HashMap<>();
         findings.put(headPin,2);
 
-        LinkedHashMap<Bead,Integer> beads2 = new LinkedHashMap<>();
+        HashMap<Bead,Integer> beads2 = new HashMap<>();
         beads2.put(bead3,2);
 
         bookmark = new Bookmark(beads,findings,10.0,"Amethyst on black cord", COTTON,"black",10);
@@ -122,6 +121,7 @@ public class BookmarkServiceTest {
         verify(bookmarkRepo).save(any(Bookmark.class));
         Assert.assertEquals(expected,actual);
     }
+
 
     @Test
     public void updateItemTest(){

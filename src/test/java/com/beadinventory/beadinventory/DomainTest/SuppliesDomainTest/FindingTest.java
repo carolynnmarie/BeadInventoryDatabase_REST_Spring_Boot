@@ -1,19 +1,16 @@
 package com.beadinventory.beadinventory.DomainTest.SuppliesDomainTest;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import org.junit.Assert;
-import org.junit.Test;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
+import org.junit.*;
+import java.util.*;
 
-import java.util.Arrays;
-import java.util.TreeSet;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 
 public class FindingTest {
-    private TreeSet<String> brands = new TreeSet<>(Arrays.asList("Beadalon","bead landing"));
+    private List<String> brands = new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
     private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,0.02,20,
             brands);
     private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,0.02,20,
@@ -69,8 +66,8 @@ public class FindingTest {
 
     @Test
     public void getBrandTest() {
-        String expected = "bead landing";
-        String actual = lobsterClasp.getBrand().last();
+        Set<String> expected = new TreeSet<>(Arrays.asList("Beadalon","bead landing"));
+        List<String> actual = lobsterClasp.getBrand();
         Assert.assertEquals(expected,actual);
     }
 }

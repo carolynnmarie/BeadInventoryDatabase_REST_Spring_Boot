@@ -3,19 +3,12 @@ package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.AllFinishedPieces;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.AllFinishedPiecesRepo;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.FindingRepo;
-import com.beadinventory.beadinventory.Service.SuppliesServices.BeadService;
-import com.beadinventory.beadinventory.Service.SuppliesServices.FindingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-
-import static org.springframework.http.HttpStatus.*;
 
 @Service
 public abstract class AllFinishedPiecesService<T extends AllFinishedPieces> {
@@ -36,21 +29,23 @@ public abstract class AllFinishedPiecesService<T extends AllFinishedPieces> {
 
 
 
-    public LinkedHashMap<Bead, Integer> updateBeadRepoCount(T item){
-        LinkedHashMap<Bead,Integer> beadMap = new LinkedHashMap<>();
-        LinkedHashMap<Bead,Integer> beads = item.getBeads();
+    public HashMap<Bead, Integer> updateBeadRepoCount(T item){
+        ArrayList<Bead> beadList = new ArrayList<>();
+        HashMap<Bead,Integer> beadMap = new HashMap<>();
+        Map<Bead, Integer> beads = item.getBeads();
         for(Map.Entry<Bead,Integer> beadEntry: beads.entrySet()){
             Bead bead = beadEntry.getKey();
             bead.setQuantity(bead.getQuantity()-beadEntry.getValue());
-            beadRepo.save(bead);
+            beadList.add(bead);
             beadMap.put(bead,beadEntry.getValue());
         }
+        beadRepo.saveAll(beadList);
         return beadMap;
     }
 
-    public LinkedHashMap<Finding,Integer> updateFindingRepoCount(T item){
-        LinkedHashMap<Finding,Integer> findingMap = new LinkedHashMap<>();
-        LinkedHashMap<Finding,Integer> findings = item.getFindings();
+    public HashMap<Finding,Integer> updateFindingRepoCount(T item){
+        HashMap<Finding,Integer> findingMap = new HashMap<>();
+        Map<Finding, Integer> findings = item.getFindings();
         for(Map.Entry<Finding,Integer> entry: findings.entrySet()){
             Finding finding = entry.getKey();
             finding.setQuantity(finding.getQuantity()-entry.getValue());

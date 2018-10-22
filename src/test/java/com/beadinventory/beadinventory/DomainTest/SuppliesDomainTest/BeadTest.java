@@ -2,15 +2,10 @@ package com.beadinventory.beadinventory.DomainTest.SuppliesDomainTest;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.TreeSet;
+import org.junit.*;
+import java.util.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
 
 public class BeadTest {
@@ -22,7 +17,7 @@ public class BeadTest {
 
     @Before
     public void before(){
-        TreeSet<String> brands = new TreeSet<>(Arrays.asList("Bead Gallery"));
+        List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
         bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,
                 "translucent purple with some white",0.2,brands);
         bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,brands);
@@ -99,11 +94,9 @@ public class BeadTest {
 
     @Test
     public void getBrandsTest(){
-        TreeSet<String> setExpected = new TreeSet<>(Arrays.asList("Bead Gallery"));
-        String expected = setExpected.first();
-        TreeSet<String> setActual = bead2.getBrands();
-        String actual = setActual.first();
-        Assert.assertEquals(expected,actual);
+        Set<String> setExpected = new TreeSet<>(Arrays.asList("Bead Gallery"));
+        List<String> setActual = bead2.getBrands();
+        Assert.assertEquals(setExpected,setActual);
     }
 
 }

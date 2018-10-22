@@ -1,11 +1,8 @@
 package com.beadinventory.beadinventory.DomainTest.SuppliesDomainTest;
 
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
-import org.junit.Assert;
-import org.junit.Test;
-
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
+import org.junit.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;

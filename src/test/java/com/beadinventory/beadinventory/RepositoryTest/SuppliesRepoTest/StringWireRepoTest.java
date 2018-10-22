@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
 
-import java.util.List;
+import java.util.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;

@@ -20,7 +20,6 @@ import java.util.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.http.HttpStatus.*;
@@ -42,7 +41,7 @@ public class FindingContIntegrationTest {
     private ObjectMapper mapper = new ObjectMapper();
 
 
-    private TreeSet<String> brands = new TreeSet<>(Arrays.asList("beadalon"));
+    private List<String> brands = new ArrayList<>(Arrays.asList("beadalon"));
     private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,25,brands);
     private Finding eyePin2 = new Finding(EYE_PIN, BRASS,"thin",5.08,5.08,25,brands);
     private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);

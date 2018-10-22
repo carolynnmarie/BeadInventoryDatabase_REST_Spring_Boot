@@ -2,7 +2,6 @@ package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.BeadController;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;
@@ -18,9 +17,6 @@ import java.util.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.http.MediaType.*;
@@ -42,7 +38,7 @@ public class BeadContIntegrationTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    TreeSet<String> brands = new TreeSet<>(Arrays.asList("Bead Gallery"));
+    List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
     private Bead bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20, "translucent purple", 0.2, brands);
     private Bead bead2 = new Bead(JASPER, ROUND, "black", 4, "good", 10, "", 0.1, brands);
     private Bead bead3 = new Bead(STONE, ROUND, "tan", 6, "ok", 7, "with design cut into bead", 0.05, brands);

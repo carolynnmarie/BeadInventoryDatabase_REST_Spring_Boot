@@ -1,6 +1,8 @@
 package com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums;
 
-public enum Shape {
+import java.io.Serializable;
+
+public enum Shape implements Serializable {
     ROUND("round"),
     OVAL("oval"),
     RONDELLE("rondelle"),

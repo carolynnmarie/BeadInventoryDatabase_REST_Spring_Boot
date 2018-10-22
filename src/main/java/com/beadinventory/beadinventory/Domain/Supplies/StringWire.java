@@ -9,12 +9,12 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "stringing_materials")
+@Table(name = "STRING_WIRE")
 public class StringWire implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "STRINGING_MATERIAL_ID")
+    @Column(name = "SID")
     private long id;
 
     @Enumerated(value = EnumType.STRING)

@@ -5,7 +5,7 @@ import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 
 import javax.persistence.*;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 @Entity
 @Table(name = "NAPKIN_RING")
@@ -24,7 +24,7 @@ public class NapkinRingSet extends AllFinishedPieces {
 
     public NapkinRingSet(){}
 
-    public NapkinRingSet(LinkedHashMap<Bead, Integer> beads, LinkedHashMap<Finding, Integer> findings, double price, String description,
+    public NapkinRingSet(Map<Bead, Integer> beads, Map<Finding, Integer> findings, double price, String description,
                          StringWire stringWire, String colorScheme, int quantity) {
         super(beads, findings, price, description);
         this.stringWire = stringWire;

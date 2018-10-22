@@ -1,7 +1,9 @@
 package com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums;
 
+import java.io.Serializable;
+
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory.*;
-public enum Material {
+public enum Material implements Serializable {
 
     SHELL("shell", NATURAL_STONE),
     HOWLITE("howlite", NATURAL_STONE),

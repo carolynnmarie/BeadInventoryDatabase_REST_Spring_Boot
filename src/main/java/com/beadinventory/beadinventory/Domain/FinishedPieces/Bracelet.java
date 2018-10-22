@@ -4,7 +4,7 @@ import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import javax.persistence.*;
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static com.beadinventory.beadinventory.Domain.FinishedPieces.BraceletType.*;
 
@@ -33,8 +33,8 @@ public class Bracelet extends AllFinishedPieces {
 
     public Bracelet(){}
 
-    public Bracelet(LinkedHashMap<Bead, Integer> beads,LinkedHashMap<Finding, Integer> findings, double price, String description,
-                    BraceletType braceletType, StringWire stringWire, boolean hasNaturalStones, boolean hasSwarovski, int lengthInch){
+    public Bracelet(Map<Bead, Integer> beads, Map<Finding, Integer> findings, double price, String description, BraceletType braceletType,
+                    StringWire stringWire, boolean hasNaturalStones, boolean hasSwarovski, int lengthInch){
         super(beads, findings, price, description);
         this.braceletType = braceletType;
         this.stringWire = stringWire;

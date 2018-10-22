@@ -1,13 +1,9 @@
 package com.beadinventory.beadinventory.DomainTest.FinishedPiecesDomainTest;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.Domain.Supplies.*;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
+import org.junit.*;
 import java.util.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
@@ -19,25 +15,25 @@ public class BookmarkTest {
     private Bead bead1;
     private Bead bead2;
     private Finding headPin;
-    private LinkedHashMap<Bead, Integer> beads;
-    private LinkedHashMap<Finding, Integer> findings;
+    private HashMap<Bead, Integer> beads;
+    private HashMap<Finding, Integer> findings;
 
     private Bookmark bookmark;
 
     @Before
     public void setUp(){
-        TreeSet<String> beadBrands = new TreeSet<>(Arrays.asList("Bead Gallery"));
+        List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
         bead1 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white",
                 0.2,beadBrands);
         bead2 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white",
                 0.2,beadBrands);
-        TreeSet<String> findingBrands = new TreeSet<>(Arrays.asList("bead landing"));
+        List<String> findingBrands = new ArrayList<>(Arrays.asList("bead landing"));
         headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,findingBrands);
 
-        beads = new LinkedHashMap<>();
+        beads = new HashMap<>();
         beads.put(bead1,1);
         beads.put(bead2,1);
-        findings = new LinkedHashMap<>();
+        findings = new HashMap<>();
         findings.put(headPin,2);
 
         bookmark = new Bookmark(beads,findings,12.0,"Amethyst on black cord", COTTON,"black",10);
@@ -45,16 +41,16 @@ public class BookmarkTest {
 
     @Test
     public void getBeadsTest(){
-        LinkedHashMap<Bead, Integer> expected = new LinkedHashMap<>(beads);
-        LinkedHashMap<Bead, Integer> actual = bookmark.getBeads();
+        Map<Bead, Integer> expected = new LinkedHashMap<>(beads);
+        Map<Bead, Integer> actual = bookmark.getBeads();
 
         Assert.assertEquals(expected,actual);
     }
 
     @Test
     public void getFindingsTest(){
-        LinkedHashMap<Finding, Integer> expected = new LinkedHashMap<>(findings);
-        LinkedHashMap<Finding, Integer> actual = bookmark.getFindings();
+        Map<Finding, Integer> expected = new LinkedHashMap<>(findings);
+        Map<Finding, Integer> actual = bookmark.getFindings();
 
         Assert.assertEquals(expected,actual);
     }

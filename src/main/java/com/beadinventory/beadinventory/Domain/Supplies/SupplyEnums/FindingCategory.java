@@ -1,7 +1,9 @@
 package com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums;
 
 
-public enum FindingCategory {
+import java.io.Serializable;
+
+public enum FindingCategory implements Serializable {
     LOBSTER_CLASP("closure"),
     LOOP_AND_TOGGLE_CLASP("closure"),
     MAGNETIC_CLASP("closure"),

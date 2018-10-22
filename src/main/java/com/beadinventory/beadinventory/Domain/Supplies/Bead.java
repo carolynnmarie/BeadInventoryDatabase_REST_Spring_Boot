@@ -1,22 +1,19 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape;
-
-import javax.persistence.Id;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.TreeSet;
+import java.util.*;
 
 @Entity
+@Table(name = "BEAD")
 public class Bead implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "BEAD_ID")
+    @Column(name = "BID")
     @NotNull
     private long id;
 
@@ -46,13 +43,14 @@ public class Bead implements Serializable {
     @Column(name = "PRICE_POINT")
     private double pricePoint;
 
+    @ElementCollection
     @Column(name = "BRANDS")
-    private TreeSet<String> brands;
+    private List<String> brands;
 
     public Bead(){ }
 
     public Bead(Material material, Shape shape, String color, int size, String quality, long quantity,
-                String description, double pricePoint, TreeSet<String> brands) {
+                String description, double pricePoint, List<String> brands) {
         this.material = material;
         this.shape = shape;
         this.color = color;
@@ -144,11 +142,11 @@ public class Bead implements Serializable {
         return shape.toString();
     }
 
-    public void setBrands(TreeSet<String> brands) {
+    public void setBrands(List<String> brands) {
         this.brands = brands;
     }
 
-    public TreeSet<String> getBrands() {
+    public List<String> getBrands() {
         return brands;
     }
 

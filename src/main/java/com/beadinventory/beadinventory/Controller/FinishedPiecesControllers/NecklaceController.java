@@ -1,6 +1,7 @@
 package com.beadinventory.beadinventory.Controller.FinishedPiecesControllers;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Necklace;
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
 import com.beadinventory.beadinventory.Service.FinishedPiecesServices.NecklaceService;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
@@ -53,12 +55,16 @@ public class NecklaceController implements AllFinishedPiecesContInterface<Neckla
     }
 
     @Override
-    public Necklace createItem(Necklace item) {
+    public ResponseEntity<Necklace> createItem(Necklace item) {
         return null;
     }
 
     @Override
     public Necklace updateItem(long id, Necklace item) {
+        return null;
+    }
+
+    public Necklace updatePriceOfOne(double price){
         return null;
     }
 
@@ -69,6 +75,10 @@ public class NecklaceController implements AllFinishedPiecesContInterface<Neckla
 
     @Override
     public Necklace updateDescription(long id, String description) {
+        return null;
+    }
+
+    public Necklace updateNecklaceBeads(long id, LinkedHashMap<Bead,Integer> beads){
         return null;
     }
 

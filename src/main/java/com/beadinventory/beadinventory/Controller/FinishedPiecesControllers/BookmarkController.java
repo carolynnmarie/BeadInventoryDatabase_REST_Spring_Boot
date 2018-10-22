@@ -3,6 +3,7 @@ package com.beadinventory.beadinventory.Controller.FinishedPiecesControllers;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
 import com.beadinventory.beadinventory.Service.FinishedPiecesServices.BookmarkService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,43 +25,43 @@ public class BookmarkController implements AllFinishedPiecesContInterface<Bookma
     @Override
     @GetMapping()
     public List<Bookmark> findAllItems() {
-        return null;
+        return bookmarkService.getAllItems().getBody();
     }
 
     @Override
     @GetMapping(value = "/{id}")
     public Bookmark findItemById(@PathVariable("id") long id) {
-        return null;
+        return bookmarkService.getItemById(id).getBody();
     }
 
     @Override
-    @PostMapping()
-    public Bookmark createItem(@RequestBody Bookmark item) {
-        return null;
+    @PostMapping(value = "",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Bookmark> createItem(@RequestBody Bookmark item) {
+        return bookmarkService.createItem(item);
     }
 
     @Override
     @PutMapping(value = "/{id}")
     public Bookmark updateItem(@PathVariable("id") long id, @RequestBody Bookmark item) {
-        return null;
+        return bookmarkService.updateItem(id,item).getBody();
     }
 
     @Override
     @PutMapping(params = "price")
     public List<Bookmark> updatePriceOfAll(@RequestAttribute(value = "price") double price) {
-        return null;
+        return bookmarkService.increasePriceOfAll(price).getBody();
     }
 
     @Override
     @PutMapping(value = "/{id}", params = "description")
     public Bookmark updateDescription(@PathVariable("id") long id, @RequestAttribute(value = "description") String description) {
-        return null;
+        return bookmarkService.updateDescription(id,description).getBody();
     }
 
     @Override
     @DeleteMapping()
     public ResponseEntity deleteItem(@RequestBody Bookmark item) {
-        return null;
+        return bookmarkService.deleteItem(item);
     }
 
     public int getTotalItemCount(){

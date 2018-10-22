@@ -39,7 +39,7 @@ public class EarringsController implements AllFinishedPiecesContInterface<Earrin
 
     @Override
     @RequestMapping(value = "/earrings", method = POST)
-    public Earrings createItem(@RequestBody Earrings item) {
+    public ResponseEntity<Earrings> createItem(@RequestBody Earrings item) {
         return null;
     }
 
