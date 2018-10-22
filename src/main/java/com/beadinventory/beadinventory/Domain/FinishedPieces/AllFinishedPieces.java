@@ -19,13 +19,15 @@ public abstract class AllFinishedPieces implements Serializable {
     private long id;
 
     @ElementCollection
-    @CollectionTable(name = "BEAD_TABLE", joinColumns = @JoinColumn(name = "ALL_ID"))
-    @MapKeyJoinColumn(name = "BID", referencedColumnName = "BID")
-    @Column(name)
+    @CollectionTable(name = "BEAD_MAP")
+    @MapKeyJoinColumn(name = "BEAD_ID")
+    @Column
     protected Map<Bead, Integer> beads;
 
-    @ManyToMany
-    @MapKeyJoinColumn(table = "FINDING", name = "FID", referencedColumnName = "FID")
+    @ElementCollection
+    @CollectionTable(name = "FINDING_MAP")
+    @MapKeyJoinColumn(table = "FINDING", name = "FINDING_ID")
+    @Column(name = "FINDINGS")
     protected Map<Finding, Integer> findings;
 
     @Column(name = "PRICE")

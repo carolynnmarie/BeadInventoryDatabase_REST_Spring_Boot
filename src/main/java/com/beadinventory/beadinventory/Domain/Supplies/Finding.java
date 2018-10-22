@@ -1,5 +1,6 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
+import com.beadinventory.beadinventory.Domain.FinishedPieces.AllFinishedPieces;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 
@@ -13,7 +14,7 @@ public class Finding implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "FID")
+    @Column(name = "FINDING_ID")
     private long id;
 
     @Enumerated(value = EnumType.STRING)
@@ -39,6 +40,7 @@ public class Finding implements Serializable {
     @ElementCollection
     @Column(name = "BRAND")
     private List<String> brand;
+
 
     public Finding(){}
 
@@ -124,4 +126,5 @@ public class Finding implements Serializable {
     public Material getMaterial() {
         return material;
     }
+
 }

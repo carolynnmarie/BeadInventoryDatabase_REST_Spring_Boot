@@ -1,5 +1,6 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
+import com.beadinventory.beadinventory.Domain.FinishedPieces.AllFinishedPieces;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ public class Bead implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "BID")
+    @Column(name = "BEAD_ID")
     @NotNull
     private long id;
 
@@ -47,6 +48,7 @@ public class Bead implements Serializable {
     @Column(name = "BRANDS")
     private List<String> brands;
 
+
     public Bead(){ }
 
     public Bead(Material material, Shape shape, String color, int size, String quality, long quantity,
@@ -60,6 +62,7 @@ public class Bead implements Serializable {
         this.description = description;
         this.pricePoint = pricePoint;
         this.brands = brands;
+
     }
 
     public Material getMaterial(){
