@@ -15,7 +15,7 @@ public class WineCharmSet extends AllFinishedPieces {
 
     public WineCharmSet(){}
 
-    public WineCharmSet(Map<Bead, Integer> beads, Map<Finding, Integer> findings, double price, String description, int quantity) {
+    public WineCharmSet(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description, int quantity) {
         super(beads, findings, price, description);
         this.quantity = quantity;
     }

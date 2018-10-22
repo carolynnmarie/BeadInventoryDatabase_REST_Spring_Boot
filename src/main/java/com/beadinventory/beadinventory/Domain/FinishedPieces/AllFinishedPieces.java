@@ -2,7 +2,6 @@ package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.Id;
 import javax.persistence.*;
@@ -18,26 +17,19 @@ public abstract class AllFinishedPieces implements Serializable {
     @Column(name = "ALL_ID")
     private long id;
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,targetEntity = Bead.class)
-    @JoinTable(name = "BEAD_MAP", joinColumns = @JoinColumn(name = "ALL_ID"))
-    @MapKeyClass(value = Bead.class)
-    @MapKeyJoinColumn(name = "BEAD_ID")
-    protected Map<Bead, Integer> beads;
-
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "allFinishedPieces", cascade = CascadeType.ALL)
-//    @Column
-//    protected List<FPBeads> beads;
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "BEAD_MAP", joinColumns = @JoinColumn(name = "ALL_ID"))
+//    @MapKeyJoinColumn(name = "BEAD_ID")
+    @Column
+    protected Map<Bead, Integer> beads = new HashMap<>();
 
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,targetEntity = Finding.class)
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "FINDING_MAP",joinColumns = @JoinColumn(name = "ALL_ID"))
+//    @MapKeyJoinColumn(name = "FINDING_ID")
+    @Column
+    protected Map<Finding, Integer> findings = new HashMap<>();
 
-    @JoinTable(name = "FINDING_MAP",joinColumns = @JoinColumn(name = "ALL_ID"))
-    @MapKeyClass(value = Finding.class)
-    @MapKeyJoinColumn(name = "FINDING_ID")
-    protected Map<Finding, Integer> findings;
-
-//    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
-//    protected List<FPFindings> findings;
 
     @Column(name = "PRICE")
     protected double price;
@@ -48,7 +40,7 @@ public abstract class AllFinishedPieces implements Serializable {
     public AllFinishedPieces() {
     }
 
-    public AllFinishedPieces(Map<Bead, Integer> beads, Map<Finding, Integer> findings, double price, String description) {
+    public AllFinishedPieces(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description) {
         this.beads = beads;
         this.findings = findings;
         this.price = price;
@@ -67,7 +59,7 @@ public abstract class AllFinishedPieces implements Serializable {
         return findings;
     }
 
-    public void setFindings(HashMap<Finding, Integer> findings) {
+    public void setFindings(Map<Finding, Integer> findings) {
         this.findings = findings;
     }
 

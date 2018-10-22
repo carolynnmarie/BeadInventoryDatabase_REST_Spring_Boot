@@ -38,7 +38,7 @@ public class Necklace extends AllFinishedPieces {
 
     public Necklace(){}
 
-    public Necklace(Map<Bead, Integer> beads, Map<Finding, Integer> findings, StringWire stringWire, double lengthInch, int hoursSpent,
+    public Necklace(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, StringWire stringWire, double lengthInch, int hoursSpent,
                     double difficultyLevel, String description, boolean hasNaturalStones, boolean hasSwarovski, double price,
                     FindingCategory clasp) {
         super(beads, findings, price,  description);

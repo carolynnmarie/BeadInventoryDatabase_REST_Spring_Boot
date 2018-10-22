@@ -38,7 +38,7 @@ public class Bookmark extends AllFinishedPieces {
 
     public Bookmark(){}
 
-    public Bookmark(Map<Bead, Integer> beads, Map<Finding, Integer> findings, double price, String description,
+    public Bookmark(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description,
                     Material stringMaterial, String stringColor, int lengthInch) {
         super(beads, findings, price, description);
         this.stringMaterial = stringMaterial;

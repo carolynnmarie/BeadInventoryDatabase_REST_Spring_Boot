@@ -24,7 +24,7 @@ public class NapkinRingSet extends AllFinishedPieces {
 
     public NapkinRingSet(){}
 
-    public NapkinRingSet(Map<Bead, Integer> beads, Map<Finding, Integer> findings, double price, String description,
+    public NapkinRingSet(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description,
                          StringWire stringWire, String colorScheme, int quantity) {
         super(beads, findings, price, description);
         this.stringWire = stringWire;

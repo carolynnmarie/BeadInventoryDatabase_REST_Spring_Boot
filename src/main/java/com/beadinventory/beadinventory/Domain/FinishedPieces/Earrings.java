@@ -16,7 +16,7 @@ public class Earrings extends AllFinishedPieces {
 
     public Earrings(){}
 
-    public Earrings(Map<Bead, Integer> beads, Map<Finding, Integer> findings, double price, String description, boolean sterlingSilverYorN) {
+    public Earrings(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description, boolean sterlingSilverYorN) {
         super(beads, findings, price, description);
         this.sterlingSilverYorN = sterlingSilverYorN;
     }
