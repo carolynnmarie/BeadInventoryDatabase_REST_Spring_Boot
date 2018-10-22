@@ -1,7 +1,9 @@
 package com.beadinventory.beadinventory.ServiceTest.FinishedPiecesServiceTest;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.*;
-import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.BraceletRepo;
 import com.beadinventory.beadinventory.Service.FinishedPiecesServices.BraceletService;
 import org.junit.*;

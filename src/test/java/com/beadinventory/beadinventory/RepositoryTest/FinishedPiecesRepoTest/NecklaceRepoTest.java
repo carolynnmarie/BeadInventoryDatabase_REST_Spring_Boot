@@ -1,7 +1,9 @@
 package com.beadinventory.beadinventory.RepositoryTest.FinishedPiecesRepoTest;
 
-import com.beadinventory.beadinventory.Domain.FinishedPieces.Necklace;
-import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.beadinventory.beadinventory.Domain.FinishedPieces.*;
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.NecklaceRepo;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -37,9 +39,16 @@ public class NecklaceRepoTest {
     public void setUp() {
         List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
         Bead bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20, "translucent purple with some white", 0.8, brands);
+ //       FPBeads fBead1 = new FPBeads(bead1,4);
         Bead bead2 = new Bead(SWAROVSKI_CRYSTAL, BICONE, "black", 4, "good", 10, "",1, brands);
+ //       FPBeads fBead2 = new FPBeads(bead2,2);
         Bead bead4 = new Bead(AMETHYST, ROUND, "purple", 6, "good", 15, "translucent purple with some white", 0.9, brands);
+//        FPBeads fBead4 = new FPBeads(bead4,3);
         Bead seeds = new Bead(SEED, SEED_E_LARGE, "black", 0, "good", 100, "good black large seed beads", .01, brands);
+//        FPBeads fSeeds = new FPBeads(seeds,100);
+//        List<FPBeads> beads = new ArrayList<>(Arrays.asList(fBead1,fBead2,fBead4,fSeeds));
+
+
         Finding lobsterClasp2 = new Finding(LOBSTER_CLASP, BRIGHT_SILVER_PLATED, "medium", 4, .1, 10, brands);
         Finding splitRing = new Finding(SPLIT_RING, BRASS, "smallest", 1, .01, 25, brands);
         HashMap<Bead, Integer> beads =new HashMap<>();

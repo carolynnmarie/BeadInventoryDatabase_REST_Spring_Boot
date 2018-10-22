@@ -1,8 +1,9 @@
 package com.beadinventory.beadinventory.DomainTest.FinishedPiecesDomainTest;
 
-import com.beadinventory.beadinventory.Domain.FinishedPieces.Bracelet;
-import com.beadinventory.beadinventory.Domain.FinishedPieces.BraceletType;
-import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.beadinventory.beadinventory.Domain.FinishedPieces.*;
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import org.junit.*;
 import java.util.*;
 

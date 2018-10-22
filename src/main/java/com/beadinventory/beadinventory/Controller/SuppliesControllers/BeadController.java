@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static org.springframework.web.bind.annotation.RequestMethod.*;
-
 @RestController
 public class BeadController {
 

@@ -1,7 +1,9 @@
 package com.beadinventory.beadinventory.ServiceTest.FinishedPiecesServiceTest;
 
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.NapkinRingSet;
-import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.NapkinRingSetRepo;
 import com.beadinventory.beadinventory.Service.FinishedPiecesServices.NapkinRingService;

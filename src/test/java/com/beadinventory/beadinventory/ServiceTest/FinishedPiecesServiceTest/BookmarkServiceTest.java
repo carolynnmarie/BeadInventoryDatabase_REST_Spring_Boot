@@ -1,8 +1,9 @@
 package com.beadinventory.beadinventory.ServiceTest.FinishedPiecesServiceTest;
 
 
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
-import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.BookmarkRepo;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.*;
 import com.beadinventory.beadinventory.Service.FinishedPiecesServices.BookmarkService;

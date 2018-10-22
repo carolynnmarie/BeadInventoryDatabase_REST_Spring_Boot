@@ -1,7 +1,6 @@
 package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.BookmarkRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -38,7 +37,7 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
 
     @Override
     public ResponseEntity<Bookmark> createItem(Bookmark item) {
-        item.setBeads(updateBeadRepoCount(item));
+ //       item.setBeads(updateBeadRepoCount(item));
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")

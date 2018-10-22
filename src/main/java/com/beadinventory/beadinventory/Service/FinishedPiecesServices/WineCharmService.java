@@ -38,8 +38,8 @@ public class WineCharmService extends AllFinishedPiecesService implements AllFin
 
     @Override
     public ResponseEntity<WineCharmSet> createItem(WineCharmSet item) {
-        item.setBeads(updateBeadRepoCount(item));
-        item.setFindings(updateFindingRepoCount(item));
+//        item.setBeads(updateBeadRepoCount(item));
+//        item.setFindings(updateFindingRepoCount(item));
         WineCharmSet set = wineCharmSetRepo.save(item);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()

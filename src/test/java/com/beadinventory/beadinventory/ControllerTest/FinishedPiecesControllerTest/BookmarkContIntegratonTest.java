@@ -1,8 +1,9 @@
 package com.beadinventory.beadinventory.ControllerTest.FinishedPiecesControllerTest;
 
 import com.beadinventory.beadinventory.Controller.FinishedPiecesControllers.BookmarkController;
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
-import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;
 import org.junit.runner.RunWith;

@@ -1,6 +1,5 @@
 package com.beadinventory.beadinventory.Domain.Supplies;
 
-import com.beadinventory.beadinventory.Domain.FinishedPieces.AllFinishedPieces;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 

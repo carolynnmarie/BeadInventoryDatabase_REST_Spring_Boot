@@ -3,6 +3,7 @@ package com.beadinventory.beadinventory.Domain.FinishedPieces;
 import java.io.Serializable;
 
 public enum BraceletType implements Serializable {
+
     MEDICAL,
     ELASTIC,
     CHILD,

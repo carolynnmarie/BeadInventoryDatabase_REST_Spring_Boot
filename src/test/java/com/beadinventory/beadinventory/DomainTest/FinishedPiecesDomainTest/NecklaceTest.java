@@ -1,7 +1,9 @@
 package com.beadinventory.beadinventory.DomainTest.FinishedPiecesDomainTest;
 
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Necklace;
-import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
 import org.junit.*;
 import java.util.*;

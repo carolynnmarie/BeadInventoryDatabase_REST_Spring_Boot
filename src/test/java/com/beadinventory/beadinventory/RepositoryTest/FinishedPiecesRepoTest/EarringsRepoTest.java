@@ -1,7 +1,8 @@
 package com.beadinventory.beadinventory.RepositoryTest.FinishedPiecesRepoTest;
 
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Earrings;
-import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.EarringsRepo;
 import org.junit.*;
 import org.junit.runner.RunWith;

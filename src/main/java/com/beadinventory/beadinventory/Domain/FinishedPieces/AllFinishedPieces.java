@@ -2,12 +2,12 @@ package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Id;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 @MappedSuperclass
@@ -15,20 +15,29 @@ public abstract class AllFinishedPieces implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "ID")
+    @Column(name = "ALL_ID")
     private long id;
 
-    @ElementCollection
-    @CollectionTable(name = "BEAD_MAP")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,targetEntity = Bead.class)
+    @JoinTable(name = "BEAD_MAP", joinColumns = @JoinColumn(name = "ALL_ID"))
+    @MapKeyClass(value = Bead.class)
     @MapKeyJoinColumn(name = "BEAD_ID")
-    @Column
     protected Map<Bead, Integer> beads;
 
-    @ElementCollection
-    @CollectionTable(name = "FINDING_MAP")
-    @MapKeyJoinColumn(table = "FINDING", name = "FINDING_ID")
-    @Column(name = "FINDINGS")
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "allFinishedPieces", cascade = CascadeType.ALL)
+//    @Column
+//    protected List<FPBeads> beads;
+
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,targetEntity = Finding.class)
+
+    @JoinTable(name = "FINDING_MAP",joinColumns = @JoinColumn(name = "ALL_ID"))
+    @MapKeyClass(value = Finding.class)
+    @MapKeyJoinColumn(name = "FINDING_ID")
     protected Map<Finding, Integer> findings;
+
+//    @OneToMany(fetch = FetchType.LAZY,mappedBy = "")
+//    protected List<FPFindings> findings;
 
     @Column(name = "PRICE")
     protected double price;
@@ -50,7 +59,7 @@ public abstract class AllFinishedPieces implements Serializable {
         return beads;
     }
 
-    public void setBeads(HashMap<Bead, Integer> beads) {
+    public void setBeads(Map<Bead, Integer> beads) {
         this.beads = beads;
     }
 

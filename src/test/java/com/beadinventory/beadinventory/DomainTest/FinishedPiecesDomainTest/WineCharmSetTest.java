@@ -1,7 +1,8 @@
 package com.beadinventory.beadinventory.DomainTest.FinishedPiecesDomainTest;
 
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.WineCharmSet;
-import com.beadinventory.beadinventory.Domain.Supplies.*;
 
 import org.junit.*;
 import java.util.*;

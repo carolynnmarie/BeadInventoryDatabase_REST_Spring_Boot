@@ -49,8 +49,8 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
 
     @Override
     public ResponseEntity<Necklace> createItem(Necklace necklace){
-        necklace.setBeads(updateBeadRepoCount(necklace));
-        necklace.setFindings(updateFindingRepoCount(necklace));
+//        necklace.setBeads(updateBeadRepoCount(necklace));
+//        necklace.setFindings(updateFindingRepoCount(necklace));
         Necklace necklace1 = necklaceRepo.save(necklace);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -91,8 +91,8 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
 
     public ResponseEntity<Necklace> updateBeads(long id, LinkedHashMap<Bead,Integer> beads){
         Necklace necklace = necklaceRepo.findById(id);
-        necklace.setBeads(beads);
-        necklace.setBeads(updateBeadRepoCount(necklace));
+//        necklace.setBeads(beads);
+//        necklace.setBeads(updateBeadRepoCount(necklace));
         necklaceRepo.save(necklace);
         return new ResponseEntity<>(necklace, OK);
     }

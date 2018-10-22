@@ -11,6 +11,19 @@ import java.util.*;
 @Table(name = "BOOKMARK")
 public class Bookmark extends AllFinishedPieces {
 
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,targetEntity = Bead.class)
+    @JoinTable(name = "BEAD_MAP", joinColumns = @JoinColumn(name = "ALL_ID"))
+    @MapKeyClass(value = Bead.class)
+    @MapKeyJoinColumn(name = "BEAD_ID")
+    protected Map<Bead, Integer> beads;
+
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,targetEntity = Finding.class)
+    @JoinTable(name = "FINDING_MAP",joinColumns = @JoinColumn(name = "ALL_ID"))
+    @MapKeyClass(value = Finding.class)
+    @MapKeyJoinColumn(name = "FINDING_ID")
+    protected Map<Finding, Integer> findings;
+
     @Lob
     @Enumerated(value = EnumType.STRING)
     @Column(name = "STRING_MATERIAL")

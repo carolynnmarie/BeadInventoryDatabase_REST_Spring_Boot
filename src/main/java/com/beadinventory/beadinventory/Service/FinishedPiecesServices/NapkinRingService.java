@@ -52,8 +52,8 @@ public class NapkinRingService extends AllFinishedPiecesService<NapkinRingSet> i
 
     @Override
     public ResponseEntity<NapkinRingSet> createItem(NapkinRingSet item) {
-        item.setBeads(updateBeadRepoCount(item));
-        item.setFindings(updateFindingRepoCount(item));
+//        item.setBeads(updateBeadRepoCount(item));
+//        item.setFindings(updateFindingRepoCount(item));
         NapkinRingSet napkinRingSet = napkinRingSetRepo.save(item);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()

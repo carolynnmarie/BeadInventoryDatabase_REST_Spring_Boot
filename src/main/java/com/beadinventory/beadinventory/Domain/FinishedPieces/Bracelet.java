@@ -1,8 +1,9 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+
 import javax.persistence.*;
 import java.util.Map;
 

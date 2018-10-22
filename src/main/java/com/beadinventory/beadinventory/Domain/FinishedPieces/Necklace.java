@@ -1,8 +1,8 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
 
 import javax.persistence.*;
@@ -120,6 +120,9 @@ public class Necklace extends AllFinishedPieces {
         double beadPrice = 0.0;
         double findingPrice = 0.0;
         double stringPrice = stringWire.getPricePerFoot()*lengthInch;
+//        for(FPBeads bead: beads){
+//            beadPrice += bead.getQuantity()*bead.getBeadOnItem().getPricePoint();
+//        }
         for(Map.Entry<Bead,Integer> bead: beads.entrySet()){
             beadPrice += (bead.getKey().getPricePoint()*bead.getValue());
         }
