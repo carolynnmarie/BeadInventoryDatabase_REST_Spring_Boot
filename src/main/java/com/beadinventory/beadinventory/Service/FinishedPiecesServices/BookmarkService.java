@@ -1,7 +1,11 @@
 package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
+import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.BookmarkRepo;
+import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
+import com.beadinventory.beadinventory.Repository.SuppliesRepos.FindingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -18,9 +22,12 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
 
     private BookmarkRepo bookmarkRepo;
 
+
     @Autowired
-    public BookmarkService(BookmarkRepo bookmarkRepo){
+    public BookmarkService(BookmarkRepo bookmarkRepo, BeadRepo beadRepo, FindingRepo findingRepo){
         this.bookmarkRepo = bookmarkRepo;
+        this.beadRepo = beadRepo;
+        this.findingRepo = findingRepo;
     }
 
     @Override
@@ -37,7 +44,9 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
 
     @Override
     public ResponseEntity<Bookmark> createItem(Bookmark item) {
- //       item.setBeads(updateBeadRepoCount(item));
+        item.setBeads(updateBeadRepoCount(item));
+        item.setFindings(updateFindingRepoCount(item));
+        Bookmark bookmark = bookmarkRepo.save(item);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
@@ -45,7 +54,6 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
                 .toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(newAccountUri);
-        Bookmark bookmark = bookmarkRepo.save(item);
         return new ResponseEntity<>(bookmark,responseHeaders,CREATED);
     }
 

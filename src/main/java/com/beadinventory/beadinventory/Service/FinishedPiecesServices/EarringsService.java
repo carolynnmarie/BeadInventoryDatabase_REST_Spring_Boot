@@ -46,8 +46,8 @@ public class EarringsService extends AllFinishedPiecesService<Earrings> implemen
 
     @Override
     public ResponseEntity<Earrings> createItem(Earrings item) {
-//        item.setBeads(updateBeadRepoCount(item));
-//        item.setFindings(updateFindingRepoCount(item));
+        item.setBeads(updateBeadRepoCount(item));
+        item.setFindings(updateFindingRepoCount(item));
         Earrings earrings = earringsRepo.save(item);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()

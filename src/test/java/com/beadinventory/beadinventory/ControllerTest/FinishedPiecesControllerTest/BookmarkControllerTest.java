@@ -4,6 +4,7 @@ import com.beadinventory.beadinventory.Controller.FinishedPiecesControllers.Book
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
 import com.beadinventory.beadinventory.Service.FinishedPiecesServices.BookmarkService;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -31,10 +32,10 @@ public class BookmarkControllerTest {
     BookmarkService mockService;
 
     List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-    private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,beadBrands);
-    private Bead bead2 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white", 0.2,beadBrands);
-    private Bead bead3  = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05, beadBrands);
-    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,beadBrands);
+    private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Beadalon");
+    private Bead bead2 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white", 0.2,"Beadalon");
+    private Bead bead3  = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05, "Beadalon");
+    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Beadalon");
     LinkedHashMap<Bead, Integer> beads = new LinkedHashMap<>();
     LinkedHashMap<Finding, Integer> findings = new LinkedHashMap<>();
     LinkedHashMap<Bead,Integer> beads2 = new LinkedHashMap<>();
@@ -48,8 +49,8 @@ public class BookmarkControllerTest {
         beads.put(bead2,1);
         findings.put(headPin,2);
         beads2.put(bead3,2);
-        bookmark = new Bookmark(beads,findings,10.0,"Amethyst on black cord", COTTON,"black",10);
-        bookmark2 = new Bookmark(beads2,findings,10.0,"Tan stone on black leather", LEATHER,"black",10);
+        bookmark = new Bookmark(beads,findings,10.0,"Amethyst on black cord", COTTON,StringWireCategory.CORD,"black",10);
+        bookmark2 = new Bookmark(beads2,findings,10.0,"Tan stone on black leather", LEATHER,StringWireCategory.CORD,"black",10);
         bookmark.setId(1);
         bookmark2.setId(2);
     }

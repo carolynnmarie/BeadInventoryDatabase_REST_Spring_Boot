@@ -42,9 +42,9 @@ public class FindingContIntegrationTest {
 
 
     private List<String> brands = new ArrayList<>(Arrays.asList("beadalon"));
-    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,25,brands);
-    private Finding eyePin2 = new Finding(EYE_PIN, BRASS,"thin",5.08,5.08,25,brands);
-    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);
+    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,25,"Beadalon");
+    private Finding eyePin2 = new Finding(EYE_PIN, BRASS,"thin",5.08,5.08,25,"Beadalon");
+    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Beadalon");
 
 
     @Test

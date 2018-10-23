@@ -25,9 +25,9 @@ public class NapkinRingSetTest {
     @Before
     public void setUp(){
         List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-        this.bead = new Bead(SEED,SEED_E_LARGE,"black",0,"good",100,"good black large seed beads",.001,brands);
-        this.bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,brands);
-        this.crimp = new Finding(FindingCategory.CRIMP_BEAD,BRIGHT_SILVER_PLATED,"",.02,.01,10,brands);
+        this.bead = new Bead(SEED,SEED_E_LARGE,"black",0,"good",100,"good black large seed beads",.001,"Bead Gallery");
+        this.bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
+        this.crimp = new Finding(FindingCategory.CRIMP_BEAD,BRIGHT_SILVER_PLATED,"",.02,.01,10,"Bead Gallery");
         beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7,"good",.5,"Beadalon");
         this.beads = new HashMap<>();
         beads.put(bead,25);

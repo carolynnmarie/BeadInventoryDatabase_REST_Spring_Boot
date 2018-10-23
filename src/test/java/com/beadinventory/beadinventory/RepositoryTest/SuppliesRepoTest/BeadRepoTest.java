@@ -32,11 +32,11 @@ public class BeadRepoTest {
     private BeadRepo beadRepo;
 
     List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-    private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20, "translucent purple with some white", 0.2,brands);
-    private Bead bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "", 0.1,brands);
-    private Bead bead3  = new Bead(STONE, RONDELLE,"tan",6,"ok",7, "with design cut into bead",0.05, brands);
-    private Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15, "translucent purple with some white", 0.2,brands);
-    private Bead bead5 = new Bead(AMETHYST, ROUND,"light purple",4,"poor",10, "translucent purple with some white", 0.2,brands);
+    private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20, "translucent purple with some white", 0.2,"bead landing");
+    private Bead bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "", 0.1,"bead landing");
+    private Bead bead3  = new Bead(STONE, RONDELLE,"tan",6,"ok",7, "with design cut into bead",0.05, "bead landing");
+    private Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15, "translucent purple with some white", 0.2,"bead landing");
+    private Bead bead5 = new Bead(AMETHYST, ROUND,"light purple",4,"poor",10, "translucent purple with some white", 0.2,"bead landing");
 
 
     @Test

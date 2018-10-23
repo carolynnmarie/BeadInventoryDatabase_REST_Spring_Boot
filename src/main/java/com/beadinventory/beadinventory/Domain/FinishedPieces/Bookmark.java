@@ -3,31 +3,25 @@ package com.beadinventory.beadinventory.Domain.FinishedPieces;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Table(name = "BOOKMARK")
-public class Bookmark extends AllFinishedPieces {
-
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,targetEntity = Bead.class)
-    @JoinTable(name = "BEAD_MAP", joinColumns = @JoinColumn(name = "ALL_ID"))
-    @MapKeyClass(value = Bead.class)
-    @MapKeyJoinColumn(name = "BEAD_ID")
-    protected Map<Bead, Integer> beads;
+public class Bookmark extends AllFinishedPieces implements Serializable {
 
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,targetEntity = Finding.class)
-    @JoinTable(name = "FINDING_MAP",joinColumns = @JoinColumn(name = "ALL_ID"))
-    @MapKeyClass(value = Finding.class)
-    @MapKeyJoinColumn(name = "FINDING_ID")
-    protected Map<Finding, Integer> findings;
-
-    @Lob
     @Enumerated(value = EnumType.STRING)
     @Column(name = "STRING_MATERIAL")
     private Material stringMaterial;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "STRING_CATEGORY")
+    private StringWireCategory stringCategory;
 
     @Column(name = "STRING_COLOR")
     private String stringColor;
@@ -39,9 +33,10 @@ public class Bookmark extends AllFinishedPieces {
     public Bookmark(){}
 
     public Bookmark(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description,
-                    Material stringMaterial, String stringColor, int lengthInch) {
+                    Material stringMaterial, StringWireCategory stringCategory, String stringColor, int lengthInch) {
         super(beads, findings, price, description);
         this.stringMaterial = stringMaterial;
+        this.stringCategory = stringCategory;
         this.lengthInch = lengthInch;
         this.stringColor = stringColor;
     }
@@ -68,6 +63,14 @@ public class Bookmark extends AllFinishedPieces {
 
     public void setStringColor(String stringColor) {
         this.stringColor = stringColor;
+    }
+
+    public StringWireCategory getStringCategory() {
+        return stringCategory;
+    }
+
+    public void setStringCategory(StringWireCategory stringCategory) {
+        this.stringCategory = stringCategory;
     }
 
     @Override

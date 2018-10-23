@@ -1,10 +1,16 @@
 package com.beadinventory.beadinventory.ControllerTest.FinishedPiecesControllerTest;
 
 import com.beadinventory.beadinventory.Controller.FinishedPiecesControllers.BookmarkController;
+import com.beadinventory.beadinventory.Controller.SuppliesControllers.BeadController;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.cfg.ContextAttributes;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +26,12 @@ import java.util.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
+import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.http.MediaType.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SuppressWarnings("unchecked")
@@ -37,13 +45,16 @@ public class BookmarkContIntegratonTest {
     @MockBean
     private BookmarkController mockController;
 
+    @MockBean
+    private BeadController mockBeadController;
+
     private ObjectMapper mapper = new ObjectMapper();
 
     List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-    private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,beadBrands);
-    private Bead bead2 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white", 0.2,beadBrands);
-    private Bead bead3  = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05, beadBrands);
-    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,beadBrands);
+    private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
+    private Bead bead2 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white", 0.2,"Bead Gallery");
+    private Bead bead3  = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05, "Bead Gallery");
+    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Bead Gallery");
 
     HashMap<Bead, Integer> beads = new HashMap<>();
     HashMap<Finding, Integer> findings = new HashMap<>();
@@ -58,8 +69,8 @@ public class BookmarkContIntegratonTest {
         beads.put(bead2,1);
         findings.put(headPin,2);
         beads2.put(bead3,2);
-        bookmark = new Bookmark(beads,findings,10.0,"Amethyst on black cord", COTTON,"black",10);
-        bookmark2 = new Bookmark(beads2,findings,10.0,"Tan stone on black leather", LEATHER,"black",10);
+        bookmark = new Bookmark(beads,findings,10.0,"Amethyst on black cord", COTTON,CORD,"black",10);
+        bookmark2 = new Bookmark(beads2,findings,10.0,"Tan stone on black leather", LEATHER,CORD,"black",10);
         bookmark.setId(1);
         bookmark2.setId(2);
     }
@@ -87,14 +98,13 @@ public class BookmarkContIntegratonTest {
 
     @Test
     public void createItemIntegTest() throws Exception{
-        given(mockController.createItem(bookmark2)).willReturn(mock(ResponseEntity.class));
+        given(mockController.createItem(bookmark)).willReturn(mock(ResponseEntity.class));
 
-        String body = mapper.writeValueAsString(bookmark2);
+        String body = mapper.writeValueAsString(bookmark);
         mockMvc.perform(post("/bookmarks")
                 .characterEncoding("utf-8")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(body))
-                .andExpect(status().isOk());
+                .contentType(APPLICATION_JSON)
+                .content(body)).andExpect(status().isOk());
     }
 
 }

@@ -29,8 +29,8 @@ public class FindingRepoTest {
     private FindingRepo mockFindingRepo;
 
     private List<String> brands= new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
-    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);
-    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);
+    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"bead landing");
+    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"bead landing");
 
     @Test
     public void findFindingsByCategoryTest(){

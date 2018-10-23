@@ -11,12 +11,9 @@ import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Materi
 
 public class FindingTest {
     private List<String> brands = new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
-    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,0.02,20,
-            brands);
-    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,0.02,20,
-            brands);
-    private Finding lobsterClasp = new Finding(LOBSTER_CLASP,BRIGHT_SILVER_PLATED,"small",.5,0.1,
-            10,brands);
+    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,0.02,20, "Beadalon");
+    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,0.02,20, "Beadalon");
+    private Finding lobsterClasp = new Finding(LOBSTER_CLASP,BRIGHT_SILVER_PLATED,"small",.5,0.1, 10,"Beadalon");
 
 
 
@@ -66,8 +63,8 @@ public class FindingTest {
 
     @Test
     public void getBrandTest() {
-        Set<String> expected = new TreeSet<>(Arrays.asList("Beadalon","bead landing"));
-        List<String> actual = lobsterClasp.getBrand();
+        String expected = "Beadalon";
+        String actual = lobsterClasp.getBrand();
         Assert.assertEquals(expected,actual);
     }
 }

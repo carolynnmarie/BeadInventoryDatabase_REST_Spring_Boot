@@ -38,10 +38,10 @@ public class BraceletRepoTest {
     HashMap<Finding, Integer> findings = new HashMap<>();
     StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7,"good",.5,"Beadalon");
     private Bracelet bracelet= new Bracelet(beads,findings,15,"",MEDICAL,beadingWire,false,true,4);
-    Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,brands);
-    Bead bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,brands);
-    Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,brands);
-    Finding lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,"medium",4,.1,10,brands);
+    Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
+    Bead bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
+    Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
+    Finding lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,"medium",4,.1,10,"Bead Gallery");
     @Before
     public void setUp(){
         beads.put(bead1,4);
@@ -52,12 +52,11 @@ public class BraceletRepoTest {
 
     @Test
     public void testFindBraceletsByBraceletType(){
+        entityManager.persist(beadingWire);
         entityManager.persist(bead1);
         entityManager.persist(bead2);
         entityManager.persist(bead4);
         entityManager.persist(lobsterClasp2);
-        bracelet.setBeads(beads);
-        bracelet.setFindings(findings);
         entityManager.persist(bracelet);
         entityManager.flush();
 
@@ -67,6 +66,11 @@ public class BraceletRepoTest {
 
     @Test
     public void testGetById(){
+        entityManager.persist(beadingWire);
+        entityManager.persist(bead1);
+        entityManager.persist(bead2);
+        entityManager.persist(bead4);
+        entityManager.persist(lobsterClasp2);
         long id = entityManager.persistAndGetId(bracelet,Long.class);
         entityManager.flush();
 

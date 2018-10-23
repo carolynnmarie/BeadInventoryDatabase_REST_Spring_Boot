@@ -24,12 +24,11 @@ public class BookmarkTest {
     @Before
     public void setUp(){
         List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-        bead1 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white",
-                0.2,beadBrands);
+        bead1 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
         bead2 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white",
-                0.2,beadBrands);
+                0.2,"Bead Gallery");
         List<String> findingBrands = new ArrayList<>(Arrays.asList("bead landing"));
-        headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,findingBrands);
+        headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Bead Gallery");
 
         beads = new HashMap<>();
         beads.put(bead1,1);
@@ -37,7 +36,7 @@ public class BookmarkTest {
         findings = new HashMap<>();
         findings.put(headPin,2);
 
-        bookmark = new Bookmark(beads,findings,12.0,"Amethyst on black cord", COTTON,"black",10);
+        bookmark = new Bookmark(beads,findings,12.0,"Amethyst on black cord", COTTON,StringWireCategory.CORD,"black",10);
     }
 
     @Test

@@ -35,7 +35,7 @@ public class BookmarkController implements AllFinishedPiecesContInterface<Bookma
     }
 
     @Override
-    @PostMapping(value = "",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "", method = POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Bookmark> createItem(@RequestBody Bookmark item) {
         return bookmarkService.createItem(item);
     }

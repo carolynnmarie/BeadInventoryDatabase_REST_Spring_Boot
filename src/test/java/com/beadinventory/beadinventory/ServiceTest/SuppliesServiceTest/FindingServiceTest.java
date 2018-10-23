@@ -43,11 +43,11 @@ public class FindingServiceTest {
         MockitoAnnotations.initMocks(this);
         brands = new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
 
-        eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);
-        headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);
-        lobsterClasp = new Finding(LOBSTER_CLASP,BRIGHT_SILVER_PLATED,"small",2,0.1,10,brands);
-        lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,"medium",4,.1,10,brands);
-        splitRing = new Finding(SPLIT_RING,BRASS,"smallest",1,.01,25,brands);
+        eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"bead landing");
+        headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"bead landing");
+        lobsterClasp = new Finding(LOBSTER_CLASP,BRIGHT_SILVER_PLATED,"small",2,0.1,10,"bead landing");
+        lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,"medium",4,.1,10,"bead landing");
+        splitRing = new Finding(SPLIT_RING,BRASS,"smallest",1,.01,25,"bead landing");
     }
 
     @Test

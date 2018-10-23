@@ -4,11 +4,12 @@ import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Table(name = "WINE_CHARM")
-public class WineCharmSet extends AllFinishedPieces {
+public class WineCharmSet extends AllFinishedPieces implements Serializable {
 
     @Column(name = "QUANTITY")
     private int quantity;

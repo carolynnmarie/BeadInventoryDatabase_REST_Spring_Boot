@@ -5,11 +5,12 @@ import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Table(name = "EARRINGS")
-public class Earrings extends AllFinishedPieces {
+public class Earrings extends AllFinishedPieces implements Serializable {
 
     @Column(name = "STERLING_SILVER")
     private boolean sterlingSilverYorN;

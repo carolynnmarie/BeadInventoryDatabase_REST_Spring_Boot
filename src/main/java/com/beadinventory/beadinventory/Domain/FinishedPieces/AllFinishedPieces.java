@@ -1,7 +1,13 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
+import com.beadinventory.beadinventory.Domain.Serializers.BeadDeserializer;
+import com.beadinventory.beadinventory.Domain.Serializers.BeadSerializer;
+import com.beadinventory.beadinventory.Domain.Serializers.FindingDeserializer;
+import com.beadinventory.beadinventory.Domain.Serializers.FindingSerializer;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.Id;
 import javax.persistence.*;
@@ -9,27 +15,32 @@ import java.io.Serializable;
 import java.util.*;
 
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class AllFinishedPieces implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ALL_ID")
     private long id;
 
-    @ElementCollection(fetch = FetchType.LAZY)
+
+    @JsonSerialize(keyUsing = BeadSerializer.class)
+    @JsonDeserialize(keyUsing = BeadDeserializer.class)
+    @ElementCollection
     @CollectionTable(name = "BEAD_MAP", joinColumns = @JoinColumn(name = "ALL_ID"))
-//    @MapKeyJoinColumn(name = "BEAD_ID")
-    @Column
+    @MapKeyJoinColumn(name = "BEAD_ID", referencedColumnName = "BEAD_ID")
+    @Column(name = "BEADS_FOREIGN")
     protected Map<Bead, Integer> beads = new HashMap<>();
 
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @JsonSerialize(keyUsing = FindingSerializer.class)
+    @JsonDeserialize(keyUsing = FindingDeserializer.class)
+    @ElementCollection
     @CollectionTable(name = "FINDING_MAP",joinColumns = @JoinColumn(name = "ALL_ID"))
-//    @MapKeyJoinColumn(name = "FINDING_ID")
-    @Column
+    @MapKeyJoinColumn(name = "FINDING_ID")
+    @Column(name = "FINDINGS_FOREIGN")
     protected Map<Finding, Integer> findings = new HashMap<>();
-
 
     @Column(name = "PRICE")
     protected double price;
@@ -86,6 +97,36 @@ public abstract class AllFinishedPieces implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+//    public Map<String, Integer> getBeadJsonString(){
+//        ObjectMapper mapper = new ObjectMapper();
+//        String beadString = "";
+//        Map<String, Integer> stringMap = new LinkedHashMap<>();
+//        for (Map.Entry<Bead, Integer> entry:beads.entrySet()) {
+//            try {
+//                beadString = mapper.writeValueAsString(entry.getKey());
+//            } catch(JsonProcessingException e){
+//                beadString = "bead json processing error";
+//            }
+//            stringMap.put(beadString,entry.getValue());
+//        }
+//        return stringMap;
+//    }
+//
+//    public Map<String,Integer> getFindingJsonString(){
+//        ObjectMapper mapper = new ObjectMapper();
+//        String findingString = "";
+//        Map<String, Integer> stringMap = new LinkedHashMap<>();
+//        for (Map.Entry<Finding, Integer> entry : findings.entrySet()) {
+//            try {
+//                findingString = mapper.writeValueAsString(entry.getKey());
+//            } catch(JsonProcessingException e){
+//                findingString = "finding json processing error";
+//            }
+//            stringMap.put(findingString,entry.getValue());
+//        }
+//        return stringMap;
+//    }
 
     public abstract void setAutoPrice();
 }

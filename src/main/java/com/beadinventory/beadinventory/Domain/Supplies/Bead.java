@@ -2,20 +2,21 @@ package com.beadinventory.beadinventory.Domain.Supplies;
 
 
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Table(name = "BEAD")
+@JsonRootName(value = "my_Beads")
 public class Bead implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "BEAD_ID")
-    @NotNull
     private long id;
 
     @Enumerated(value = EnumType.STRING)
@@ -44,15 +45,14 @@ public class Bead implements Serializable {
     @Column(name = "PRICE_POINT")
     private double pricePoint;
 
-    @ElementCollection
     @Column(name = "BRANDS")
-    private List<String> brands;
+    private String brands;
 
 
     public Bead(){ }
 
     public Bead(Material material, Shape shape, String color, int size, String quality, long quantity,
-                String description, double pricePoint, List<String> brands) {
+                String description, double pricePoint, String brands) {
         this.material = material;
         this.shape = shape;
         this.color = color;
@@ -137,27 +137,29 @@ public class Bead implements Serializable {
         return shape;
     }
 
-    public String getMaterialString(){
-        return material.toString();
-    }
+//    public String getMaterialString(){
+//        return material.toString();
+//    }
+//
+//    public String getShapeString(){
+//        return shape.toString();
+//    }
 
-    public String getShapeString(){
-        return shape.toString();
-    }
-
-    public void setBrands(List<String> brands) {
+    public void setBrands(String brands) {
         this.brands = brands;
     }
 
-    public List<String> getBrands() {
+    public String getBrands() {
         return brands;
     }
 
-    public String getBrandsString(){
-        StringBuilder builder = new StringBuilder();
-        brands.stream().forEach(e-> builder.append(e).append(" "));
-        return builder.toString();
-    }
+
+
+//    public String getBrandsString(){
+//        StringBuilder builder = new StringBuilder();
+//        brands.stream().forEach(e-> builder.append(e).append(" "));
+//        return builder.toString();
+//    }
 
 //    @Override
 //    public String toString(){

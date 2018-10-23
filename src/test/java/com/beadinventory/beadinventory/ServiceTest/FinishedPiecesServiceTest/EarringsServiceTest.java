@@ -38,14 +38,14 @@ public class EarringsServiceTest {
 
         HashMap<Bead,Integer> beads = new HashMap<>();
         List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-        Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"purple", 0.2,beadBrands);
+        Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"purple", 0.2,"Bead Gallery");
         beads.put(bead1,3);
 
         HashMap<Finding,Integer> findings = new HashMap<>();
         List<String> findingBrands = new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
-        Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,findingBrands);
-        Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,findingBrands);
-        Finding earWire = new Finding(EAR_WIRE,FULL_STERLING_SILVER,"",2.0,.1,2,findingBrands);
+        Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Beadalon");
+        Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Beadalon");
+        Finding earWire = new Finding(EAR_WIRE,FULL_STERLING_SILVER,"",2.0,.1,2,"Beadalon");
         findings.put(eyePin,4);
         findings.put(headPin,2);
         findings.put(earWire,2);

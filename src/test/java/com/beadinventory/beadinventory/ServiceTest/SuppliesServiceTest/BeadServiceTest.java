@@ -44,11 +44,11 @@ public class BeadServiceTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-        bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,brands);
-        bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,brands);
-        bead3  = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05, brands);
-        bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,brands);
-        bead5 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white", 0.2,brands);
+        bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
+        bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
+        bead3  = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05, "Bead Gallery");
+        bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
+        bead5 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white", 0.2,"Bead Gallery");
 
     }
 

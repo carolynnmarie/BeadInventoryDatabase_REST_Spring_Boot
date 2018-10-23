@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class StringWire implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "SID")
     private long id;
 

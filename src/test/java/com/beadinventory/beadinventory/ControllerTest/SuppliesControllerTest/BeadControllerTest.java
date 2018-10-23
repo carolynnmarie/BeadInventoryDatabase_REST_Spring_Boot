@@ -31,11 +31,11 @@ public class BeadControllerTest {
     private BeadController mockBeadController;
 
     List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-    private Bead bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20, "translucent purple with some white", 0.2, brands);
-    private Bead bead2 = new Bead(JASPER, ROUND, "black", 4, "good", 10, "", 0.1, brands);
-    private Bead bead3 = new Bead(STONE, ROUND, "tan", 6, "ok", 7, "with design cut into bead", 0.05, brands);
-    private Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple", 0.2,brands);
-    private Bead bead5 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple", 0.2,brands);
+    private Bead bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20, "translucent purple with some white", 0.2, "Beadalon");
+    private Bead bead2 = new Bead(JASPER, ROUND, "black", 4, "good", 10, "", 0.1, "Beadalon");
+    private Bead bead3 = new Bead(STONE, ROUND, "tan", 6, "ok", 7, "with design cut into bead", 0.05, "Beadalon");
+    private Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple", 0.2,"Beadalon");
+    private Bead bead5 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple", 0.2,"Beadalon");
 
 
     @Before

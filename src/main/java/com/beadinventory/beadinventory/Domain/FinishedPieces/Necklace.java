@@ -1,20 +1,26 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
+import com.beadinventory.beadinventory.Domain.Serializers.StringWireDeserializer;
+import com.beadinventory.beadinventory.Domain.Serializers.StringWireSerializer;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Table(name = "NECKLACE")
-public class Necklace extends AllFinishedPieces {
+public class Necklace extends AllFinishedPieces implements Serializable {
 
-
-    @Lob
-    @Column(name = "STRINGING_MATERIAL")
+    @JsonDeserialize(keyUsing = StringWireDeserializer.class)
+    @JsonSerialize(keyUsing = StringWireSerializer.class)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "STRING_WIRE_ID", updatable = false)
     private StringWire stringWire;
 
     @Enumerated(value = EnumType.STRING)

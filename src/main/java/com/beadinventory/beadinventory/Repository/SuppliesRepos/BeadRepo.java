@@ -30,4 +30,5 @@ public interface BeadRepo extends CrudRepository<Bead,Long> {
     @Query(value = "SELECT b FROM Bead b ORDER BY material")
     List<Bead> findAllOrderByMaterial();
 
+
 }

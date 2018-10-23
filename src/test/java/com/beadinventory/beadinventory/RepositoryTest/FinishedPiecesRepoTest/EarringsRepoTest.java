@@ -30,27 +30,28 @@ public class EarringsRepoTest {
     @Autowired
     private EarringsRepo mockEarringsRepo;
 
-    private Earrings earring;
+    HashMap<Bead,Integer> beads = new HashMap<>();
+    HashMap<Finding,Integer> findings = new HashMap<>();
+    List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
+    Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"purple", 0.2,"Bead Gallery");
+    List<String> findingBrands= new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
+    Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Bead Gallery");
+    Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Bead Gallery");
+
+    private Earrings earring= new Earrings(beads,findings,15,"dangles",true);;
 
     @Before
     public void setUp(){
-        HashMap<Bead,Integer> beads = new HashMap<>();
-        List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-        Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"purple", 0.2,beadBrands);
         beads.put(bead1,3);
-        HashMap<Finding,Integer> findings = new HashMap<>();
-        List<String> findingBrands= new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
-        Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,findingBrands);
-        Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,beadBrands);
         findings.put(eyePin,2);
         findings.put(headPin,1);
-
-        this.earring = new Earrings(beads,findings,15,"dangles",true);
-
     }
 
     @Test
     public void findAllTest(){
+        entityManager.persist(bead1);
+        entityManager.persist(eyePin);
+        entityManager.persist(headPin);
         entityManager.persist(earring);
         entityManager.flush();
 
@@ -60,6 +61,9 @@ public class EarringsRepoTest {
 
     @Test
     public void findByIdTest(){
+        entityManager.persist(bead1);
+        entityManager.persist(eyePin);
+        entityManager.persist(headPin);
         Long earringId = entityManager.persistAndGetId(earring, Long.class);
         long id = earringId;
         entityManager.flush();
@@ -70,6 +74,9 @@ public class EarringsRepoTest {
 
     @Test
     public void findBySterlingSilverYorNTest(){
+        entityManager.persist(bead1);
+        entityManager.persist(eyePin);
+        entityManager.persist(headPin);
         entityManager.persist(earring);
         entityManager.flush();
 

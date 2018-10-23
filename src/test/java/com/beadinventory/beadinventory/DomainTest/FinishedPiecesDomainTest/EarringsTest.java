@@ -24,12 +24,12 @@ public class EarringsTest {
     @Before
     public void setUp(){
         List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-        this.bead = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,brands);
+        this.bead = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
         this.beads = new HashMap<>();
         beads.put(bead,3);
-        this.eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);
-        this.headPin= new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,brands);
-        this.earWire = new Finding(EAR_WIRE,FULL_STERLING_SILVER,"",2.0,.1,2,brands);
+        this.eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Bead Gallery");
+        this.headPin= new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Bead Gallery");
+        this.earWire = new Finding(EAR_WIRE,FULL_STERLING_SILVER,"",2.0,.1,2,"Bead Gallery");
         this.findings = new HashMap<>();
         findings.put(eyePin,2);
         findings.put(headPin,1);
