@@ -112,7 +112,7 @@ public class BeadContIntegrationTest {
 
         mockMvc.perform(get("/beads")
                 .param("material", String.valueOf(Material.class))
-                .param("size", String.valueOf(4))
+                .param("size", String.valueOf(Integer.class))
                 .requestAttr("material",AMETHYST)
                 .requestAttr("size", 4)
                 .characterEncoding("utf-8")

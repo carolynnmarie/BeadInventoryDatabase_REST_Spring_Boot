@@ -2,3 +2,6 @@ package com.beadinventory.beadinventory.ControllerTest.FinishedPiecesControllerT
 
 public class EarringsControllerTest {
 }
+/*
+List<Earrings> findAllSterlingSilver()
+ */

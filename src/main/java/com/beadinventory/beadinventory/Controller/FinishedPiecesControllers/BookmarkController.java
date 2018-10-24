@@ -35,7 +35,7 @@ public class BookmarkController implements AllFinishedPiecesContInterface<Bookma
     }
 
     @Override
-    @RequestMapping(value = "", method = POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping()
     public ResponseEntity<Bookmark> createItem(@RequestBody Bookmark item) {
         return bookmarkService.createItem(item);
     }
@@ -48,7 +48,7 @@ public class BookmarkController implements AllFinishedPiecesContInterface<Bookma
 
     @Override
     @PutMapping(params = "price")
-    public List<Bookmark> updatePriceOfAll(@RequestAttribute(value = "price") double price) {
+    public List<Bookmark> increaseAllPrices(@RequestAttribute(value = "price") double price) {
         return bookmarkService.increasePriceOfAll(price).getBody();
     }
 

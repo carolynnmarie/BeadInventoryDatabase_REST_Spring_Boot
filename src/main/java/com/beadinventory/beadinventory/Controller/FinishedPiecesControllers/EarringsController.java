@@ -21,53 +21,53 @@ public class EarringsController implements AllFinishedPiecesContInterface<Earrin
     }
 
     @Override
-    @RequestMapping(value = "/earrings", method = GET)
+    @GetMapping(value = "/earrings")
     public List<Earrings> findAllItems() {
         return null;
     }
 
-    @RequestMapping(value = "/earrings.getAllSterlingSilver", method = GET)
+    @GetMapping(value = "/earrings/", path = "/findAllSterlingSilver")
     public List<Earrings> findAllSterlingSilver(){
-        return null;
+        return earringsService.getAllSterlingSilver().getBody();
     }
 
     @Override
-    @RequestMapping(value = "/earrings/{id}", method = GET)
+    @GetMapping(value = "/earrings/{id}")
     public Earrings findItemById(@PathVariable("id") long id) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/earrings", method = POST)
+    @PostMapping(value = "/earrings")
     public ResponseEntity<Earrings> createItem(@RequestBody Earrings item) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/earrings/{id}", method = PUT)
+    @PutMapping(value = "/earrings/{id}")
     public Earrings updateItem(@PathVariable("id") long id, @RequestBody Earrings item) {
         return null;
     }
 
-    @RequestMapping(value = "/earrings/{id}",params = "price", method = PUT)
+    @PutMapping(value = "/earrings/{id}",params = "price")
     public Earrings updatePriceOfOne(@PathVariable("id") long id, @RequestAttribute(value = "price") double price){
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/earrings",params = "price", method = PUT)
-    public List<Earrings> updatePriceOfAll(@RequestAttribute(value = "price") double amountToAdd) {
+    @PutMapping(value = "/earrings",params = "price")
+    public List<Earrings> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/earrings/{id}", params = "description", method = PUT)
+    @PutMapping(value = "/earrings/{id}", params = "description")
     public Earrings updateDescription(@PathVariable("id") long id, @RequestAttribute("description") String description) {
         return null;
     }
 
     @Override
-    @RequestMapping(value = "/earrings", method = DELETE)
+    @DeleteMapping(value = "/earrings")
     public ResponseEntity deleteItem(@RequestBody Earrings item) {
         return null;
     }

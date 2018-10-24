@@ -85,14 +85,54 @@ public class BookmarkControllerTest {
         Assert.assertEquals(expected,actual);
     }
 
+    @Test
+    public void updateItemTest(){
+        given(mockService.updateItem(bookmark2.getId(),bookmark2)).willReturn(new ResponseEntity<>(bookmark2,OK));
+        Bookmark actual = mockController.updateItem(bookmark2.getId(),bookmark2);
+
+        verify(mockService).updateItem(anyLong(),any(Bookmark.class));
+        Assert.assertEquals(bookmark2, actual);
+    }
+
+    @Test
+    public void increaseAllPricesTest(){
+        List<Bookmark> list = new ArrayList<>(Arrays.asList(bookmark,bookmark2));
+        given(mockService.increasePriceOfAll(2.0)).willReturn(new ResponseEntity<>(list,OK));
+
+        List<Bookmark> actualResponse = mockController.increaseAllPrices(2);
+
+        verify(mockService).increasePriceOfAll(anyDouble());
+        Assert.assertEquals(list,actualResponse);
+    }
+
+    @Test
+    public void updateDescriptionTest(){
+        given(mockService.updateDescription(bookmark2.getId(),"description")).willReturn(new ResponseEntity<>(bookmark2,OK));
+        Bookmark actual = mockController.updateDescription(bookmark2.getId(),"description");
+        verify(mockService).updateDescription(anyLong(),anyString());
+        Assert.assertEquals(bookmark2,actual);
+    }
+
+    @Test
+    public void deleteItemTest(){
+        ResponseEntity expected = new ResponseEntity(OK);
+        given(mockService.deleteItem(bookmark)).willReturn(expected);
+        ResponseEntity actual = mockController.deleteItem(bookmark);
+        verify(mockService).deleteItem(any(Bookmark.class));
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void getTotalItemCountTest(){
+        List<Bookmark> list = new ArrayList<>(Arrays.asList(bookmark,bookmark2));
+        given(mockService.getAllItems()).willReturn(new ResponseEntity<>(list,OK));
+        int expected = 2;
+        int actual = mockController.getTotalItemCount();
+        verify(mockService).getAllItems();
+        Assert.assertEquals(expected,actual);
+    }
+
+
 
 
 }
-/*
-ResponseEntity<Bookmark> createItem(@RequestBody Bookmark item)
-Bookmark updateItem(@PathVariable("id") long id, @RequestBody Bookmark item)
-List<Bookmark> updatePriceOfAll(@RequestAttribute(value = "price") double price)
-Bookmark updateDescription(@PathVariable("id") long id, @RequestAttribute(value = "description") String description)
-ResponseEntity deleteItem(@RequestBody Bookmark item)
-int getTotalItemCount()
- */

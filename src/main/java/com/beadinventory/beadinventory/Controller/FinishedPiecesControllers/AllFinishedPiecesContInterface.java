@@ -15,7 +15,7 @@ public interface AllFinishedPiecesContInterface<T extends AllFinishedPieces> {
     T findItemById(@PathVariable("id") long id);
     ResponseEntity<T> createItem(@RequestBody T item);
     T updateItem(@PathVariable("id")long id, @RequestBody T item);
-    List<T> updatePriceOfAll(@RequestParam(value = "price") double amountToAdd);
+    List<T> increaseAllPrices(@RequestParam(value = "price") double amountToAdd);
     T updateDescription(@PathVariable("id") long id, @RequestParam(value = "description") String description);
     ResponseEntity deleteItem(@RequestBody T item);
 }

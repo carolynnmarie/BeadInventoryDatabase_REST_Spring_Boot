@@ -2,3 +2,6 @@ package com.beadinventory.beadinventory.ControllerTest.FinishedPiecesControllerT
 
 public class NapkinRingSetContIntegrationTest {
 }
+/*
+ResponseEntity<NapkinRingSet> createItem(@RequestBody NapkinRingSet item)
+ */

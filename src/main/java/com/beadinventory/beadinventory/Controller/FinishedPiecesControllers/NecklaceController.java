@@ -5,17 +5,20 @@ import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
 import com.beadinventory.beadinventory.Service.FinishedPiecesServices.NecklaceService;
+import org.hibernate.annotations.NamedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
+@RequestMapping(value = "/necklaces")
 public class NecklaceController implements AllFinishedPiecesContInterface<Necklace> {
 
     private NecklaceService necklaceService;
@@ -27,63 +30,70 @@ public class NecklaceController implements AllFinishedPiecesContInterface<Neckla
 
 
     @Override
-    @RequestMapping(value = "/necklaces", method = GET)
+    @GetMapping()
     public List<Necklace> findAllItems() {
-        return null;
+        return necklaceService.getAllItems().getBody();
     }
 
-
-    public List<Necklace> findAllOfStringWireCategory(StringWireCategory category){
-        return null;
-    }
-
+    @GetMapping(path = "/findAllWithNaturalStones")
     public List<Necklace> findAllWithNaturalStones(){
-        return null;
+        return necklaceService.getAllWithNaturalStones().getBody();
     }
 
+    @GetMapping(path = "/findAllWithSwarovski")
+    @ResponseBody
     public List<Necklace> findAllWithSwarovski(){
-        return null;
+        return necklaceService.getAllWithSwarovski().getBody();
     }
 
-    public List<Necklace> findAllWithClasp(FindingCategory clasp){
-        return null;
-    }
-
-    @Override
-    public Necklace findItemById(long id) {
+    @GetMapping(params = "clasp")
+    public List<Necklace> findAllWithClasp(@RequestAttribute(value = "clasp") FindingCategory clasp){
         return null;
     }
 
     @Override
-    public ResponseEntity<Necklace> createItem(Necklace item) {
+    @GetMapping(value = "{id}")
+    public Necklace findItemById(@PathVariable("id") long id) {
         return null;
     }
 
     @Override
-    public Necklace updateItem(long id, Necklace item) {
-        return null;
-    }
-
-    public Necklace updatePriceOfOne(double price){
-        return null;
-    }
-
-    @Override
-    public List<Necklace> updatePriceOfAll(double amountToAdd) {
+    @PostMapping()
+    public ResponseEntity<Necklace> createItem(@RequestBody Necklace item) {
         return null;
     }
 
     @Override
-    public Necklace updateDescription(long id, String description) {
+    @PutMapping(value = "/{id}")
+    public Necklace updateItem(@PathVariable("id") long id, @RequestBody Necklace item) {
         return null;
     }
 
-    public Necklace updateNecklaceBeads(long id, LinkedHashMap<Bead,Integer> beads){
+    @PutMapping(value = "/{id}", params = "price")
+    public Necklace updatePriceOfOne(@PathVariable("id") long id,@RequestAttribute( value = "price") double price){
         return null;
     }
 
     @Override
-    public ResponseEntity deleteItem(Necklace item) {
+    @PutMapping(params = "price")
+    public List<Necklace> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
+        return null;
+    }
+
+    @Override
+    @PutMapping(value = "/{id}",params = "description")
+    public Necklace updateDescription(@PathVariable("id") long id, @RequestAttribute(value = "description") String description) {
+        return null;
+    }
+
+    @PutMapping(value = "/{id}", params = "beads")
+    public Necklace updateNecklaceBeads(@PathVariable("id") long id, @RequestAttribute(value = "beads") LinkedHashMap<Bead,Integer> beads){
+        return null;
+    }
+
+    @Override
+    @DeleteMapping()
+    public ResponseEntity deleteItem(@RequestBody Necklace item) {
         return null;
     }
 

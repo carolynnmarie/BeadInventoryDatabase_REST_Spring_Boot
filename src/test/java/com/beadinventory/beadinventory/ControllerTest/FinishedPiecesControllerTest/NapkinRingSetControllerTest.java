@@ -2,3 +2,6 @@ package com.beadinventory.beadinventory.ControllerTest.FinishedPiecesControllerT
 
 public class NapkinRingSetControllerTest {
 }
+/*
+int getSetSize(long id)
+ */

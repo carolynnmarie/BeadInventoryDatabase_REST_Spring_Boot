@@ -33,7 +33,6 @@ public class BraceletRepoTest {
     @Autowired
     private BraceletRepo mockBraceletRepo;
 
-    List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
     HashMap<Bead, Integer> beads = new HashMap<>();
     HashMap<Finding, Integer> findings = new HashMap<>();
     StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7,"good",.5,"Beadalon");
@@ -78,4 +77,3 @@ public class BraceletRepoTest {
         assertThat(bracelet2).isEqualToComparingFieldByField(bracelet);
     }
 }
-//    List<Bracelet> findBraceletsByBraceletType(BraceletType braceletType);

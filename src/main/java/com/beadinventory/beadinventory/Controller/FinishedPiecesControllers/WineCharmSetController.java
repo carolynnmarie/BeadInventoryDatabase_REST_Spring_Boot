@@ -39,7 +39,7 @@ public class WineCharmSetController implements AllFinishedPiecesContInterface<Wi
     }
 
     @Override
-    public List<WineCharmSet> updatePriceOfAll(double amountToAdd) {
+    public List<WineCharmSet> increaseAllPrices(double amountToAdd) {
         return null;
     }
 

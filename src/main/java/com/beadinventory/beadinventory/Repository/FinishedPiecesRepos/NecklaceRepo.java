@@ -2,6 +2,7 @@ package com.beadinventory.beadinventory.Repository.FinishedPiecesRepos;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Necklace;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
+import org.hibernate.annotations.NamedQuery;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 

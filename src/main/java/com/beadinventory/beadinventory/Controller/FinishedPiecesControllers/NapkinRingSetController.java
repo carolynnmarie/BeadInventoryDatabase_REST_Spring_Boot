@@ -34,14 +34,12 @@ public class NapkinRingSetController implements AllFinishedPiecesContInterface<N
     }
 
 
-    @GetMapping(value = "/{id}")
-    public int getSetSize(@PathVariable("id") long id){
-        return napkinRingService.getQuantityOfItemsInSet(id);
+    public int getSetSize(long id){
+        return findItemById(id).getQuantity();
     }
 
     @Override
     @PostMapping()
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<NapkinRingSet> createItem(@RequestBody NapkinRingSet item) {
         return null;
     }
@@ -54,7 +52,7 @@ public class NapkinRingSetController implements AllFinishedPiecesContInterface<N
 
     @Override
     @PutMapping( params = "price")
-    public List<NapkinRingSet> updatePriceOfAll(@RequestAttribute(value = "price") double amountToAdd) {
+    public List<NapkinRingSet> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
         return null;
     }
 

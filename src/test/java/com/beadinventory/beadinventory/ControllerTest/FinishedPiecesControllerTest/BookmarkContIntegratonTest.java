@@ -1,22 +1,15 @@
 package com.beadinventory.beadinventory.ControllerTest.FinishedPiecesControllerTest;
 
 import com.beadinventory.beadinventory.Controller.FinishedPiecesControllers.BookmarkController;
-import com.beadinventory.beadinventory.Controller.SuppliesControllers.BeadController;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.cfg.ContextAttributes;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,9 +22,9 @@ import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SuppressWarnings("unchecked")
@@ -45,8 +38,6 @@ public class BookmarkContIntegratonTest {
     @MockBean
     private BookmarkController mockController;
 
-    @MockBean
-    private BeadController mockBeadController;
 
     private ObjectMapper mapper = new ObjectMapper();
 
@@ -104,14 +95,62 @@ public class BookmarkContIntegratonTest {
         mockMvc.perform(post("/bookmarks")
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON)
-                .content(body)).andExpect(status().isOk());
+                .content(body))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void updateItemIntegTest() throws Exception{
+        given(mockController.updateItem(bookmark2.getId(),bookmark2)).willReturn(bookmark2);
+
+        String body = mapper.writeValueAsString(bookmark2);
+        mockMvc.perform(put("/bookmarks/{id}",bookmark2.getId())
+                .content(body)
+                .contentType(APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void increaseAllPricesIntegTest() throws Exception{
+        List<Bookmark> expected = new ArrayList<>(Arrays.asList(bookmark2,bookmark));
+        given(mockController.increaseAllPrices(12.0)).willReturn(expected);
+
+
+        mockMvc.perform(put("/bookmarks")
+                .param("price",String.valueOf(12.0))
+                .requestAttr("price",12.0)
+                .characterEncoding("utf-8")
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void updateDescriptionIntegTest() throws Exception{
+        given(mockController.updateDescription(bookmark.getId(),"descriptions")).willReturn(bookmark);
+
+        mockMvc.perform(put("/bookmarks/{id}",bookmark.getId())
+                .contentType(APPLICATION_JSON)
+                .characterEncoding("utf-8")
+                .param("description","descriptions")
+                .requestAttr("description","descriptions"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteItemIntegTest() throws Exception {
+        given(mockController.deleteItem(bookmark)).willReturn(new ResponseEntity(OK));
+
+        String body = mapper.writeValueAsString(bookmark);
+        mockMvc.perform(delete("/bookmarks")
+                .contentType(APPLICATION_JSON)
+                .content(body).characterEncoding("utf-8"))
+                .andExpect(status().isOk());
     }
 
 }
 /*
-ResponseEntity<Bookmark> createItem(@RequestBody Bookmark item)
-Bookmark updateItem(@PathVariable("id") long id, @RequestBody Bookmark item)
-List<Bookmark> updatePriceOfAll(@RequestAttribute(value = "price") double price)
+List<Bookmark> increaseAllPrices(@RequestAttribute(value = "price") double price)
 Bookmark updateDescription(@PathVariable("id") long id, @RequestAttribute(value = "description") String description)
 ResponseEntity deleteItem(@RequestBody Bookmark item)
  */
