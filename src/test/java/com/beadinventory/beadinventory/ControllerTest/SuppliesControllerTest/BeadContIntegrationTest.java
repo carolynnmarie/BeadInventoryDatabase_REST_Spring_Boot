@@ -6,6 +6,7 @@ import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;
 import org.junit.runner.RunWith;
+import static org.mockito.ArgumentMatchers.any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -49,7 +50,7 @@ public class BeadContIntegrationTest {
 
     @Before
     public void setUp(){
-        bead1.setId(1L);
+        bead1.setBeadId(1L);
     }
 
     @Test
@@ -68,19 +69,19 @@ public class BeadContIntegrationTest {
         List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead4,bead5,bead2,bead3));
         given(mockBeadController.findAllOrderByMaterial()).willReturn(list);
 
-        mockMvc.perform(get("/beads.getAllOrderByMaterial")
+        mockMvc.perform(get("/beads/getAllOrderByMaterial")
                 .contentType(APPLICATION_JSON)
                 .characterEncoding("utf-8"))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
     }
 
     @Test
     public void findAllOfMaterialIntegTest() throws Exception{
         List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
-        given(mockBeadController.findAllOfMaterial(AMETHYST)).willReturn(list);
+        given(mockBeadController.findAllOfMaterial(any(Material.class))).willReturn(list);
 
         mockMvc.perform(get("/beads")
-                .param("material", String.valueOf(Material.class))
+                .param("material",String.valueOf(AMETHYST))
                 .requestAttr("material",AMETHYST)
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
@@ -159,9 +160,9 @@ public class BeadContIntegrationTest {
     @Test
     public void updateBeadQuantityIntegTest() throws Exception{
         bead1.setQuantity(10);
-        given(mockBeadController.updateBeadQuantity(bead1.getId(),10)).willReturn(bead1);
+        given(mockBeadController.updateBeadQuantity(bead1.getBeadId(),10)).willReturn(bead1);
 
-        mockMvc.perform(put("/beads/{id}",bead1.getId())
+        mockMvc.perform(put("/beads/{id}",bead1.getBeadId())
                 .param("quantity",String.valueOf(10L))
                 .requestAttr("quantity",10L)
                 .contentType(APPLICATION_JSON)
@@ -171,10 +172,10 @@ public class BeadContIntegrationTest {
 
     @Test
     public void updateBeadIntegTest() throws Exception{
-        given(mockBeadController.updateBead(bead1.getId(),bead1)).willReturn(bead1);
+        given(mockBeadController.updateBead(bead1.getBeadId(),bead1)).willReturn(bead1);
 
         String body = mapper.writeValueAsString(bead1);
-        mockMvc.perform(put("/beads/{id}",bead1.getId())
+        mockMvc.perform(put("/beads/{id}",bead1.getBeadId())
                 .content(body)
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
@@ -183,9 +184,9 @@ public class BeadContIntegrationTest {
 
     @Test
     public void deleteBeadByIdIntegTest() throws Exception{
-        given(mockBeadController.deleteBeadById(bead1.getId())).willReturn(new ResponseEntity(OK));
+        given(mockBeadController.deleteBeadById(bead1.getBeadId())).willReturn(new ResponseEntity(OK));
 
-        mockMvc.perform(delete("/beads/{id}",bead1.getId())
+        mockMvc.perform(delete("/beads/{id}",bead1.getBeadId())
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());

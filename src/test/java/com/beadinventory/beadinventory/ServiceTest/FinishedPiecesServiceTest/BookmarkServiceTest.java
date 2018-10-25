@@ -89,10 +89,10 @@ public class BookmarkServiceTest {
 
     @Test
     public void getItemByIdTest(){
-        given(bookmarkRepo.findById(bookmark.getId())).willReturn(bookmark);
+        given(bookmarkRepo.findById(bookmark.getAllId())).willReturn(bookmark);
 
         ResponseEntity<Bookmark> expected = new ResponseEntity<>(bookmark,OK);
-        ResponseEntity<Bookmark> actual = bookmarkService.getItemById(bookmark.getId());
+        ResponseEntity<Bookmark> actual = bookmarkService.getItemById(bookmark.getAllId());
 
         verify(bookmarkRepo).findById(anyLong());
         Assert.assertEquals(expected,actual);
@@ -106,7 +106,7 @@ public class BookmarkServiceTest {
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(bookmark.getId())
+                .buildAndExpand(bookmark.getAllId())
                 .toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(newAccountUri);
@@ -128,7 +128,7 @@ public class BookmarkServiceTest {
         given(bookmarkRepo.save(bookmark2)).willReturn(bookmark2);
 
         ResponseEntity<Bookmark> expected = new ResponseEntity<>(bookmark2,OK);
-        ResponseEntity<Bookmark> actual = bookmarkService.updateItem(bookmark2.getId(),bookmark2);
+        ResponseEntity<Bookmark> actual = bookmarkService.updateItem(bookmark2.getAllId(),bookmark2);
 
         verify(bookmarkRepo).save(any(Bookmark.class));
         Assert.assertEquals(expected,actual);
@@ -152,7 +152,7 @@ public class BookmarkServiceTest {
 
     @Test
     public void updateDescriptionTest(){
-        bookmark2.setId(1);
+        bookmark2.setAllId(1);
         given(bookmarkRepo.findById(1)).willReturn(bookmark2);
         given(bookmarkRepo.save(bookmark2)).willReturn(bookmark2);
 

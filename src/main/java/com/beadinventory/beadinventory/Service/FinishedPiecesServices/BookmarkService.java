@@ -1,8 +1,6 @@
 package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 
 import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.BookmarkRepo;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
 import com.beadinventory.beadinventory.Repository.SuppliesRepos.FindingRepo;
@@ -50,7 +48,7 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(item.getId())
+                .buildAndExpand(item.getAllId())
                 .toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(newAccountUri);
@@ -59,7 +57,9 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
 
     @Override
     public ResponseEntity<Bookmark> updateItem(long id, Bookmark item) {
-        item.setId(id);
+        item.setBeads(updateBeadRepoCount(item));
+        item.setFindings(updateFindingRepoCount(item));
+        item.setAllId(id);
         Bookmark bookmark = bookmarkRepo.save(item);
         return new ResponseEntity<>(bookmark,OK);
     }

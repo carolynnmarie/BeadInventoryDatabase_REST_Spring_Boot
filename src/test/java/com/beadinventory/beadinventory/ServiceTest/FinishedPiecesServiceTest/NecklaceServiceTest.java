@@ -27,54 +27,40 @@ import static org.springframework.http.HttpStatus.*;
 public class NecklaceServiceTest {
 
     @InjectMocks
-    NecklaceService mockService;
+    private NecklaceService mockService;
 
     @Mock
-    NecklaceRepo mockRepo;
+    private NecklaceRepo mockRepo;
     @Mock
-    BeadRepo beadRepo;
+    private BeadRepo beadRepo;
 
-    private Bead bead1;
-    private Bead bead2;
-    private Bead bead4;
-    private Bead seeds;
-    private Bead sWBead;
-    private Finding lobsterClasp2;
-    private Finding splitRing;
-    private HashMap<Bead, Integer> beads;
-    private HashMap<Finding, Integer> findings;
-    private StringWire beadingWire;
-    private HashMap<Bead, Integer> beads2;
-    private Necklace necklace;
-    private Necklace necklace2;
+    private HashMap<Bead, Integer> beads = new HashMap<>();
+    private HashMap<Bead, Integer> beads2 = new HashMap<>();
+    private Bead bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20, "translucent purple with some white", 0.8, "Bead Gallery");
+    private Bead bead2 = new Bead(JASPER, ROUND, "black", 4, "good", 10, "", 0.6, "Bead Gallery");
+    private Bead bead4 = new Bead(AMETHYST, ROUND, "purple", 6, "good", 15, "translucent purple with some white", 0.9, "Bead Gallery");;
+    private Bead seeds = new Bead(SEED,SEED_E_LARGE,"black",0,"good",100,"good black large seed beads",.01,"Bead Gallery");
+    private Bead sWBead = new Bead(SWAROVSKI_CRYSTAL, BICONE, "blue", 4, "good", 10, "",1, "Bead Gallery");
+    private HashMap<Finding, Integer> findings = new HashMap<>();
+    private Finding lobsterClasp2 = new Finding(LOBSTER_CLASP, BRIGHT_SILVER_PLATED, "medium", 4, .1, 10, "Bead Gallery");
+    private Finding splitRing = new Finding(SPLIT_RING, BRASS, "smallest", 1, .01, 25, "Bead Gallery");
+    private StringWire beadingWire = new StringWire(BEADING_WIRE, BRIGHT_SILVER_PLATED, "silver", ".5 mm", 7, "good", .1, "Beadalon");
+    private Necklace necklace= new Necklace(beads,findings,beadingWire,20,3,1,"",true,false,40,LOBSTER_CLASP);
+    private Necklace necklace2 = new Necklace(beads2,findings,beadingWire,21.0,4,1.25,"",true,true,45,LOBSTER_CLASP);
 
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-        this.bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20, "translucent purple with some white", 0.8, "Bead Gallery");
-        this.bead2 = new Bead(JASPER, ROUND, "black", 4, "good", 10, "", 0.6, "Bead Gallery");
-        this.bead4 = new Bead(AMETHYST, ROUND, "purple", 6, "good", 15, "translucent purple with some white", 0.9, "Bead Gallery");
-        this.seeds = new Bead(SEED,SEED_E_LARGE,"black",0,"good",100,"good black large seed beads",.01,"Bead Gallery");
-        this.sWBead = new Bead(SWAROVSKI_CRYSTAL, BICONE, "blue", 4, "good", 10, "",1, "Bead Gallery");
-        this.lobsterClasp2 = new Finding(LOBSTER_CLASP, BRIGHT_SILVER_PLATED, "medium", 4, .1, 10, "Bead Gallery");
-        this.splitRing = new Finding(SPLIT_RING, BRASS, "smallest", 1, .01, 25, "Bead Gallery");
-        this.beads = new HashMap<>();
         beads.put(bead1, 4);
         beads.put(bead2, 2);
         beads.put(bead4, 3);
         beads.put(seeds, 100);
-        this.findings = new HashMap<>();
         findings.put(lobsterClasp2, 1);
         findings.put(splitRing,1);
-        this.beadingWire = new StringWire(BEADING_WIRE, BRIGHT_SILVER_PLATED, "silver", ".5 mm", 7, "good", .1, "Beadalon");
-        this.necklace = new Necklace(beads,findings,beadingWire,20,3,1,"",true,false,40,LOBSTER_CLASP);
-        this.beads2 = new HashMap<>();
         beads2.put(seeds, 100);
         beads2.put(sWBead, 5);
         beads2.put(bead4, 8);
-        this.necklace2 = new Necklace(beads2,findings,beadingWire,21.0,4,1.25,"",true,true,45,LOBSTER_CLASP);
     }
 
     @Test
@@ -103,21 +89,22 @@ public class NecklaceServiceTest {
 
     @Test
     public void updateBeadsTest(){
+        necklace.setAllId(1);
         LinkedHashMap<Bead, Integer> beadList = new LinkedHashMap<>();
         beadList.put(bead1,5);
-        bead1.setId(1);
+        bead1.setBeadId(1);
         beadList.put(bead2,4);
-        bead2.setId(2);
+        bead2.setBeadId(2);
         beadList.put(seeds, 150);
-        seeds.setId(3);
+        seeds.setBeadId(3);
 
-        given(mockRepo.findById(necklace.getId())).willReturn(necklace);
+        given(mockRepo.findById(necklace.getAllId())).willReturn(necklace);
         given(mockRepo.save(any(Necklace.class))).willReturn(necklace);
 
-        given(beadRepo.findById(bead1.getId())).willReturn(bead1);
+        given(beadRepo.findById(bead1.getBeadId())).willReturn(bead1);
         given(beadRepo.save(any(Bead.class))).willReturn(bead1);
 
-        ResponseEntity<Necklace> actualResponse = mockService.updateBeads(necklace.getId(),beadList);
+        ResponseEntity<Necklace> actualResponse = mockService.updateBeads(necklace.getAllId(),beadList);
         Map<Bead,Integer> actual = actualResponse.getBody().getBeads();
 
         verify(mockRepo).findById(anyLong());
@@ -125,9 +112,3 @@ public class NecklaceServiceTest {
         Assert.assertEquals(beadList,actual);
     }
 }
-
-/*
-ResponseEntity<List<Necklace>> getAllWithNaturalStones()
-ResponseEntity<List<Necklace>> getAllWithSwarovski()
-ResponseEntity<Necklace> updateBeads(long id, LinkedHashMap<Bead,Integer> beads)
- */

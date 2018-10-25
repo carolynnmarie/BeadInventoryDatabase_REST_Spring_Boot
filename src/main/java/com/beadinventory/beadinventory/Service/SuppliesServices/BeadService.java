@@ -60,12 +60,8 @@ public class BeadService {
     }
 
     public ResponseEntity<Bead> getBeadById(long id){
-        try{
-            Bead bead = beadRepository.findById(id);
-            return new ResponseEntity<>(bead,OK);
-        } catch(NoSuchElementException e){
-            return new ResponseEntity<>(new Bead(),BAD_REQUEST);
-        }
+        Bead bead = beadRepository.findById(id);;
+        return new ResponseEntity<>(bead,OK);
     }
 
     public ResponseEntity<Bead> createBead(Bead bead){
@@ -73,7 +69,7 @@ public class BeadService {
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(bead.getId())
+                .buildAndExpand(bead.getBeadId())
                 .toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(newAccountUri);
@@ -97,7 +93,7 @@ public class BeadService {
     }
 
     public ResponseEntity<Bead> updateBead(long id, Bead bead){
-        bead.setId(id);
+        bead.setBeadId(id);
         Bead bead1 = beadRepository.save(bead);
         return new ResponseEntity<>(bead1,OK);
     }

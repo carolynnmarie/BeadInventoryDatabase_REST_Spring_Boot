@@ -62,8 +62,8 @@ public class BookmarkContIntegratonTest {
         beads2.put(bead3,2);
         bookmark = new Bookmark(beads,findings,10.0,"Amethyst on black cord", COTTON,CORD,"black",10);
         bookmark2 = new Bookmark(beads2,findings,10.0,"Tan stone on black leather", LEATHER,CORD,"black",10);
-        bookmark.setId(1);
-        bookmark2.setId(2);
+        bookmark.setAllId(1);
+        bookmark2.setAllId(2);
     }
 
     @Test
@@ -101,10 +101,10 @@ public class BookmarkContIntegratonTest {
 
     @Test
     public void updateItemIntegTest() throws Exception{
-        given(mockController.updateItem(bookmark2.getId(),bookmark2)).willReturn(bookmark2);
+        given(mockController.updateItem(bookmark2.getAllId(),bookmark2)).willReturn(bookmark2);
 
         String body = mapper.writeValueAsString(bookmark2);
-        mockMvc.perform(put("/bookmarks/{id}",bookmark2.getId())
+        mockMvc.perform(put("/bookmarks/{id}",bookmark2.getAllId())
                 .content(body)
                 .contentType(APPLICATION_JSON)
                 .characterEncoding("utf-8"))
@@ -127,9 +127,9 @@ public class BookmarkContIntegratonTest {
 
     @Test
     public void updateDescriptionIntegTest() throws Exception{
-        given(mockController.updateDescription(bookmark.getId(),"descriptions")).willReturn(bookmark);
+        given(mockController.updateDescription(bookmark.getAllId(),"descriptions")).willReturn(bookmark);
 
-        mockMvc.perform(put("/bookmarks/{id}",bookmark.getId())
+        mockMvc.perform(put("/bookmarks/{id}",bookmark.getAllId())
                 .contentType(APPLICATION_JSON)
                 .characterEncoding("utf-8")
                 .param("description","descriptions")

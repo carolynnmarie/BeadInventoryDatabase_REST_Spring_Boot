@@ -17,20 +17,19 @@ public class BeadTest {
 
     @Before
     public void before(){
-        List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
         bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20, "translucent purple with some white",0.2,"Bead Gallery");
         bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
         bead3 = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead", 0.05,"Bead Gallery");
 
-        bead1.setId(1);
-        bead2.setId(2);
-        bead3.setId(3);
+        bead1.setBeadId(1);
+        bead2.setBeadId(2);
+        bead3.setBeadId(3);
     }
 
     @Test
     public void getIdTest(){
         long expected = 3L;
-        long actual = bead3.getId();
+        long actual = bead3.getBeadId();
         Assert.assertEquals(expected,actual);
     }
 
@@ -40,13 +39,6 @@ public class BeadTest {
         Material actual = bead1.getMaterial();
         Assert.assertEquals(expected,actual);
     }
-//
-//    @Test
-//    public void getShapeTest(){
-//        String expected = "round";
-//        String actual = bead2.getShapeString();
-//        Assert.assertEquals(expected,actual);
-//    }
 
     @Test
     public void getColorTest(){

@@ -4,11 +4,12 @@ import com.beadinventory.beadinventory.Domain.FinishedPieces.WineCharmSet;
 import com.beadinventory.beadinventory.Service.FinishedPiecesServices.WineCharmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/wine_charm")
 public class WineCharmSetController implements AllFinishedPiecesContInterface<WineCharmSet> {
 
     private WineCharmService wineCharmService;
@@ -19,38 +20,45 @@ public class WineCharmSetController implements AllFinishedPiecesContInterface<Wi
     }
 
     @Override
+    @GetMapping()
     public List<WineCharmSet> findAllItems() {
-        return null;
+        return wineCharmService.getAllItems().getBody();
     }
 
     @Override
-    public WineCharmSet findItemById(long id) {
-        return null;
+    @GetMapping(value = "/{id}")
+    public WineCharmSet findItemById(@PathVariable("id") long id) {
+        return wineCharmService.getItemById(id).getBody();
     }
 
     @Override
-    public ResponseEntity<WineCharmSet> createItem(WineCharmSet item) {
-        return null;
+    @PostMapping()
+    public ResponseEntity<WineCharmSet> createItem(@RequestBody  WineCharmSet item) {
+        return wineCharmService.createItem(item);
     }
 
     @Override
-    public WineCharmSet updateItem(long id, WineCharmSet item) {
-        return null;
+    @PutMapping(value = "/{id}")
+    public WineCharmSet updateItem(@PathVariable("id") long id, @RequestBody WineCharmSet item) {
+        return wineCharmService.updateItem(id,item).getBody();
     }
 
     @Override
-    public List<WineCharmSet> increaseAllPrices(double amountToAdd) {
-        return null;
+    @PutMapping(params = "price")
+    public List<WineCharmSet> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
+        return wineCharmService.increasePriceOfAll(amountToAdd).getBody();
     }
 
     @Override
-    public WineCharmSet updateDescription(long id, String description) {
-        return null;
+    @PutMapping(value = "/{id}", params = "description")
+    public WineCharmSet updateDescription(@PathVariable("id") long id, @RequestAttribute("description") String description) {
+        return wineCharmService.updateDescription(id,description).getBody();
     }
 
     @Override
-    public ResponseEntity deleteItem(WineCharmSet item) {
-        return null;
+    @DeleteMapping()
+    public ResponseEntity deleteItem(@RequestBody WineCharmSet item) {
+        return wineCharmService.deleteItem(item);
     }
 
     public int getTotalItemCount() {

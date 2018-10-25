@@ -27,10 +27,10 @@ import static org.mockito.Mockito.*;
 public class StringWireServiceTest {
 
     @InjectMocks
-    StringWireService mockSMService;
+    private StringWireService mockSMService;
 
     @Mock
-    StringWireRepo mockSMRepo;
+    private StringWireRepo mockSMRepo;
 
     private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7,"good",.5,"Beadalon");
     private StringWire brassChain = new StringWire(CHAIN,BRASS,"brass","thin",1,"okay",.5,"bead landing");

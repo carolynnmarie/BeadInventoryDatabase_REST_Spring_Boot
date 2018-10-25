@@ -51,8 +51,8 @@ public class BookmarkControllerTest {
         beads2.put(bead3,2);
         bookmark = new Bookmark(beads,findings,10.0,"Amethyst on black cord", COTTON,StringWireCategory.CORD,"black",10);
         bookmark2 = new Bookmark(beads2,findings,10.0,"Tan stone on black leather", LEATHER,StringWireCategory.CORD,"black",10);
-        bookmark.setId(1);
-        bookmark2.setId(2);
+        bookmark.setAllId(1);
+        bookmark2.setAllId(2);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class BookmarkControllerTest {
     @Test
     public void findItemByIdTest(){
         given(mockService.getItemById(1)).willReturn(new ResponseEntity<>(bookmark,OK));
-        Bookmark actual = mockController.findItemById(bookmark.getId());
+        Bookmark actual = mockController.findItemById(bookmark.getAllId());
 
         verify(mockService).getItemById(anyLong());
         Assert.assertEquals(bookmark,actual);
@@ -87,8 +87,8 @@ public class BookmarkControllerTest {
 
     @Test
     public void updateItemTest(){
-        given(mockService.updateItem(bookmark2.getId(),bookmark2)).willReturn(new ResponseEntity<>(bookmark2,OK));
-        Bookmark actual = mockController.updateItem(bookmark2.getId(),bookmark2);
+        given(mockService.updateItem(bookmark2.getAllId(),bookmark2)).willReturn(new ResponseEntity<>(bookmark2,OK));
+        Bookmark actual = mockController.updateItem(bookmark2.getAllId(),bookmark2);
 
         verify(mockService).updateItem(anyLong(),any(Bookmark.class));
         Assert.assertEquals(bookmark2, actual);
@@ -107,8 +107,8 @@ public class BookmarkControllerTest {
 
     @Test
     public void updateDescriptionTest(){
-        given(mockService.updateDescription(bookmark2.getId(),"description")).willReturn(new ResponseEntity<>(bookmark2,OK));
-        Bookmark actual = mockController.updateDescription(bookmark2.getId(),"description");
+        given(mockService.updateDescription(bookmark2.getAllId(),"description")).willReturn(new ResponseEntity<>(bookmark2,OK));
+        Bookmark actual = mockController.updateDescription(bookmark2.getAllId(),"description");
         verify(mockService).updateDescription(anyLong(),anyString());
         Assert.assertEquals(bookmark2,actual);
     }

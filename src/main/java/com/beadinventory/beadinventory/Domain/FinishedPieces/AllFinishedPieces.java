@@ -1,15 +1,9 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
-import com.beadinventory.beadinventory.Domain.Serializers.BeadDeserializer;
-import com.beadinventory.beadinventory.Domain.Serializers.BeadSerializer;
-import com.beadinventory.beadinventory.Domain.Serializers.FindingDeserializer;
-import com.beadinventory.beadinventory.Domain.Serializers.FindingSerializer;
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.beadinventory.beadinventory.Domain.Serializers.*;
+import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.fasterxml.jackson.databind.annotation.*;
 
-import javax.persistence.Id;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -22,7 +16,7 @@ public abstract class AllFinishedPieces implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ALL_ID")
-    private long id;
+    private long allId;
 
 
     @JsonSerialize(keyUsing = BeadSerializer.class)
@@ -30,7 +24,7 @@ public abstract class AllFinishedPieces implements Serializable {
     @ElementCollection
     @CollectionTable(name = "BEAD_MAP", joinColumns = @JoinColumn(name = "ALL_ID"))
     @MapKeyJoinColumn(name = "BEAD_ID", referencedColumnName = "BEAD_ID")
-    @Column(name = "BEADS_FOREIGN")
+    @Column(name = "BEADS_ALL")
     protected Map<Bead, Integer> beads = new HashMap<>();
 
 
@@ -39,7 +33,7 @@ public abstract class AllFinishedPieces implements Serializable {
     @ElementCollection
     @CollectionTable(name = "FINDING_MAP",joinColumns = @JoinColumn(name = "ALL_ID"))
     @MapKeyJoinColumn(name = "FINDING_ID")
-    @Column(name = "FINDINGS_FOREIGN")
+    @Column(name = "FINDINGS_ALL")
     protected Map<Finding, Integer> findings = new HashMap<>();
 
     @Column(name = "PRICE")
@@ -74,12 +68,12 @@ public abstract class AllFinishedPieces implements Serializable {
         this.findings = findings;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setAllId(long allId) {
+        this.allId = allId;
     }
 
-    public long getId(){
-        return id;
+    public long getAllId(){
+        return allId;
     }
 
     public double getPrice() {

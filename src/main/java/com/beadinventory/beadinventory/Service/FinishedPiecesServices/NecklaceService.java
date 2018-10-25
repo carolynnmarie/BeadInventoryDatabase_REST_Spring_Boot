@@ -55,7 +55,7 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(necklace.getId())
+                .buildAndExpand(necklace.getAllId())
                 .toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(newAccountUri);
@@ -65,9 +65,10 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
 
     @Override
     public ResponseEntity<Necklace> updateItem(long id, Necklace item) {
-        Necklace necklace = necklaceRepo.findById(id);
-        item.setId(necklace.getId());
-        necklaceRepo.save(item);
+        item.setBeads(updateBeadRepoCount(item));
+        item.setFindings(updateFindingRepoCount(item));
+        item.setAllId(id);
+        Necklace necklace = necklaceRepo.save(item);
         return new ResponseEntity<>(necklace, OK);
     }
 
@@ -91,8 +92,8 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
 
     public ResponseEntity<Necklace> updateBeads(long id, LinkedHashMap<Bead,Integer> beads){
         Necklace necklace = necklaceRepo.findById(id);
-//        necklace.setBeads(beads);
-//        necklace.setBeads(updateBeadRepoCount(necklace));
+        necklace.setBeads(beads);
+        necklace.setBeads(updateBeadRepoCount(necklace));
         necklaceRepo.save(necklace);
         return new ResponseEntity<>(necklace, OK);
     }

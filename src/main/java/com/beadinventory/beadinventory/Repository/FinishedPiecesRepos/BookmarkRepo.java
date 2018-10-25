@@ -9,4 +9,7 @@ import java.util.List;
 
 @Repository
 public interface BookmarkRepo extends AllFinishedPiecesRepo<Bookmark> {
+
+    //SELECT b FROM bookmark b WHERE b.beads
+    List<Bookmark> findAllBy();
 }

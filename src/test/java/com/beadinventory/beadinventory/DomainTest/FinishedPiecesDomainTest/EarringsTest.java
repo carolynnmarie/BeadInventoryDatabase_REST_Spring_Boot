@@ -23,7 +23,6 @@ public class EarringsTest {
 
     @Before
     public void setUp(){
-        List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
         this.bead = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
         this.beads = new HashMap<>();
         beads.put(bead,3);

@@ -24,13 +24,13 @@ public class NapkinRingSetController implements AllFinishedPiecesContInterface<N
     @Override
     @GetMapping()
     public List<NapkinRingSet> findAllItems() {
-        return null;
+        return napkinRingService.getAllItems().getBody();
     }
 
     @Override
     @GetMapping(value = "/{id}")
-    public NapkinRingSet findItemById(@PathVariable("id") long id) {
-        return null;
+    public NapkinRingSet findItemById(@PathVariable(value = "id") long id) {
+        return napkinRingService.getItemById(id).getBody();
     }
 
 
@@ -41,36 +41,36 @@ public class NapkinRingSetController implements AllFinishedPiecesContInterface<N
     @Override
     @PostMapping()
     public ResponseEntity<NapkinRingSet> createItem(@RequestBody NapkinRingSet item) {
-        return null;
+        return napkinRingService.createItem(item);
     }
 
     @Override
     @PutMapping(value = "/{id}")
-    public NapkinRingSet updateItem(@PathVariable("id") long id, @RequestBody NapkinRingSet item) {
-        return null;
+    public NapkinRingSet updateItem(@PathVariable( value = "id") long id, @RequestBody NapkinRingSet item) {
+        return napkinRingService.updateItem(id,item).getBody();
     }
 
     @Override
-    @PutMapping( params = "price")
+    @PutMapping(params = "price")
     public List<NapkinRingSet> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
-        return null;
+        return napkinRingService.increasePriceOfAll(amountToAdd).getBody();
     }
 
     @Override
     @PutMapping(value = "/{id}", params = "description")
-    public NapkinRingSet updateDescription(@PathVariable("id") long id, @RequestAttribute(value = "description") String description) {
-        return null;
+    public NapkinRingSet updateDescription(@PathVariable(value = "id") long id, @RequestAttribute(value = "description") String description) {
+        return napkinRingService.updateDescription(id,description).getBody();
     }
 
     @PutMapping(value = "/{id}", params = "quantity")
-    public NapkinRingSet updateQuantity(@PathVariable("id") long id, @RequestAttribute(value = "quantity") int quantity){
-        return null;
+    public NapkinRingSet updateQuantity(@PathVariable(value = "id") long id, @RequestAttribute(value = "quantity") int quantity){
+        return napkinRingService.updateQuantityOfItemsInSet(id,quantity).getBody();
     }
 
     @Override
     @DeleteMapping()
     public ResponseEntity deleteItem(NapkinRingSet item) {
-        return null;
+        return napkinRingService.deleteItem(item);
     }
 
     public int getTotalItemCount(){

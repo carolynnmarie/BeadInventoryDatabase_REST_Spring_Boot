@@ -33,21 +33,22 @@ public class BraceletRepoTest {
     @Autowired
     private BraceletRepo mockBraceletRepo;
 
-    HashMap<Bead, Integer> beads = new HashMap<>();
-    HashMap<Finding, Integer> findings = new HashMap<>();
-    StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7,"good",.5,"Beadalon");
+    private HashMap<Bead, Integer> beads = new HashMap<>();
+    private HashMap<Finding, Integer> findings = new HashMap<>();
+    private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7,"good",.5,"Beadalon");
     private Bracelet bracelet= new Bracelet(beads,findings,15,"",MEDICAL,beadingWire,false,true,4);
-    Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
-    Bead bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
-    Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
-    Finding lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,"medium",4,.1,10,"Bead Gallery");
+    private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
+    private Bead bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
+    private Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
+    private Finding lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,"medium",4,.1,10,"Bead Gallery");
+
     @Before
     public void setUp(){
         beads.put(bead1,4);
         beads.put(bead2,2);
         beads.put(bead4,3);
         findings.put(lobsterClasp2,2);
-        }
+    }
 
     @Test
     public void testFindBraceletsByBraceletType(){

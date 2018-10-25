@@ -57,10 +57,10 @@ public class NapkinRingSetServiceTest {
 
     @Test
     public void getQuantityOfItemsInSetTest(){
-        given(mockRepo.findById(napkinRingSet.getId())).willReturn(napkinRingSet);
+        given(mockRepo.findById(napkinRingSet.getAllId())).willReturn(napkinRingSet);
 
         int expected = 4;
-        int actual = mockService.getQuantityOfItemsInSet(napkinRingSet.getId());
+        int actual = mockService.getQuantityOfItemsInSet(napkinRingSet.getAllId());
 
         verify(mockRepo).findById(anyLong());
         Assert.assertEquals(expected,actual);
@@ -68,11 +68,11 @@ public class NapkinRingSetServiceTest {
 
     @Test
     public void updateQuantityOfItemsInSetTest(){
-        given(mockRepo.findById(napkinRingSet.getId())).willReturn(napkinRingSet);
+        given(mockRepo.findById(napkinRingSet.getAllId())).willReturn(napkinRingSet);
         given(mockRepo.save(napkinRingSet)).willReturn(napkinRingSet);
 
         int expected = 8;
-        ResponseEntity<NapkinRingSet> actualResponse = mockService.updateQuantityOfItemsInSet(napkinRingSet.getId(),8);
+        ResponseEntity<NapkinRingSet> actualResponse = mockService.updateQuantityOfItemsInSet(napkinRingSet.getAllId(),8);
         int actual = actualResponse.getBody().getQuantity();
 
         verify(mockRepo).save(any(NapkinRingSet.class));

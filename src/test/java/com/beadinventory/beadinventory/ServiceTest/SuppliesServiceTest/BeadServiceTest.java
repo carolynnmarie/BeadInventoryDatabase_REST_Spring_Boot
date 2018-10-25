@@ -137,7 +137,7 @@ public class BeadServiceTest {
 
     @Test
     public void getBeadByIdTest(){
-        bead1.setId(1L);
+        bead1.setBeadId(1L);
         given(mockBeadRepo.findById(anyLong())).willReturn(bead1);
         ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,OK);
         ResponseEntity<Bead> actual = mockBeadService.getBeadById(1L);
@@ -154,7 +154,7 @@ public class BeadServiceTest {
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(bead1.getId())
+                .buildAndExpand(bead1.getBeadId())
                 .toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(newAccountUri);
@@ -176,7 +176,7 @@ public class BeadServiceTest {
         given(mockBeadRepo.save(any(Bead.class))).willReturn(bead1);
 
         ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,OK);
-        ResponseEntity<Bead> actual = mockBeadService.updateBeadQuantity(bead1.getId(),10);
+        ResponseEntity<Bead> actual = mockBeadService.updateBeadQuantity(bead1.getBeadId(),10);
 
         verify(mockBeadRepo).save(any(Bead.class));
         Assert.assertEquals(expected,actual);
@@ -185,11 +185,11 @@ public class BeadServiceTest {
     @Test
     public void removeBeadQuantityTest(){
         bead1.setQuantity(20);
-        given(mockBeadRepo.findById(bead1.getId())).willReturn(bead1);
+        given(mockBeadRepo.findById(bead1.getBeadId())).willReturn(bead1);
         given(mockBeadRepo.save(bead1)).willReturn(bead1);
 
         long expected = 15;
-        ResponseEntity<Bead> response = mockBeadService.removeBeadQuantity(bead1.getId(),5);
+        ResponseEntity<Bead> response = mockBeadService.removeBeadQuantity(bead1.getBeadId(),5);
         long actual = response.getBody().getQuantity();
 
         verify(mockBeadRepo).save(any(Bead.class));
@@ -201,7 +201,7 @@ public class BeadServiceTest {
         given(mockBeadRepo.save(any(Bead.class))).willReturn(bead1);
 
         ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,OK);
-        ResponseEntity<Bead> actual = mockBeadService.updateBead(bead1.getId(),bead1);
+        ResponseEntity<Bead> actual = mockBeadService.updateBead(bead1.getBeadId(),bead1);
 
         verify(mockBeadRepo).save(any(Bead.class));
         Assert.assertEquals(expected,actual);
@@ -210,7 +210,7 @@ public class BeadServiceTest {
     @Test
     public void deleteBeadByIdTest(){
         ResponseEntity expected = new ResponseEntity(OK);
-        ResponseEntity actual = mockBeadService.deleteBeadById(bead1.getId());
+        ResponseEntity actual = mockBeadService.deleteBeadById(bead1.getBeadId());
 
         Assert.assertEquals(expected,actual);
     }

@@ -21,18 +21,18 @@ public class FindingController {
         this.findingService = findingService;
     }
 
-    @GetMapping(value = "")
+    @GetMapping()
     public List<Finding> findAllFindings(){
         return findingService.getAllFindings().getBody();
     }
 
-    @GetMapping(value = "", params = "type")
+    @GetMapping(params = "type")
     public List<Finding> findAllOfCategoryType(@RequestParam(name = "type") String type){
         return findingService.getAllOfCategoryType(type).getBody();
     }
 
 
-    @GetMapping(value = "", params = "findingCategory")
+    @GetMapping(params = "findingCategory")
     public List<Finding> findAllOfCategory(@RequestAttribute(value = "findingCategory")FindingCategory findingCategory){
         return findingService.getAllOfCategory(findingCategory).getBody();
     }
@@ -53,7 +53,7 @@ public class FindingController {
         return findingService.findById(id).getBody();
     }
 
-    @PostMapping(value = "")
+    @PostMapping()
     public ResponseEntity<Finding> createFinding(@RequestBody Finding finding){
         return findingService.createFinding(finding);
     }
@@ -73,7 +73,7 @@ public class FindingController {
         return findingService.deleteById(id);
     }
 
-    @DeleteMapping(value = "")
+    @DeleteMapping()
     public ResponseEntity deleteFinding(@RequestBody Finding finding){
         return findingService.deleteFinding(finding);
     }

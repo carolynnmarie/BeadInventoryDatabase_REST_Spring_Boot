@@ -63,12 +63,3 @@ public class StringWireTest {
     }
 
 }
-/*
-StringWireCategory getStringWireCategory()
-Material getMaterial()
-String getWidth()
-int getStrands()
-String getQuality()
-double getPricePerFoot()
-String getBrand()
- */

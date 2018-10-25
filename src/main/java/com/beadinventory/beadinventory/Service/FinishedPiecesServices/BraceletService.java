@@ -23,7 +23,6 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> implemen
         this.braceletRepo = braceletRepo;
     }
 
-
     @Override
     public ResponseEntity<List<Bracelet>> getAllItems() {
         List<Bracelet> list = braceletRepo.findAll();
@@ -55,7 +54,7 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> implemen
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(bracelet.getId())
+                .buildAndExpand(bracelet.getAllId())
                 .toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(newAccountUri);
@@ -64,7 +63,9 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> implemen
 
     @Override
     public ResponseEntity<Bracelet> updateItem(long id, Bracelet item) {
-        item.setId(id);
+        item.setBeads(updateBeadRepoCount(item));
+        item.setFindings(updateFindingRepoCount(item));
+        item.setAllId(id);
         Bracelet bracelet = braceletRepo.save(item);
         return new ResponseEntity<>(bracelet, OK);
     }

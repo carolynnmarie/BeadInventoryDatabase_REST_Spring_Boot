@@ -52,7 +52,7 @@ public class EarringsService extends AllFinishedPiecesService<Earrings> implemen
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(earrings.getId())
+                .buildAndExpand(earrings.getAllId())
                 .toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(newAccountUri);
@@ -61,7 +61,9 @@ public class EarringsService extends AllFinishedPiecesService<Earrings> implemen
 
     @Override
     public ResponseEntity<Earrings> updateItem(long id, Earrings item) {
-        item.setId(id);
+        item.setBeads(updateBeadRepoCount(item));
+        item.setFindings(updateFindingRepoCount(item));
+        item.setAllId(id);
         Earrings earrings = earringsRepo.save(item);
         return new ResponseEntity<>(earrings,OK);
     }

@@ -44,7 +44,7 @@ public class WineCharmService extends AllFinishedPiecesService implements AllFin
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(set.getId())
+                .buildAndExpand(set.getAllId())
                 .toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(newAccountUri);
@@ -53,7 +53,9 @@ public class WineCharmService extends AllFinishedPiecesService implements AllFin
 
     @Override
     public ResponseEntity<WineCharmSet> updateItem(long id, WineCharmSet item) {
-        item.setId(id);
+        item.setBeads(updateBeadRepoCount(item));
+        item.setFindings(updateFindingRepoCount(item));
+        item.setAllId(id);
         WineCharmSet set = wineCharmSetRepo.save(item);
         return new ResponseEntity<>(set,OK);
     }

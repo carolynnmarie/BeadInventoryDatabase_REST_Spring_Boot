@@ -23,25 +23,22 @@ public class BookmarkTest {
 
     @Before
     public void setUp(){
-        List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-        bead1 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
-        bead2 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white",
-                0.2,"Bead Gallery");
-        List<String> findingBrands = new ArrayList<>(Arrays.asList("bead landing"));
-        headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Bead Gallery");
+        this.bead1 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
+        this.bead2 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white", 0.2,"Bead Gallery");
+        this.headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Bead Gallery");
 
         beads = new HashMap<>();
         beads.put(bead1,1);
         beads.put(bead2,1);
-        findings = new HashMap<>();
+        this.findings = new HashMap<>();
         findings.put(headPin,2);
 
-        bookmark = new Bookmark(beads,findings,12.0,"Amethyst on black cord", COTTON,StringWireCategory.CORD,"black",10);
+        this.bookmark = new Bookmark(beads,findings,12.0,"Amethyst on black cord", COTTON,StringWireCategory.CORD,"black",10);
     }
 
     @Test
     public void getBeadsTest(){
-        Map<Bead, Integer> expected = new LinkedHashMap<>(beads);
+        Map<Bead, Integer> expected = new HashMap<>(beads);
         Map<Bead, Integer> actual = bookmark.getBeads();
 
         Assert.assertEquals(expected,actual);
@@ -49,7 +46,7 @@ public class BookmarkTest {
 
     @Test
     public void getFindingsTest(){
-        Map<Finding, Integer> expected = new LinkedHashMap<>(findings);
+        Map<Finding, Integer> expected = new HashMap<>(findings);
         Map<Finding, Integer> actual = bookmark.getFindings();
 
         Assert.assertEquals(expected,actual);

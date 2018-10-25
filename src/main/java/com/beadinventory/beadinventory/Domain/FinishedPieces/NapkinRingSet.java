@@ -1,12 +1,8 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
-import com.beadinventory.beadinventory.Domain.Serializers.StringWireDeserializer;
-import com.beadinventory.beadinventory.Domain.Serializers.StringWireSerializer;
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.beadinventory.beadinventory.Domain.Serializers.*;
+import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.fasterxml.jackson.databind.annotation.*;
 
 import javax.persistence.*;
 import java.io.Serializable;

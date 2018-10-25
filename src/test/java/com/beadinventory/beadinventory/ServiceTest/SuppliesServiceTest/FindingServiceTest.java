@@ -31,7 +31,6 @@ public class FindingServiceTest {
     @Mock
     private FindingRepo mockFindingRepo;
 
-    private List<String> brands;
     private Finding eyePin;
     private Finding headPin;
     private Finding lobsterClasp;
@@ -41,8 +40,6 @@ public class FindingServiceTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        brands = new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
-
         eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"bead landing");
         headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"bead landing");
         lobsterClasp = new Finding(LOBSTER_CLASP,BRIGHT_SILVER_PLATED,"small",2,0.1,10,"bead landing");

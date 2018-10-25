@@ -11,6 +11,7 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
+@RequestMapping(value = "/earrings")
 public class EarringsController implements AllFinishedPiecesContInterface<Earrings> {
 
     private EarringsService earringsService;
@@ -21,55 +22,55 @@ public class EarringsController implements AllFinishedPiecesContInterface<Earrin
     }
 
     @Override
-    @GetMapping(value = "/earrings")
+    @GetMapping()
     public List<Earrings> findAllItems() {
         return null;
     }
 
-    @GetMapping(value = "/earrings/", path = "/findAllSterlingSilver")
+    @GetMapping(path = "/findAllSterlingSilver")
     public List<Earrings> findAllSterlingSilver(){
         return earringsService.getAllSterlingSilver().getBody();
     }
 
     @Override
-    @GetMapping(value = "/earrings/{id}")
+    @GetMapping(value = "/{id}")
     public Earrings findItemById(@PathVariable("id") long id) {
-        return null;
+        return earringsService.getItemById(id).getBody();
     }
 
     @Override
-    @PostMapping(value = "/earrings")
+    @PostMapping(value = "")
     public ResponseEntity<Earrings> createItem(@RequestBody Earrings item) {
-        return null;
+        return earringsService.createItem(item);
     }
 
     @Override
-    @PutMapping(value = "/earrings/{id}")
+    @PutMapping(value = "/{id}")
     public Earrings updateItem(@PathVariable("id") long id, @RequestBody Earrings item) {
-        return null;
+        return earringsService.updateItem(id, item).getBody();
     }
 
-    @PutMapping(value = "/earrings/{id}",params = "price")
+    @PutMapping(value = "/{id}",params = "price")
     public Earrings updatePriceOfOne(@PathVariable("id") long id, @RequestAttribute(value = "price") double price){
-        return null;
+        return earringsService.updatePriceOfOne(id, price).getBody();
     }
 
     @Override
-    @PutMapping(value = "/earrings",params = "price")
+    @PutMapping(value = "",params = "price")
     public List<Earrings> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
-        return null;
+        return earringsService.increasePriceOfAll(amountToAdd).getBody();
     }
 
     @Override
-    @PutMapping(value = "/earrings/{id}", params = "description")
+    @PutMapping(value = "/{id}", params = "description")
     public Earrings updateDescription(@PathVariable("id") long id, @RequestAttribute("description") String description) {
-        return null;
+        return earringsService.updateDescription(id,description).getBody();
     }
 
     @Override
-    @DeleteMapping(value = "/earrings")
+    @DeleteMapping(value = "")
     public ResponseEntity deleteItem(@RequestBody Earrings item) {
-        return null;
+        return earringsService.deleteItem(item);
     }
 
     public int getTotalItemCount(){

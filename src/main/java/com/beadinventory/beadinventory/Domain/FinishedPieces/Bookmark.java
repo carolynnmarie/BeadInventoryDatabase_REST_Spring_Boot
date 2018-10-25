@@ -1,10 +1,8 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
-import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+
+import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -41,60 +41,54 @@ public class NecklaceController implements AllFinishedPiecesContInterface<Neckla
     }
 
     @GetMapping(path = "/findAllWithSwarovski")
-    @ResponseBody
     public List<Necklace> findAllWithSwarovski(){
         return necklaceService.getAllWithSwarovski().getBody();
-    }
-
-    @GetMapping(params = "clasp")
-    public List<Necklace> findAllWithClasp(@RequestAttribute(value = "clasp") FindingCategory clasp){
-        return null;
     }
 
     @Override
     @GetMapping(value = "{id}")
     public Necklace findItemById(@PathVariable("id") long id) {
-        return null;
+        return necklaceService.getItemById(id).getBody();
     }
 
     @Override
     @PostMapping()
     public ResponseEntity<Necklace> createItem(@RequestBody Necklace item) {
-        return null;
+        return necklaceService.createItem(item);
     }
 
     @Override
     @PutMapping(value = "/{id}")
     public Necklace updateItem(@PathVariable("id") long id, @RequestBody Necklace item) {
-        return null;
+        return necklaceService.updateItem(id,item).getBody();
     }
 
     @PutMapping(value = "/{id}", params = "price")
     public Necklace updatePriceOfOne(@PathVariable("id") long id,@RequestAttribute( value = "price") double price){
-        return null;
+        return necklaceService.updatePriceOfOne(id,price).getBody();
     }
 
     @Override
     @PutMapping(params = "price")
     public List<Necklace> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
-        return null;
+        return necklaceService.increasePriceOfAll(amountToAdd).getBody();
     }
 
     @Override
     @PutMapping(value = "/{id}",params = "description")
     public Necklace updateDescription(@PathVariable("id") long id, @RequestAttribute(value = "description") String description) {
-        return null;
+        return necklaceService.updateDescription(id,description).getBody();
     }
 
     @PutMapping(value = "/{id}", params = "beads")
     public Necklace updateNecklaceBeads(@PathVariable("id") long id, @RequestAttribute(value = "beads") LinkedHashMap<Bead,Integer> beads){
-        return null;
+        return necklaceService.updateBeads(id,beads).getBody();
     }
 
     @Override
     @DeleteMapping()
     public ResponseEntity deleteItem(@RequestBody Necklace item) {
-        return null;
+        return necklaceService.deleteItem(item);
     }
 
     public int getTotalItemCount() {

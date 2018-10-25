@@ -50,7 +50,7 @@ public class EarringsServiceTest {
         findings.put(headPin,2);
         findings.put(earWire,2);
         this.earrings = new Earrings(beads,findings,15,"amethyst dangles",true);
-        earrings.setId(1L);
+        earrings.setAllId(1L);
     }
 
     @Test

@@ -28,9 +28,9 @@ public class BraceletController implements AllFinishedPiecesContInterface<Bracel
         return braceletService.getAllItems().getBody();
     }
 
-    @GetMapping(params = "bracelet_type")
-    public List<Bracelet> findAllOfBraceletType(@RequestAttribute (value = "bracelet_type")BraceletType bracelet_type){
-        return braceletService.findByBraceletType(bracelet_type).getBody();
+    @GetMapping(params = "type")
+    public List<Bracelet> findAllOfBraceletType(@RequestAttribute BraceletType type){
+        return braceletService.findByBraceletType(type).getBody();
     }
 
 
@@ -54,7 +54,7 @@ public class BraceletController implements AllFinishedPiecesContInterface<Bracel
 
 
     @PutMapping(value = "/{id}",params = "price")
-    public Bracelet updatePriceOfOne(@PathVariable("id")long id,@RequestAttribute(value = "price") double price){
+    public Bracelet updatePriceOfOne(@PathVariable("id")long id,@RequestAttribute double price){
         return braceletService.updatePriceOfOne(id,price).getBody();
     }
 

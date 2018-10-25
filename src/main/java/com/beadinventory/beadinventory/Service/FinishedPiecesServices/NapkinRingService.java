@@ -1,6 +1,5 @@
 package com.beadinventory.beadinventory.Service.FinishedPiecesServices;
 
-import com.beadinventory.beadinventory.Domain.FinishedPieces.Earrings;
 import com.beadinventory.beadinventory.Domain.FinishedPieces.NapkinRingSet;
 import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.NapkinRingSetRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +57,7 @@ public class NapkinRingService extends AllFinishedPiecesService<NapkinRingSet> i
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(napkinRingSet.getId())
+                .buildAndExpand(napkinRingSet.getAllId())
                 .toUri();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(newAccountUri);
@@ -67,7 +66,9 @@ public class NapkinRingService extends AllFinishedPiecesService<NapkinRingSet> i
 
     @Override
     public ResponseEntity<NapkinRingSet> updateItem(long id, NapkinRingSet item) {
-        item.setId(id);
+        item.setBeads(updateBeadRepoCount(item));
+        item.setFindings(updateFindingRepoCount(item));
+        item.setAllId(id);
         NapkinRingSet set = napkinRingSetRepo.save(item);
         return new ResponseEntity<>(set, OK);
     }

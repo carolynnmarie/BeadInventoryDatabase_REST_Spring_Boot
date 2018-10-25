@@ -56,7 +56,7 @@ public class Finding implements Serializable {
         this.brand = brand;
     }
 
-//    public void setId(long id){
+//    public void setAllId(long id){
 //        this.id = id;
 //    }
 

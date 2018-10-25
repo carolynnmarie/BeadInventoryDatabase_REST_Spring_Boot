@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory.*;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 @RestController
+@RequestMapping(value = "/beads")
 public class BeadController {
 
     private BeadService beadService;
@@ -20,84 +24,72 @@ public class BeadController {
         this.beadService = beadService;
     }
 
-
-    @GetMapping(value = "/beads")
+    @GetMapping()
     public List<Bead> findAllBeads(){
         return beadService.getAllBeads().getBody();
     }
 
-    @GetMapping(value = "/beads.getAllOrderByMaterial")
+    @GetMapping(value = "/getAllOrderByMaterial")
     public List<Bead> findAllOrderByMaterial(){
         return beadService.getAllOrderByMaterial().getBody();
     }
 
-    @GetMapping(value = "/beads", params = "material")
-    public List<Bead> findAllOfMaterial(@RequestAttribute(value = "material")Material material){
+    @GetMapping(params = "material")
+    public List<Bead> findAllOfMaterial(@RequestAttribute(value = "material") Material material){
         return beadService.getAllOfMaterial(material).getBody();
     }
 
-    @GetMapping(value = "/beads", params = {"material", "color"})
+    @GetMapping(params = {"material", "color"})
     public List<Bead> findAllOfMaterialAndColor(@RequestAttribute(value = "material") Material material,
                                                 @RequestAttribute(value = "color") String color){
         return beadService.getAllOfMaterialAndColor(material,color).getBody();
     }
 
-    @GetMapping(value = "/beads", params = {"material","size"})
+    @GetMapping(params = {"material","size"})
     public List<Bead> findAllOfMaterialAndSize(@RequestAttribute(value ="material") Material material,
                                                @RequestAttribute(value = "size") int size){
         return beadService.getAllOfMaterialAndSize(material,size).getBody();
     }
 
-    @GetMapping(value = "/beads", params = "quantity")
+    @GetMapping(params = "quantity")
     public List<Bead> findAllWithQuantityLessThan(@RequestAttribute(value = "quantity") long quantity){
         ResponseEntity<List<Bead>> response = beadService.getAllQuantityLessThan(quantity);
         return response.getBody();
     }
 
-    @GetMapping(value = "/beads/{id}")
+    @RequestMapping(value = "/{id}", method = GET)
     public Bead findBeadById(@PathVariable("id") long id){
         ResponseEntity<Bead> response = beadService.getBeadById(id);
         return response.getBody();
     }
 
-    @PostMapping(value = "/beads")
+    @PostMapping()
     public ResponseEntity<Bead> createBead(@RequestBody Bead bead){
         return beadService.createBead(bead);
     }
 
-    @PutMapping(value = "/beads/{id}", params = "quantity")
+    @PutMapping(value = "/{id}", params = "quantity")
     public Bead updateBeadQuantity(@PathVariable("id") long id, @RequestAttribute(value = "quantity") long quantity){
         return beadService.updateBeadQuantity(id,quantity).getBody();
     }
 
-    @PutMapping(value = "/beads/{id}")
+    @PutMapping(value = "/{id}")
     public Bead updateBead(@PathVariable("id") long id, @RequestBody Bead bead){
         ResponseEntity<Bead> response = beadService.updateBead(id,bead);
         return response.getBody();
     }
 
-    @DeleteMapping(value = "/beads/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity deleteBeadById(@PathVariable("id") long id){
         return beadService.deleteBeadById(id);
     }
 
-    @DeleteMapping(value = "/beads")
+    @DeleteMapping()
     public ResponseEntity deleteBead(@RequestBody Bead bead){
         return beadService.deleteBead(bead);
     }
 
 
-    public List<Bead> getAllOfMaterialCategory(MaterialCategory category){
-        List<Bead> list = findAllBeads()
-                .stream()
-                .filter(e-> e.getMaterial().getCategory().equals(category))
-                .sorted(Comparator.comparing(Bead::getMaterial))
-                .collect(Collectors.toList());
-        return list;
-    }
 
-    public long findBeadQuantity(Bead bead){
-        return bead.getQuantity();
-    }
 
 }

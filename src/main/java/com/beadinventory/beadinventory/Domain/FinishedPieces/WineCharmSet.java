@@ -1,7 +1,6 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.Domain.Supplies.*;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -28,7 +28,6 @@ public class NecklaceTest {
 
     @Before
     public void setUp() {
-        List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
         this.bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20, "translucent purple with some white", 0.8, "Bead Gallery");
         this.bead2 = new Bead(JASPER, ROUND, "black", 4, "good", 10, "", 0.6, "Bead Gallery");
         this.bead4 = new Bead(AMETHYST, ROUND, "purple", 6, "good", 15, "translucent purple with some white", 0.9, "Bead Gallery");
@@ -46,8 +45,6 @@ public class NecklaceTest {
         this.beadingWire = new StringWire(BEADING_WIRE, BRIGHT_SILVER_PLATED, "silver", ".5 mm", 7, "good", .1, "Beadalon");
         this.necklace = new Necklace(beads,findings,beadingWire,20,3,1,"",true,false,40,LOBSTER_CLASP);
     }
-
-//getStringWireTest, getLengthInchTest, getSwarovskiTest, and getNaturalStonesTest are present in BraceletTest class
 
     @Test
     public void getHoursSpentTest(){
@@ -90,22 +87,4 @@ public class NecklaceTest {
         Assert.assertEquals(expected,actual, 0.001);
     }
 
-
 }
-/*
-    public void setAutoPrice() {
-        double beadPrice = 0.0;
-        double findingPrice = 0.0;
-        double stringPrice = stringWire.getPricePerFoot()*lengthInch;
-        for(Map.Entry<Bead,Integer> bead: beads.entrySet()){
-            beadPrice += (bead.getKey().getPricePoint()*bead.getValue());
-        }
-        for(Map.Entry<Finding,Integer> finding: findings.entrySet()){
-            findingPrice += (finding.getKey().getPricePoint()*finding.getValue());
-        }
-        this.price = beadPrice + stringPrice + findingPrice + (hoursSpent*8)*difficultyLevel;
-        if(getHasSwarovski()) price += 5;
-        if(getHasNaturalStones()) price += 5;
-        price = Math.ceil(price)
-    }
- */

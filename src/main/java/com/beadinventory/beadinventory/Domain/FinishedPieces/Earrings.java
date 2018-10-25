@@ -1,6 +1,5 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
-
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 

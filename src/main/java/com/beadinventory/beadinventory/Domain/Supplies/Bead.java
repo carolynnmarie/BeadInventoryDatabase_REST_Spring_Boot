@@ -2,16 +2,12 @@ package com.beadinventory.beadinventory.Domain.Supplies;
 
 
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
 
 @Entity
-@Table(name = "BEAD")
-@JsonRootName(value = "my_Beads")
+@Table(name = "BEADS")
 public class Bead implements Serializable {
 
     @Id
@@ -69,11 +65,11 @@ public class Bead implements Serializable {
         return material;
     }
 
-    public void setId(long id){
-        this.id = id;
+    public void setBeadId(long beadId){
+        this.id = beadId;
     }
 
-    public long getId(){
+    public long getBeadId(){
         return id;
     }
 
@@ -137,13 +133,6 @@ public class Bead implements Serializable {
         return shape;
     }
 
-//    public String getMaterialString(){
-//        return material.toString();
-//    }
-//
-//    public String getShapeString(){
-//        return shape.toString();
-//    }
 
     public void setBrands(String brands) {
         this.brands = brands;
@@ -153,18 +142,4 @@ public class Bead implements Serializable {
         return brands;
     }
 
-
-
-//    public String getBrandsString(){
-//        StringBuilder builder = new StringBuilder();
-//        brands.stream().forEach(e-> builder.append(e).append(" "));
-//        return builder.toString();
-//    }
-
-//    @Override
-//    public String toString(){
-//        return "Material: " + material + ", Shape: " + shape + ", Color: " + color + ", Size: " + size + "mm, Price point: "
-//                + pricePoint + ", Quality: " + quality + ", Quantity: " + quantity + ", Brands: " + getBrandsString() + ", Description: " +
-//                description;
-//    }
 }
