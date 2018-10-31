@@ -39,11 +39,11 @@ public class StringWireControllerTest {
     @Before
     public void setUp() throws Exception{
         MockitoAnnotations.initMocks(this);
-        beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7,"good",.5,"Beadalon");
+        this.beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm","good",.5,"Beadalon", "7 strand");
         beadingWire.setId(1L);
-        brassChain = new StringWire(CHAIN,BRASS,"brass","thin",1,"okay",.5,"bead landing");
+        this.brassChain = new StringWire(CHAIN,BRASS,"brass","thin","okay",.5,"bead landing","");
         brassChain.setId(2L);
-        leatherCord = new StringWire(CORD,LEATHER,"black","medium",1,"okay",.5,"bead landing");
+        this.leatherCord = new StringWire(CORD,LEATHER,"black","medium","okay",.5,"bead landing", "");
         leatherCord.setId(3L);
     }
 

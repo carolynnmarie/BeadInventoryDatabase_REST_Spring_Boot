@@ -38,9 +38,9 @@ public class StringWireContIntegrationTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7, "good",.5,"Beadalon");
-    private StringWire brassChain = new StringWire(CHAIN,BRASS,"brass","thin",1,"okay",0.5,"bead landing");
-    private StringWire leatherCord = new StringWire(CORD,LEATHER,"black","medium",1,"okay",0.5, "bead landing");
+    private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm","good",.5,"Beadalon", "7 strand");
+    private StringWire brassChain = new StringWire(CHAIN,BRASS,"brass","thin","okay",.5,"bead landing","");
+    private StringWire leatherCord = new StringWire(CORD,LEATHER,"black","medium","okay",.5,"bead landing", "");
 
     @Test
     public void getAllStringWireIntegTest()throws Exception{

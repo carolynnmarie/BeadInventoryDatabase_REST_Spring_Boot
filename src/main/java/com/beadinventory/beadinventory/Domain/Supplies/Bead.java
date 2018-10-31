@@ -142,4 +142,9 @@ public class Bead implements Serializable {
         return brands;
     }
 
+    @Override
+    public String toString(){
+        return "Bead: material: " + material.toString() + " color: " + color + " shape: " + shape.toString() + " size: " + sizeMM;
+    }
+
 }

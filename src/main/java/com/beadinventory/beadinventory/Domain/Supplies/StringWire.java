@@ -32,9 +32,6 @@ public class StringWire implements Serializable {
     private String width;
 
     @Column
-    private int strands;
-
-    @Column
     private String quality;
 
     @Column(name = "PRICE_PER_FOOT")
@@ -43,18 +40,21 @@ public class StringWire implements Serializable {
     @Column
     private String brand;
 
+    @Column
+    private String details;
+
     public StringWire(){ }
 
-    public StringWire(StringWireCategory stringWireCategory, Material material, String color, String width, int strands, String quality,
-                      double pricePerFoot, String brand) {
+    public StringWire(StringWireCategory stringWireCategory, Material material, String color, String width, String quality,
+                      double pricePerFoot, String brand, String details) {
         this.stringWireCategory = stringWireCategory;
         this.material = material;
-        this.width = width;
-        this.strands = strands;
         this.quality = quality;
         this.pricePerFoot = pricePerFoot;
-        this.color = color;
         this.brand = brand;
+        this.details = details;
+        this.color = color;
+        this.width = width;
     }
 
     public long getId() {
@@ -89,14 +89,6 @@ public class StringWire implements Serializable {
         this.width = width;
     }
 
-    public int getStrands() {
-        return strands;
-    }
-
-    public void setStrands(int strands) {
-        this.strands = strands;
-    }
-
     public String getBrand() {
         return brand;
     }
@@ -121,11 +113,25 @@ public class StringWire implements Serializable {
         this.pricePerFoot = pricePerFoot;
     }
 
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
     public String getColor() {
         return color;
     }
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Override
+    public String toString(){
+        return "Stringing Material: type: " + stringWireCategory.toString() + ", material: " + material.toString() +
+                ", color: " + color + ", details: " + details;
     }
 }

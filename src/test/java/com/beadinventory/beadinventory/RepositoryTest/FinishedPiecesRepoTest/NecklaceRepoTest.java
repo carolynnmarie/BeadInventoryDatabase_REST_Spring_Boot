@@ -42,7 +42,8 @@ public class NecklaceRepoTest {
     private Finding splitRing = new Finding(SPLIT_RING, BRASS, "smallest", 1, .01, 25, "Bead Gallery");
     private HashMap<Bead, Integer> beads =new HashMap<>();
     private HashMap<Finding,Integer>findings =new HashMap<>();
-    StringWire beadingWire =new StringWire(BEADING_WIRE, BRIGHT_SILVER_PLATED, "silver",".5 mm",7,"good",.1,"Beadalon");
+    private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm","good",.5,"Beadalon",
+            "7 strand");
     private Necklace necklace;
 
     @Before

@@ -1,4 +1,4 @@
-package com.beadinventory.beadinventory.Domain.StoreLists;
+package com.beadinventory.beadinventory.Domain;
 
 import com.beadinventory.beadinventory.Domain.Serializers.*;
 import com.beadinventory.beadinventory.Domain.Supplies.*;
@@ -7,12 +7,15 @@ import com.fasterxml.jackson.databind.annotation.*;
 import javax.persistence.*;
 import java.util.*;
 
-public class GeneralStoreList {
+public class StoreList {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private long id;
+
+    @Column(name = "TITLE")
+    private String projectTitle;
 
     @JsonSerialize(keyUsing = BeadSerializer.class)
     @JsonDeserialize(keyUsing = BeadDeserializer.class)
@@ -36,11 +39,20 @@ public class GeneralStoreList {
     @Column(name = "OTHER_ITEMS")
     private List<String> otherItems;
 
-    public GeneralStoreList(List<Bead> beads, List<Finding> findings, List<StringWire> stringWire, List<String> otherItems) {
+    public StoreList(String projectTitle, List<Bead> beads, List<Finding> findings, List<StringWire> stringWire, List<String> otherItems) {
+        this.projectTitle = projectTitle;
         this.beads = beads;
         this.findings = findings;
         this.stringWire = stringWire;
         this.otherItems = otherItems;
+    }
+
+    public StoreList(String projectTitle){
+        this.projectTitle = projectTitle;
+        this.beads = new ArrayList<>();
+        this.findings = new ArrayList<>();
+        this.stringWire = new ArrayList<>();
+        this.otherItems = new ArrayList<>();
     }
 
     public long getId() {
@@ -49,6 +61,14 @@ public class GeneralStoreList {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getProjectTitle() {
+        return projectTitle;
+    }
+
+    public void setProjectTitle(String projectTitle) {
+        this.projectTitle = projectTitle;
     }
 
     public List<Bead> getBeads() {

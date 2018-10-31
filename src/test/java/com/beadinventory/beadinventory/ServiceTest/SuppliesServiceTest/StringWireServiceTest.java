@@ -32,9 +32,10 @@ public class StringWireServiceTest {
     @Mock
     private StringWireRepo mockSMRepo;
 
-    private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7,"good",.5,"Beadalon");
-    private StringWire brassChain = new StringWire(CHAIN,BRASS,"brass","thin",1,"okay",.5,"bead landing");
-    private StringWire leatherCord = new StringWire(CORD,LEATHER,"black","medium",1,"okay",.5,"bead landing");
+    private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm","good",.5,"Beadalon",
+            "7 strand");
+    private StringWire brassChain = new StringWire(CHAIN,BRASS,"brass","thin","okay",.5,"bead landing", "");
+    private StringWire leatherCord = new StringWire(CORD,LEATHER,"black","medium","okay",.5,"bead landing", "");
 
     @Before
     public void setUp() throws Exception {

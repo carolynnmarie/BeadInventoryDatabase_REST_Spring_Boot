@@ -47,7 +47,6 @@ public class BraceletServiceTest {
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
         this.bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
         this.bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
         this.bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
@@ -59,8 +58,8 @@ public class BraceletServiceTest {
         beads.put(bead4,3);
         this.findings = new HashMap<>();
         findings.put(lobsterClasp2,2);
-        this.beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm",7,"good",.5,"Beadalon");
-        this.elastic = new StringWire(ELASTIC,POLYESTER,"white","thin",1,"ok",.25,"bead landing");
+        this.beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm","good",.5,"Beadalon", "7 strand");
+        this.elastic = new StringWire(ELASTIC,POLYESTER,"white","thin","ok",.25,"bead landing", "");
         HashMap<Finding,Integer> findings2 = new HashMap<>();
         findings2.put(lobsterClasp2,1);
         findings2.put(splitRing,1);
