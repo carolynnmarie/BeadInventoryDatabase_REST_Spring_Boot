@@ -27,42 +27,45 @@ public class InventoryManager  {
     }
 
 
-//    public ArrayList<Bead> findAllOfMaterialOrderByColor(Material material){
-//        return new ArrayList<>(beadController.findAllOfMaterial(material)
-//                .stream()
-//                .sorted(Comparator.comparing(Bead::getColor))
-//                .collect(Collectors.toList()));
-//    }
-//
-//    public ArrayList<Bead> findAllOfMaterialOrderBySize(Material material){
-//        return new ArrayList<>(beadController.findAllOfMaterial(material)
-//                .stream()
-//                .sorted(Comparator.comparing(Bead::getSize))
-//                .collect(Collectors.toList()));
-//    }
-//
-//    public long findBeadQuantity(Bead bead){
-//        return bead.getQuantity();
-//    }
-//
-//    public String printAllSwarovskiQuantitiesOrderByColorThenSize(){
-//        ArrayList<Bead> beads = new ArrayList<>(beadController.findAllOfMaterial(Material.SWAROVSKI_CRYSTAL)
-//                .stream()
-//                .sorted(Comparator.comparing(Bead::getColor).thenComparing(Bead::getSize))
-//                .collect(Collectors.toList()));
-//        StringBuilder builder = new StringBuilder("Swarovski crystals:");
-//        for(Bead bead: beads){
-//            builder.append("color: ").append(bead.getColor())
-//                    .append(", size:")
-//                    .append(bead.getSize())
-//                    .append(", quantity: ")
-//                    .append(bead.getQuantity())
-//                    .append("\n");
-//        }
-//        return builder.toString();
-//    }
+    public long findBeadQuantity(Bead bead){
+        return bead.getQuantity();
+    }
 
-    public String printAllMissingNaturalAndSemiPreciousStone(){
+    public String printBeadById(long id){
+        Bead bead = beadController.findBeadById(id);
+        StringBuilder builder = new StringBuilder();
+        builder.append("Material: ")
+                .append(bead.getMaterial().toString())
+                .append("\nShape: ")
+                .append(bead.getShape().toString())
+                .append("\nColor: ")
+                .append(bead.getColor());
+        if(!bead.getMaterial().toString().equals("seed bead")){
+            builder.append("\nSize in millimeters")
+                    .append(bead.getSizeMM());
+        }
+        builder.append("\nCurrent Quantity: ")
+                .append(bead.getQuantity());
+        return builder.toString();
+    }
+
+    public String printAllSwarovskiQuantitiesByColorThenSize(){
+        ArrayList<Bead> beads = new ArrayList<>(beadController.findAllOfMaterial(Material.SWAROVSKI_CRYSTAL)
+                .stream()
+                .sorted(Comparator.comparing(Bead::getColor).thenComparing(Bead::getSizeMM))
+                .collect(Collectors.toList()));
+        StringBuilder builder = new StringBuilder("Swarovski crystals:");
+        for(Bead bead: beads){
+            builder.append("\ncolor: ").append(bead.getColor())
+                    .append(", size:")
+                    .append(bead.getSizeMM())
+                    .append(", quantity: ")
+                    .append(bead.getQuantity());
+        }
+        return builder.toString();
+    }
+
+    public String printMissingNaturalAndSemiPreciousStones(){
         Material[] allMaterials = Material.values();
         List<Material> presentMaterialList = beadController.findAllBeads()
                 .stream()
@@ -82,23 +85,30 @@ public class InventoryManager  {
         }
         return builder.toString();
     }
-//
-//    public String printQuantityAndSizeOfMaterial(Material material){
-//        StringBuilder builder = new StringBuilder();
-//        List<Bead> beads = findAllOfMaterialOrderBySize(material);
-//        builder.append(material.toString())
-//                .append(": ")
-//                .append("\n");
-//        for(int i = 0; i< beads.size(); i++){
-//            builder.append(i+1)
-//                    .append("size: ")
-//                    .append(beads.get(i).getSize())
-//                    .append(", quantity: ")
-//                    .append(beads.get(i).getQuantity())
-//                    .append("\n");
-//        }
-//        return builder.toString();
-//    }
+
+    public ArrayList<Bead> findAllOfMaterialOrderBySize(Material material){
+        return new ArrayList<>(beadController.findAllOfMaterial(material)
+                .stream()
+                .sorted(Comparator.comparing(Bead::getSizeMM))
+                .collect(Collectors.toList()));
+    }
+
+    public String printSizesQuantitiesOfMaterial(Material material){
+        StringBuilder builder = new StringBuilder();
+        List<Bead> beads = findAllOfMaterialOrderBySize(material);
+        builder.append(material.toString())
+                .append(": ")
+                .append("\n");
+        for(int i = 0; i< beads.size(); i++){
+            builder.append(i+1)
+                    .append("size: ")
+                    .append(beads.get(i).getSizeMM())
+                    .append(", quantity: ")
+                    .append(beads.get(i).getQuantity())
+                    .append("\n");
+        }
+        return builder.toString();
+    }
 
 
 }

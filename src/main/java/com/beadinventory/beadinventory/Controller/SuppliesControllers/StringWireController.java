@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/stringing_materials")
+@CrossOrigin(origins = {"http://localhost:8080","http://localhost:8100"})
 public class StringWireController {
 
     private StringWireService sMService;

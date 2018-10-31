@@ -40,8 +40,6 @@ public class FindingContIntegrationTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-
-    private List<String> brands = new ArrayList<>(Arrays.asList("beadalon"));
     private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,25,"Beadalon");
     private Finding eyePin2 = new Finding(EYE_PIN, BRASS,"thin",5.08,5.08,25,"Beadalon");
     private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Beadalon");
@@ -67,7 +65,7 @@ public class FindingContIntegrationTest {
                 .param("type","pin")
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
-                .andExpect(status().isCreated());
+                .andExpect(status().isOk());
     }
 
     @Test

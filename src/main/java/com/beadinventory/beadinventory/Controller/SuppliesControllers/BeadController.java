@@ -8,13 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory.*;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 @RequestMapping(value = "/beads")
+@CrossOrigin(origins = {"http://localhost:8080","http://localhost:8100"})
 public class BeadController {
 
     private BeadService beadService;
@@ -45,7 +43,7 @@ public class BeadController {
         return beadService.getAllOfMaterialAndColor(material,color).getBody();
     }
 
-    @GetMapping(params = {"material","size"})
+    @GetMapping(params = {"material", "size"})
     public List<Bead> findAllOfMaterialAndSize(@RequestAttribute(value ="material") Material material,
                                                @RequestAttribute(value = "size") int size){
         return beadService.getAllOfMaterialAndSize(material,size).getBody();
@@ -57,7 +55,7 @@ public class BeadController {
         return response.getBody();
     }
 
-    @RequestMapping(value = "/{id}", method = GET)
+    @GetMapping(value = "/{id}")
     public Bead findBeadById(@PathVariable("id") long id){
         ResponseEntity<Bead> response = beadService.getBeadById(id);
         return response.getBody();

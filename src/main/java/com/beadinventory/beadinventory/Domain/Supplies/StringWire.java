@@ -14,33 +14,33 @@ public class StringWire implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "SID")
+    @Column(name = "STRING_ID")
     private long id;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "CATEGORY")
+    @Column(name = "STRING_CATEGORY")
     private StringWireCategory stringWireCategory;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "MATERIAL")
     private Material material;
 
-    @Column(name = "COLOR")
+    @Column
     private String color;
 
-    @Column(name = "WIDTH")
+    @Column
     private String width;
 
-    @Column(name = "STRANDS")
+    @Column
     private int strands;
 
-    @Column(name = "QUALITY")
+    @Column
     private String quality;
 
     @Column(name = "PRICE_PER_FOOT")
     private double pricePerFoot;
 
-    @Column(name = "BRAND")
+    @Column
     private String brand;
 
     public StringWire(){ }

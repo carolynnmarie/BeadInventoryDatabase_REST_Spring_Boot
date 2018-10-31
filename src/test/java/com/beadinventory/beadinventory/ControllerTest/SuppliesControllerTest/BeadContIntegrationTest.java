@@ -72,7 +72,7 @@ public class BeadContIntegrationTest {
         mockMvc.perform(get("/beads/getAllOrderByMaterial")
                 .contentType(APPLICATION_JSON)
                 .characterEncoding("utf-8"))
-                .andExpect(status().isCreated());
+                .andExpect(status().isOk());
     }
 
     @Test

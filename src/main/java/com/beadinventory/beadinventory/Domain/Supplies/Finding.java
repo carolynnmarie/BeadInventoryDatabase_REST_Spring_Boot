@@ -2,15 +2,14 @@ package com.beadinventory.beadinventory.Domain.Supplies;
 
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.fasterxml.jackson.annotation.JsonRootName;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+
 
 @Entity
 @Table(name = "FINDING")
-@JsonRootName(value = "my_Findings")
 public class Finding implements Serializable {
 
     @Id
@@ -26,20 +25,19 @@ public class Finding implements Serializable {
     @Column(name = "MATERIAL")
     private Material material;
 
-    @Column(name = "DETAILS")
+    @Column
     private String details;
 
-    @Column(name = "LENGTH")
+    @Column(name = "LENGTH_CM")
     private double lengthCM;
 
-    @Column(name = "PRICE_POINT")
+    @Column
     private double pricePoint;
 
-    @Column(name = "QUANTITY")
+    @Column
     private long quantity;
 
-
-    @Column(name = "BRAND")
+    @Column
     private String brand;
 
 

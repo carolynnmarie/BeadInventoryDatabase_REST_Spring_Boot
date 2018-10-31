@@ -45,7 +45,7 @@ public class BeadService {
     }
 
     public ResponseEntity<List<Bead>> getAllOfMaterialAndSize(Material material, int size){
-        List<Bead> beads = beadRepository.findByMaterialAndSize(material, size);
+        List<Bead> beads = beadRepository.findByMaterialAndSizeMM(material, size);
         return new ResponseEntity<>(beads,OK);
     }
 

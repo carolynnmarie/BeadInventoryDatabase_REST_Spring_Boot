@@ -102,12 +102,12 @@ public class BeadServiceTest {
     @Test
     public void getAllOfMaterialAndSizeTest(){
         List<Bead> list = new ArrayList<>(Arrays.asList(bead2));
-        given(mockBeadRepo.findByMaterialAndSize(any(Material.class),anyInt())).willReturn(list);
+        given(mockBeadRepo.findByMaterialAndSizeMM(any(Material.class),anyInt())).willReturn(list);
 
         ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
         ResponseEntity<List<Bead>> actual = mockBeadService.getAllOfMaterialAndSize(JASPER,4);
 
-        verify(mockBeadRepo).findByMaterialAndSize(any(Material.class),anyInt());
+        verify(mockBeadRepo).findByMaterialAndSizeMM(any(Material.class),anyInt());
         Assert.assertEquals(expected,actual);
     }
 

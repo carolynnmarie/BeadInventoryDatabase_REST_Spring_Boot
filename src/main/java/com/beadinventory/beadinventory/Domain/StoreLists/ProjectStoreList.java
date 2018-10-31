@@ -11,7 +11,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "PROJECT_STORE_LIST")
-public class NeededForProject {
+public class ProjectStoreList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -44,7 +44,7 @@ public class NeededForProject {
     @Column(name = "OTHER_SUPPLIES")
     private List<String> otherItemsNeeded;
 
-    public NeededForProject(HashMap<Bead,Integer> beadsNeeded, HashMap<Finding,Integer> findingsNeeded,
+    public ProjectStoreList(HashMap<Bead,Integer> beadsNeeded, HashMap<Finding,Integer> findingsNeeded,
                             ArrayList<StringWire> stringingMaterialsNeeded, ArrayList<String> otherItemsNeeded){
         this.beadsNeeded = beadsNeeded;
         this.findingsNeeded = findingsNeeded;
@@ -52,27 +52,64 @@ public class NeededForProject {
         this.otherItemsNeeded = otherItemsNeeded;
     }
 
-    public NeededForProject(HashMap<Bead,Integer> beadsNeeded, HashMap<Finding,Integer> findingsNeeded,
+    public ProjectStoreList(HashMap<Bead,Integer> beadsNeeded, HashMap<Finding,Integer> findingsNeeded,
                             ArrayList<StringWire> stringingMaterialsNeeded){
         this.beadsNeeded = beadsNeeded;
         this.findingsNeeded = findingsNeeded;
         this.stringingMaterialsNeeded = stringingMaterialsNeeded;
         this.otherItemsNeeded = new ArrayList<>();
     }
-    public NeededForProject(LinkedHashMap<Bead,Integer> beadsNeeded, HashMap<Finding,Integer> findingsNeeded){
+    public ProjectStoreList(LinkedHashMap<Bead,Integer> beadsNeeded, HashMap<Finding,Integer> findingsNeeded){
         this.beadsNeeded = beadsNeeded;
         this.findingsNeeded = findingsNeeded;
         this.stringingMaterialsNeeded = new ArrayList<>();
         this.otherItemsNeeded = new ArrayList<>();
     }
 
-    public NeededForProject(HashMap<Bead,Integer> beadsNeeded){
+    public ProjectStoreList(HashMap<Bead,Integer> beadsNeeded){
         this.beadsNeeded = beadsNeeded;
         this.findingsNeeded = new HashMap<>();
         this.stringingMaterialsNeeded = new ArrayList<>();
         this.otherItemsNeeded = new ArrayList<>();
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public Map<Bead, Integer> getBeadsNeeded() {
+        return beadsNeeded;
+    }
+
+    public void setBeadsNeeded(Map<Bead, Integer> beadsNeeded) {
+        this.beadsNeeded = beadsNeeded;
+    }
+
+    public Map<Finding, Integer> getFindingsNeeded() {
+        return findingsNeeded;
+    }
+
+    public void setFindingsNeeded(Map<Finding, Integer> findingsNeeded) {
+        this.findingsNeeded = findingsNeeded;
+    }
+
+    public List<StringWire> getStringingMaterialsNeeded() {
+        return stringingMaterialsNeeded;
+    }
+
+    public void setStringingMaterialsNeeded(List<StringWire> stringingMaterialsNeeded) {
+        this.stringingMaterialsNeeded = stringingMaterialsNeeded;
+    }
+
+    public List<String> getOtherItemsNeeded() {
+        return otherItemsNeeded;
+    }
+
+    public void setOtherItemsNeeded(List<String> otherItemsNeeded) {
+        this.otherItemsNeeded = otherItemsNeeded;
+    }
 }

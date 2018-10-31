@@ -76,7 +76,7 @@ public class BeadRepoTest {
         entityManager.persist(bead5);
         entityManager.flush();
 
-        List<Bead> list = beadRepo.findByMaterialAndSize(JASPER,4);
+        List<Bead> list = beadRepo.findByMaterialAndSizeMM(JASPER,4);
         assertThat(list).containsExactly(bead2);
     }
 

@@ -3,7 +3,6 @@ package com.beadinventory.beadinventory.DomainTest.SuppliesDomainTest;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import org.junit.*;
-import java.util.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
@@ -50,7 +49,7 @@ public class BeadTest {
     @Test
     public void getSizeTest(){
         int expected = 4;
-        int actual = bead1.getSize();
+        int actual = bead1.getSizeMM();
         Assert.assertEquals(expected,actual);
     }
 

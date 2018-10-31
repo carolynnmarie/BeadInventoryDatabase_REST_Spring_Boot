@@ -122,9 +122,6 @@ public class Necklace extends AllFinishedPieces implements Serializable {
         double beadPrice = 0.0;
         double findingPrice = 0.0;
         double stringPrice = stringWire.getPricePerFoot()*lengthInch;
-//        for(FPBeads bead: beads){
-//            beadPrice += bead.getQuantity()*bead.getBeadOnItem().getPricePoint();
-//        }
         for(Map.Entry<Bead,Integer> bead: beads.entrySet()){
             beadPrice += (bead.getKey().getPricePoint()*bead.getValue());
         }

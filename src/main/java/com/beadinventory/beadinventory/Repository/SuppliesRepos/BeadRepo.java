@@ -17,7 +17,7 @@ public interface BeadRepo extends CrudRepository<Bead,Long> {
 
     List<Bead> findByMaterialAndColor(Material material, String color);
 
-    List<Bead> findByMaterialAndSize(Material material, int size);
+    List<Bead> findByMaterialAndSizeMM(Material material, int size);
 
     List<Bead> findByShape(Shape shape);
 

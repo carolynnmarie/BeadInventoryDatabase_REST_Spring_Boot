@@ -58,8 +58,7 @@ public class StringWireContIntegrationTest {
         List<StringWire> list = new ArrayList<>(Arrays.asList(leatherCord));
         given(mockController.getAllOfCategory(CORD)).willReturn(list);
 
-        mockMvc.perform(get("/stringing_materials")
-                .param("category", String.valueOf(StringWireCategory.class))
+        mockMvc.perform(get("/stringing_materials/category")
                 .requestAttr("category",CORD)
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
@@ -71,8 +70,7 @@ public class StringWireContIntegrationTest {
         List<StringWire> list = new ArrayList<>(Arrays.asList(leatherCord));
         given(mockController.getAllOfMaterial(LEATHER)).willReturn(list);
 
-        mockMvc.perform(get("/stringing_materials")
-                .param("material", String.valueOf(Material.class))
+        mockMvc.perform(get("/stringing_materials/material")
                 .requestAttr("material", LEATHER)
                 .contentType(APPLICATION_JSON)
                 .characterEncoding("utf-8"))

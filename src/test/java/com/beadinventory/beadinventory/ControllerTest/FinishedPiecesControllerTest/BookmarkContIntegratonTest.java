@@ -117,8 +117,7 @@ public class BookmarkContIntegratonTest {
         given(mockController.increaseAllPrices(12.0)).willReturn(expected);
 
 
-        mockMvc.perform(put("/bookmarks")
-                .param("price",String.valueOf(12.0))
+        mockMvc.perform(put("/bookmarks/price")
                 .requestAttr("price",12.0)
                 .characterEncoding("utf-8")
                 .contentType(APPLICATION_JSON))
@@ -129,10 +128,10 @@ public class BookmarkContIntegratonTest {
     public void updateDescriptionIntegTest() throws Exception{
         given(mockController.updateDescription(bookmark.getAllId(),"descriptions")).willReturn(bookmark);
 
-        mockMvc.perform(put("/bookmarks/{id}",bookmark.getAllId())
+        mockMvc.perform(put("/bookmarks/{id}/description",bookmark.getAllId())
+                .param("description", "descriptions")
                 .contentType(APPLICATION_JSON)
                 .characterEncoding("utf-8")
-                .param("description","descriptions")
                 .requestAttr("description","descriptions"))
                 .andExpect(status().isOk());
     }

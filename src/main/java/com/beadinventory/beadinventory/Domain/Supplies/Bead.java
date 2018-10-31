@@ -23,36 +23,36 @@ public class Bead implements Serializable {
     @Column(name = "SHAPE")
     private Shape shape;
 
-    @Column(name = "COLOR")
+    @Column
     private String color;
 
-    @Column(name = "SIZE")
-    private int size;
+    @Column(name = "SIZE_MM")
+    private int sizeMM;
 
-    @Column(name = "QUALITY")
+    @Column
     private String quality;
 
-    @Column(name = "QUANTITY")
+    @Column
     private long quantity;
 
-    @Column(name = "DESCRIPTION")
+    @Column
     private String description;
 
-    @Column(name = "PRICE_POINT")
+    @Column
     private double pricePoint;
 
-    @Column(name = "BRANDS")
+    @Column
     private String brands;
 
 
     public Bead(){ }
 
-    public Bead(Material material, Shape shape, String color, int size, String quality, long quantity,
+    public Bead(Material material, Shape shape, String color, int sizeMM, String quality, long quantity,
                 String description, double pricePoint, String brands) {
         this.material = material;
         this.shape = shape;
         this.color = color;
-        this.size = size;
+        this.sizeMM = sizeMM;
         this.quality = quality;
         this.quantity = quantity;
         this.description = description;
@@ -85,12 +85,12 @@ public class Bead implements Serializable {
         this.color = color;
     }
 
-    public int getSize() {
-        return size;
+    public int getSizeMM() {
+        return sizeMM;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public void setSizeMM(int sizeMM) {
+        this.sizeMM = sizeMM;
     }
 
     public String getQuality() {

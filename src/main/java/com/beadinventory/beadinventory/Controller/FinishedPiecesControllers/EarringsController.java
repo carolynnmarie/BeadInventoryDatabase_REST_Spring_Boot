@@ -39,7 +39,7 @@ public class EarringsController implements AllFinishedPiecesContInterface<Earrin
     }
 
     @Override
-    @PostMapping(value = "")
+    @PostMapping()
     public ResponseEntity<Earrings> createItem(@RequestBody Earrings item) {
         return earringsService.createItem(item);
     }
@@ -56,7 +56,7 @@ public class EarringsController implements AllFinishedPiecesContInterface<Earrin
     }
 
     @Override
-    @PutMapping(value = "",params = "price")
+    @PutMapping(params = "price")
     public List<Earrings> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
         return earringsService.increasePriceOfAll(amountToAdd).getBody();
     }
@@ -68,7 +68,7 @@ public class EarringsController implements AllFinishedPiecesContInterface<Earrin
     }
 
     @Override
-    @DeleteMapping(value = "")
+    @DeleteMapping()
     public ResponseEntity deleteItem(@RequestBody Earrings item) {
         return earringsService.deleteItem(item);
     }
