@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StoreListRepo extends CrudRepository<StoreList,Long> {
 
-    List<StoreList> findStoreListsByProjectTitle(String title);
+    StoreList findStoreListsByProjectTitle(String title);
 }

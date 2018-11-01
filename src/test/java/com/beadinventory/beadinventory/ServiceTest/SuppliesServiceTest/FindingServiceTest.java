@@ -31,20 +31,17 @@ public class FindingServiceTest {
     @Mock
     private FindingRepo mockFindingRepo;
 
-    private Finding eyePin;
-    private Finding headPin;
-    private Finding lobsterClasp;
-    private Finding lobsterClasp2;
-    private Finding splitRing;
+    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,20,"bead landing","bright 2 inch thin eye pin");
+    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,20,"bead landing","bright 2 inch this head pin");
+    private Finding lobsterClasp = new Finding(LOBSTER_CLASP,BRIGHT_SILVER_PLATED,2,0.1,10,"bead landing",
+            "bright silver colored small lobster clasp");
+    private Finding lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,4,.1,10,"bead landing",
+            "bright silver medium lobster clasp");
+    private Finding splitRing = new Finding(SPLIT_RING,BRASS,1,.01,25,"bead landing","smallest size brass split ring");
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"bead landing");
-        headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"bead landing");
-        lobsterClasp = new Finding(LOBSTER_CLASP,BRIGHT_SILVER_PLATED,"small",2,0.1,10,"bead landing");
-        lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,"medium",4,.1,10,"bead landing");
-        splitRing = new Finding(SPLIT_RING,BRASS,"smallest",1,.01,25,"bead landing");
     }
 
     @Test

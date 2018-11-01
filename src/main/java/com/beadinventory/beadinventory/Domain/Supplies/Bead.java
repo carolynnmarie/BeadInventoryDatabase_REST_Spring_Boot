@@ -47,6 +47,7 @@ public class Bead implements Serializable {
 
     public Bead(){ }
 
+
     public Bead(Material material, Shape shape, String color, int sizeMM, String quality, long quantity,
                 String description, double pricePoint, String brands) {
         this.material = material;

@@ -33,28 +33,21 @@ public class BeadServiceTest {
     @Mock
     private BeadRepo mockBeadRepo;
 
-    private Bead bead1;
-    private Bead bead2;
-    private Bead bead3;
-    private Bead bead4;
-    private Bead bead5;
+    private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
+    private Bead bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
+    private Bead bead3  = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05, "Bead Gallery");
+    private Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
+    private Bead bead5 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white", 0.2,"Bead Gallery");
 
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-        bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
-        bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
-        bead3  = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05, "Bead Gallery");
-        bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
-        bead5 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white", 0.2,"Bead Gallery");
-
     }
 
     @Test
     public void getAllBeadsTest(){
-        List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead2));
+        List<Bead> beads = new ArrayList<>(Arrays.asList(bead1,bead2,bead3,bead4,bead5));
         given(mockBeadRepo.findAll()).willReturn(beads);
 
         ResponseEntity<List<Bead>> expected = new ResponseEntity<>(beads,OK);

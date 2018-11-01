@@ -24,7 +24,7 @@ public class EarringsController implements AllFinishedPiecesContInterface<Earrin
     @Override
     @GetMapping()
     public List<Earrings> findAllItems() {
-        return null;
+        return earringsService.getAllItems().getBody();
     }
 
     @GetMapping(path = "/findAllSterlingSilver")

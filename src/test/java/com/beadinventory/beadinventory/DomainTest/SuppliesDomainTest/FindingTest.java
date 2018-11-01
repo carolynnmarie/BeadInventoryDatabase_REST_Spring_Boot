@@ -3,16 +3,14 @@ package com.beadinventory.beadinventory.DomainTest.SuppliesDomainTest;
 import com.beadinventory.beadinventory.Domain.Supplies.Finding;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import org.junit.*;
-import java.util.*;
-
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
 
 public class FindingTest {
-    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,0.02,20, "Beadalon");
-    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,0.02,20, "Beadalon");
-    private Finding lobsterClasp = new Finding(LOBSTER_CLASP,BRIGHT_SILVER_PLATED,"small",.5,0.1, 10,"Beadalon");
+    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,5.08,0.02,20, "Beadalon","thin");
+    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,5.08,0.02,20, "Beadalon","thin");
+    private Finding lobsterClasp = new Finding(LOBSTER_CLASP,BRIGHT_SILVER_PLATED,.5,0.1, 10,"Beadalon","small");
 
 
 
@@ -35,7 +33,7 @@ public class FindingTest {
     @Test
     public void getDetailsTest() {
         String expected = "thin";
-        String actual = eyePin.getDetails();
+        String actual = eyePin.getDescription();
         Assert.assertEquals(expected,actual);
     }
 

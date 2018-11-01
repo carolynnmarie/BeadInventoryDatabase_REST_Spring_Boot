@@ -50,8 +50,8 @@ public class NecklaceContIntegrationTest {
             "Bead Gallery");
     private Bead seeds = new Bead(SEED,SEED_E_LARGE,"black",0,"good",100,"good black large seed beads",.01,"Bead Gallery");
     private Bead sWBead = new Bead(SWAROVSKI_CRYSTAL, BICONE, "blue", 4, "good", 10, "",1, "Bead Gallery");;
-    private Finding lobsterClasp = new Finding(LOBSTER_CLASP, BRIGHT_SILVER_PLATED, "medium", 4, .1, 10, "Bead Gallery");;
-    private Finding splitRing = new Finding(SPLIT_RING, BRASS, "smallest", 1, .01, 25, "Bead Gallery");
+    private Finding lobsterClasp = new Finding(LOBSTER_CLASP, BRIGHT_SILVER_PLATED, 4, .1, 10, "Bead Gallery", "medium");
+    private Finding splitRing = new Finding(SPLIT_RING, BRASS, 1, .01, 25, "Bead Gallery", "smallest");
     private HashMap<Bead, Integer> beads= new HashMap<>();
     private HashMap<Finding, Integer> findings= new HashMap<>();
     private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm","good",.5,"Beadalon",

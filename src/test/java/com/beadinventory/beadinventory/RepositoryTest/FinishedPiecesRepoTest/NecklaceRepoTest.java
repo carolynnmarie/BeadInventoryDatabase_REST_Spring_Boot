@@ -33,13 +33,12 @@ public class NecklaceRepoTest {
     @Autowired
     private NecklaceRepo mockNecklaceRepo;
 
-    private List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
     private Bead bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20, "translucent purple with some white", 0.8, "bead landing");
     private Bead bead2 = new Bead(SWAROVSKI_CRYSTAL, BICONE, "black", 4, "good", 10, "",1, "Bead Gallery");
     private Bead bead4 = new Bead(AMETHYST, ROUND, "purple", 6, "good", 15, "translucent purple with some white", 0.9, "Bead Gallery");
     private Bead seeds = new Bead(SEED, SEED_E_LARGE, "black", 0, "good", 100, "good black large seed beads", .01, "Bead Gallery");
-    private Finding lobsterClasp2 = new Finding(LOBSTER_CLASP, BRIGHT_SILVER_PLATED, "medium", 4, .1, 10, "Bead Gallery");
-    private Finding splitRing = new Finding(SPLIT_RING, BRASS, "smallest", 1, .01, 25, "Bead Gallery");
+    private Finding lobsterClasp2 = new Finding(LOBSTER_CLASP, BRIGHT_SILVER_PLATED, 4, .1, 10, "Bead Gallery", "medium");
+    private Finding splitRing = new Finding(SPLIT_RING, BRASS, 1, .01, 25, "Bead Gallery", "smallest");
     private HashMap<Bead, Integer> beads =new HashMap<>();
     private HashMap<Finding,Integer>findings =new HashMap<>();
     private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm","good",.5,"Beadalon",

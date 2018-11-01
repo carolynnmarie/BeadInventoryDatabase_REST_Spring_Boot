@@ -31,11 +31,10 @@ public class BookmarkControllerTest {
     @Mock
     BookmarkService mockService;
 
-    List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
     private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Beadalon");
     private Bead bead2 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white", 0.2,"Beadalon");
     private Bead bead3  = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05, "Beadalon");
-    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Beadalon");
+    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,20,"Beadalon","thin");
     LinkedHashMap<Bead, Integer> beads = new LinkedHashMap<>();
     LinkedHashMap<Finding, Integer> findings = new LinkedHashMap<>();
     LinkedHashMap<Bead,Integer> beads2 = new LinkedHashMap<>();

@@ -76,6 +76,11 @@ public class BeadService {
         return new ResponseEntity<>(bead1, responseHeaders, CREATED);
     }
 
+    public ResponseEntity<Bead> updateBead(long id, Bead bead){
+        bead.setBeadId(id);
+        Bead bead1 = beadRepository.save(bead);
+        return new ResponseEntity<>(bead1,OK);
+    }
 
     public ResponseEntity<Bead> updateBeadQuantity(long beadId, long quantity){
         Bead bead = beadRepository.findById(beadId);
@@ -92,11 +97,6 @@ public class BeadService {
         return new ResponseEntity<>(bead2,OK);
     }
 
-    public ResponseEntity<Bead> updateBead(long id, Bead bead){
-        bead.setBeadId(id);
-        Bead bead1 = beadRepository.save(bead);
-        return new ResponseEntity<>(bead1,OK);
-    }
 
     public ResponseEntity deleteBeadById(long beadId){
         beadRepository.deleteById(beadId);

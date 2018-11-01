@@ -26,7 +26,7 @@ public class Finding implements Serializable {
     private Material material;
 
     @Column
-    private String details;
+    private String description;
 
     @Column(name = "LENGTH_CM")
     private double lengthCM;
@@ -41,13 +41,14 @@ public class Finding implements Serializable {
     private String brand;
 
 
+
     public Finding(){}
 
-    public Finding(FindingCategory category, Material material, String details, double lengthCM, double pricePoint,
-                   int quantity, String brand) {
+    public Finding(FindingCategory category, Material material, double lengthCM, double pricePoint,
+                   int quantity, String brand, String description) {
         this.category = category;
         this.material = material;
-        this.details = details;
+        this.description = description;
         this.lengthCM = lengthCM;
         this.pricePoint = pricePoint;
         this.quantity = quantity;
@@ -66,12 +67,12 @@ public class Finding implements Serializable {
         this.id = id;
     }
 
-    public String getDetails() {
-        return details;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public double getPricePoint() {
@@ -129,7 +130,7 @@ public class Finding implements Serializable {
     @Override
     public String toString(){
         return "Finding: " + category + ", material: " + material.toString() + ", length in cm: " + lengthCM +
-                ", details: " + details;
+                ", description: " + description;
     }
 
 }

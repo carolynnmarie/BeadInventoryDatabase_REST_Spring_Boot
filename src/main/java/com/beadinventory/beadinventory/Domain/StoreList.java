@@ -39,6 +39,8 @@ public class StoreList {
     @Column(name = "OTHER_ITEMS")
     private List<String> otherItems;
 
+    public StoreList(){}
+
     public StoreList(String projectTitle, List<Bead> beads, List<Finding> findings, List<StringWire> stringWire, List<String> otherItems) {
         this.projectTitle = projectTitle;
         this.beads = beads;

@@ -42,34 +42,25 @@ public class BookmarkServiceTest {
     @Mock
     FindingRepo findingRepo;
 
-
-    private Bead bead1;
-    private Bead bead2;
-    private Bead bead3;
-    private Finding headPin;
-
+    private Bead bead1= new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
+    private Bead bead2 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white", 0.2,"Bead Gallery");
+    private Bead bead3 = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05, "Bead Gallery");
+    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,20,"Bead Gallery","thin");
     private Bookmark bookmark;
     private Bookmark bookmark2;
 
     @Before
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        bead1 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
-        bead2 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple with some white", 0.2,"Bead Gallery");
-        bead3  = new Bead(STONE, ROUND,"tan",6,"ok",7,"with design cut into bead",0.05, "Bead Gallery");
-        headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Bead Gallery");
-
         HashMap<Bead, Integer> beads = new HashMap<>();
         beads.put(bead1,1);
         beads.put(bead2,1);
         HashMap<Finding, Integer> findings = new HashMap<>();
         findings.put(headPin,2);
-
         HashMap<Bead,Integer> beads2 = new HashMap<>();
         beads2.put(bead3,2);
-
-        bookmark = new Bookmark(beads,findings,10.0,"Amethyst on black cord", COTTON,StringWireCategory.CORD,"black",10);
-        bookmark2 = new Bookmark(beads2,findings,10.0,"Tan stone on black leather", LEATHER,StringWireCategory.CORD,"black",10);
+        this.bookmark = new Bookmark(beads,findings,10.0,"Amethyst on black cord", COTTON,StringWireCategory.CORD,"black",10);
+        this.bookmark2 = new Bookmark(beads2,findings,10.0,"Tan stone on black leather", LEATHER,StringWireCategory.CORD,"black",10);
     }
 
 

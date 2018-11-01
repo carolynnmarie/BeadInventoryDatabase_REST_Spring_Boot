@@ -50,8 +50,8 @@ public class BraceletServiceTest {
         this.bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
         this.bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
         this.bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
-        this.lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,"medium",4,.1,10,"Bead Gallery");
-        this.splitRing = new Finding(SPLIT_RING,BRASS,"smallest",1,.01,25,"Bead Gallery");
+        this.lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,4,.1,10,"Bead Gallery","medium");
+        this.splitRing = new Finding(SPLIT_RING,BRASS,1,.01,25,"Bead Gallery","smallest");
         this.beads = new HashMap<>();
         beads.put(bead1,4);
         beads.put(bead2,2);

@@ -16,31 +16,22 @@ import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.String
 
 public class BraceletTest {
 
-    private Bead bead1;
-    private Bead bead2;
-    private Bead bead4;
-    private Finding lobsterClasp2;
-    private HashMap<Bead, Integer> beads;
-    private HashMap<Finding, Integer> findings;
-    private StringWire beadingWire;
-    private Bracelet bracelet;
+    private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
+    private Bead bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
+    private Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
+    private Finding lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,4,.1,10,"Bead Gallery","medium");
+    private HashMap<Bead, Integer> beads = new HashMap<>();
+    private HashMap<Finding, Integer> findings = new HashMap<>();
+    private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm","good",.5,"Beadalon",
+            "7 strand");
+    private Bracelet bracelet = new Bracelet(beads,findings,15,"",MEDICAL,beadingWire,true,false,4);;
 
     @Before
     public void setUp(){
-        List<String> brands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-        this.bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
-        this.bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
-        this.bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");
-        this.lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,"medium",4,.1,10,"Bead Gallery");
-        this.beads = new HashMap<>();
         beads.put(bead1,4);
         beads.put(bead2,2);
         beads.put(bead4,3);
-        this.findings = new HashMap<>();
         findings.put(lobsterClasp2,2);
-        this.beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm","good",.5,"Beadalon", "7 strand");
-
-        this.bracelet = new Bracelet(beads,findings,15,"",MEDICAL,beadingWire,true,false,4);
     }
 
     @Test

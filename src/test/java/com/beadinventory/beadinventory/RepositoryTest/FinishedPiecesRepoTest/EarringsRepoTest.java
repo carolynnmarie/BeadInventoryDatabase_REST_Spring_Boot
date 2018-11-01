@@ -30,13 +30,11 @@ public class EarringsRepoTest {
     @Autowired
     private EarringsRepo mockEarringsRepo;
 
-    HashMap<Bead,Integer> beads = new HashMap<>();
-    HashMap<Finding,Integer> findings = new HashMap<>();
-    List<String> beadBrands = new ArrayList<>(Arrays.asList("Bead Gallery"));
-    Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"purple", 0.2,"Bead Gallery");
-    List<String> findingBrands= new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
-    Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Bead Gallery");
-    Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Bead Gallery");
+    private HashMap<Bead,Integer> beads = new HashMap<>();
+    private HashMap<Finding,Integer> findings = new HashMap<>();
+    private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"purple", 0.2,"Bead Gallery");
+    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,20,"Bead Gallery","thin");
+    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,20,"Bead Gallery","thin");
 
     private Earrings earring= new Earrings(beads,findings,15,"dangles",true);;
 

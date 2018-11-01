@@ -40,9 +40,9 @@ public class FindingContIntegrationTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,25,"Beadalon");
-    private Finding eyePin2 = new Finding(EYE_PIN, BRASS,"thin",5.08,5.08,25,"Beadalon");
-    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Beadalon");
+    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,25,"Beadalon","thin");
+    private Finding eyePin2 = new Finding(EYE_PIN, BRASS,5.08,5.08,25,"Beadalon","thin");
+    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,20,"Beadalon","thin");
 
 
     @Test

@@ -24,7 +24,7 @@ public class WineCharmSetTest {
     public void setUp(){
         this.bead = new Bead(SEED,SEED_E_LARGE,"clear",0,"good",100,"good clear large seed beads",.001,"Bead Gallery");
         this.bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
-        this.headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,"thin",5.08,5.08,20,"Bead Gallery");
+        this.headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,20,"Bead Gallery","thin");
         this.beads = new HashMap<>();
         beads.put(bead,24);
         beads.put(bead1,6);

@@ -29,7 +29,6 @@ public class NapkinRingService extends AllFinishedPiecesService<NapkinRingSet> i
         return new ResponseEntity<>(list,OK);
     }
 
-
     @Override
     public ResponseEntity<NapkinRingSet> getItemById(long id) {
         try{

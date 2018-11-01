@@ -41,18 +41,18 @@ public class StringWire implements Serializable {
     private String brand;
 
     @Column
-    private String details;
+    private String description;
 
     public StringWire(){ }
 
     public StringWire(StringWireCategory stringWireCategory, Material material, String color, String width, String quality,
-                      double pricePerFoot, String brand, String details) {
+                      double pricePerFoot, String brand, String description) {
         this.stringWireCategory = stringWireCategory;
         this.material = material;
         this.quality = quality;
         this.pricePerFoot = pricePerFoot;
         this.brand = brand;
-        this.details = details;
+        this.description = description;
         this.color = color;
         this.width = width;
     }
@@ -113,12 +113,12 @@ public class StringWire implements Serializable {
         this.pricePerFoot = pricePerFoot;
     }
 
-    public String getDetails() {
-        return details;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getColor() {
@@ -132,6 +132,6 @@ public class StringWire implements Serializable {
     @Override
     public String toString(){
         return "Stringing Material: type: " + stringWireCategory.toString() + ", material: " + material.toString() +
-                ", color: " + color + ", details: " + details;
+                ", color: " + color + ", description: " + description;
     }
 }

@@ -23,7 +23,6 @@ public class WineCharmService extends AllFinishedPiecesService implements AllFin
         this.wineCharmSetRepo = wineCharmSetRepo;
     }
 
-
     @Override
     public ResponseEntity<List<WineCharmSet>> getAllItems() {
         List<WineCharmSet> list = wineCharmSetRepo.findAll();
