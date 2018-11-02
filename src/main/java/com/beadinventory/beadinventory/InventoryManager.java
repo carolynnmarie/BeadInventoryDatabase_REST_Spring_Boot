@@ -1,6 +1,7 @@
 package com.beadinventory.beadinventory;
 
-import com.beadinventory.beadinventory.Controller.SuppliesControllers.BeadController;
+import com.beadinventory.beadinventory.Controller.StoreListController;
+import com.beadinventory.beadinventory.Controller.SuppliesControllers.*;
 import com.beadinventory.beadinventory.Domain.Supplies.*;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 
@@ -12,44 +13,36 @@ import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Materi
 public class InventoryManager  {
 
     private BeadController beadController;
+    private FindingController findingController;
+    private StringWireController stringController;
+    private StoreListController storeListController;
 
-    public InventoryManager(BeadController beadController){
+    public InventoryManager(BeadController beadController, FindingController findingController,
+                            StringWireController stringController, StoreListController storeListController){
         this.beadController = beadController;
-    }
-
-    public List<Bead> getAllOfMaterialCategory(MaterialCategory category){
-        List<Bead> list = beadController.findAllBeads()
-                .stream()
-                .filter(e-> e.getMaterial().getCategory().equals(category))
-                .sorted(Comparator.comparing(Bead::getMaterial))
-                .collect(Collectors.toList());
-        return list;
+        this.findingController = findingController;
+        this.stringController = stringController;
+        this.storeListController = storeListController;
     }
 
 
-    public long findBeadQuantity(Bead bead){
-        return bead.getQuantity();
+    public String beadPrintBead(Bead bead){
+        return bead.toString();
     }
 
-    public String printBeadById(long id){
+    public String beadPrintBeadById(long id){
         Bead bead = beadController.findBeadById(id);
+        return bead.toString();
+    }
+
+    public String beadPrintAllOrderByMaterial(){
         StringBuilder builder = new StringBuilder();
-        builder.append("Material: ")
-                .append(bead.getMaterial().toString())
-                .append("\nShape: ")
-                .append(bead.getShape().toString())
-                .append("\nColor: ")
-                .append(bead.getColor());
-        if(!bead.getMaterial().toString().equals("seed bead")){
-            builder.append("\nSize in millimeters")
-                    .append(bead.getSizeMM());
-        }
-        builder.append("\nCurrent Quantity: ")
-                .append(bead.getQuantity());
+        List<Bead> beadList = beadController.findAllOrderByMaterial();
+        beadList.forEach(e->builder.append(e.toString()).append("\n"));
         return builder.toString();
     }
 
-    public String printAllSwarovskiQuantitiesByColorThenSize(){
+    public String beadPrintAllSwarovskiQuantityColorSize(){
         ArrayList<Bead> beads = new ArrayList<>(beadController.findAllOfMaterial(Material.SWAROVSKI_CRYSTAL)
                 .stream()
                 .sorted(Comparator.comparing(Bead::getColor).thenComparing(Bead::getSizeMM))
@@ -65,40 +58,26 @@ public class InventoryManager  {
         return builder.toString();
     }
 
-    public String printMissingNaturalAndSemiPreciousStones(){
+    public String beadPrintMissingNtrlAndSPStones(){
         Material[] allMaterials = Material.values();
         List<Material> presentMaterialList = beadController.findAllBeads()
                 .stream()
                 .map(e->e.getMaterial())
                 .filter(e->e.getCategory().equals(NATURAL_STONE)||e.getCategory().equals(SEMI_PRECIOUS_STONE))
                 .collect(Collectors.toList());
-        ArrayList<Material> missingMaterials = new ArrayList<>();
-        for(Material material: allMaterials){
-            if(!presentMaterialList.contains(material)){
-                missingMaterials.add(material);
-            }
-        }
         StringBuilder builder = new StringBuilder("Missing:");
-        for(Material material: missingMaterials){
-            builder.append("\n  ")
-                    .append(material.toString());
-        }
+        presentMaterialList.forEach(e->builder.append("\n").append(e.toString()));
         return builder.toString();
     }
 
-    public ArrayList<Bead> findAllOfMaterialOrderBySize(Material material){
-        return new ArrayList<>(beadController.findAllOfMaterial(material)
+    public String beadPrintSizeQuantityOfMaterial(Material material){
+        StringBuilder builder = new StringBuilder();
+        List<Bead> beads = beadController.findAllOfMaterial(material)
                 .stream()
                 .sorted(Comparator.comparing(Bead::getSizeMM))
-                .collect(Collectors.toList()));
-    }
-
-    public String printSizesQuantitiesOfMaterial(Material material){
-        StringBuilder builder = new StringBuilder();
-        List<Bead> beads = findAllOfMaterialOrderBySize(material);
+                .collect(Collectors.toList());
         builder.append(material.toString())
-                .append(": ")
-                .append("\n");
+                .append(": \n");
         for(int i = 0; i< beads.size(); i++){
             builder.append(i+1)
                     .append("size: ")
@@ -107,6 +86,29 @@ public class InventoryManager  {
                     .append(beads.get(i).getQuantity())
                     .append("\n");
         }
+        return builder.toString();
+    }
+
+    public String findingPrintFinding(Finding finding){
+        return finding.toString();
+    }
+
+    public String findingPrintById(long id){
+        Finding finding = findingController.getFindingById(id);
+        return finding.toString();
+    }
+
+    public String findingPrintAllOfCategory(FindingCategory category){
+        List<Finding> findings = findingController.findAllOfCategory(category);
+        StringBuilder builder = new StringBuilder("Findings: \n");
+        findings.forEach(e->builder.append(e.toString()).append("\n"));
+        return builder.toString();
+    }
+
+    public String stringWirePrintAll(){
+        List<StringWire> sWList = stringController.getAllStringWire();
+        StringBuilder builder = new StringBuilder("Stringing Materials:");
+        sWList.forEach(e->builder.append("\n").append(e.toString()));
         return builder.toString();
     }
 

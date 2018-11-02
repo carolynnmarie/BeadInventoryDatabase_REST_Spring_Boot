@@ -68,4 +68,9 @@ public class StringWireService {
         strMtrlRepo.deleteById(id);
         return new ResponseEntity(OK);
     }
+
+    public ResponseEntity deleteStringWire(StringWire stringWire){
+        strMtrlRepo.delete(stringWire);
+        return new ResponseEntity(OK);
+    }
 }

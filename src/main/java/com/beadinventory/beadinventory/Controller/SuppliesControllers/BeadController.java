@@ -3,6 +3,7 @@ package com.beadinventory.beadinventory.Controller.SuppliesControllers;
 import com.beadinventory.beadinventory.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import com.beadinventory.beadinventory.Service.SuppliesServices.BeadService;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,6 +50,15 @@ public class BeadController {
         return beadService.getAllOfMaterialAndSize(material,size).getBody();
     }
 
+    @GetMapping(params = "shape")
+    public List<Bead> findAllOfShapeOrderByMaterial(@RequestAttribute(value = "shape") Shape shape){
+        return beadService.getAllOfShape(shape).getBody()
+                .stream()
+                .sorted(Comparator.comparing(Bead::getMaterial))
+                .collect(Collectors.toList());
+    }
+
+
     @GetMapping(params = "quantity")
     public List<Bead> findAllWithQuantityLessThan(@RequestAttribute(value = "quantity") long quantity){
         ResponseEntity<List<Bead>> response = beadService.getAllQuantityLessThan(quantity);
@@ -87,7 +97,12 @@ public class BeadController {
         return beadService.deleteBead(bead);
     }
 
-
-
-
+    public List<Bead> beadGetAllOfMaterialCategory(MaterialCategory category){
+        List<Bead> list = findAllBeads()
+                .stream()
+                .filter(e-> e.getMaterial().getCategory().equals(category))
+                .sorted(Comparator.comparing(Bead::getMaterial))
+                .collect(Collectors.toList());
+        return list;
+    }
 }

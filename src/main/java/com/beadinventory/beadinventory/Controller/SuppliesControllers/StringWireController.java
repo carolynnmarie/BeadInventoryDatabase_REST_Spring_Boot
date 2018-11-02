@@ -57,4 +57,9 @@ public class StringWireController {
         return sMService.deleteById(id);
     }
 
+    @DeleteMapping()
+    public ResponseEntity deleteStringWire(@RequestBody StringWire stringWire){
+        return sMService.deleteStringWire(stringWire);
+    }
+
 }
