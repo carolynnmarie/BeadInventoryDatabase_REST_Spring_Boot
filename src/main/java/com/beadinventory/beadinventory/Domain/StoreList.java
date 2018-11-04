@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.annotation.*;
 import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@Table(name = "STORE_LIST")
 public class StoreList {
 
     @Id
