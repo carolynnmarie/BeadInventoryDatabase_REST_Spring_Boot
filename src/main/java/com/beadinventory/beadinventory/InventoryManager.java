@@ -9,21 +9,25 @@ import java.util.*;
 import java.util.stream.*;
 
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class InventoryManager  {
 
+    @Autowired
     private BeadController beadController;
+    @Autowired
     private FindingController findingController;
+    @Autowired
     private StringWireController stringController;
-    private StoreListController storeListController;
 
-    public InventoryManager(BeadController beadController, FindingController findingController,
-                            StringWireController stringController, StoreListController storeListController){
-        this.beadController = beadController;
-        this.findingController = findingController;
-        this.stringController = stringController;
-        this.storeListController = storeListController;
-    }
+//    @Autowired
+//    public InventoryManager(BeadController beadController, FindingController findingController,
+//                            StringWireController stringController, StoreListController storeListController){
+//        this.beadController = beadController;
+//        this.findingController = findingController;
+//        this.stringController = stringController;
+//
+//    }
 
 
     public String beadPrintBead(Bead bead){
@@ -112,5 +116,5 @@ public class InventoryManager  {
         return builder.toString();
     }
 
-
 }
+

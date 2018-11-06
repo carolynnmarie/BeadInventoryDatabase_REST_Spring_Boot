@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import static org.springframework.http.HttpStatus.*;
 
 @Service
+
 public class StoreListService {
 
     private StoreListRepo listRepo;

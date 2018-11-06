@@ -71,6 +71,8 @@ public class BeadController {
         return response.getBody();
     }
 
+
+
     @PostMapping()
     public ResponseEntity<Bead> createBead(@RequestBody Bead bead){
         return beadService.createBead(bead);
@@ -104,5 +106,11 @@ public class BeadController {
                 .sorted(Comparator.comparing(Bead::getMaterial))
                 .collect(Collectors.toList());
         return list;
+    }
+
+    @GetMapping(value = "/bead")
+    public String testGetBead(){
+        return new Bead(Material.AMETHYST,Shape.ROUND,"purple",4,"good",10,"purple with some white",0.05,"bead gallery")
+                .toString();
     }
 }
