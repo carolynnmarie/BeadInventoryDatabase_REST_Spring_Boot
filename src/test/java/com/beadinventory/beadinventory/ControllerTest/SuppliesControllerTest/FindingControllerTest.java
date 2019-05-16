@@ -29,27 +29,19 @@ public class FindingControllerTest {
     @InjectMocks
     private FindingController mockFindingController;
 
-    private List<String> brands;
-    private Finding eyePin;
-    private Finding headPin;
-    private Finding lobsterClasp;
-    private Finding lobsterClasp2;
-    private Finding splitRing;
+    private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,25,"Beadalon","thin");
+    private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,20,"Beadalon","thin");
+    private Finding lobsterClasp = new Finding(LOBSTER_CLASP,BRIGHT_SILVER_PLATED,2,0.1,10,"Beadalon","small");
+    private Finding lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,4,.1,10,"Beadalon","medium");
+    private Finding splitRing = new Finding(SPLIT_RING,BRASS,1,.01,25,"Beadalon","smallest");
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-
-        brands = new ArrayList<>(Arrays.asList("Beadalon","bead landing"));
-        eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,25,"Beadalon","thin");
         eyePin.setId(1L);
-        headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,20,"Beadalon","thin");
         headPin.setId(2L);
-        lobsterClasp = new Finding(LOBSTER_CLASP,BRIGHT_SILVER_PLATED,2,0.1,10,"Beadalon","small");
         lobsterClasp.setId(3L);
-        lobsterClasp2 = new Finding(LOBSTER_CLASP,DULL_SILVER_PLATED,4,.1,10,"Beadalon","medium");
         lobsterClasp2.setId(4L);
-        splitRing = new Finding(SPLIT_RING,BRASS,1,.01,25,"Beadalon","smallest");
         splitRing.setId(5L);
     }
 

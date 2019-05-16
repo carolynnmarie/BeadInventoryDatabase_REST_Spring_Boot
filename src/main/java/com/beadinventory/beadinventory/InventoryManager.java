@@ -1,6 +1,5 @@
 package com.beadinventory.beadinventory;
 
-import com.beadinventory.beadinventory.Controller.StoreListController;
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.*;
 import com.beadinventory.beadinventory.Domain.Supplies.*;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
@@ -110,7 +109,7 @@ public class InventoryManager  {
     }
 
     public String stringWirePrintAll(){
-        List<StringWire> sWList = stringController.getAllStringWire();
+        List<StringWire> sWList = stringController.findAllStringWire();
         StringBuilder builder = new StringBuilder("Stringing Materials:");
         sWList.forEach(e->builder.append("\n").append(e.toString()));
         return builder.toString();

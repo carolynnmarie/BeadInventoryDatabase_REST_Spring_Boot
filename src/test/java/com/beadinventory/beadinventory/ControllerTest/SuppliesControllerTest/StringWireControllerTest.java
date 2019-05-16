@@ -51,7 +51,7 @@ public class StringWireControllerTest {
     public void getAllStringWireTest(){
         List<StringWire> list = new ArrayList<>(Arrays.asList(beadingWire,brassChain,leatherCord));
         given(mockService.getAllStringWire()).willReturn(new ResponseEntity<>(list,OK));
-        List<StringWire> actual = mockController.getAllStringWire();
+        List<StringWire> actual = mockController.findAllStringWire();
 
         verify(mockService).getAllStringWire();
         Assert.assertEquals(list,actual);
@@ -61,7 +61,7 @@ public class StringWireControllerTest {
     public void getAllOfCategoryTest(){
         List<StringWire> expected = new ArrayList<>(Arrays.asList(leatherCord));
         given(mockService.getAllOfCategory(any(StringWireCategory.class))).willReturn(new ResponseEntity<>(expected,OK));
-        List<StringWire> actual = mockController.getAllOfCategory(CORD);
+        List<StringWire> actual = mockController.findAllOfCategory(CORD);
 
         verify(mockService).getAllOfCategory(any(StringWireCategory.class));
         Assert.assertEquals(expected,actual);
@@ -72,7 +72,7 @@ public class StringWireControllerTest {
     public void getAllOfMaterialTest(){
         List<StringWire> expected = new ArrayList<>(Arrays.asList(leatherCord));
         given(mockService.getAllOfMaterial(LEATHER)).willReturn(new ResponseEntity<>(expected,OK));
-        List<StringWire> actual = mockController.getAllOfMaterial(LEATHER);
+        List<StringWire> actual = mockController.findAllOfMaterial(LEATHER);
 
         verify(mockService).getAllOfMaterial(any(Material.class));
         Assert.assertEquals(expected,actual);
@@ -82,7 +82,7 @@ public class StringWireControllerTest {
     public void getByIdTest(){
         StringWire expected = leatherCord;
         given(mockService.getById(anyLong())).willReturn(new ResponseEntity<>(expected,OK));
-        StringWire actual = mockController.getById(3L);
+        StringWire actual = mockController.findById(3L);
 
         verify(mockService).getById(anyLong());
         Assert.assertEquals(expected,actual);

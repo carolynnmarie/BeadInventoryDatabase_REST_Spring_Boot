@@ -3,7 +3,6 @@ package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.StringWireController;
 import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -45,7 +44,7 @@ public class StringWireContIntegrationTest {
     @Test
     public void getAllStringWireIntegTest()throws Exception{
         List<StringWire> list = new ArrayList<>(Arrays.asList(beadingWire,brassChain,leatherCord));
-        given(mockController.getAllStringWire()).willReturn(list);
+        given(mockController.findAllStringWire()).willReturn(list);
 
         mockMvc.perform(get("/stringing_materials")
                 .contentType(APPLICATION_JSON)
@@ -56,7 +55,7 @@ public class StringWireContIntegrationTest {
     @Test
     public void getAllOfCategoryIntegTest() throws Exception{
         List<StringWire> list = new ArrayList<>(Arrays.asList(leatherCord));
-        given(mockController.getAllOfCategory(CORD)).willReturn(list);
+        given(mockController.findAllOfCategory(CORD)).willReturn(list);
 
         mockMvc.perform(get("/stringing_materials/category")
                 .requestAttr("category",CORD)
@@ -68,7 +67,7 @@ public class StringWireContIntegrationTest {
     @Test
     public void getAllOfMaterialIntegTest() throws Exception{
         List<StringWire> list = new ArrayList<>(Arrays.asList(leatherCord));
-        given(mockController.getAllOfMaterial(LEATHER)).willReturn(list);
+        given(mockController.findAllOfMaterial(LEATHER)).willReturn(list);
 
         mockMvc.perform(get("/stringing_materials/material")
                 .requestAttr("material", LEATHER)
@@ -79,7 +78,7 @@ public class StringWireContIntegrationTest {
 
     @Test
     public void getByIdIntegTest() throws Exception{
-        given(mockController.getById(brassChain.getId())).willReturn(brassChain);
+        given(mockController.findById(brassChain.getId())).willReturn(brassChain);
 
         mockMvc.perform(get("/stringing_materials/{id}",brassChain.getId())
                 .characterEncoding("utf-8")

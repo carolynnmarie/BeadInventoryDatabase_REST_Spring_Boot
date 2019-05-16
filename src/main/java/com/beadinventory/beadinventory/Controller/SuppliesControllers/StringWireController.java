@@ -22,22 +22,22 @@ public class StringWireController {
     }
 
     @GetMapping()
-    public List<StringWire> getAllStringWire(){
+    public List<StringWire> findAllStringWire(){
         return sMService.getAllStringWire().getBody();
     }
 
     @GetMapping(params = "category")
-    public List<StringWire> getAllOfCategory(@RequestAttribute(name = "category") StringWireCategory category){
+    public List<StringWire> findAllOfCategory(@RequestAttribute(name = "category") StringWireCategory category){
         return sMService.getAllOfCategory(category).getBody();
     }
 
     @GetMapping(params = "material")
-    public List<StringWire> getAllOfMaterial(@RequestAttribute(name = "material") Material material){
+    public List<StringWire> findAllOfMaterial(@RequestAttribute(name = "material") Material material){
         return sMService.getAllOfMaterial(material).getBody();
     }
 
     @GetMapping(value = "/{id}")
-    public StringWire getById(@PathVariable("id")long id){
+    public StringWire findById(@PathVariable("id")long id){
         return sMService.getById(id).getBody();
     }
 
