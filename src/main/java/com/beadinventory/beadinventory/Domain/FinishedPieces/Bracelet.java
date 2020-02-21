@@ -37,8 +37,9 @@ public class Bracelet extends AllFinishedPieces implements Serializable {
 
     public Bracelet(){}
 
-    public Bracelet(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description, BraceletType braceletType,
-                    StringWire stringWire, boolean hasNaturalStones, boolean hasSwarovski, int lengthInch){
+    public Bracelet(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description,
+                    BraceletType braceletType, StringWire stringWire, boolean hasNaturalStones, boolean hasSwarovski,
+                    int lengthInch){
         super(beads, findings, price, description);
         this.braceletType = braceletType;
         this.stringWire = stringWire;
@@ -92,6 +93,11 @@ public class Bracelet extends AllFinishedPieces implements Serializable {
     public void setAutoPrice() {
         this.price = (getBraceletType().equals(CHILD)||getBraceletType().equals(MEDICAL))?15:18;
         price += (getHasSwarovski() || getHasNaturalStones())? 2:0;
+    }
+
+    @Override
+    public String toString(){
+        return "Type: " + braceletType.toString() + " bracelet\n" + description;
     }
 
 }

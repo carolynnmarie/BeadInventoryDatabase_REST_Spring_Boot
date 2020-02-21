@@ -33,4 +33,9 @@ public class WineCharmSet extends AllFinishedPieces implements Serializable {
         price = (quantity == 4)? 16: (quantity == 6)? 23: Math.round(quantity*3.75);
     }
 
+    @Override
+    public String toString(){
+        return "Set of " + quantity + " wine charms\n" + description;
+    }
+
 }

@@ -64,5 +64,9 @@ public class NapkinRingSet extends AllFinishedPieces implements Serializable {
         price = (quantity == 4)?20:(quantity == 6)?29: Math.round(quantity*4.75);
     }
 
+    @Override
+    public String toString(){
+        return "Set of " + quantity + " napkin rings\n" + description;
+    }
 
 }

@@ -33,4 +33,10 @@ public class Earrings extends AllFinishedPieces implements Serializable {
     public void setAutoPrice() {
         this.price = (sterlingSilverYorN)?18:15;
     }
+
+    @Override
+    public String toString() {
+        String sterling = (sterlingSilverYorN)? "Sterling Silver earwires": "earwires are not Sterling Silver";
+        return description + "\n" + sterling;
+    }
 }

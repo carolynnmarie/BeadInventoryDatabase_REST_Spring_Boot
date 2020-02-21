@@ -134,4 +134,9 @@ public class Necklace extends AllFinishedPieces implements Serializable {
         price = Math.ceil(price);
     }
 
+    @Override
+    public String toString(){
+        return "Type: necklace\n" + description + "\nLength: " + lengthInch;
+    }
+
 }

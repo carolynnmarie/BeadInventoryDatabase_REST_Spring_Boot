@@ -1,5 +1,6 @@
 package com.beadinventory.beadinventory;
 
+import com.beadinventory.beadinventory.Controller.FinishedPiecesControllers.NecklaceController;
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.*;
 import com.beadinventory.beadinventory.Domain.Supplies.*;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
@@ -19,6 +20,8 @@ public class InventoryManager  {
     @Autowired
     private StringWireController stringController;
 
+
+
 //    @Autowired
 //    public InventoryManager(BeadController beadController, FindingController findingController,
 //                            StringWireController stringController, StoreListController storeListController){
@@ -36,6 +39,11 @@ public class InventoryManager  {
     public String beadPrintBeadById(long id){
         Bead bead = beadController.findBeadById(id);
         return bead.toString();
+    }
+
+    public long beadGetQuantityById(long id){
+        Bead bead = beadController.findBeadById(id);
+        return bead.getQuantity();
     }
 
     public String beadPrintAllOrderByMaterial(){

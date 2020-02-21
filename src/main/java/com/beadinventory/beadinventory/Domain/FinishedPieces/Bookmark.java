@@ -75,4 +75,9 @@ public class Bookmark extends AllFinishedPieces implements Serializable {
     public void setAutoPrice() {
         this.price = 10;
     }
+
+    @Override
+    public String toString(){
+        return description;
+    }
 }
