@@ -50,15 +50,6 @@ public class BeadController {
         return beadService.getAllOfMaterialAndSize(material,size).getBody();
     }
 
-    @GetMapping(params = "shape")
-    public List<Bead> findAllOfShapeOrderByMaterial(@RequestAttribute(value = "shape") Shape shape){
-        return beadService.getAllOfShape(shape).getBody()
-                .stream()
-                .sorted(Comparator.comparing(Bead::getMaterial))
-                .collect(Collectors.toList());
-    }
-
-
     @GetMapping(params = "quantity")
     public List<Bead> findAllWithQuantityLessThan(@RequestAttribute(value = "quantity") long quantity){
         ResponseEntity<List<Bead>> response = beadService.getAllQuantityLessThan(quantity);
@@ -71,8 +62,6 @@ public class BeadController {
         return response.getBody();
     }
 
-
-
     @PostMapping()
     public ResponseEntity<Bead> createBead(@RequestBody Bead bead){
         return beadService.createBead(bead);
@@ -81,12 +70,6 @@ public class BeadController {
     @PutMapping(value = "/{id}", params = "quantity")
     public Bead updateBeadQuantity(@PathVariable("id") long id, @RequestAttribute(value = "quantity") long quantity){
         return beadService.updateBeadQuantity(id,quantity).getBody();
-    }
-
-    @PutMapping(value = "/{id}")
-    public Bead updateBead(@PathVariable("id") long id, @RequestBody Bead bead){
-        ResponseEntity<Bead> response = beadService.updateBead(id,bead);
-        return response.getBody();
     }
 
     @DeleteMapping(value = "/{id}")
@@ -99,14 +82,6 @@ public class BeadController {
         return beadService.deleteBead(bead);
     }
 
-    public List<Bead> beadGetAllOfMaterialCategory(MaterialCategory category){
-        List<Bead> list = findAllBeads()
-                .stream()
-                .filter(e-> e.getMaterial().getCategory().equals(category))
-                .sorted(Comparator.comparing(Bead::getMaterial))
-                .collect(Collectors.toList());
-        return list;
-    }
 
     @GetMapping(value = "/bead")
     public String testGetBead(){

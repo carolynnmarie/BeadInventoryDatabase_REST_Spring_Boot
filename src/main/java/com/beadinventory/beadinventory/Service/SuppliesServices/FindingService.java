@@ -29,12 +29,6 @@ public class FindingService {
         return new ResponseEntity<>(list, OK);
     }
 
-    public ResponseEntity<List<Finding>> getAllOfCategoryType(String type){
-        List<Finding> fullList = findingRepo.findAll();
-        List<Finding> filteredList = fullList.stream().filter(e->e.getFindingCategory().getType().equals(type)).collect(Collectors.toList());
-        return new ResponseEntity<>(filteredList,OK);
-    }
-
     public ResponseEntity<List<Finding>> getAllOfCategory(FindingCategory findingCategory){
         List<Finding> list = findingRepo.findFindingsByCategory(findingCategory);
         return new ResponseEntity<>(list,OK);

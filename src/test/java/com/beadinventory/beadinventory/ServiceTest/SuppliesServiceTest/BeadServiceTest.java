@@ -176,31 +176,6 @@ public class BeadServiceTest {
     }
 
     @Test
-    public void removeBeadQuantityTest(){
-        bead1.setQuantity(20);
-        given(mockBeadRepo.findById(bead1.getBeadId())).willReturn(bead1);
-        given(mockBeadRepo.save(bead1)).willReturn(bead1);
-
-        long expected = 15;
-        ResponseEntity<Bead> response = mockBeadService.removeBeadQuantity(bead1.getBeadId(),5);
-        long actual = response.getBody().getQuantity();
-
-        verify(mockBeadRepo).save(any(Bead.class));
-        Assert.assertEquals(expected,actual);
-    }
-
-    @Test
-    public void updateBeadTest(){
-        given(mockBeadRepo.save(any(Bead.class))).willReturn(bead1);
-
-        ResponseEntity<Bead> expected = new ResponseEntity<>(bead1,OK);
-        ResponseEntity<Bead> actual = mockBeadService.updateBead(bead1.getBeadId(),bead1);
-
-        verify(mockBeadRepo).save(any(Bead.class));
-        Assert.assertEquals(expected,actual);
-    }
-
-    @Test
     public void deleteBeadByIdTest(){
         ResponseEntity expected = new ResponseEntity(OK);
         ResponseEntity actual = mockBeadService.deleteBeadById(bead1.getBeadId());

@@ -170,17 +170,6 @@ public class BeadContIntegrationTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    public void updateBeadIntegTest() throws Exception{
-        given(mockBeadController.updateBead(bead1.getBeadId(),bead1)).willReturn(bead1);
-
-        String body = mapper.writeValueAsString(bead1);
-        mockMvc.perform(put("/beads/{id}",bead1.getBeadId())
-                .content(body)
-                .characterEncoding("utf-8")
-                .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
 
     @Test
     public void deleteBeadByIdIntegTest() throws Exception{

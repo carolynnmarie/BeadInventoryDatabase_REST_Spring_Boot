@@ -27,12 +27,6 @@ public class FindingController {
         return findingService.getAllFindings().getBody();
     }
 
-    @GetMapping(params = "type")
-    public List<Finding> findAllOfCategoryType(@RequestParam(name = "type") String type){
-        return findingService.getAllOfCategoryType(type).getBody();
-    }
-
-
     @GetMapping(params = "findingCategory")
     public List<Finding> findAllOfCategory(@RequestAttribute(value = "findingCategory")FindingCategory findingCategory){
         return findingService.getAllOfCategory(findingCategory).getBody();
@@ -53,6 +47,7 @@ public class FindingController {
     public Finding getFindingById(@PathVariable("id") long id){
         return findingService.findById(id).getBody();
     }
+
 
     @PostMapping()
     public ResponseEntity<Finding> createFinding(@RequestBody Finding finding){

@@ -11,7 +11,7 @@ import java.util.stream.*;
 import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.MaterialCategory.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class InventoryManager  {
+public class SuppliesManager {
 
     @Autowired
     private BeadController beadController;
@@ -19,17 +19,6 @@ public class InventoryManager  {
     private FindingController findingController;
     @Autowired
     private StringWireController stringController;
-
-
-
-//    @Autowired
-//    public InventoryManager(BeadController beadController, FindingController findingController,
-//                            StringWireController stringController, StoreListController storeListController){
-//        this.beadController = beadController;
-//        this.findingController = findingController;
-//        this.stringController = stringController;
-//
-//    }
 
 
     public String beadPrintBead(Bead bead){
@@ -69,14 +58,13 @@ public class InventoryManager  {
         return builder.toString();
     }
 
-    public String beadPrintMissingNtrlAndSPStones(){
-        Material[] allMaterials = Material.values();
+    public String beadPrintCurrentNtrlAndSPStones(){
         List<Material> presentMaterialList = beadController.findAllBeads()
                 .stream()
                 .map(e->e.getMaterial())
                 .filter(e->e.getCategory().equals(NATURAL_STONE)||e.getCategory().equals(SEMI_PRECIOUS_STONE))
                 .collect(Collectors.toList());
-        StringBuilder builder = new StringBuilder("Missing:");
+        StringBuilder builder = new StringBuilder("Current: ");
         presentMaterialList.forEach(e->builder.append("\n").append(e.toString()));
         return builder.toString();
     }
@@ -100,7 +88,33 @@ public class InventoryManager  {
         return builder.toString();
     }
 
-    public String findingPrintFinding(Finding finding){
+    public void beadUpdateQuantity(long id, long updatedQuantity){
+        beadController.updateBeadQuantity(id,updatedQuantity);
+    }
+
+    public void beadAddBeadToInventory(Bead bead){
+        beadController.createBead(bead);
+    }
+
+    public String beadPrintAllOfMaterialCategory(MaterialCategory category){
+        List<Bead> list = beadController.findAllBeads()
+                .stream()
+                .filter(e-> e.getMaterial().getCategory().equals(category))
+                .sorted(Comparator.comparing(Bead::getMaterial))
+                .collect(Collectors.toList());
+        StringBuilder builder = new StringBuilder();
+        list.stream().forEach(e->builder.append(e.toString()).append("\n"));
+        return builder.toString();
+    }
+
+    public String beadPrintLessThanQuantity(long quantity){
+        List<Bead> beads = beadController.findAllWithQuantityLessThan(quantity);
+        StringBuilder builder = new StringBuilder();
+        beads.stream().forEach(e->builder.append(e.toString()).append("\n"));
+        return builder.toString();
+    }
+
+    public String findingPrint(Finding finding){
         return finding.toString();
     }
 
@@ -115,6 +129,7 @@ public class InventoryManager  {
         findings.forEach(e->builder.append(e.toString()).append("\n"));
         return builder.toString();
     }
+
 
     public String stringWirePrintAll(){
         List<StringWire> sWList = stringController.findAllStringWire();

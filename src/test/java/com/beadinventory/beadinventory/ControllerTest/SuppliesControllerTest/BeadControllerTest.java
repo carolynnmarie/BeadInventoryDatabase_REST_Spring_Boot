@@ -140,15 +140,6 @@ public class BeadControllerTest {
         Assert.assertEquals(expected,actual);
     }
 
-    @Test
-    public void updateBeadTest(){
-        given(mockBeadService.updateBead(bead3.getBeadId(),bead3)).willReturn(new ResponseEntity<>(bead3,OK));
-        Bead expected = bead3;
-        Bead actual = mockBeadController.updateBead(bead3.getBeadId(),bead3);
-
-        verify(mockBeadService).updateBead(anyLong(),any(Bead.class));
-        Assert.assertEquals(expected,actual);
-    }
 
     @Test
     public void deleteBeadByIdTest(){

@@ -5,7 +5,6 @@ import com.beadinventory.beadinventory.Domain.FinishedPieces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
-import java.util.stream.*;
 
 public class FinishedPiecesManager {
 
