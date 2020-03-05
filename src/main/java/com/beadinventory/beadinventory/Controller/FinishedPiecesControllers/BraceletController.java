@@ -76,7 +76,4 @@ public class BraceletController implements AllFinishedPiecesContInterface<Bracel
         return braceletService.deleteItem(item);
     }
 
-    public int getTotalItemCount(){
-        return findAllItems().size();
-    }
 }

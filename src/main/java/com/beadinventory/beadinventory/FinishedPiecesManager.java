@@ -32,15 +32,12 @@ public class FinishedPiecesManager {
     public String printAllNecklaces(){
         List<Necklace> necklaces = necklaceController.findAllItems();
         StringBuilder builder = new StringBuilder();
-        for(Necklace necklace: necklaces){
-            builder.append(necklace.toString())
-                    .append("\n");
-        }
+        necklaces.stream().forEach(e-> builder.append(e.toString()).append("\n"));
         return builder.toString();
     }
 
-    public String printNecklaceQuantity(){
-        Integer quantity = necklaceController.getTotalItemCount();
+    public String printNecklacesQuantity(){
+        Integer quantity = necklaceController.findAllItems().size();
         return "Current necklace inventory count: " +  quantity;
     }
 
@@ -55,15 +52,12 @@ public class FinishedPiecesManager {
     public String printAllBracelets(){
         List<Bracelet> bracelets = braceletController.findAllItems();
         StringBuilder builder = new StringBuilder();
-        for (Bracelet bracelet: bracelets) {
-            builder.append(bracelet.toString())
-                    .append("\n");
-        }
+        bracelets.stream().forEach(e->builder.append(e.toString()).append("\n"));
         return builder.toString();
     }
 
-    public String printBraceletQuantity(){
-        Integer quantity = braceletController.getTotalItemCount();
+    public String printBraceletsQuantity(){
+        Integer quantity = braceletController.findAllItems().size();
         return "Current bracelet inventory count: " + quantity;
     }
 
@@ -78,16 +72,70 @@ public class FinishedPiecesManager {
     public String printAllEarrings(){
         List<Earrings> allEarrings = earringsController.findAllItems();
         StringBuilder builder = new StringBuilder();
-        for(Earrings earrings: allEarrings){
-            builder.append(earrings.toString())
-                    .append("\n");
-        }
+        allEarrings.stream().forEach(e->builder.append(e.toString()).append("\n"));
         return builder.toString();
     }
 
     public String printEarringsQuantity(){
-        Integer quantity = earringsController.getTotalItemCount();
-        return "Current earrings inventory count: " + quantity;
+        return "Current earrings inventory count: " + earringsController.findAllItems().size();
+    }
+
+    public String printWineCharm(WineCharmSet wineCharm){
+        return wineCharm.toString();
+    }
+
+    public String printWineCharmById(long id){
+        return wineCharmController.findItemById(id).toString();
+    }
+
+    public String printAllWineCharms(){
+        List<WineCharmSet> allWineCharms = wineCharmController.findAllItems();
+        StringBuilder builder = new StringBuilder();
+        allWineCharms.stream().forEach(e->builder.append(e.toString()).append("\n"));
+        return builder.toString();
+    }
+
+    public String printNapkinRingSetQuantity(){
+        return "Current wine charm set count: " +  wineCharmController.findAllItems().size();
+    }
+
+    public String printBookmark(Bookmark bookmark){
+        return bookmark.toString();
+    }
+
+    public String printBookmarkById(long id){
+        return bookmarkController.findItemById(id).toString();
+    }
+
+    public String printAllBookMarks(){
+        StringBuilder builder = new StringBuilder();
+        List<Bookmark> bookmarks = bookmarkController.findAllItems();
+        bookmarks.stream().forEach(e->builder.append(e.toString()).append("\n"));
+        return builder.toString();
+    }
+
+    public String printBookMarksQuantity(){
+        return "Current bookmark count: " + bookmarkController.findAllItems().size();
+    }
+
+
+    public String printNapkinRings(NapkinRingSet napkinRings){
+        return napkinRings.toString();
+    }
+
+    public String printNapkinRingsById(long id){
+        return napkinRingController.findItemById(id).toString();
+    }
+
+    public String printAllNapkinRings(){
+        List<NapkinRingSet> napkinRings = napkinRingController.findAllItems();
+        StringBuilder builder = new StringBuilder();
+        napkinRings.stream().forEach(e->builder.append(e.toString()).append("\n"));
+        return builder.toString();
+    }
+
+    public String printNapkinRingsQuantity(){
+        return "Current napkin ring set count: " + napkinRingController.findAllItems().size();
     }
 
     public String printTotalInventory(){
@@ -97,8 +145,7 @@ public class FinishedPiecesManager {
         List<Bookmark> bookmarks = bookmarkController.findAllItems();
         List<WineCharmSet> wineCharms = wineCharmController.findAllItems();
         List<NapkinRingSet> napkinRings = napkinRingController.findAllItems();
-        StringBuilder builder = new StringBuilder();
-        builder.append("Necklaces:\n");
+        StringBuilder builder = new StringBuilder("Current Inventory: \nNecklaces:\n");
         necklaces.stream().forEach(necklace->builder.append(necklace.toString()).append("\n"));
         builder.append("\nBracelets:\n");
         bracelets.stream().forEach(bracelet->builder.append(bracelet.toString()).append("\n"));
@@ -114,25 +161,18 @@ public class FinishedPiecesManager {
     }
 
     public String printAllQuantities(){
-        Integer necklaces = necklaceController.getTotalItemCount();
-        Integer bracelets = braceletController.getTotalItemCount();
-        Integer earrings = earringsController.getTotalItemCount();
-        Integer bookmarks = bookmarkController.getTotalItemCount();
-        Integer wineCharms = wineCharmController.getTotalItemCount();
-        Integer napkinRings = napkinRingController.getTotalItemCount();
-        StringBuilder builder = new StringBuilder();
-        builder.append("Necklaces: ")
-                .append(necklaces)
+        StringBuilder builder = new StringBuilder("Current Inventory Quantities:\nNecklaces:\n");
+        builder.append(necklaceController.findAllItems().size())
                 .append("\nBracelets: ")
-                .append(bracelets)
+                .append(braceletController.findAllItems().size())
                 .append("\nEarrings: ")
-                .append(earrings)
+                .append(earringsController.findAllItems().size())
                 .append("\nBookmarks: ")
-                .append(bookmarks)
+                .append(bookmarkController.findAllItems().size())
                 .append("\nWine Charm Sets: ")
-                .append(wineCharms)
+                .append(wineCharmController.findAllItems().size())
                 .append("\nNapkin Ring Sets: ")
-                .append(napkinRings);
+                .append(napkinRingController.findAllItems().size());
         return builder.toString();
     }
 

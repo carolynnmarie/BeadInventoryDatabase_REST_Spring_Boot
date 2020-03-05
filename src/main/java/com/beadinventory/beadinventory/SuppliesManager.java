@@ -1,6 +1,5 @@
 package com.beadinventory.beadinventory;
 
-import com.beadinventory.beadinventory.Controller.FinishedPiecesControllers.NecklaceController;
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.*;
 import com.beadinventory.beadinventory.Domain.Supplies.*;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
@@ -49,7 +48,8 @@ public class SuppliesManager {
                 .collect(Collectors.toList()));
         StringBuilder builder = new StringBuilder("Swarovski crystals:");
         for(Bead bead: beads){
-            builder.append("\ncolor: ").append(bead.getColor())
+            builder.append("\ncolor: ")
+                    .append(bead.getColor())
                     .append(", size:")
                     .append(bead.getSizeMM())
                     .append(", quantity: ")
@@ -79,7 +79,7 @@ public class SuppliesManager {
                 .append(": \n");
         for(int i = 0; i< beads.size(); i++){
             builder.append(i+1)
-                    .append("size: ")
+                    .append(") size: ")
                     .append(beads.get(i).getSizeMM())
                     .append(", quantity: ")
                     .append(beads.get(i).getQuantity())
@@ -88,13 +88,6 @@ public class SuppliesManager {
         return builder.toString();
     }
 
-    public void beadUpdateQuantity(long id, long updatedQuantity){
-        beadController.updateBeadQuantity(id,updatedQuantity);
-    }
-
-    public void beadAddBeadToInventory(Bead bead){
-        beadController.createBead(bead);
-    }
 
     public String beadPrintAllOfMaterialCategory(MaterialCategory category){
         List<Bead> list = beadController.findAllBeads()
@@ -107,10 +100,17 @@ public class SuppliesManager {
         return builder.toString();
     }
 
-    public String beadPrintLessThanQuantity(long quantity){
+    public String beadPrintLowQuantity(long quantity){
         List<Bead> beads = beadController.findAllWithQuantityLessThan(quantity);
         StringBuilder builder = new StringBuilder();
         beads.stream().forEach(e->builder.append(e.toString()).append("\n"));
+        return builder.toString();
+    }
+
+    public String printAllBeads(){
+        List<Bead> beads = beadController.findAllBeads();
+        StringBuilder builder = new StringBuilder("Full Bead Inventory:\n");
+        beads.stream().forEach(bead->builder.append(bead.toString()).append("\n"));
         return builder.toString();
     }
 
@@ -130,6 +130,20 @@ public class SuppliesManager {
         return builder.toString();
     }
 
+    public String printAllFindings(){
+        List<Finding> findings = findingController.findAllFindings();
+        StringBuilder builder = new StringBuilder("Findings: \n");
+        findings.stream().forEach(e->builder.append(e.toString()).append("\n"));
+        return builder.toString();
+    }
+
+    public String printStringWire(StringWire string){
+        return string.toString();
+    }
+
+    public String printStringWireById(long id){
+        return stringController.findById(id).toString();
+    }
 
     public String stringWirePrintAll(){
         List<StringWire> sWList = stringController.findAllStringWire();

@@ -129,8 +129,13 @@ public class Finding implements Serializable {
 
     @Override
     public String toString(){
-        return "Finding: " + category.toString() + ", material: " + material.toString() + ", length in cm: " + lengthCM +
+        return "Finding: category:" + category.toString() + ", material: " + material.toString() + ", length in cm: " + lengthCM +
                 ", description: " + description;
+    }
+
+    public String toStringWithId(){
+        return "Finding: id: " + id + "category:" + category.toString() + ", material: " + material.toString() +
+                ", length in cm: " + lengthCM + ", description: " + description;
     }
 
 }

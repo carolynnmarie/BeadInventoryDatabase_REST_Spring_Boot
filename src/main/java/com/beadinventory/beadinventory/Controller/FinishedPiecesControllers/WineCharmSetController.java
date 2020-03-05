@@ -61,7 +61,4 @@ public class WineCharmSetController implements AllFinishedPiecesContInterface<Wi
         return wineCharmService.deleteItem(item);
     }
 
-    public int getTotalItemCount() {
-        return findAllItems().size();
-    }
 }

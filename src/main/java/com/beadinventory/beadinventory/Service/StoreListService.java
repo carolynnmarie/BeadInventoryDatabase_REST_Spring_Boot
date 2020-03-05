@@ -1,6 +1,7 @@
 package com.beadinventory.beadinventory.Service;
 
 import com.beadinventory.beadinventory.Domain.StoreList;
+import com.beadinventory.beadinventory.Domain.Supplies.*;
 import com.beadinventory.beadinventory.Repository.StoreListRepo;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,68 @@ public class StoreListService {
         list.setId(id);
         StoreList list1 = listRepo.save(list);
         return new ResponseEntity<>(list1, OK);
+    }
+
+    public ResponseEntity<StoreList> addBead(long id, Bead bead){
+        Optional<StoreList> oList = listRepo.findById(id);
+        StoreList list = new StoreList();
+        if(oList.isPresent()) list = oList.get();
+        List<Bead> beads = list.getBeads();
+        if(!beads.contains(bead)){
+            beads.add(bead);
+        }
+        list.setBeads(beads);
+        list.setId(id);
+        StoreList list1 = listRepo.save(list);
+        return new ResponseEntity<>(list1,OK);
+    }
+
+    public ResponseEntity<StoreList> deleteBead(long id, Bead bead){
+        Optional<StoreList> oList = listRepo.findById(id);
+        StoreList list = new StoreList();
+        if(oList.isPresent()) list = oList.get();
+        List<Bead> beads = list.getBeads();
+        if(beads.contains(bead)){
+            beads.remove(bead);
+        }
+        list.setBeads(beads);
+        list.setId(id);
+        StoreList list1 = listRepo.save(list);
+        return new ResponseEntity<>(list1, OK);
+    }
+
+    public ResponseEntity<StoreList> addFinding(long id, Finding finding){
+        Optional<StoreList> oList = listRepo.findById(id);
+        StoreList list = new StoreList();
+        if(oList.isPresent()) list = oList.get();
+        List<Finding> findings = list.getFindings();
+        if(!findings.contains(finding)){
+            findings.add(finding);
+        }
+        list.setFindings(findings);
+        list.setId(id);
+        StoreList list1 = listRepo.save(list);
+        return new ResponseEntity<>(list1,OK);
+    }
+
+    public ResponseEntity<StoreList> deleteFinding(long id, Finding finding){
+        return null;
+    }
+
+    public ResponseEntity<StoreList> addStringingMaterial(long id, StringWire stringWire){
+        return null;
+    }
+
+    public ResponseEntity<StoreList> deleteStringingMaterial(long id, StringWire stringWire){
+        return null;
+    }
+
+    public ResponseEntity<StoreList> addOtherItem(long id, String otherItem){
+        return null;
+    }
+
+    public ResponseEntity<StoreList> deleteOtherItem(long id, String otherItem){
+        return null;
     }
 
     public ResponseEntity deleteListById(long id){

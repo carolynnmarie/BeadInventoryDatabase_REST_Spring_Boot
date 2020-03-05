@@ -106,4 +106,19 @@ public class StoreList {
     public void setOtherItems(List<String> otherItems) {
         this.otherItems = otherItems;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder builder = new StringBuilder(projectTitle);
+        builder.append("_______________________________")
+                .append("\nBeads:");
+        beads.stream().forEach(bead -> builder.append("\n   ").append(bead.toString()));
+        builder.append("\nFindings:");
+        findings.stream().forEach(finding->builder.append("\n   ").append(finding.toString()));
+        builder.append("\nStringing Materials:");
+        stringWire.stream().forEach(string->builder.append("\n   ").append(string.toString()));
+        builder.append("\nOther Items:");
+        otherItems.stream().forEach(item->builder.append("\n   ").append(item));
+        return builder.toString();
+    }
 }

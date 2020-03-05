@@ -66,7 +66,7 @@ public class NapkinRingSet extends AllFinishedPieces implements Serializable {
 
     @Override
     public String toString(){
-        return "Set of " + quantity + " napkin rings\n" + description;
+        return description + "Quantity: " + quantity;
     }
 
 }

@@ -28,7 +28,6 @@ public class NecklaceController implements AllFinishedPiecesContInterface<Neckla
         this.necklaceService = necklaceService;
     }
 
-
     @Override
     @GetMapping()
     public List<Necklace> findAllItems() {
@@ -91,7 +90,4 @@ public class NecklaceController implements AllFinishedPiecesContInterface<Neckla
         return necklaceService.deleteItem(item);
     }
 
-    public int getTotalItemCount() {
-        return findAllItems().size();
-    }
 }

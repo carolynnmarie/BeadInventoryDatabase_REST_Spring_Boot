@@ -73,7 +73,4 @@ public class NapkinRingSetController implements AllFinishedPiecesContInterface<N
         return napkinRingService.deleteItem(item);
     }
 
-    public int getTotalItemCount(){
-        return findAllItems().size();
-    }
 }

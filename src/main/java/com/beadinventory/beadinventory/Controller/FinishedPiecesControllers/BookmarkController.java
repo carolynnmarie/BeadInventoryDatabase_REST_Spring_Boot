@@ -64,9 +64,7 @@ public class BookmarkController implements AllFinishedPiecesContInterface<Bookma
         return bookmarkService.deleteItem(item);
     }
 
-    public int getTotalItemCount(){
-        return findAllItems().size();
-    }
+
 }
 /*
 

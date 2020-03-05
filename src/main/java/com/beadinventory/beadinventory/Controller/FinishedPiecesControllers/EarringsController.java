@@ -73,7 +73,4 @@ public class EarringsController implements AllFinishedPiecesContInterface<Earrin
         return earringsService.deleteItem(item);
     }
 
-    public int getTotalItemCount(){
-        return findAllItems().size();
-    }
 }

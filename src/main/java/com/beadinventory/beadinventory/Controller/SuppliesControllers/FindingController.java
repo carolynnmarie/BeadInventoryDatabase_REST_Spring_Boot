@@ -48,7 +48,6 @@ public class FindingController {
         return findingService.findById(id).getBody();
     }
 
-
     @PostMapping()
     public ResponseEntity<Finding> createFinding(@RequestBody Finding finding){
         return findingService.createFinding(finding);

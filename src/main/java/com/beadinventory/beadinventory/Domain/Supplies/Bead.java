@@ -144,7 +144,12 @@ public class Bead implements Serializable {
 
     @Override
     public String toString(){
-        return "Bead: id:" + id + ", material: " + material.toString() + " color: " + color + " shape: " + shape.toString() + " size: " + sizeMM;
+        return "Bead: material: " + material.toString() + " color: " + color + " shape: " + shape.toString() + " size: " + sizeMM;
+    }
+
+    public String toStringWithId(){
+        return "Bead: id:" + id + ", material: " + material.toString() + " color: " + color + " shape: " + shape.toString() +
+                " size: " + sizeMM;
     }
 
 }
