@@ -114,6 +114,19 @@ public class SuppliesManager {
         return builder.toString();
     }
 
+    public void addBead(Bead bead){
+        List<Bead> beads = beadController.findAllBeads();
+        if(!beads.contains(bead)) beadController.createBead(bead);
+    }
+
+    public void updateBeadQuantity(long id, long quantity){
+        beadController.updateBeadQuantity(id, quantity);
+    }
+
+    public void deleteBead(Bead bead){
+        beadController.deleteBead(bead);
+    }
+
     public String findingPrint(Finding finding){
         return finding.toString();
     }
@@ -137,6 +150,21 @@ public class SuppliesManager {
         return builder.toString();
     }
 
+    public void addFinding(Finding finding){
+        findingController.createFinding(finding);
+    }
+
+    public void updateFindingQuantity(long id, long quantity){
+        Finding finding = findingController.getFindingById(id);
+        finding.setQuantity(quantity);
+        finding.setId(id);
+        findingController.updateFinding(id, finding);
+    }
+
+    public void deleteFinding(Finding finding){
+        findingController.deleteFinding(finding);
+    }
+
     public String printStringWire(StringWire string){
         return string.toString();
     }
@@ -145,11 +173,19 @@ public class SuppliesManager {
         return stringController.findById(id).toString();
     }
 
-    public String stringWirePrintAll(){
+    public String printAllStringWire(){
         List<StringWire> sWList = stringController.findAllStringWire();
         StringBuilder builder = new StringBuilder("Stringing Materials:");
         sWList.forEach(e->builder.append("\n").append(e.toString()));
         return builder.toString();
+    }
+
+    public void addStringWire(StringWire stringMaterial){
+        stringController.createStringWire(stringMaterial);
+    }
+
+    public void deleteStringWire(StringWire stringWire){
+        stringController.deleteStringWire(stringWire);
     }
 
 }
