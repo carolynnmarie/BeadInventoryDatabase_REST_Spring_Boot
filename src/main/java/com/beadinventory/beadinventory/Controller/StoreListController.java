@@ -1,6 +1,7 @@
 package com.beadinventory.beadinventory.Controller;
 
 import com.beadinventory.beadinventory.Domain.StoreList;
+import com.beadinventory.beadinventory.Domain.Supplies.*;
 import com.beadinventory.beadinventory.Service.StoreListService;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
