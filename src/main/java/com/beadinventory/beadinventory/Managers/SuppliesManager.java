@@ -1,4 +1,4 @@
-package com.beadinventory.beadinventory;
+package com.beadinventory.beadinventory.Managers;
 
 import com.beadinventory.beadinventory.Controller.SuppliesControllers.*;
 import com.beadinventory.beadinventory.Domain.Supplies.*;
