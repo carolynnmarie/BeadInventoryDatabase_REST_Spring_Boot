@@ -152,4 +152,6 @@ public class Bead implements Serializable {
                 " size: " + sizeMM;
     }
 
+
+
 }
