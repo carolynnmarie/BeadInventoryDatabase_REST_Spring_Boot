@@ -45,7 +45,7 @@ public class FindingController {
 
     @GetMapping(value = "/{id}")
     public Finding getFindingById(@PathVariable("id") long id){
-        return findingService.findById(id).getBody();
+        return findingService.getById(id).getBody();
     }
 
     @PostMapping()

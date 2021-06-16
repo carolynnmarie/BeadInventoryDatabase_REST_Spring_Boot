@@ -44,12 +44,6 @@ public class WineCharmSetController implements AllFinishedPiecesContInterface<Wi
     }
 
     @Override
-    @PutMapping(params = "price")
-    public List<WineCharmSet> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
-        return wineCharmService.increasePriceOfAll(amountToAdd).getBody();
-    }
-
-    @Override
     @PutMapping(value = "/{id}", params = "description")
     public WineCharmSet updateDescription(@PathVariable("id") long id, @RequestAttribute("description") String description) {
         return wineCharmService.updateDescription(id,description).getBody();

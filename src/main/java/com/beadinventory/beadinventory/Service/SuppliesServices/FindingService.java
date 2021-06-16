@@ -44,7 +44,7 @@ public class FindingService {
         return new ResponseEntity<>(list,OK);
     }
 
-    public ResponseEntity<Finding> findById(long id){
+    public ResponseEntity<Finding> getById(long id){
         Finding finding = findingRepo.findById(id);
         return new ResponseEntity<>(finding,OK);
     }

@@ -60,7 +60,7 @@ public class BeadService {
     }
 
     public ResponseEntity<Bead> getBeadById(long id){
-        Bead bead = beadRepository.findById(id);;
+        Bead bead = beadRepository.findById(id);
         return new ResponseEntity<>(bead,OK);
     }
 

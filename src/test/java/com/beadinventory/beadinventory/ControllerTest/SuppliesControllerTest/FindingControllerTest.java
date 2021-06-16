@@ -105,10 +105,10 @@ public class FindingControllerTest {
     @Test
     public void getFindingByIdTest(){
         ResponseEntity<Finding> expected = new ResponseEntity<>(eyePin,OK);
-        given(mockFindingService.findById(anyLong())).willReturn(expected);
+        given(mockFindingService.getById(anyLong())).willReturn(expected);
         Finding actual = mockFindingController.getFindingById(eyePin.getId());
 
-        verify(mockFindingService).findById(anyLong());
+        verify(mockFindingService).getById(anyLong());
         Assert.assertEquals(eyePin,actual);
     }
 

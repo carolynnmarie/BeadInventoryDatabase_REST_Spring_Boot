@@ -26,8 +26,6 @@ public interface BeadRepo extends CrudRepository<Bead,Long> {
 
     Bead findById(long id);
 
-    Bead findFirstById(long id);
-
     @Query(value = "SELECT b FROM Bead b ORDER BY material")
     List<Bead> findAllOrderByMaterial();
 

@@ -112,7 +112,7 @@ public class FindingServiceTest {
         given(mockFindingRepo.findById(anyLong())).willReturn(eyePin);
 
         ResponseEntity<Finding> expected = new ResponseEntity<>(eyePin,OK);
-        ResponseEntity<Finding> actual = mockFindingService.findById(eyePin.getId());
+        ResponseEntity<Finding> actual = mockFindingService.getById(eyePin.getId());
 
         verify(mockFindingRepo).findById(anyLong());
         Assert.assertEquals(expected,actual);

@@ -15,7 +15,6 @@ public interface AllFinishedPiecesContInterface<T extends AllFinishedPieces> {
     T findItemById(long id);
     ResponseEntity<T> createItem(T item);
     T updateItem(long id, T item);
-    List<T> increaseAllPrices(double amountToAdd);
     T updateDescription(long id, String description);
     ResponseEntity deleteItem(T item);
 }
