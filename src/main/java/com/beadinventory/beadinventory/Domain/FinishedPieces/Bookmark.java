@@ -1,9 +1,12 @@
 package com.beadinventory.beadinventory.Domain.FinishedPieces;
 
 
+import com.beadinventory.beadinventory.Domain.Serializers.*;
 import com.beadinventory.beadinventory.Domain.Supplies.*;
 import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -17,6 +20,8 @@ public class Bookmark extends AllFinishedPieces implements Serializable {
     @Column(name = "STRING_MATERIAL")
     private Material stringMaterial;
 
+    @JsonSerialize(keyUsing = StringWireSerializer.class)
+    @JsonDeserialize(keyUsing = StringWireDeserializer.class)
     @Enumerated(value = EnumType.STRING)
     @Column(name = "STRING_CATEGORY")
     private StringWireCategory stringCategory;

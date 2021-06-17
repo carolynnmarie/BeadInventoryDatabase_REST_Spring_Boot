@@ -13,10 +13,10 @@ public class BeadManager {
         this.bead = new Bead();
     }
 
-    public Bead createBead(){
-        Scanner scanner = new Scanner(System.in);
-
-    }
+//    public Bead createBead(){
+//        Scanner scanner = new Scanner(System.in);
+//
+//    }
 
 }
 

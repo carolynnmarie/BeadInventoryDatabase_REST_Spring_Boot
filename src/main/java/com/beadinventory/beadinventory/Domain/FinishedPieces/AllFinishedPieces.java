@@ -9,14 +9,14 @@ import java.io.Serializable;
 import java.util.*;
 
 
-@Entity
+@MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class AllFinishedPieces implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ALL_ID")
-    private long allId;
+    protected long allId;
 
 
     @JsonSerialize(keyUsing = BeadSerializer.class)
