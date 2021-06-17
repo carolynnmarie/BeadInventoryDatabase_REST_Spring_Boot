@@ -68,12 +68,6 @@ public class NecklaceController implements AllFinishedPiecesContInterface<Neckla
     }
 
     @Override
-    @PutMapping(params = "price")
-    public List<Necklace> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
-        return necklaceService.increasePriceOfAll(amountToAdd).getBody();
-    }
-
-    @Override
     @PutMapping(value = "/{id}",params = "description")
     public Necklace updateDescription(@PathVariable("id") long id, @RequestAttribute(value = "description") String description) {
         return necklaceService.updateDescription(id,description).getBody();

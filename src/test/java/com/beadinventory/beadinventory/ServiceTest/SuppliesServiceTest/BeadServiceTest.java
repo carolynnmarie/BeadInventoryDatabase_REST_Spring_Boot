@@ -105,18 +105,6 @@ public class BeadServiceTest {
     }
 
     @Test
-    public void getAllOfShapeTest(){
-        List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead2,bead3,bead4,bead5));
-        given(mockBeadRepo.findByShape(ROUND)).willReturn(list);
-
-        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(list,OK);
-        ResponseEntity<List<Bead>> actual = mockBeadService.getAllOfShape(ROUND);
-
-        verify(mockBeadRepo).findByShape(any(Shape.class));
-        Assert.assertEquals(expected,actual);
-    }
-
-    @Test
     public void getAllQuantityLessThanTest(){
         List<Bead> list = new ArrayList<>(Arrays.asList(bead2,bead3,bead5));
         given(mockBeadRepo.findByQuantityIsLessThan(12)).willReturn(list);

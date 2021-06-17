@@ -49,11 +49,6 @@ public class BeadService {
         return new ResponseEntity<>(beads,OK);
     }
 
-    public ResponseEntity<List<Bead>> getAllOfShape(Shape shape){
-        List<Bead> beads = beadRepository.findByShape(shape);
-        return new ResponseEntity<>(beads,OK);
-    }
-
     public ResponseEntity<List<Bead>> getAllQuantityLessThan(long quantity){
         List<Bead> beads = beadRepository.findByQuantityIsLessThan(quantity);
         return new ResponseEntity<>(beads, OK);

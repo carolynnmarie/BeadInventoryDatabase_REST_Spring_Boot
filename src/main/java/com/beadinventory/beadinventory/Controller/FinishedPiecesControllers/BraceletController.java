@@ -59,12 +59,6 @@ public class BraceletController implements AllFinishedPiecesContInterface<Bracel
     }
 
     @Override
-    @PutMapping(params = "price")
-    public List<Bracelet> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
-        return braceletService.increasePriceOfAll(amountToAdd).getBody();
-    }
-
-    @Override
     @PutMapping(value = "/{id}", params = "description")
     public Bracelet updateDescription(@PathVariable("id") long id, @RequestAttribute(value = "description") String description) {
         return braceletService.updateDescription(id,description).getBody();

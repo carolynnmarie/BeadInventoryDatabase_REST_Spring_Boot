@@ -20,8 +20,6 @@ public interface BeadRepo extends CrudRepository<Bead,Long> {
 
     List<Bead> findByMaterialAndSizeMM(Material material, int size);
 
-    List<Bead> findByShape(Shape shape);
-
     List<Bead> findByQuantityIsLessThan(long quantity);
 
     Bead findById(long id);

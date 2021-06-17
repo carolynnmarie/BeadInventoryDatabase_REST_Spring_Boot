@@ -51,12 +51,6 @@ public class NapkinRingSetController implements AllFinishedPiecesContInterface<N
     }
 
     @Override
-    @PutMapping(params = "price")
-    public List<NapkinRingSet> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
-        return napkinRingService.increasePriceOfAll(amountToAdd).getBody();
-    }
-
-    @Override
     @PutMapping(value = "/{id}", params = "description")
     public NapkinRingSet updateDescription(@PathVariable(value = "id") long id, @RequestAttribute(value = "description") String description) {
         return napkinRingService.updateDescription(id,description).getBody();

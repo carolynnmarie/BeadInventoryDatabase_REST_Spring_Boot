@@ -47,12 +47,6 @@ public class BookmarkController implements AllFinishedPiecesContInterface<Bookma
     }
 
     @Override
-    @PutMapping(params = "price")
-    public List<Bookmark> increaseAllPrices(@RequestAttribute(value = "price") double price) {
-        return bookmarkService.increasePriceOfAll(price).getBody();
-    }
-
-    @Override
     @PutMapping(value = "/{id}", params = "description")
     public Bookmark updateDescription(@PathVariable("id") long id, @RequestAttribute(value = "description") String description) {
         return bookmarkService.updateDescription(id,description).getBody();

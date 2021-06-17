@@ -56,12 +56,6 @@ public class EarringsController implements AllFinishedPiecesContInterface<Earrin
     }
 
     @Override
-    @PutMapping(params = "price")
-    public List<Earrings> increaseAllPrices(@RequestAttribute(value = "price") double amountToAdd) {
-        return earringsService.increasePriceOfAll(amountToAdd).getBody();
-    }
-
-    @Override
     @PutMapping(value = "/{id}", params = "description")
     public Earrings updateDescription(@PathVariable("id") long id, @RequestAttribute("description") String description) {
         return earringsService.updateDescription(id,description).getBody();

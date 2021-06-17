@@ -81,7 +81,6 @@ public class FindingService {
         finding.setQuantity(lowerQuantity);
         Finding finding1 = findingRepo.save(finding);
         return new ResponseEntity<>(finding1,OK);
-
     }
 
 
