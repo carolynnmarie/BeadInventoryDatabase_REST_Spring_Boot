@@ -77,16 +77,6 @@ public class BeadControllerTest {
     }
 
     @Test
-    public void findAllOfMaterialAndColorTest(){
-        List<Bead> list = new ArrayList<>(Arrays.asList(bead2));
-        given(mockBeadService.getAllOfMaterialAndColor(any(Material.class),any(String.class))).willReturn(new ResponseEntity<>(list,OK));
-        List<Bead> actual = mockBeadController.findAllOfMaterialAndColor(JASPER,"black");
-
-        verify(mockBeadService).getAllOfMaterialAndColor(any(Material.class),any(String.class));
-        Assert.assertEquals(list, actual);
-    }
-
-    @Test
     public void findAllOfMaterialAndSizeTest(){
         List<Bead> expected = new ArrayList<>(Arrays.asList(bead1));
         given(mockBeadService.getAllOfMaterialAndSize(AMETHYST,4)).willReturn(new ResponseEntity<>(expected,OK));

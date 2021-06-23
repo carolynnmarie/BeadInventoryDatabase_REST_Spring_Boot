@@ -12,18 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class BeadManager {
 
-
     private BeadController beadController;
     private BeadService beadService;
     private BeadRepo repo;
-    private Bead bead;
     private EnumSet<Material> materialList;
 
     private EnumSet<Shape> shapeList;
 
     @Autowired
     public BeadManager(){
-        this.bead = new Bead();
         this.beadService = new BeadService(repo);
         this.beadController = new BeadController(beadService);
         this.materialList = materialList;
@@ -37,6 +34,7 @@ public class BeadManager {
     }
 
     public void createBead(){
+        Bead bead = new Bead();
         bead.setMaterial(chooseMaterial());
         bead.setShape(chooseShape());
         Scanner scanner = new Scanner(System.in);
@@ -57,6 +55,7 @@ public class BeadManager {
         bead.setBrands(scanner.nextLine());
         System.out.println("Enter description:\n");
         bead.setDescription(scanner.nextLine());
+        beadController.createBead(bead);
     }
 
 
@@ -98,18 +97,49 @@ public class BeadManager {
         return beadShape;
     }
 
+    public String printAllBeads(){
+        List<Bead> beads = beadController.findAllBeads();
+        StringBuilder builder = new StringBuilder();
+        for(Bead each: beads){
+            builder.append(each.toString())
+                    .append("\n");
+        }
+        return builder.toString();
+    }
+
+    public String printAllBeadsOfMaterial(Material material){
+        List<Bead> beadList = beadController.findAllOfMaterial(material);
+        StringBuilder builder = new StringBuilder();
+        for(Bead each: beadList){
+            builder.append(each.toString())
+                    .append("\n");
+        }
+        return builder.toString();
+    }
+
+    public Long getQuantityOfBead(Bead bead){
+        return bead.getQuantity();
+    }
+
+    public void updateQuantity(Bead bead1, Long updatedQuantity){
+        Long id = bead1.getBeadId();
+        beadController.updateBeadQuantity(id, updatedQuantity);
+    }
+
+    public String findLowQuantities(long quantity1){
+        List<Bead> beadList = beadController.findAllWithQuantityLessThan(quantity1);
+        StringBuilder builder = new StringBuilder("Beads with quantity less than " + quantity1 + ":\n");
+        for(Bead each: beadList){
+            builder.append(each.toString())
+                    .append("\n");
+        }
+        return builder.toString();
+    }
+
+    public void deleteBeadFromDB(Bead bead){
+        beadController.deleteBead(bead);
+    }
 
 }
 
 
-/*
-    private Material material;
-    private Shape shape;
-    private String color;
-    private int sizeMM;
-    private String quality;
-    private long quantity;
-    private String description;
-    private double pricePoint;
-    private String brands;
- */

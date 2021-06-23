@@ -89,22 +89,6 @@ public class BeadContIntegrationTest {
     }
 
 
-
-    @Test
-    public void findAllOfMaterialAndColorIntegTest() throws Exception{
-        List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
-        given(mockBeadController.findAllOfMaterialAndColor(AMETHYST,"purple")).willReturn(list);
-
-        mockMvc.perform(get("/beads")
-                .param("material", String.valueOf(Material.class))
-                .param("color", "purple")
-                .requestAttr("material", AMETHYST)
-                .requestAttr("color","purple")
-                .characterEncoding("utf-8")
-                .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-
     @Test
     public void findAllOfMaterialAndSizeIntegTest() throws Exception{
         List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead5));

@@ -39,11 +39,6 @@ public class BeadService {
         return new ResponseEntity<>(beads, OK);
     }
 
-    public ResponseEntity<List<Bead>> getAllOfMaterialAndColor(Material material, String color){
-        List<Bead> beads = beadRepository.findByMaterialAndColor(material,color);
-        return new ResponseEntity<>(beads, OK);
-    }
-
     public ResponseEntity<List<Bead>> getAllOfMaterialAndSize(Material material, int size){
         List<Bead> beads = beadRepository.findByMaterialAndSizeMM(material, size);
         return new ResponseEntity<>(beads,OK);
@@ -70,6 +65,7 @@ public class BeadService {
         responseHeaders.setLocation(newAccountUri);
         return new ResponseEntity<>(bead1, responseHeaders, CREATED);
     }
+
 
     public ResponseEntity<Bead> updateBeadQuantity(long beadId, long quantity){
         Bead bead = beadRepository.findById(beadId);

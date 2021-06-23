@@ -53,19 +53,6 @@ public class BeadRepoTest {
         assertThat(list).containsExactly(bead1,bead4,bead5);
     }
 
-    @Test
-    public void findBeadsByMaterialAndColorTest() {
-        entityManager.persist(bead1);
-        entityManager.persist(bead2);
-        entityManager.persist(bead3);
-        entityManager.persist(bead4);
-        entityManager.persist(bead5);
-        entityManager.flush();
-
-        List<Bead> list = beadRepo.findByMaterialAndColor(AMETHYST, "purple");
-        assertThat(list).containsExactly(bead1,bead4);
-
-    }
 
     @Test
     public void findBeadsByMaterialAndSizeTest() {
@@ -81,19 +68,6 @@ public class BeadRepoTest {
     }
 
     @Test
-    public void findBeadsByShapeTest() {
-        entityManager.persist(bead1);
-        entityManager.persist(bead2);
-        entityManager.persist(bead3);
-        entityManager.persist(bead4);
-        entityManager.persist(bead5);
-        entityManager.flush();
-
-        List<Bead> list = beadRepo.findByShape(ROUND);
-        assertThat(list).containsExactly(bead1,bead2,bead4,bead5);
-    }
-
-    @Test
     public void findByQuantityIsLessThanTest() {
         entityManager.persist(bead1);
         entityManager.persist(bead2);
@@ -104,7 +78,6 @@ public class BeadRepoTest {
 
         List<Bead> list = beadRepo.findByQuantityIsLessThan(12);
         assertThat(list).containsExactly(bead2,bead3,bead5);
-
     }
 
     @Test

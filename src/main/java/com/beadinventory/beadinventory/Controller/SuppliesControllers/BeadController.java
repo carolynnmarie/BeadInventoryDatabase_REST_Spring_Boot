@@ -38,12 +38,6 @@ public class BeadController {
         return beadService.getAllOfMaterial(material).getBody();
     }
 
-    @GetMapping(params = {"material", "color"})
-    public List<Bead> findAllOfMaterialAndColor(@RequestAttribute(value = "material") Material material,
-                                                @RequestAttribute(value = "color") String color){
-        return beadService.getAllOfMaterialAndColor(material,color).getBody();
-    }
-
     @GetMapping(params = {"material", "size"})
     public List<Bead> findAllOfMaterialAndSize(@RequestAttribute(value ="material") Material material,
                                                @RequestAttribute(value = "size") int size){

@@ -79,18 +79,6 @@ public class BeadServiceTest {
         Assert.assertEquals(expected,actual);
     }
 
-    @Test
-    public void getAllOfMaterialAndColorTest(){
-        List<Bead> responseList = new ArrayList<>(Arrays.asList(bead1,bead4,bead5));
-
-        given(mockBeadRepo.findByMaterialAndColor(AMETHYST,"purple")).willReturn(responseList);
-        ResponseEntity<List<Bead>> expected = new ResponseEntity<>(responseList,OK);
-        ResponseEntity<List<Bead>> actual = mockBeadService.getAllOfMaterialAndColor(AMETHYST,"purple");
-
-        verify(mockBeadRepo).findByMaterialAndColor(any(Material.class),any(String.class));
-        Assert.assertEquals(expected,actual);
-    }
-
 
     @Test
     public void getAllOfMaterialAndSizeTest(){
