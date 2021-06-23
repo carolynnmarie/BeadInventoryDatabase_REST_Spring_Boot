@@ -19,4 +19,5 @@ public class BeadSerializer extends JsonSerializer<Bead> {
         mapper.writeValue(writer,bead);
         jsonGenerator.writeFieldName(writer.toString());
     }
+
 }

@@ -71,11 +71,17 @@ public enum Material implements Serializable {
     }
 
     @Override
-    public String toString() {
+    public String toString(){
+        return material;
+    }
+
+    public String getMaterial(){
         return material;
     }
 
     public MaterialCategory getCategory() {
         return category;
     }
+
+
 }
