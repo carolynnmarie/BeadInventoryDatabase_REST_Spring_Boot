@@ -1,10 +1,10 @@
 package com.beadinventory.beadinventory.RepositoryTest.FinishedPiecesRepoTest;
 
-import com.beadinventory.beadinventory.Domain.FinishedPieces.*;
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
-import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.NecklaceRepo;
+import com.beadinventory.beadinventory.REST.Domain.FinishedPieces.*;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.StringWire;
+import com.beadinventory.beadinventory.REST.Repository.FinishedPiecesRepos.NecklaceRepo;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.BEADING_WIRE;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.FindingCategory.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Shape.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.StringWireCategory.BEADING_WIRE;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,15 +1,15 @@
 package com.beadinventory.beadinventory.ControllerTest.FinishedPiecesControllerTest;
 
-import com.beadinventory.beadinventory.Domain.FinishedPieces.Necklace;
-import com.beadinventory.beadinventory.Domain.Supplies.*;
+import com.beadinventory.beadinventory.REST.Domain.FinishedPieces.Necklace;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.*;
 import org.junit.*;
 
 import java.util.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.FindingCategory.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Shape.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.StringWireCategory.*;
 
 public class NecklaceControllerTest {
     private Bead bead1 = new Bead(AMETHYST, ROUND, "purple", 4, "good", 20, "translucent purple with some white", 0.8,

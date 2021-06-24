@@ -1,10 +1,10 @@
 package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 
-import com.beadinventory.beadinventory.Controller.SuppliesControllers.StringWireController;
-import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
-import com.beadinventory.beadinventory.Service.SuppliesServices.StringWireService;
+import com.beadinventory.beadinventory.REST.Controller.SuppliesControllers.StringWireController;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.StringWire;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.StringWireCategory;
+import com.beadinventory.beadinventory.REST.Service.SuppliesServices.StringWireService;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.*;
@@ -13,10 +13,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.BEADING_WIRE;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.CHAIN;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.CORD;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.StringWireCategory.BEADING_WIRE;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.StringWireCategory.CHAIN;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.StringWireCategory.CORD;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;

@@ -1,7 +1,7 @@
 package com.beadinventory.beadinventory.RepositoryTest.SuppliesRepoTest;
 
-import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
-import com.beadinventory.beadinventory.Repository.SuppliesRepos.StringWireRepo;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.StringWire;
+import com.beadinventory.beadinventory.REST.Repository.SuppliesRepos.StringWireRepo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,8 @@ import javax.persistence.EntityManager;
 
 import java.util.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.StringWireCategory.*;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
 import static org.assertj.core.api.Assertions.assertThat;
 

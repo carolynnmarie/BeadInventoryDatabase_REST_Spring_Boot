@@ -1,8 +1,8 @@
 package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 
 
-import com.beadinventory.beadinventory.Controller.SuppliesControllers.StringWireController;
-import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
+import com.beadinventory.beadinventory.REST.Controller.SuppliesControllers.StringWireController;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.StringWire;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -15,8 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.StringWireCategory.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.http.HttpStatus.OK;

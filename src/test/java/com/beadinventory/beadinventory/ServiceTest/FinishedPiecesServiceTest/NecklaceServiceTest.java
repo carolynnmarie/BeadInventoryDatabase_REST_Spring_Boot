@@ -1,12 +1,12 @@
 package com.beadinventory.beadinventory.ServiceTest.FinishedPiecesServiceTest;
 
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.FinishedPieces.Necklace;
-import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
-import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.NecklaceRepo;
-import com.beadinventory.beadinventory.Repository.SuppliesRepos.BeadRepo;
-import com.beadinventory.beadinventory.Service.FinishedPiecesServices.NecklaceService;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.REST.Domain.FinishedPieces.Necklace;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.StringWire;
+import com.beadinventory.beadinventory.REST.Repository.FinishedPiecesRepos.NecklaceRepo;
+import com.beadinventory.beadinventory.REST.Repository.SuppliesRepos.BeadRepo;
+import com.beadinventory.beadinventory.REST.Service.FinishedPiecesServices.NecklaceService;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.*;
@@ -14,10 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.FindingCategory.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Shape.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.StringWireCategory.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;

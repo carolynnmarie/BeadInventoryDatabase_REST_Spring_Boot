@@ -1,9 +1,9 @@
 package com.beadinventory.beadinventory.ServiceTest.SuppliesServiceTest;
 
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
-import com.beadinventory.beadinventory.Repository.SuppliesRepos.FindingRepo;
-import com.beadinventory.beadinventory.Service.SuppliesServices.FindingService;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.*;
+import com.beadinventory.beadinventory.REST.Repository.SuppliesRepos.FindingRepo;
+import com.beadinventory.beadinventory.REST.Service.SuppliesServices.FindingService;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.*;
@@ -16,8 +16,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.FindingCategory.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpStatus.*;

@@ -1,11 +1,11 @@
 package com.beadinventory.beadinventory.DomainTest.SuppliesDomainTest;
 
-import com.beadinventory.beadinventory.Domain.Supplies.StringWire;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.StringWire;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.*;
 import org.junit.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.StringWireCategory.*;
 
 public class StringWireTest {
 

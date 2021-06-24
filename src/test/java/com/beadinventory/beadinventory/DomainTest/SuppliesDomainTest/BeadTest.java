@@ -1,11 +1,11 @@
 package com.beadinventory.beadinventory.DomainTest.SuppliesDomainTest;
 
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.*;
 import org.junit.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Shape.*;
 
 public class BeadTest {
 

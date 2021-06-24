@@ -1,13 +1,13 @@
 package com.beadinventory.beadinventory;
 
-import com.beadinventory.beadinventory.Domain.StoreList;
-import com.beadinventory.beadinventory.Domain.Supplies.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory.*;
-import com.beadinventory.beadinventory.Repository.StoreListRepo;
-import com.beadinventory.beadinventory.Repository.SuppliesRepos.*;
+import com.beadinventory.beadinventory.REST.Domain.StoreList;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.FindingCategory.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Shape.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.StringWireCategory.*;
+import com.beadinventory.beadinventory.REST.Repository.StoreListRepo;
+import com.beadinventory.beadinventory.REST.Repository.SuppliesRepos.*;
 
 import java.util.*;
 import org.springframework.boot.CommandLineRunner;

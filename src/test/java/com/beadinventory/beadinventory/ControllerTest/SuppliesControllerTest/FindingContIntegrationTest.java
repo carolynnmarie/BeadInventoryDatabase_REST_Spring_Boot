@@ -1,10 +1,10 @@
 package com.beadinventory.beadinventory.ControllerTest.SuppliesControllerTest;
 
 
-import com.beadinventory.beadinventory.Controller.SuppliesControllers.FindingController;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material;
+import com.beadinventory.beadinventory.REST.Controller.SuppliesControllers.FindingController;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.FindingCategory;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -17,8 +17,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.FindingCategory.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;

@@ -1,13 +1,13 @@
 package com.beadinventory.beadinventory.ServiceTest.FinishedPiecesServiceTest;
 
 
-import com.beadinventory.beadinventory.Domain.Supplies.Bead;
-import com.beadinventory.beadinventory.Domain.FinishedPieces.Bookmark;
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.StringWireCategory;
-import com.beadinventory.beadinventory.Repository.FinishedPiecesRepos.BookmarkRepo;
-import com.beadinventory.beadinventory.Repository.SuppliesRepos.*;
-import com.beadinventory.beadinventory.Service.FinishedPiecesServices.BookmarkService;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.Bead;
+import com.beadinventory.beadinventory.REST.Domain.FinishedPieces.Bookmark;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.StringWireCategory;
+import com.beadinventory.beadinventory.REST.Repository.FinishedPiecesRepos.BookmarkRepo;
+import com.beadinventory.beadinventory.REST.Repository.SuppliesRepos.*;
+import com.beadinventory.beadinventory.REST.Service.FinishedPiecesServices.BookmarkService;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.*;
@@ -20,9 +20,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.HEAD_PIN;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Shape.ROUND;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.FindingCategory.HEAD_PIN;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Shape.ROUND;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpStatus.*;

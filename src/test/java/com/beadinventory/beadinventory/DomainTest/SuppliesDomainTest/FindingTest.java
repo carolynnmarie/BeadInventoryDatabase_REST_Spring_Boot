@@ -1,11 +1,11 @@
 package com.beadinventory.beadinventory.DomainTest.SuppliesDomainTest;
 
-import com.beadinventory.beadinventory.Domain.Supplies.Finding;
-import com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.*;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.Finding;
+import com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.*;
 import org.junit.*;
 
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.FindingCategory.*;
-import static com.beadinventory.beadinventory.Domain.Supplies.SupplyEnums.Material.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.FindingCategory.*;
+import static com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material.*;
 
 public class FindingTest {
     private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,5.08,0.02,20, "Beadalon","thin");
