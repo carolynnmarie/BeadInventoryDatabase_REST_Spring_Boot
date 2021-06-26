@@ -1,7 +1,6 @@
 package com.beadinventory.beadinventory.REST.Service.FinishedPiecesServices;
 
 import com.beadinventory.beadinventory.REST.Domain.FinishedPieces.Necklace;
-import com.beadinventory.beadinventory.REST.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.REST.Repository.FinishedPiecesRepos.NecklaceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -49,8 +48,8 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
 
     @Override
     public ResponseEntity<Necklace> createItem(Necklace necklace){
-        necklace.setBeads(updateBeadRepoCount(necklace));
-        necklace.setFindings(updateFindingRepoCount(necklace));
+        updateBeadRepoNewItem(necklace);
+        updateFindingRepoNewItem(necklace);
         Necklace necklace1 = necklaceRepo.save(necklace);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -65,8 +64,9 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
 
     @Override
     public ResponseEntity<Necklace> updateItem(long id, Necklace item) {
-        item.setBeads(updateBeadRepoCount(item));
-        item.setFindings(updateFindingRepoCount(item));
+        Necklace oldNecklace = necklaceRepo.findById(item.getAllId());
+        updateBeadRepoExistItem(oldNecklace, item);
+        updateFindingRepoExistItem(oldNecklace, item);
         item.setAllId(id);
         Necklace necklace = necklaceRepo.save(item);
         return new ResponseEntity<>(necklace, OK);
@@ -81,30 +81,24 @@ public class NecklaceService extends AllFinishedPiecesService<Necklace> implemen
     }
 
     @Override
-    public ResponseEntity<List<Necklace>> increasePriceOfAll(double amountToAdd) {
-        Iterable<Necklace> necklaces = necklaceRepo.findAll();
-        necklaces.forEach(necklace -> necklace.setPrice(necklace.getPrice() + amountToAdd));
-        necklaceRepo.saveAll(necklaces);
-        List<Necklace> list = new ArrayList<>();
-        necklaces.forEach(necklace -> list.add(necklace));
-        return new ResponseEntity<>(list,OK);
-    }
-
-    public ResponseEntity<Necklace> updateBeads(long id, LinkedHashMap<Bead,Integer> beads){
-        Necklace necklace = necklaceRepo.findById(id);
-        necklace.setBeads(beads);
-        necklace.setBeads(updateBeadRepoCount(necklace));
-        necklaceRepo.save(necklace);
-        return new ResponseEntity<>(necklace, OK);
-    }
-
-    @Override
     public ResponseEntity<Necklace> updateDescription(long id, String description) {
         Necklace necklace = necklaceRepo.findById(id);
         necklace.setDescription(description);
         necklaceRepo.save(necklace);
         return new ResponseEntity<>(necklace,OK);
     }
+
+
+
+    @Override
+    public ResponseEntity<Necklace> archiveItem(Necklace necklace){
+        necklace.setIsArchived(true);
+        necklaceRepo.save(necklace);
+        return new ResponseEntity<>(necklace, OK);
+    }
+
+
+
 
     @Override
     public ResponseEntity deleteItem(Necklace item) {

@@ -46,8 +46,8 @@ public class EarringsService extends AllFinishedPiecesService<Earrings> implemen
 
     @Override
     public ResponseEntity<Earrings> createItem(Earrings item) {
-        item.setBeads(updateBeadRepoCount(item));
-        item.setFindings(updateFindingRepoCount(item));
+        updateBeadRepoNewItem(item);
+        updateFindingRepoNewItem(item);
         Earrings earrings = earringsRepo.save(item);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -61,8 +61,9 @@ public class EarringsService extends AllFinishedPiecesService<Earrings> implemen
 
     @Override
     public ResponseEntity<Earrings> updateItem(long id, Earrings item) {
-        item.setBeads(updateBeadRepoCount(item));
-        item.setFindings(updateFindingRepoCount(item));
+        Earrings oldEarrings = earringsRepo.findById(item.getAllId());
+        updateBeadRepoExistItem(oldEarrings, item);
+        updateFindingRepoExistItem(oldEarrings, item);
         item.setAllId(id);
         Earrings earrings = earringsRepo.save(item);
         return new ResponseEntity<>(earrings,OK);
@@ -80,7 +81,6 @@ public class EarringsService extends AllFinishedPiecesService<Earrings> implemen
         }
     }
 
-    @Override
     public ResponseEntity<List<Earrings>> increasePriceOfAll(double amountToAdd) {
         Iterable<Earrings> iEarrings = earringsRepo.findAll();
         iEarrings.forEach(earrings -> earrings.setPrice(earrings.getPrice() + amountToAdd));
@@ -100,6 +100,13 @@ public class EarringsService extends AllFinishedPiecesService<Earrings> implemen
         } catch(NoSuchElementException e){
             return new ResponseEntity<>(new Earrings(),BAD_REQUEST);
         }
+    }
+
+    @Override
+    public ResponseEntity<Earrings> archiveItem(Earrings earrings){
+        earrings.setIsArchived(true);
+        earrings = earringsRepo.save(earrings);
+        return new ResponseEntity<>(earrings, OK);
     }
 
     @Override

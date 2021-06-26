@@ -42,8 +42,8 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
 
     @Override
     public ResponseEntity<Bookmark> createItem(Bookmark item) {
-        item.setBeads(updateBeadRepoCount(item));
-        item.setFindings(updateFindingRepoCount(item));
+        updateBeadRepoNewItem(item);
+        updateFindingRepoNewItem(item);
         Bookmark bookmark = bookmarkRepo.save(item);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -57,14 +57,15 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
 
     @Override
     public ResponseEntity<Bookmark> updateItem(long id, Bookmark item) {
-        item.setBeads(updateBeadRepoCount(item));
-        item.setFindings(updateFindingRepoCount(item));
+        Bookmark oldBookmark = bookmarkRepo.findById(item.getAllId());
+        updateBeadRepoExistItem(oldBookmark, item);
+        updateFindingRepoExistItem(oldBookmark,item);
         item.setAllId(id);
         Bookmark bookmark = bookmarkRepo.save(item);
         return new ResponseEntity<>(bookmark,OK);
     }
 
-    @Override
+
     public ResponseEntity<List<Bookmark>> increasePriceOfAll(double amountToAdd) {
         Iterable<Bookmark> bookmarks = bookmarkRepo.findAll();
         bookmarks.forEach(bookmark -> bookmark.setPrice(bookmark.getPrice()+ amountToAdd));
@@ -78,6 +79,12 @@ public class BookmarkService extends AllFinishedPiecesService<Bookmark> implemen
     public ResponseEntity<Bookmark> updateDescription(long id, String description) {
         Bookmark bookmark = bookmarkRepo.findById(id);
         bookmark.setDescription(description);
+        bookmarkRepo.save(bookmark);
+        return new ResponseEntity<>(bookmark ,OK);
+    }
+    @Override
+    public ResponseEntity<Bookmark> archiveItem(Bookmark bookmark){
+        bookmark.setIsArchived(true);
         bookmarkRepo.save(bookmark);
         return new ResponseEntity<>(bookmark ,OK);
     }

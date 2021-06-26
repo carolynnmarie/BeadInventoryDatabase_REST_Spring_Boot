@@ -45,11 +45,10 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> implemen
         }
     }
 
-
     @Override
     public ResponseEntity<Bracelet> createItem(Bracelet bracelet){
-        bracelet.setBeads(updateBeadRepoCount(bracelet));
-        bracelet.setFindings(updateFindingRepoCount(bracelet));
+        updateBeadRepoNewItem(bracelet);
+        updateFindingRepoNewItem(bracelet);
         Bracelet bracelet1 = braceletRepo.save(bracelet);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -63,8 +62,9 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> implemen
 
     @Override
     public ResponseEntity<Bracelet> updateItem(long id, Bracelet item) {
-        item.setBeads(updateBeadRepoCount(item));
-        item.setFindings(updateFindingRepoCount(item));
+        Bracelet oldBracelet = braceletRepo.findById(item.getAllId());
+        updateBeadRepoExistItem(oldBracelet,item);
+        updateFindingRepoExistItem(oldBracelet,item);
         item.setAllId(id);
         Bracelet bracelet = braceletRepo.save(item);
         return new ResponseEntity<>(bracelet, OK);
@@ -79,22 +79,17 @@ public class BraceletService extends AllFinishedPiecesService<Bracelet> implemen
     }
 
 
-    public ResponseEntity<List<Bracelet>> increasePriceOfAll(double amountToAdd){
-        List<Bracelet> list = braceletRepo.findAll();
-        for(Bracelet bracelet: list){
-            bracelet.setPrice(bracelet.getPrice()+amountToAdd);
-        }
-        Iterable<Bracelet> iterable = list;
-        iterable = braceletRepo.saveAll(iterable);
-        List<Bracelet> braceletList = new ArrayList<>();
-        iterable.forEach(e->braceletList.add(e));
-        return new ResponseEntity<>(list,OK);
-    }
-
     @Override
     public ResponseEntity<Bracelet> updateDescription(long id, String description) {
         Bracelet bracelet = braceletRepo.findById(id);
         bracelet.setDescription(description);
+        bracelet = braceletRepo.save(bracelet);
+        return new ResponseEntity<>(bracelet,OK);
+    }
+
+    @Override
+    public ResponseEntity<Bracelet> archiveItem(Bracelet bracelet){
+        bracelet.setIsArchived(true);
         bracelet = braceletRepo.save(bracelet);
         return new ResponseEntity<>(bracelet,OK);
     }

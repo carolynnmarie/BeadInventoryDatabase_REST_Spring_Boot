@@ -50,8 +50,8 @@ public class NapkinRingService extends AllFinishedPiecesService<NapkinRingSet> i
 
     @Override
     public ResponseEntity<NapkinRingSet> createItem(NapkinRingSet item) {
-        item.setBeads(updateBeadRepoCount(item));
-        item.setFindings(updateFindingRepoCount(item));
+        updateBeadRepoNewItem(item);
+        updateFindingRepoNewItem(item);
         NapkinRingSet napkinRingSet = napkinRingSetRepo.save(item);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -65,14 +65,15 @@ public class NapkinRingService extends AllFinishedPiecesService<NapkinRingSet> i
 
     @Override
     public ResponseEntity<NapkinRingSet> updateItem(long id, NapkinRingSet item) {
-        item.setBeads(updateBeadRepoCount(item));
-        item.setFindings(updateFindingRepoCount(item));
+        NapkinRingSet nSet = napkinRingSetRepo.findById(item.getAllId());
+        updateBeadRepoExistItem(nSet, item);
+        updateFindingRepoExistItem(nSet, item);
         item.setAllId(id);
         NapkinRingSet set = napkinRingSetRepo.save(item);
         return new ResponseEntity<>(set, OK);
     }
 
-    @Override
+
     public ResponseEntity<List<NapkinRingSet>> increasePriceOfAll(double amountToAdd) {
         Iterable<NapkinRingSet> iSet = napkinRingSetRepo.findAll();
         iSet.forEach(e-> e.setPrice(e.getPrice() + amountToAdd));
@@ -104,6 +105,14 @@ public class NapkinRingService extends AllFinishedPiecesService<NapkinRingSet> i
             return new ResponseEntity<>(new NapkinRingSet(),BAD_REQUEST);
         }
     }
+
+    @Override
+    public ResponseEntity<NapkinRingSet> archiveItem(NapkinRingSet napkinRings){
+        napkinRings.setIsArchived(true);
+        napkinRings = napkinRingSetRepo.save(napkinRings);
+        return new ResponseEntity<>(napkinRings, OK);
+    }
+
 
     @Override
     public ResponseEntity deleteItem(NapkinRingSet item) {

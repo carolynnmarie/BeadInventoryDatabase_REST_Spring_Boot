@@ -37,8 +37,8 @@ public class WineCharmService extends AllFinishedPiecesService implements AllFin
 
     @Override
     public ResponseEntity<WineCharmSet> createItem(WineCharmSet item) {
-        item.setBeads(updateBeadRepoCount(item));
-        item.setFindings(updateFindingRepoCount(item));
+        updateBeadRepoNewItem(item);
+        updateFindingRepoNewItem(item);
         WineCharmSet set = wineCharmSetRepo.save(item);
         URI newAccountUri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -51,15 +51,15 @@ public class WineCharmService extends AllFinishedPiecesService implements AllFin
     }
 
     @Override
-    public ResponseEntity<WineCharmSet> updateItem(long id, WineCharmSet item) {
-        item.setBeads(updateBeadRepoCount(item));
-        item.setFindings(updateFindingRepoCount(item));
-        item.setAllId(id);
-        WineCharmSet set = wineCharmSetRepo.save(item);
-        return new ResponseEntity<>(set,OK);
+    public ResponseEntity<WineCharmSet> updateItem(long id, WineCharmSet charmSet) {
+        WineCharmSet oldSet = wineCharmSetRepo.findById(charmSet.getAllId());
+        updateBeadRepoExistItem(oldSet, charmSet);
+        updateFindingRepoExistItem(oldSet, charmSet);
+        charmSet.setAllId(id);
+        charmSet = wineCharmSetRepo.save(charmSet);
+        return new ResponseEntity<>(charmSet,OK);
     }
 
-    @Override
     public ResponseEntity<List<WineCharmSet>> increasePriceOfAll(double amountToAdd) {
         Iterable<WineCharmSet> iSet = wineCharmSetRepo.findAll();
         iSet.forEach(e-> e.setPrice(e.getPrice() + amountToAdd));
@@ -73,15 +73,23 @@ public class WineCharmService extends AllFinishedPiecesService implements AllFin
     public ResponseEntity<WineCharmSet> updateDescription(long id, String description) {
         WineCharmSet set = wineCharmSetRepo.findById(id);
         set.setDescription(description);
-        set = wineCharmSetRepo.save(set);
+        wineCharmSetRepo.save(set);
         return new ResponseEntity<>(set,OK);
     }
 
     public ResponseEntity<WineCharmSet> updateQuantityOfItemsInSet(long id, int quantity){
         WineCharmSet set = wineCharmSetRepo.findById(id);
         set.setQuantity(quantity);
-        set = wineCharmSetRepo.save(set);
+        //updateBeadRepoExistingItem(set);
+        wineCharmSetRepo.save(set);
         return new ResponseEntity<>(set,OK);
+    }
+
+    @Override
+    public ResponseEntity<WineCharmSet> archiveItem(WineCharmSet set){
+        set.setIsArchived(true);
+        wineCharmSetRepo.save(set);
+        return new ResponseEntity<>(set, OK);
     }
 
     @Override
@@ -89,4 +97,5 @@ public class WineCharmService extends AllFinishedPiecesService implements AllFin
         wineCharmSetRepo.delete(item);
         return new ResponseEntity(OK);
     }
+
 }

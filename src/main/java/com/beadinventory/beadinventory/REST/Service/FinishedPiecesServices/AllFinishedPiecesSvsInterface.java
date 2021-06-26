@@ -10,7 +10,7 @@ public interface AllFinishedPiecesSvsInterface<T extends AllFinishedPieces> {
     ResponseEntity<T> getItemById(long id);
     ResponseEntity<T> createItem(T item);
     ResponseEntity<T> updateItem(long id, T item);
-    ResponseEntity<List<T>> increasePriceOfAll(double amountToAdd);
     ResponseEntity<T> updateDescription(long id, String description);
+    ResponseEntity<T> archiveItem(T item);
     ResponseEntity deleteItem(T item);
 }
