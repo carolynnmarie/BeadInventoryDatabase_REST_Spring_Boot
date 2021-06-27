@@ -110,18 +110,7 @@ public class BookmarkContIntegratonTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    public void increaseAllPricesIntegTest() throws Exception{
-        List<Bookmark> expected = new ArrayList<>(Arrays.asList(bookmark2,bookmark));
-        given(mockController.increaseAllPrices(12.0)).willReturn(expected);
 
-
-        mockMvc.perform(put("/bookmarks/price")
-                .requestAttr("price",12.0)
-                .characterEncoding("utf-8")
-                .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
 
     @Test
     public void updateDescriptionIntegTest() throws Exception{

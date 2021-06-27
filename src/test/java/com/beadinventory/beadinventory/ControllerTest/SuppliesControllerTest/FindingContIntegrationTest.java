@@ -56,17 +56,6 @@ public class FindingContIntegrationTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    public void findAllOfCategoryTypeIntegTest() throws Exception{
-        List<Finding> list = new ArrayList<>(Arrays.asList(eyePin,headPin));
-        given(mockFindingController.findAllOfCategoryType("pin")).willReturn(list);
-
-        mockMvc.perform(get("/findings")
-                .param("type","pin")
-                .characterEncoding("utf-8")
-                .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
 
     @Test
     public void findAllOfCategoryIntegTest() throws Exception{

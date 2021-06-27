@@ -1,4 +1,6 @@
 package com.beadinventory.beadinventory.ProgramManagers.Windows;
 
-public class FindingsWindow {
+import javax.swing.*;
+
+public class NapkinRingPane extends JPanel {
 }

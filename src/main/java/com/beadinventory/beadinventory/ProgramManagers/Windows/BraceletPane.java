@@ -1,4 +1,6 @@
 package com.beadinventory.beadinventory.ProgramManagers.Windows;
 
-public class StringWireWindow {
+import javax.swing.*;
+
+public class BraceletPane extends JPanel {
 }

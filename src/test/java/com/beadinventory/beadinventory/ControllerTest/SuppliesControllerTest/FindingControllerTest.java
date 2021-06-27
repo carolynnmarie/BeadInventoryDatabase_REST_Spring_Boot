@@ -56,16 +56,6 @@ public class FindingControllerTest {
         Assert.assertEquals(list,actual);
     }
 
-    @Test
-    public void findAllOfCategoryTypeTest(){
-        List<Finding> list = new ArrayList<>(Arrays.asList(headPin,eyePin));
-        ResponseEntity<List<Finding>> expected = new ResponseEntity<>(list,OK);
-        given(mockFindingService.getAllOfCategoryType("pin")).willReturn(expected);
-        List<Finding> actual = mockFindingController.findAllOfCategoryType("pin");
-
-        verify(mockFindingService).getAllOfCategoryType(any(String.class));
-        Assert.assertEquals(list,actual);
-    }
 
     @Test
     public void findAllOfCategoryTest(){

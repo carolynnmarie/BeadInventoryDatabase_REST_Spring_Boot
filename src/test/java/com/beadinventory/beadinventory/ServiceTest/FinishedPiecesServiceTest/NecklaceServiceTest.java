@@ -88,28 +88,28 @@ public class NecklaceServiceTest {
         Assert.assertEquals(expected,actual);
     }
 
-    @Test
-    public void updateBeadsTest(){
-        necklace.setAllId(1);
-        LinkedHashMap<Bead, Integer> beadList = new LinkedHashMap<>();
-        beadList.put(bead1,5);
-        bead1.setBeadId(1);
-        beadList.put(bead2,4);
-        bead2.setBeadId(2);
-        beadList.put(seeds, 150);
-        seeds.setBeadId(3);
-
-        given(mockRepo.findById(necklace.getAllId())).willReturn(necklace);
-        given(mockRepo.save(any(Necklace.class))).willReturn(necklace);
-
-        given(beadRepo.findById(bead1.getBeadId())).willReturn(bead1);
-        given(beadRepo.save(any(Bead.class))).willReturn(bead1);
-
-        ResponseEntity<Necklace> actualResponse = mockService.updateBeadRepoExistItem(necklace.getAllId(),beadList);
-        Map<Bead,Integer> actual = actualResponse.getBody().getBeads();
-
-        verify(mockRepo).findById(anyLong());
-        verify(mockRepo).save(any(Necklace.class));
-        Assert.assertEquals(beadList,actual);
-    }
+//    @Test
+//    public void updateBeadsTest(){
+//        necklace.setAllId(1);
+//        LinkedHashMap<Bead, Integer> beadList = new LinkedHashMap<>();
+//        beadList.put(bead1,5);
+//        bead1.setBeadId(1);
+//        beadList.put(bead2,4);
+//        bead2.setBeadId(2);
+//        beadList.put(seeds, 150);
+//        seeds.setBeadId(3);
+//
+//        given(mockRepo.findById(necklace.getAllId())).willReturn(necklace);
+//        given(mockRepo.save(any(Necklace.class))).willReturn(necklace);
+//
+//        given(beadRepo.findById(bead1.getBeadId())).willReturn(bead1);
+//        given(beadRepo.save(any(Bead.class))).willReturn(bead1);
+//
+//        ResponseEntity<Necklace> actualResponse = mockService.updateBeadRepoExistItem(necklace.getAllId(),beadList);
+//        Map<Bead,Integer> actual = actualResponse.getBody().getBeads();
+//
+//        verify(mockRepo).findById(anyLong());
+//        verify(mockRepo).save(any(Necklace.class));
+//        Assert.assertEquals(beadList,actual);
+//    }
 }

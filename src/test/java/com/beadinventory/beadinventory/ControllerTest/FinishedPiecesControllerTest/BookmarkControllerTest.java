@@ -93,16 +93,6 @@ public class BookmarkControllerTest {
         Assert.assertEquals(bookmark2, actual);
     }
 
-    @Test
-    public void increaseAllPricesTest(){
-        List<Bookmark> list = new ArrayList<>(Arrays.asList(bookmark,bookmark2));
-        given(mockService.increasePriceOfAll(2.0)).willReturn(new ResponseEntity<>(list,OK));
-
-        List<Bookmark> actualResponse = mockController.increaseAllPrices(2);
-
-        verify(mockService).increasePriceOfAll(anyDouble());
-        Assert.assertEquals(list,actualResponse);
-    }
 
     @Test
     public void updateDescriptionTest(){
@@ -118,16 +108,6 @@ public class BookmarkControllerTest {
         given(mockService.deleteItem(bookmark)).willReturn(expected);
         ResponseEntity actual = mockController.deleteItem(bookmark);
         verify(mockService).deleteItem(any(Bookmark.class));
-        Assert.assertEquals(expected,actual);
-    }
-
-    @Test
-    public void getTotalItemCountTest(){
-        List<Bookmark> list = new ArrayList<>(Arrays.asList(bookmark,bookmark2));
-        given(mockService.getAllItems()).willReturn(new ResponseEntity<>(list,OK));
-        int expected = 2;
-        int actual = mockController.getTotalItemCount();
-        verify(mockService).getAllItems();
         Assert.assertEquals(expected,actual);
     }
 

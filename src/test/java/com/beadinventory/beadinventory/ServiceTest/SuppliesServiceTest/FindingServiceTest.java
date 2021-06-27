@@ -56,19 +56,6 @@ public class FindingServiceTest {
         Assert.assertEquals(expected,actual);
     }
 
-    @Test
-    public void getAllOfCategoryTypeTest(){
-        List<Finding> list = new ArrayList<>(Arrays.asList(eyePin,lobsterClasp,headPin,lobsterClasp2,splitRing));
-        given(mockFindingRepo.findAll()).willReturn(list);
-
-        List<Finding> expectedList = new ArrayList<>(Arrays.asList(eyePin,headPin));
-        ResponseEntity<List<Finding>> expected = new ResponseEntity<>(expectedList,OK);
-        ResponseEntity<List<Finding>> actual = mockFindingService.getAllOfCategoryType("pin");
-
-        verify(mockFindingRepo).findAll();
-        Assert.assertEquals(expected,actual);
-
-    }
 
     @Test
     public void getAllOfCategoryTest(){
