@@ -42,6 +42,9 @@ public abstract class AllFinishedPieces implements Serializable {
     @Column(name = "DESCRIPTION")
     protected String description;
 
+    @Column(name = "Archived")
+    protected boolean isArchived;
+
     public AllFinishedPieces() {
     }
 
@@ -50,6 +53,7 @@ public abstract class AllFinishedPieces implements Serializable {
         this.findings = findings;
         this.price = price;
         this.description = description;
+        this.isArchived = false;
     }
 
     public Map<Bead, Integer> getBeads() {
@@ -92,35 +96,15 @@ public abstract class AllFinishedPieces implements Serializable {
         this.description = description;
     }
 
-//    public Map<String, Integer> getBeadJsonString(){
-//        ObjectMapper mapper = new ObjectMapper();
-//        String beadString = "";
-//        Map<String, Integer> stringMap = new LinkedHashMap<>();
-//        for (Map.Entry<Bead, Integer> entry:beads.entrySet()) {
-//            try {
-//                beadString = mapper.writeValueAsString(entry.getKey());
-//            } catch(JsonProcessingException e){
-//                beadString = "bead json processing error";
-//            }
-//            stringMap.put(beadString,entry.getValue());
-//        }
-//        return stringMap;
-//    }
-//
-//    public Map<String,Integer> getFindingJsonString(){
-//        ObjectMapper mapper = new ObjectMapper();
-//        String findingString = "";
-//        Map<String, Integer> stringMap = new LinkedHashMap<>();
-//        for (Map.Entry<Finding, Integer> entry : findings.entrySet()) {
-//            try {
-//                findingString = mapper.writeValueAsString(entry.getKey());
-//            } catch(JsonProcessingException e){
-//                findingString = "finding json processing error";
-//            }
-//            stringMap.put(findingString,entry.getValue());
-//        }
-//        return stringMap;
-//    }
+    public void setIsArchived(boolean archived){
+        this.isArchived = archived;
+    }
+
+    public boolean getIsArchived(){
+        return isArchived;
+    }
+
+
 
     public abstract void setAutoPrice();
 }

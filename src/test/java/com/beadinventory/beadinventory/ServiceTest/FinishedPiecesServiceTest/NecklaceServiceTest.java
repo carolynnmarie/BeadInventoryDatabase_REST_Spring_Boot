@@ -105,7 +105,7 @@ public class NecklaceServiceTest {
         given(beadRepo.findById(bead1.getBeadId())).willReturn(bead1);
         given(beadRepo.save(any(Bead.class))).willReturn(bead1);
 
-        ResponseEntity<Necklace> actualResponse = mockService.updateBeads(necklace.getAllId(),beadList);
+        ResponseEntity<Necklace> actualResponse = mockService.updateBeadRepoExistItem(necklace.getAllId(),beadList);
         Map<Bead,Integer> actual = actualResponse.getBody().getBeads();
 
         verify(mockRepo).findById(anyLong());

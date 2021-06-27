@@ -14,14 +14,11 @@ public class BeadManager {
 
     private BeadController beadController;
     private BeadService beadService;
-    private BeadRepo repo;
     private EnumSet<Material> materialList;
-
     private EnumSet<Shape> shapeList;
 
     @Autowired
     public BeadManager(){
-        this.beadService = new BeadService(repo);
         this.beadController = new BeadController(beadService);
         this.materialList = materialList;
         for(Material each: Material.values()){
