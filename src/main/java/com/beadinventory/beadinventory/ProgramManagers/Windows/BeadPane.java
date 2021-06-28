@@ -36,7 +36,6 @@ public class BeadPane extends JPanel {
         JLabel beadInventory = new JLabel("Bead Inventory:\n");
         panel.add(beadInventory);
 
-        Bead bead = new Bead(Material.AMETHYST,Shape.ROUND,"Purple",8,"good",20,"pretty round purple stone",0.8,"beadalon");
         this.beadTable = new JTable();
         defaultModel = new DefaultTableModel();
         beadTable.setModel(defaultModel);
@@ -45,11 +44,8 @@ public class BeadPane extends JPanel {
         JScrollPane scrollTable = new JScrollPane(beadTable);
         scrollTable.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollTable.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        defaultModel.addRow(new Bead[]{bead});
-        makeTable();
+//        makeTable();
         panel.add(scrollTable);
-
-
 
         this.createButton = new JButton("Create New Bead");
         createButton.addActionListener(new CreateBead());
@@ -59,18 +55,28 @@ public class BeadPane extends JPanel {
         searchMaterialButton.addActionListener(new SearchByMaterial());
         panel.add(searchMaterialButton);
 
-
         add(panel);
     }
 
-    public void makeTable(){
-        List<Bead> beadList = beadController.findAllBeads();
-        for(Bead bead: beadList){
-            defaultModel.addRow(new Bead[]{bead});
-        }
-    }
+//Issue:getting null pointer exception on beadController.findAllBeads.
+//data-h2.sql not seeding db upon startup of SpringBoot program. Switch to MySQL
+//    public void makeTable(){
+//        List<Bead> beadList = beadController.findAllBeads();
+//        ArrayList<String> beadString = new ArrayList<>();
+//        for(Bead bead: beadList){
+//            defaultModel.addRow(new Bead[]{bead});
+//OR, IF THAT DOESN'T WORK AS I WANT, change bead to String [] and add that to defaultModel row
+//            long id = bead.getBeadId();
+//            String idString = String.valueOf(id);
+//            beadString.add(idString);
+//            String matString = bead.getMaterial().toString();
+//            beadString.add(matString);
+//            etc.
+//        }
+//    }
 
-//IMPLEMENT!!!
+
+//IMPLEMENT
     private class CreateBead implements ActionListener {
 
         @Override
@@ -79,7 +85,7 @@ public class BeadPane extends JPanel {
         }
     }
 
-//Implement!!!!
+//Implement
     private class SearchByMaterial implements ActionListener {
 
         @Override

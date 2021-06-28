@@ -134,6 +134,8 @@ public class BeadManager {
         return builder.toString();
     }
 
+
+
     public void deleteBeadFromDB(Bead bead){
         beadController.deleteBead(bead);
     }
