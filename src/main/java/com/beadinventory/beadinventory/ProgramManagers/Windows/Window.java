@@ -10,7 +10,8 @@ public class Window extends JFrame {
     public Window(){
         this.toolkit = Toolkit.getDefaultToolkit();
         Dimension size = toolkit.getScreenSize();
-        setSize(new Dimension(size.width/2, size.height/2));
+
+        setSize(new Dimension((int)Math.round(size.width * 0.9), (int)Math.round(size.height * 0.9) ));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
         setLocation(20,20);
@@ -19,9 +20,10 @@ public class Window extends JFrame {
 
 
     public void addPanel(JPanel panel) {
-
         getContentPane().add(panel);
     }
+
+
 
     public static void main(String[] args){
         EventQueue.invokeLater(()->{

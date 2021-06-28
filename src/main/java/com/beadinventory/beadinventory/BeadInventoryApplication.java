@@ -9,6 +9,7 @@ public class BeadInventoryApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BeadInventoryApplication.class, args);
+
     }
 
 }

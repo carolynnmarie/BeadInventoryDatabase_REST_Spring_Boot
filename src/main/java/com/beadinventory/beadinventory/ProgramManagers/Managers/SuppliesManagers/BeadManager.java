@@ -4,7 +4,6 @@ import com.beadinventory.beadinventory.REST.Controller.SuppliesControllers.BeadC
 import com.beadinventory.beadinventory.REST.Domain.Supplies.Bead;
 import com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Material;
 import com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.Shape;
-import com.beadinventory.beadinventory.REST.Repository.SuppliesRepos.BeadRepo;
 import com.beadinventory.beadinventory.REST.Service.SuppliesServices.BeadService;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class BeadManager {
 
+    @Autowired
     private BeadController beadController;
+    @Autowired
     private BeadService beadService;
     private EnumSet<Material> materialList;
     private EnumSet<Shape> shapeList;
 
-    @Autowired
+
     public BeadManager(){
         this.beadController = new BeadController(beadService);
         this.materialList = materialList;

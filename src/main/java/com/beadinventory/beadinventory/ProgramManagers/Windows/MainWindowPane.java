@@ -3,21 +3,13 @@ package com.beadinventory.beadinventory.ProgramManagers.Windows;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
 import javax.swing.*;
 
 public class MainWindowPane extends JPanel {
 
     private JPanel panel;
-
-    private JButton beadButton;
-    private JButton findingsButton;
-    private JButton sWButton;
-    private JButton bookmarkButton;
-    private JButton braceletButton;
-    private JButton earringsButton;
-    private JButton napkinRingsButton;
-    private JButton necklaceButton;
-    private JButton wineCharmButton;
+    private JButton button;
 
     public MainWindowPane(){
         setVisible(true);
@@ -31,44 +23,23 @@ public class MainWindowPane extends JPanel {
         JLabel supplies = new JLabel("Supplies");
         panel.add(supplies);
 
-        this.beadButton = new JButton("Beads");
-        beadButton.addActionListener(listener);
-        panel.add(beadButton);
-
-        this.findingsButton = new JButton("Findings");
-        findingsButton.addActionListener(listener);
-        panel.add(findingsButton);
-
-        this.sWButton = new JButton("Cording, Wire, and Chains");
-        sWButton.addActionListener(listener);
-        panel.add(sWButton);
+        ArrayList<String> supplyTypes = new ArrayList(Arrays.asList("Beads","Findings","Cording, Wire, and Chains"));
+        for(String each: supplyTypes){
+            this.button = new JButton(each);
+            button.addActionListener(listener);
+            panel.add(button);
+        }
 
         JLabel finishedItems = new JLabel("Finished Products");
         panel.add(finishedItems);
 
-        this.necklaceButton = new JButton("Necklaces");
-        necklaceButton.addActionListener(listener);
-        panel.add(necklaceButton);
-
-        this.earringsButton = new JButton("Earrings");
-        earringsButton.addActionListener(listener);
-        panel.add(earringsButton);
-
-        this.braceletButton = new JButton("Bracelets");
-        braceletButton.addActionListener(listener);
-        panel.add(braceletButton);
-
-        this.bookmarkButton = new JButton("Bookmarks");
-        bookmarkButton.addActionListener(listener);
-        panel.add(bookmarkButton);
-
-        this.napkinRingsButton = new JButton("Napkin Ring Sets");
-        napkinRingsButton.addActionListener(listener);
-        panel.add(napkinRingsButton);
-
-        this.wineCharmButton = new JButton("Wine Charm Sets");
-        wineCharmButton.addActionListener(listener);
-        panel.add(wineCharmButton);
+        ArrayList<String> finishedTypes = new ArrayList(Arrays.asList("Necklaces","Earrings","Bracelets","Bookmarks",
+                "Napkin Ring Sets","Wine Charm Sets"));
+        for(String each: finishedTypes){
+            button = new JButton(each);
+            button.addActionListener(listener);
+            panel.add(button);
+        }
 
         add(panel);
 

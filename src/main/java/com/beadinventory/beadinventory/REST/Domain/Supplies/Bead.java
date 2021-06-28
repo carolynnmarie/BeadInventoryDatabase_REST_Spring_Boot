@@ -22,25 +22,25 @@ public class Bead implements Serializable {
     @Column(name = "SHAPE")
     private Shape shape;
 
-    @Column
+    @Column(name = "COLOR")
     private String color;
 
     @Column(name = "SIZE_MM")
     private int sizeMM;
 
-    @Column
+    @Column(name = "QUALITY")
     private String quality;
 
-    @Column
+    @Column(name = "QUANTITY")
     private long quantity;
 
-    @Column
+    @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column
+    @Column(name = "PRICE_POINT")
     private double pricePoint;
 
-    @Column
+    @Column(name = "BRANDS")
     private String brands;
 
 

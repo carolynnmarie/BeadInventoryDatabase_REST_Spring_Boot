@@ -47,15 +47,7 @@ public class NecklaceController implements AllFinishedPiecesContInterface<Neckla
     @Override
     @PostMapping()
     public ResponseEntity<Necklace> createItem(@RequestBody Necklace item) {
-        necklaceService.updateBeadRepoNewItem(item);
-        necklaceService.updateFindingRepoNewItem(item);
         return necklaceService.createItem(item);
-    }
-
-
-    @PostMapping()
-    public ResponseEntity<Necklace> createExistingNecklace(@RequestBody Necklace necklace){
-        return necklaceService.createItem(necklace);
     }
 
     @Override
@@ -75,10 +67,7 @@ public class NecklaceController implements AllFinishedPiecesContInterface<Neckla
         return necklaceService.updateDescription(id,description).getBody();
     }
 
-    @PutMapping(value = "/{id}")
-    public Necklace updateNecklace(@PathVariable("id") long id, @RequestBody Necklace item){
-        return necklaceService.updateItem(id, item).getBody();
-    }
+
 
     @PutMapping()
     public Necklace archiveNecklace(@RequestBody Necklace necklace){
