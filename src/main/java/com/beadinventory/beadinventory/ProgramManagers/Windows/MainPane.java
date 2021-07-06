@@ -6,12 +6,12 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.*;
 
-public class MainWindowPane extends JPanel {
+public class MainPane extends JPanel {
 
     private JPanel panel;
     private JButton button;
 
-    public MainWindowPane(){
+    public MainPane(){
         setVisible(true);
         ActionListener listener = new chooseInventoryType();
         this.panel = new JPanel();

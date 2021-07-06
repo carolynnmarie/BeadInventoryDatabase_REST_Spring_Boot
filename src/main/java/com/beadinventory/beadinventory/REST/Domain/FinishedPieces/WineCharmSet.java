@@ -15,8 +15,9 @@ public class WineCharmSet extends AllFinishedPieces implements Serializable {
 
     public WineCharmSet(){}
 
-    public WineCharmSet(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description, int quantity) {
-        super(beads, findings, price, description);
+    public WineCharmSet(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description, int quantity,
+    boolean isArchived, String jpgName) {
+        super(beads, findings, price, description, isArchived, jpgName);
         this.quantity = quantity;
     }
 

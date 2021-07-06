@@ -26,9 +26,13 @@ public class NapkinRingSet extends AllFinishedPieces implements Serializable {
 
     public NapkinRingSet(){}
 
+    public NapkinRingSet(String jpgName){
+        super(jpgName);
+    }
+
     public NapkinRingSet(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description,
-                         StringWire stringWire, String colorScheme, int quantity) {
-        super(beads, findings, price, description);
+                         StringWire stringWire, String colorScheme, int quantity, boolean isArchived, String jpgName) {
+        super(beads, findings, price, description, isArchived, jpgName);
         this.stringWire = stringWire;
         this.colorScheme = colorScheme;
         this.quantity = quantity;

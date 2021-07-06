@@ -16,8 +16,13 @@ public class Earrings extends AllFinishedPieces implements Serializable {
 
     public Earrings(){}
 
-    public Earrings(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description, boolean sterlingSilverYorN) {
-        super(beads, findings, price, description);
+    public Earrings(String jpgName){
+        super(jpgName);
+    }
+
+    public Earrings(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description, boolean sterlingSilverYorN,
+                    boolean isArchived, String jpgName) {
+        super(beads, findings, price, description, isArchived,jpgName);
         this.sterlingSilverYorN = sterlingSilverYorN;
     }
 

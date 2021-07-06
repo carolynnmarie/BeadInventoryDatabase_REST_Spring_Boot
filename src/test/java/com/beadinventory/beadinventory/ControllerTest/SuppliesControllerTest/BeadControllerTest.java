@@ -35,6 +35,8 @@ public class BeadControllerTest {
     private Bead bead3 = new Bead(STONE, ROUND, "tan", 6, "ok", 7, "with design cut into bead", 0.05, "Beadalon");
     private Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple", 0.2,"Beadalon");
     private Bead bead5 = new Bead(AMETHYST, ROUND,"purple",4,"poor",10,"translucent purple", 0.2,"Beadalon");
+    List<Bead> beadList = new ArrayList<>(Arrays.asList(bead1, bead2, bead3, bead4, bead5));
+
 
 
     @Before
@@ -43,11 +45,18 @@ public class BeadControllerTest {
         bead1.setBeadId(1L);
         bead2.setBeadId(2L);
         bead3.setBeadId(3L);
+        bead4.setBeadId(4L);
+        bead5.setBeadId(5L);
+//        mockBeadService.createBead(bead1);
+//        mockBeadService.createBead(bead2);
+//        mockBeadService.createBead(bead3);
+//        mockBeadService.createBead(bead4);
+//        mockBeadService.createBead(bead5);
     }
 
     @Test
     public void testGetAllBeads() {
-        List<Bead> list = new ArrayList<>(Arrays.asList(bead2, bead1));
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead1, bead2, bead3, bead4, bead5));
         given(mockBeadService.getAllBeads()).willReturn(new ResponseEntity<>(list, OK));
         List<Bead> actual = mockBeadController.findAllBeads();
 
@@ -68,12 +77,14 @@ public class BeadControllerTest {
 
     @Test
     public void testFindAllOfMaterial(){
-        List<Bead> list = new ArrayList<>(Arrays.asList(bead2));
-        given(mockBeadService.getAllOfMaterial(JASPER)).willReturn(new ResponseEntity<>(list,OK));
+        List<Bead> list = new ArrayList<>(Arrays.asList(bead1, bead2, bead3, bead4, bead5));
+        given(mockBeadService.getAllBeads()).willReturn(new ResponseEntity<>(list, OK));
+        List<Bead> materialList = new ArrayList<>(Arrays.asList(bead2));
+        given(mockBeadService.getAllOfMaterial(JASPER)).willReturn(new ResponseEntity<>(materialList,OK));
         List<Bead> actual = mockBeadController.findAllOfMaterial(JASPER);
 
         verify(mockBeadService).getAllOfMaterial(any(Material.class));
-        Assert.assertEquals(list, actual);
+        Assert.assertEquals(materialList, actual);
     }
 
     @Test

@@ -38,13 +38,13 @@ public class BeadPane extends JPanel {
 
         this.beadTable = new JTable();
         defaultModel = new DefaultTableModel();
+//        populateTable();
         beadTable.setModel(defaultModel);
         beadTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         beadTable.setFillsViewportHeight(true);
         JScrollPane scrollTable = new JScrollPane(beadTable);
         scrollTable.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollTable.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-//        makeTable();
         panel.add(scrollTable);
 
         this.createButton = new JButton("Create New Bead");
@@ -60,12 +60,12 @@ public class BeadPane extends JPanel {
 
 //Issue:getting null pointer exception on beadController.findAllBeads.
 //data-h2.sql not seeding db upon startup of SpringBoot program. Switch to MySQL
-//    public void makeTable(){
+//    public void populateTable(){
 //        List<Bead> beadList = beadController.findAllBeads();
 //        ArrayList<String> beadString = new ArrayList<>();
 //        for(Bead bead: beadList){
 //            defaultModel.addRow(new Bead[]{bead});
-//OR, IF THAT DOESN'T WORK AS I WANT, change bead to String [] and add that to defaultModel row
+//OR, IF THAT DOESN'T WORK AS I WANT, try changing bead to String [] and add that to defaultModel row
 //            long id = bead.getBeadId();
 //            String idString = String.valueOf(id);
 //            beadString.add(idString);

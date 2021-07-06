@@ -5,8 +5,10 @@ import com.beadinventory.beadinventory.REST.Domain.Supplies.*;
 import com.beadinventory.beadinventory.REST.Domain.Supplies.SupplyEnums.FindingCategory;
 import com.fasterxml.jackson.databind.annotation.*;
 
+import java.awt.image.BufferedImage;
+import java.io.*;
+import javax.imageio.ImageIO;
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.*;
 
 @Entity
@@ -38,12 +40,17 @@ public class Necklace extends AllFinishedPieces implements Serializable {
     @Column(name = "LENGTH")
     private double lengthInch;
 
+
     public Necklace(){}
+
+    public Necklace(String jpgName){
+        super(jpgName);
+    }
 
     public Necklace(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, StringWire stringWire, double lengthInch, int hoursSpent,
                     double difficultyLevel, String description, boolean hasNaturalStones, boolean hasSwarovski, double price,
-                    FindingCategory clasp) {
-        super(beads, findings, price,  description);
+                    FindingCategory clasp, boolean isArchived, String jpgName) {
+        super(beads, findings, price,  description, isArchived, jpgName);
         this.stringWire = stringWire;
         this.lengthInch = lengthInch;
         this.clasp = clasp;
@@ -51,6 +58,14 @@ public class Necklace extends AllFinishedPieces implements Serializable {
         this.hasNaturalStones = hasNaturalStones;
         this.hoursSpent = hoursSpent;
         this.difficultyLevel =  difficultyLevel;
+        try{
+            BufferedImage bImage = ImageIO.read(new File(jpgName));
+            ByteArrayOutputStream byteOStream = new ByteArrayOutputStream();
+            ImageIO.write(bImage,"jpg", byteOStream);
+            this.picture = byteOStream.toByteArray();
+        } catch(Exception e){
+            System.out.println("file not read");
+        }
     }
 
     public StringWire getStringWire() {

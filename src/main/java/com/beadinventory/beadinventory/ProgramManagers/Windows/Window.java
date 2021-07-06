@@ -29,7 +29,7 @@ public class Window extends JFrame {
         EventQueue.invokeLater(()->{
             Window window = new Window();
             window.setTitle("Main Inventory Page");
-            window.addPanel(new MainWindowPane());
+            window.addPanel(new MainPane());
         });
     }
 

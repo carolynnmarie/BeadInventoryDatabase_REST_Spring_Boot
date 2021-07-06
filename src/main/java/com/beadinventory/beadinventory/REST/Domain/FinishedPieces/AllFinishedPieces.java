@@ -4,8 +4,10 @@ import com.beadinventory.beadinventory.REST.Domain.Serializers.*;
 import com.beadinventory.beadinventory.REST.Domain.Supplies.*;
 import com.fasterxml.jackson.databind.annotation.*;
 
+import java.awt.image.BufferedImage;
+import java.io.*;
+import javax.imageio.ImageIO;
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.*;
 
 
@@ -42,18 +44,41 @@ public abstract class AllFinishedPieces implements Serializable {
     @Column(name = "DESCRIPTION")
     protected String description;
 
-    @Column(name = "Archived")
+    @Column(name = "ARCHIVED")
     protected boolean isArchived;
+
+    @Column(name = "PICTURE")
+    protected byte[] picture;
 
     public AllFinishedPieces() {
     }
 
-    public AllFinishedPieces(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description) {
+    public AllFinishedPieces(String jpgName){
+        try{
+            BufferedImage bImage = ImageIO.read(new File(jpgName));
+            ByteArrayOutputStream byteOStream = new ByteArrayOutputStream();
+            ImageIO.write(bImage,"jpg", byteOStream);
+            this.picture = byteOStream.toByteArray();
+        } catch(Exception e){
+            System.out.println("file not read");
+        }
+    }
+
+    public AllFinishedPieces(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description,
+    boolean isArchived, String jpgName) {
         this.beads = beads;
         this.findings = findings;
         this.price = price;
         this.description = description;
-        this.isArchived = false;
+        this.isArchived = isArchived;
+        try{
+            BufferedImage bImage = ImageIO.read(new File(jpgName));
+            ByteArrayOutputStream byteOStream = new ByteArrayOutputStream();
+            ImageIO.write(bImage,"jpg", byteOStream);
+            this.picture = byteOStream.toByteArray();
+        } catch(Exception e){
+            System.out.println("file not read");
+        }
     }
 
     public Map<Bead, Integer> getBeads() {
@@ -104,7 +129,13 @@ public abstract class AllFinishedPieces implements Serializable {
         return isArchived;
     }
 
+    public byte[] getPicture() {
+        return picture;
+    }
 
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
 
     public abstract void setAutoPrice();
 }

@@ -35,9 +35,14 @@ public class Bookmark extends AllFinishedPieces implements Serializable {
 
     public Bookmark(){}
 
+    public Bookmark(String jpgName){
+        super(jpgName);
+    }
+
     public Bookmark(HashMap<Bead, Integer> beads, HashMap<Finding, Integer> findings, double price, String description,
-                    Material stringMaterial, StringWireCategory stringCategory, String stringColor, int lengthInch) {
-        super(beads, findings, price, description);
+                    Material stringMaterial, StringWireCategory stringCategory, String stringColor, int lengthInch,
+                    boolean isArchived, String jpgName) {
+        super(beads, findings, price, description, isArchived, jpgName);
         this.stringMaterial = stringMaterial;
         this.stringCategory = stringCategory;
         this.lengthInch = lengthInch;
