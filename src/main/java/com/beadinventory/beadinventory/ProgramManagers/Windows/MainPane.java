@@ -68,17 +68,3 @@ public class MainPane extends JPanel {
     }
 }
 
-/*
-private class chooseGame implements ActionListener{
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            setVisible(false);
-            String gameChoice = e.getActionCommand();
-            while(gameChoice.equals("blackjack")||gameChoice.equals("go fish")||gameChoice.equals("war")) {
-                Game game = GameFactory.goToGame(gameChoice, player);
-                game.start();
-            }
-        }
-    }
- */

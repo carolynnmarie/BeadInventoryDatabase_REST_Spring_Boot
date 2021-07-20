@@ -37,7 +37,7 @@ public class BraceletRepoTest {
     private HashMap<Finding, Integer> findings = new HashMap<>();
     private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm","good",.5,"Beadalon",
             "7 strand");
-    private Bracelet bracelet= new Bracelet(beads,findings,15,"",MEDICAL,beadingWire,false,true,4);
+    private Bracelet bracelet= new Bracelet(beads,findings,15,"",MEDICAL,beadingWire,false,true,4,false, "bhet");
     private Bead bead1 = new Bead(AMETHYST, ROUND,"purple",4,"good",20,"translucent purple with some white", 0.2,"Bead Gallery");
     private Bead bead2 = new Bead(JASPER,ROUND, "black", 4, "good", 10, "",0.1,"Bead Gallery");
     private Bead bead4 = new Bead(AMETHYST, ROUND,"purple",6,"good",15,"translucent purple with some white", 0.2,"Bead Gallery");

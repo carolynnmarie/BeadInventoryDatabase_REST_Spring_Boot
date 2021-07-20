@@ -46,7 +46,7 @@ public class EarringsServiceTest {
         findings.put(eyePin,4);
         findings.put(headPin,2);
         findings.put(earWire,2);
-        this.earrings = new Earrings(beads,findings,15,"amethyst dangles",true);
+        this.earrings = new Earrings(beads,findings,15,"amethyst dangles",true, false, "");
         earrings.setAllId(1L);
     }
 

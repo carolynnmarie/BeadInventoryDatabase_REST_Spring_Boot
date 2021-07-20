@@ -59,8 +59,8 @@ public class BookmarkContIntegratonTest {
         beads.put(bead2,1);
         findings.put(headPin,2);
         beads2.put(bead3,2);
-        bookmark = new Bookmark(beads,findings,10.0,"Amethyst on black cord", COTTON,CORD,"black",10);
-        bookmark2 = new Bookmark(beads2,findings,10.0,"Tan stone on black leather", LEATHER,CORD,"black",10);
+        bookmark = new Bookmark(beads,findings,10.0,"Amethyst on black cord", COTTON,CORD,"black",10, false, "");
+        bookmark2 = new Bookmark(beads2,findings,10.0,"Tan stone on black leather", LEATHER,CORD,"black",10, false, "");
         bookmark.setAllId(1);
         bookmark2.setAllId(2);
     }

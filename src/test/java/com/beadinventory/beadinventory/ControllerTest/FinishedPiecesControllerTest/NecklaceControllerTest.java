@@ -26,8 +26,8 @@ public class NecklaceControllerTest {
     private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm","good",.5,"Beadalon",
             "7 strand");
     private HashMap<Bead, Integer> beads2= new HashMap<>();
-    private Necklace necklace= new Necklace(beads,findings,beadingWire,20,3,1,"",true,false,40,LOBSTER_CLASP);
-    private Necklace necklace2= new Necklace(beads2,findings,beadingWire,21.0,4,1.25,"",true,true,45,LOBSTER_CLASP);
+    private Necklace necklace= new Necklace(beads,findings,beadingWire,20,3,1,"",true,false,40,LOBSTER_CLASP, false, "");
+    private Necklace necklace2= new Necklace(beads2,findings,beadingWire,21.0,4,1.25,"",true,true,45,LOBSTER_CLASP, false, "");
 
     @Before
     public void setUp() {

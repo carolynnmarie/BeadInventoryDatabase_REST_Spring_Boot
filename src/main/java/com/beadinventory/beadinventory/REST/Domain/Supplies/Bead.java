@@ -152,6 +152,10 @@ public class Bead implements Serializable {
                 " size: " + sizeMM;
     }
 
-
+    public String [] toArray(){
+        String [] beadAsArray = {material.toString(), color, shape.toString(), Integer.toString(sizeMM), quality,
+                Long.toString(quantity), description, Double.toString(pricePoint), brands};
+        return beadAsArray;
+    }
 
 }

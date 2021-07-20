@@ -33,7 +33,7 @@ public class EarringsTest {
         findings.put(eyePin,2);
         findings.put(headPin,1);
         findings.put(earWire,2);
-        this.earrings = new Earrings(beads,findings,15,"dangles",true);
+        this.earrings = new Earrings(beads,findings,15,"dangles",true, false, "");
     }
 
     @Test

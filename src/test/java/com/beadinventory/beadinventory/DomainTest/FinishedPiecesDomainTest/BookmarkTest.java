@@ -32,7 +32,7 @@ public class BookmarkTest {
         this.findings = new HashMap<>();
         findings.put(headPin,2);
 
-        this.bookmark = new Bookmark(beads,findings,12.0,"Amethyst on black cord", COTTON,StringWireCategory.CORD,"black",10);
+        this.bookmark = new Bookmark(beads,findings,12.0,"Amethyst on black cord", COTTON,StringWireCategory.CORD,"black",10, false, "");
     }
 
     @Test

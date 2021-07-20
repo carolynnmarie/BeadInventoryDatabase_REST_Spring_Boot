@@ -33,7 +33,7 @@ public class NapkinRingSetTest {
         beads.put(bead1,4);
         this.findings = new HashMap<>();
         findings.put(crimp,1);
-        this.napkinRingSet = new NapkinRingSet(beads,findings,20,"",beadingWire,"purple and black",4);
+        this.napkinRingSet = new NapkinRingSet(beads,findings,20,"",beadingWire,"purple and black",4, false, "");
     }
 
     @Test

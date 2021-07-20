@@ -30,7 +30,7 @@ public class WineCharmSetTest {
         beads.put(bead1,6);
         this.findings = new HashMap<>();
         findings.put(headPin,6);
-        this.wineCharms = new WineCharmSet(beads,findings,24,"",6);
+        this.wineCharms = new WineCharmSet(beads,findings,24,"",6, false, "");
     }
 
     @Test

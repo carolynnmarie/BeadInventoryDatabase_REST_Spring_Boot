@@ -36,7 +36,7 @@ public class EarringsRepoTest {
     private Finding eyePin = new Finding(EYE_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,20,"Bead Gallery","thin");
     private Finding headPin = new Finding(HEAD_PIN, BRIGHT_SILVER_PLATED,5.08,5.08,20,"Bead Gallery","thin");
 
-    private Earrings earring= new Earrings(beads,findings,15,"dangles",true);;
+    private Earrings earring= new Earrings(beads,findings,15,"dangles",true, false, "");
 
     @Before
     public void setUp(){

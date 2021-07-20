@@ -24,7 +24,7 @@ public class BraceletTest {
     private HashMap<Finding, Integer> findings = new HashMap<>();
     private StringWire beadingWire = new StringWire(BEADING_WIRE,BRIGHT_SILVER_PLATED,"silver",".5 mm","good",.5,"Beadalon",
             "7 strand");
-    private Bracelet bracelet = new Bracelet(beads,findings,15,"",MEDICAL,beadingWire,true,false,4);;
+    private Bracelet bracelet = new Bracelet(beads,findings,15,"",MEDICAL,beadingWire,true,false,4, false, "");
 
     @Before
     public void setUp(){
