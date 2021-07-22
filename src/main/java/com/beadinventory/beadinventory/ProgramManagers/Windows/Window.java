@@ -2,10 +2,12 @@ package com.beadinventory.beadinventory.ProgramManagers.Windows;
 
 import java.awt.*;
 import javax.swing.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Window extends JFrame {
 
     Toolkit toolkit;
+
 
     public Window(){
         this.toolkit = Toolkit.getDefaultToolkit();

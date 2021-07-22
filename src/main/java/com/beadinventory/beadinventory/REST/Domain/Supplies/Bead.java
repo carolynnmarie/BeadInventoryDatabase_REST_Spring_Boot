@@ -61,86 +61,35 @@ public class Bead implements Serializable {
 
     }
 
-    public Material getMaterial(){
-        return material;
-    }
+    public Material getMaterial(){ return material; }
+    public void setBeadId(long beadId){ this.id = beadId; }
 
-    public void setBeadId(long beadId){
-        this.id = beadId;
-    }
+    public long getBeadId(){ return id; }
+    public void setMaterial(Material material) { this.material = material; }
 
-    public long getBeadId(){
-        return id;
-    }
+    public String getColor() { return color; }
+    public void setColor(String color) { this.color = color; }
 
-    public void setMaterial(Material material) {
-        this.material = material;
-    }
+    public int getSizeMM() { return sizeMM; }
+    public void setSizeMM(int sizeMM) { this.sizeMM = sizeMM; }
 
-    public String getColor() {
-        return color;
-    }
+    public String getQuality() { return quality; }
+    public void setQuality(String quality) { this.quality = quality; }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
+    public long getQuantity() { return quantity; }
+    public void setQuantity(long quantity) { this.quantity = quantity; }
 
-    public int getSizeMM() {
-        return sizeMM;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setSizeMM(int sizeMM) {
-        this.sizeMM = sizeMM;
-    }
+    public double getPricePoint() { return pricePoint; }
+    public void setPricePoint(double pricePoint) { this.pricePoint = pricePoint; }
 
-    public String getQuality() {
-        return quality;
-    }
+    public void setShape(Shape shape) { this.shape = shape; }
+    public Shape getShape() { return shape; }
 
-    public void setQuality(String quality) {
-        this.quality = quality;
-    }
-
-    public long getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(long quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getPricePoint() {
-        return pricePoint;
-    }
-
-    public void setPricePoint(double pricePoint) {
-        this.pricePoint = pricePoint;
-    }
-
-    public void setShape(Shape shape) {
-        this.shape = shape;
-    }
-
-    public Shape getShape() {
-        return shape;
-    }
-
-
-    public void setBrands(String brands) {
-        this.brands = brands;
-    }
-
-    public String getBrands() {
-        return brands;
-    }
+    public void setBrands(String brands) { this.brands = brands; }
+    public String getBrands() { return brands; }
 
     @Override
     public String toString(){

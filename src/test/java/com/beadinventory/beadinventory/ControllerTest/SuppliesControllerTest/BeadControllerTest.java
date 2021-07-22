@@ -162,23 +162,5 @@ public class BeadControllerTest {
         Assert.assertEquals(expected,actual);
     }
 
-//    @Test
-//    public void getAllOfMaterialCategoryTest(){
-//        MaterialCategory category = MaterialCategory.SEMI_PRECIOUS_STONE;
-//        List<Bead> list = new ArrayList<>(Arrays.asList(bead1,bead2,bead3,bead4,bead5));
-//        given(mockBeadService.getAllBeads()).willReturn(new ResponseEntity<>(list, OK));
-//
-//        List<Bead> expected = new ArrayList<>(Arrays.asList(bead1,bead4,bead5,bead2));
-//        List<Bead> actual = mockBeadController.getAllOfMaterialCategory(category);
-//
-//        verify(mockBeadService).getAllBeads();
-//        Assert.assertEquals(expected,actual);
-//    }
-//
-//    @Test
-//    public void findBeadQuantityTest(){
-//        long expected = 20L;
-//        long actual = mockBeadController.findBeadQuantity(bead1);
-//        Assert.assertEquals(expected,actual);
-//    }
+
 }
